@@ -166,7 +166,7 @@ const Products = () => {
             <select
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value)}
-              className="w-full appearance-none text-light bg-gray-50 border-none px-6 py-4 rounded-full font-sans text-xs tracking-widest text-brand-dark focus:ring-2 focus:ring-brand-primary/20 outline-none cursor-pointer shadow-sm pr-12"
+              className="w-full appearance-none font-light bg-gray-50 border-none px-6 py-4 rounded-full font-sans text-xs tracking-widest text-brand-dark focus:ring-2 focus:ring-brand-primary/20 outline-none cursor-pointer shadow-sm pr-12"
             >
               <option value="default">Сортирай по</option>
               <option value="price_asc">Цена: Възходяща</option>

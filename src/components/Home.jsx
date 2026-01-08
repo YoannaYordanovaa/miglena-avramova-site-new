@@ -61,24 +61,12 @@ const Home = () => {
       ref={containerRef}
       className="relative  overflow-x-hidden"
     >
-      {/* 1. DYNAMIC BACKGROUND SHAPES */}
-      <div className="fixed inset-0 pointer-events-none z-0">
-        <motion.div
-          animate={{ scale: [1, 1.2, 1], rotate: [0, 90, 0] }}
-          transition={{ duration: 25, repeat: Infinity }}
-          className="absolute -top-[10%] -right-[10%] w-[500px] h-[500px] bg-brand-primary/10 rounded-full blur-[120px]"
-        />
-        <motion.div
-          animate={{ scale: [1, 1.3, 1], x: [0, 100, 0] }}
-          transition={{ duration: 20, repeat: Infinity, delay: 2 }}
-          className="absolute bottom-[10%] -left-[10%] w-[400px] h-[400px] bg-brand-dark/5 rounded-full blur-[100px]"
-        />
-      </div>
+ 
 
       {/* 2. HERO SECTION */}
-      <section className="relative min-h-[90vh] md:min-h-screen flex items-center pt-28 pb-20 px-4 md:px-6 z-10 overflow-hidden">
+      <section className="relative min-h-[100vh] md:min-h-screen flex items-center section-container z-10 overflow-hidden">
         <div className="max-w-7xl mx-auto w-full">
-          <div className="grid lg:grid-cols-12 gap-12 items-center">
+          <div className="grid lg:grid-cols-12 gap-12 items-center stack-space">
             <motion.div
               initial={{ opacity: 0, x: -40, scale: 0.95 }}
               animate={{ opacity: 1, x: 0, scale: 1 }}
