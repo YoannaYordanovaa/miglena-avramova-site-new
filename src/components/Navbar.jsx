@@ -17,7 +17,8 @@ const Navbar = () => {
   const navigate = useNavigate();
 
   // Уеднаквен стил за текстовете: 11px, Главни букви, Еднакъв цвят
-  const menuTextStyle = "font-sans text-[11px] uppercase tracking-widest font-regular text-brand-dark";
+  const menuTextStyle =
+    "font-sans text-[11px] uppercase tracking-widest font-regular text-brand-dark";
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
@@ -136,15 +137,21 @@ const Navbar = () => {
                         <div key={sIdx} className="relative group/sub">
                           <div className="flex justify-between items-center px-4 py-3 rounded-lg hover:bg-brand-light/50 transition-colors cursor-pointer">
                             {sub.subSubmenu ? (
-                              <span className={menuTextStyle}>
-                                {sub.title}
-                              </span>
+                              <span className={menuTextStyle}>{sub.title}</span>
                             ) : (
-                              <Link to={sub.href} className={`${menuTextStyle} w-full`}>
+                              <Link
+                                to={sub.href}
+                                className={`${menuTextStyle} w-full`}
+                              >
                                 {sub.title}
                               </Link>
                             )}
-                            {sub.subSubmenu && <ChevronRight size={14} className="text-brand-primary/60" />}
+                            {sub.subSubmenu && (
+                              <ChevronRight
+                                size={14}
+                                className="text-brand-primary/60"
+                              />
+                            )}
                           </div>
 
                           {sub.subSubmenu && (
@@ -167,9 +174,14 @@ const Navbar = () => {
                 )}
               </div>
             ))}
-
           </div>
-
+          <button
+            onClick={() => setIsOpen(true)}
+            className="lg:hidden p-2 text-brand-dark hover:text-brand-primary transition-colors"
+            aria-label="Open Menu"
+          >
+            <Menu size={28} />
+          </button>
         </div>
       </nav>
 
@@ -190,14 +202,20 @@ const Navbar = () => {
               exit={{ x: "100%" }}
               className="fixed right-0 top-0 h-full w-[85%] bg-brand-cream z-[120] shadow-2xl rounded-l-[2rem] p-8 pt-24 overflow-y-auto"
             >
-              <button onClick={() => setIsOpen(false)} className="absolute top-6 right-6 p-2">
+              <button
+                onClick={() => setIsOpen(false)}
+                className="absolute top-6 right-6 p-2"
+              >
                 <X size={24} />
               </button>
-              
+
               <div className="flex flex-col space-y-8">
                 {menuItems.map((item, idx) => (
                   <div key={idx} className="space-y-4">
-                    <div className="flex justify-between items-center group" onClick={() => item.submenu && toggleExpand(item.title)}>
+                    <div
+                      className="flex justify-between items-center group"
+                      onClick={() => item.submenu && toggleExpand(item.title)}
+                    >
                       {item.href.startsWith("#") ? (
                         <a
                           href={item.href}
@@ -217,9 +235,11 @@ const Navbar = () => {
                         </Link>
                       )}
                       {item.submenu && (
-                        <ChevronDown 
-                          size={18} 
-                          className={`text-brand-dark/60 transition-transform duration-300 ${mobileExpands[item.title] ? 'rotate-180' : ''}`} 
+                        <ChevronDown
+                          size={18}
+                          className={`text-brand-dark/60 transition-transform duration-300 ${
+                            mobileExpands[item.title] ? "rotate-180" : ""
+                          }`}
                         />
                       )}
                     </div>
@@ -228,23 +248,31 @@ const Navbar = () => {
                       <div className="pl-4 space-y-6 border-l border-brand-primary/20 mt-4">
                         {item.submenu.map((sub, sIdx) => (
                           <div key={sIdx} className="space-y-4">
-                            <div 
+                            <div
                               className="flex justify-between items-center cursor-pointer"
-                              onClick={() => sub.subSubmenu && toggleExpand(sub.title)}
+                              onClick={() =>
+                                sub.subSubmenu && toggleExpand(sub.title)
+                              }
                             >
                               {sub.subSubmenu ? (
-                                <span className={menuTextStyle}>{sub.title}</span>
+                                <span className={menuTextStyle}>
+                                  {sub.title}
+                                </span>
                               ) : (
-                                <Link to={sub.href} className={menuTextStyle}>{sub.title}</Link>
+                                <Link to={sub.href} className={menuTextStyle}>
+                                  {sub.title}
+                                </Link>
                               )}
                               {sub.subSubmenu && (
-                                <ChevronDown 
-                                  size={16} 
-                                  className={`text-brand-primary/50 transition-transform ${mobileExpands[sub.title] ? 'rotate-180' : ''}`} 
+                                <ChevronDown
+                                  size={16}
+                                  className={`text-brand-primary/50 transition-transform ${
+                                    mobileExpands[sub.title] ? "rotate-180" : ""
+                                  }`}
                                 />
                               )}
                             </div>
-                            
+
                             {sub.subSubmenu && mobileExpands[sub.title] && (
                               <div className="pl-4 flex flex-col space-y-4 border-l border-brand-primary/10">
                                 {sub.subSubmenu.map((ss, ssIdx) => (

@@ -11,14 +11,13 @@
   /* Типография */
   --font-display: "Cormorant Infant", serif;
   --font-sans: "Montserrat", sans-serif;
-  --font-accent: "Great Vibes", cursive;
 
   /* Анимации */
   --animate-float: float 3s ease-in-out infinite;
   --animate-pulse-subtle: pulse-subtle 2s infinite;
 }
 
-/* --- 1. БАЗОВИ СТИЛОВЕ --- */
+/* --- 1. БАЗОВИ СТИЛОВЕ (BASE) --- */
 @layer base {
   html {
     scroll-behavior: smooth;
@@ -29,73 +28,69 @@
   }
 
   body {
-    @apply bg-brand-cream font-sans text-gray-400 font-normal antialiased overflow-x-hidden;
+    /* Промених text-gray-400 на по-тъмен нюанс за по-добра четливост */
+    @apply bg-brand-cream font-sans text-gray-600 font-normal antialiased overflow-x-hidden;
     line-height: 1.6;
+    margin: 0;
   }
 
-  /* Автоматична десктоп и мобилна типография */
-  h1,
-  h2,
-  h3,
-  h4 {
+  /* Автоматична типография */
+  h1, h2, h3, h4 {
     @apply font-display text-brand-dark leading-tight;
   }
 
-  h1 {
-    @apply text-5xl md:text-7xl font-normal;
-  }
-  h2 {
-    @apply text-4xl md:text-6xl font-light;
-  }
-  h3 {
-    @apply text-3xl md:text-4xl font-light;
-  }
+  h1 { @apply text-5xl md:text-7xl font-normal; }
+  h2 { @apply text-4xl md:text-6xl font-light; }
+  h3 { @apply text-3xl md:text-4xl font-light; }
 
-  img {
-    @apply h-auto max-w-full block;
-  }
+  img { @apply h-auto max-w-full block; }
 
   /* Предотвратява автоматичния зуум на iPhone при форми */
-  input,
-  textarea,
-  select {
+  input, textarea, select {
     font-size: 16px !important;
   }
 
-  /* Селекция на текст */
   ::selection {
     @apply bg-brand-primary/20 text-brand-dark;
   }
 }
 
-/* --- 2. КОМПОНЕНТИ (БУТОНИ И КАРТИ) --- */
+/* --- 2. ГЛОБАЛНИ КОМПОНЕНТИ --- */
 @layer components {
-  /* Основен Бутон (btn-primary) */
+  /* Глобален стандарт за секция - ВАЖНО ЗА КОНСИСТЕНТНОСТ */
+  .section-container{
+    @apply py-20 md:py-32 px-6 md:px-16 max-w-7xl mx-auto relative z-10;
+  }
+
+  /* Стандарт за разстояние между елементи */
+  .stack-space {
+    @apply space-y-6 md:space-y-10;
+  }
+
+  /* Основен Бутон */
   .btn-primary {
     @apply inline-flex items-center justify-center bg-brand-primary text-white 
-px-8 py-4 md:px-10 md:py-5 rounded-full 
-font-sans font-bold uppercase tracking-[0.15em] text-[10px] md:text-[11px]
-transition-all duration-500 ease-out shadow-xl shadow-brand-primary/20 
-hover:bg-brand-dark hover:scale-105 hover:shadow-2xl 
-active:scale-95 cursor-pointer text-center border-none no-underline font-normal;
+    px-8 py-4 md:px-10 md:py-5 rounded-full 
+    font-sans font-bold uppercase tracking-[0.15em] text-[10px] md:text-[11px]
+    transition-all duration-500 ease-out shadow-xl shadow-brand-primary/20 
+    hover:bg-brand-dark hover:scale-105 hover:shadow-2xl 
+    active:scale-95 cursor-pointer text-center border-none no-underline;
   }
 
-  /* Вторичен Бутон (btn-outline) */
+  /* Вторичен Бутон */
   .btn-outline {
     @apply inline-flex items-center justify-center bg-transparent 
-           text-brand-dark border-2 border-brand-dark/10
-           px-8 py-4 md:px-10 md:py-5 rounded-full 
-           font-sans font-bold uppercase tracking-[0.15em] text-[10px] md:text-[11px]
-           transition-all duration-300 hover:bg-white hover:border-brand-primary
-           hover:text-brand-primary active:scale-95 cursor-pointer text-center no-underline;
+    text-brand-dark border-2 border-brand-dark/10
+    px-8 py-4 md:px-10 md:py-5 rounded-full 
+    font-sans font-bold uppercase tracking-[0.15em] text-[10px] md:text-[11px]
+    transition-all duration-300 hover:bg-white hover:border-brand-primary
+    hover:text-brand-primary active:scale-95 cursor-pointer text-center no-underline;
   }
 
-  /* Елегантна карта за снимки/цитати */
   .glass-card {
     @apply bg-white/70 backdrop-blur-md border border-white/20 shadow-xl rounded-[2rem];
   }
 
-  /* Стил за цитати */
   .quote-style {
     @apply font-display italic text-2xl text-brand-dark/80 relative pl-8 border-l-4 border-brand-primary/30;
   }
@@ -103,53 +98,28 @@ active:scale-95 cursor-pointer text-center border-none no-underline font-normal;
 
 /* --- 3. ПОМОЩНИ КЛАСОВЕ --- */
 @layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
-
-  .no-scrollbar::-webkit-scrollbar {
-    display: none;
-  }
-
-  .no-scrollbar {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-  }
-
-  .soft-shadow {
-    box-shadow: 0 20px 50px rgba(0, 63, 0, 0.05);
-  }
+  .text-balance { text-wrap: balance; }
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+  .soft-shadow { box-shadow: 0 20px 50px rgba(0, 63, 0, 0.05); }
 }
 
 /* --- 4. АНИМАЦИИ --- */
 @keyframes float {
-  0% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-10px);
-  }
-  100% {
-    transform: translateY(0px);
-  }
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
 }
 
 @keyframes pulse-subtle {
-  0% {
-    box-shadow: 0 0 0 0 rgba(116, 171, 26, 0.4);
-  }
-  70% {
-    box-shadow: 0 0 0 12px rgba(116, 171, 26, 0);
-  }
-  100% {
-    box-shadow: 0 0 0 0 rgba(116, 171, 26, 0);
-  }
+  0% { box-shadow: 0 0 0 0 rgba(116, 171, 26, 0.4); }
+  70% { box-shadow: 0 0 0 12px rgba(116, 171, 26, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(116, 171, 26, 0); }
 }
 
-/* Специфична корекция за мобилни устройства: деактивиране на hover трансформациите */
+/* Предотвратяване на "трептене" при мобилни */
 @media (hover: none) {
-  .btn-primary:hover,
-  .btn-outline:hover {
+  .btn-primary:hover, .btn-outline:hover {
     transform: none !important;
   }
 }

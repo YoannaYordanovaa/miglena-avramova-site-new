@@ -43,7 +43,7 @@ const VideoSection = () => {
             
             {/* Thumbnail */}
             <img 
-              src="/assets/Team/video-cover.jpg" 
+              src="/video-cover.jpg" 
               alt="Team Life" 
               className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
             />
@@ -107,7 +107,7 @@ const VideoSection = () => {
               <iframe 
                 width="100%" 
                 height="100%" 
-                src="https://www.youtube.com/embed/ВАШИЯ_ID?autoplay=1" 
+                src="https://www.youtube.com/embed/2Ak1IIp9jdc" 
                 title="Miglena Avramova Team"
                 frameBorder="0" 
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 

@@ -290,7 +290,7 @@ const JoinTeam = () => {
           </div>
 
       {/* ДЕКОРАТИВЕН ВОДЕН ЗНАК (Скрит на мобилни за по-добър UX) */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 font-accent text-[15vw] md:text-[10vw] text-brand-primary/5 select-none pointer-events-none whitespace-nowrap">
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 font-display text-[15vw] md:text-[10vw] text-brand-primary/5 select-none pointer-events-none whitespace-nowrap">
           Forever
         </div>
 
