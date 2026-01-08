@@ -285,7 +285,15 @@ const AdminPanel = () => {
         <form
           onSubmit={(e) => {
             e.preventDefault();
-            if (password === "megi123") setIsAuthenticated(true);
+            // Вземаме паролата от системните настройки
+            const securePassword = import.meta.env.VITE_ADMIN_PASSWORD;
+
+            if (password === securePassword) {
+              setIsAuthenticated(true); // Трябва да е IsAuthenticated, а не IsLoggedIn
+              localStorage.setItem("isLoggedIn", "true");
+            } else {
+              alert("Грешна парола!");
+            }
           }}
           className="bg-white p-10 rounded-[2.5rem] shadow-2xl max-w-sm w-full space-y-6"
         >

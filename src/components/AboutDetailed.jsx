@@ -245,10 +245,6 @@ const AboutDetailed = () => {
 
     
 
-      {/* 4. GALLERY SECTION */}
-
-        <AboutGallery />
-
          {/* 7. TRANSFORMATION SECTION */}
       <section className="py-24 px-6 bg-brand-dark relative overflow-hidden text-left">
         <div className="absolute top-0 right-0 w-1/2 h-full bg-brand-primary/5 blur-3xl rounded-full" />

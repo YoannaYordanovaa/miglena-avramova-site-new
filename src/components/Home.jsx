@@ -1,5 +1,6 @@
 import React, { useRef, useState, useEffect } from "react";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
+import AboutGallery from "../components/AboutGallery";
 import {
   Mail,
   Phone,
@@ -271,6 +272,10 @@ const Home = () => {
         </div>
       </section>
 
+      {/* 4. GALLERY SECTION */}
+
+      <AboutGallery />
+
       {/* --- СЕКЦИЯ НОВИНИ --- */}
       <section className="py-20 md:py-32 px-6 relative z-10 bg-brand-cream backdrop-blur-sm border-y border-brand-primary/5">
         <div className="max-w-7xl mx-auto px-6 relative z-10">
@@ -313,12 +318,13 @@ const Home = () => {
                     <span className="text-[10px] uppercase tracking-widest text-brand-primary font-bold">
                       {item.date}
                     </span>
-                    <h4 className="font-display text-2xl text-brand-dark leading-tight group-hover:text-brand-primary transition-colors">
+                    <h4 className="font-sans text-2xl text-brand-primary leading-tight group-hover:text-brand-primary transition-colors">
                       {item.title}
                     </h4>
-                    <p className="font-sans text-gray-500 text-sm leading-relaxed line-clamp-3 italic">
-                      {item.text}
-                    </p>
+                    <div
+                      className="font-sans text-gray-500 text-sm leading-relaxed line-clamp-3"
+                      dangerouslySetInnerHTML={{ __html: item.text }}
+                    />
                   </div>
                   <div className="pt-6 flex justify-start">
                     <div className="w-10 h-10 rounded-full bg-brand-cream flex items-center justify-center text-brand-primary group-hover:bg-brand-primary group-hover:text-white transition-all">
