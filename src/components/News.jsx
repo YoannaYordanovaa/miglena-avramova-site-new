@@ -12,7 +12,7 @@ const News = () => {
   }, []);
 
   return (
-    <div className="bg-brand-cream min-h-screen pt-32 pb-20 px-6">
+    <div className=" min-h-screen pt-32 pb-20 px-6">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="mb-20 text-left space-y-4">
@@ -51,7 +51,7 @@ const News = () => {
 
                 <div className="pt-6 border-t border-brand-light flex items-center justify-between">
                   <span className="text-[10px] uppercase tracking-widest text-gray-400 font-bold">Прочети повече</span>
-                  <div className="w-10 h-10 rounded-full bg-brand-cream flex items-center justify-center text-brand-primary group-hover:bg-brand-primary group-hover:text-white transition-all duration-500">
+                  <div className="w-10 h-10 rounded-full  flex items-center justify-center text-brand-primary group-hover:bg-brand-primary group-hover:text-white transition-all duration-500">
                     <ArrowRight size={18} />
                   </div>
                 </div>

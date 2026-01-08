@@ -6,7 +6,7 @@ const VideoSection = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <section id="video" className=" bg-brand-cream overflow-hidden py-20 md:py-32 px-6">
+    <section id="video" className=" overflow-hidden py-20 md:py-32 px-6">
       <div className="max-w-7xl mx-auto px-6">
         
         {/* Заглавна част в стила на Join страницата */}

@@ -47,7 +47,7 @@ const AboutDetailed = () => {
   ];
 
   return (
-    <div className="bg-brand-cream min-h-screen">
+    <div className=" min-h-screen">
       {/* 1. HERO SECTION - Minimal & Personal */}
       <section className="relative pt-32 pb-20 px-6 bg-white overflow-hidden">
         <div className="max-w-4xl mx-auto text-center relative z-10">

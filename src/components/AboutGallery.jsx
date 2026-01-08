@@ -24,7 +24,7 @@ const InteractiveGallery = () => {
   const showAllPhotos = () => setVisibleCount(Miglena_Avramova_Photos.length);
 
   return (
-    <section className="py-20 md:py-32 px-6  bg-brand-cream overflow-hidden">
+    <section className="py-20 md:py-32 px-6   overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         
         {/* Заглавна част в стила на началната страница */}

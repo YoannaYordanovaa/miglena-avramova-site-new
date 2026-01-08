@@ -11,6 +11,8 @@ import Products from "./components/products"; // ПРОВЕРИ ДАЛИ НЕ Е
 import News from "./components/News"; // ПОПРАВЕНО: Премахната двойна наклонена черта
 import AdminPanel from "./components/AdminPanel";
 import NewsDetail from "./components/NewsDetail";
+import TeamGallery from "./components/TeamGallery";
+import VideoSection from "./components/VideoSection";
 
 function App() {
   return (
@@ -31,6 +33,8 @@ function App() {
               <Route path="/news" element={<News />} />
               <Route path="/admin" element={<AdminPanel />} />
               <Route path="/news/:id" element={<NewsDetail />} />
+              <Route path="/joingallery" element={<TeamGallery />} />
+              <Route path="/joinvideo" element={<VideoSection />} />
             </Routes>
           </MainLayout>
         </main>

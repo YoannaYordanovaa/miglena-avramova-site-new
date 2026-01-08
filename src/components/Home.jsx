@@ -59,7 +59,7 @@ const Home = () => {
   return (
     <div
       ref={containerRef}
-      className="relative bg-brand-cream overflow-x-hidden"
+      className="relative  overflow-x-hidden"
     >
       {/* 1. DYNAMIC BACKGROUND SHAPES */}
       <div className="fixed inset-0 pointer-events-none z-0">
@@ -276,8 +276,15 @@ const Home = () => {
 
       <AboutGallery />
 
+    <div className="relative flex items-center justify-center py-4 ">
+        <div className="w-full max-w-5xl border-t border-brand-primary/40"></div>
+        <div className="absolute  px-4">
+          <Sparkles size={18} className="text-brand-primary/40" />
+        </div>
+      </div>
+
       {/* --- СЕКЦИЯ НОВИНИ --- */}
-      <section className="py-20 md:py-32 px-6 relative z-10 bg-brand-cream backdrop-blur-sm border-y border-brand-primary/5">
+      <section className="py-20 md:py-32 px-6 relative z-10  border-y border-brand-primary/5">
         <div className="max-w-7xl mx-auto px-6 relative z-10">
           <div className="mb-16 text-left">
             <motion.div
@@ -327,7 +334,7 @@ const Home = () => {
                     />
                   </div>
                   <div className="pt-6 flex justify-start">
-                    <div className="w-10 h-10 rounded-full bg-brand-cream flex items-center justify-center text-brand-primary group-hover:bg-brand-primary group-hover:text-white transition-all">
+                    <div className="w-10 h-10 rounded-full  flex items-center justify-center text-brand-primary group-hover:bg-brand-primary group-hover:text-white transition-all">
                       <ArrowRight size={16} />
                     </div>
                   </div>
@@ -401,7 +408,7 @@ const Home = () => {
                 viewport={{ once: true }}
                 transition={{ ...entryTransition, delay: i * 0.1 }}
                 whileHover={{ y: -5 }}
-                className="p-8 rounded-[2rem] bg-brand-cream/40 border border-brand-light/50 flex flex-col justify-between shadow-sm hover:shadow-md transition-all"
+                className="p-8 rounded-[2rem] /40 border border-brand-light/50 flex flex-col justify-between shadow-sm hover:shadow-md transition-all"
               >
                 <div className="space-y-6">
                   <MessageSquare className="text-brand-primary/20" size={32} />
@@ -431,7 +438,7 @@ const Home = () => {
       {/* 5. CONTACT SECTION */}
       <section
         id="contact"
-        className="py-20 md:py-32 px-6 bg-brand-cream relative"
+        className="py-20 md:py-32 px-6  relative"
       >
         <div className="max-w-7xl mx-auto px-6 relative z-10">
           <div className="mb-16 text-left">
@@ -501,14 +508,14 @@ const Home = () => {
                   name: "Instagram",
                   icon: <Instagram size={32} />,
                   color: "text-brand-primary",
-                  href: "https://www.instagram.com/miglena_avramova",
+                  href: "https://www.instagram.com/avramovamiglenaa/",
                   desc: "Вдъхновение и ежедневни практики",
                 },
                 {
                   name: "Facebook",
                   icon: <Facebook size={32} />,
                   color: "text-brand-primary",
-                  href: "https://www.facebook.com/miglena.avramova",
+                  href: "https://www.facebook.com/profile.php?id=61564479065889",
                   desc: "Бъди част от общността",
                 },
               ].map((social, i) => (
@@ -543,7 +550,7 @@ const Home = () => {
                 viewport={{ once: true }}
                 transition={entryTransition}
                 whileHover={{ scale: 1.02 }}
-                href="https://www.tiktok.com/@miglena_avramova"
+                href="https://www.tiktok.com/@avramovamiglenaa"
                 target="_blank"
                 className="md:col-span-2 bg-white p-8 rounded-[2.5rem] shadow-sm border border-brand-light flex items-center justify-between group"
               >

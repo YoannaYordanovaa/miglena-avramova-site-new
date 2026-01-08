@@ -83,10 +83,10 @@ const JoinTeam = () => {
   };
 
   return (
-    <div className=" bg-brand-cream overflow-hidden">
+    <div className="  overflow-hidden">
 
    {/* 1. Hero Section */}
-<section className="relative py-20 md:py-32 pt-38 px-6 bg-brand-cream overflow-hidden text-left">
+<section className="relative py-20 md:py-32 pt-38 px-6  overflow-hidden text-left">
   <div className="max-w-7xl mx-auto px-6 relative z-10">
     {/* ПРОМЯНА: Използваме cols вместо rows */}
     <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 md:gap-16 items-center">
@@ -191,15 +191,15 @@ const JoinTeam = () => {
       <VideoSection />
 
       {/* Divider Between Section 3 & 4 */}
-      <div className="relative flex items-center justify-center py-4 bg-brand-cream">
+      <div className="relative flex items-center justify-center py-4 ">
         <div className="w-full max-w-5xl border-t border-brand-primary/40"></div>
-        <div className="absolute bg-brand-cream px-4">
+        <div className="absolute  px-4">
           <Sparkles size={18} className="text-brand-primary/40" />
         </div>
       </div>
 
       {/* 2. Benefits Grid */}
-      <section className="py-20 md:py-32 px-6 bg-brand-cream">
+      <section className="py-20 md:py-32 px-6 ">
         <div className="max-w-7xl mx-auto px-6">
           <div className="mb-16 text-left">
             <motion.div
@@ -228,7 +228,7 @@ const JoinTeam = () => {
               <motion.div
                 key={i}
                 whileHover={{ y: -10 }}
-                className="p-10 rounded-[2.5rem] bg-brand-cream/100 border border-brand-light/50 soft-shadow transition-all text-left"
+                className="p-10 rounded-[2.5rem] /100 border bg-brand-cream border-brand-light/50 soft-shadow transition-all text-left"
               >
                 <div className="w-14 h-14 bg-white rounded-2xl flex items-center justify-center mb-8 shadow-sm">
                   {b.icon}
@@ -290,11 +290,9 @@ const JoinTeam = () => {
           </div>
 
       {/* ДЕКОРАТИВЕН ВОДЕН ЗНАК (Скрит на мобилни за по-добър UX) */}
-      <div className="absolute -right-20 top-1/2 -translate-y-1/2 opacity-[0.02] pointer-events-none select-none hidden lg:block">
-        <h2 className="text-[22rem] font-display font-bold whitespace-nowrap tracking-tighter text-brand-dark">
-          FOREVER
-        </h2>
-      </div>
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 font-accent text-[15vw] md:text-[10vw] text-brand-primary/5 select-none pointer-events-none whitespace-nowrap">
+          Forever
+        </div>
 
       <div className="max-w-7xl mx-auto relative z-10">
         
@@ -339,7 +337,7 @@ const JoinTeam = () => {
                 </p>
               </div>
 
-              <div className="bg-brand-cream border border-brand-primary/10 rounded-[2.5rem] p-8 flex flex-col items-center justify-center text-center">
+              <div className=" border border-brand-primary/10 rounded-[2.5rem] p-8 flex flex-col items-center justify-center text-center">
                 <TrendingUp className="text-brand-primary mb-2" size={20} />
                 <p className="font-sans text-[10px] uppercase tracking-[0.2em] text-brand-dark font-bold leading-relaxed">
                   Вертикално Интегрирани
@@ -372,7 +370,7 @@ const JoinTeam = () => {
 
                   собствените си плантации в Доминиканската република и Тексас.
               </p>
-              <div className="p-8 bg-brand-cream/40 rounded-3xl border-l-4 border-brand-primary italic text-brand-dark/80 text-base shadow-sm leading-relaxed">
+              <div className="p-8 /40 rounded-3xl border-l-4 border-brand-primary italic text-brand-dark/80 text-base shadow-sm leading-relaxed">
                 „Ние контролираме целия процес – от засаждането на растението до доставката до вашия дом. Това гарантира чистота без компромиси.“
               </div>
             </div>
@@ -388,7 +386,7 @@ const JoinTeam = () => {
                 { title: "Наука и Патенти", desc: "Уникален процес на студена стабилизация, запазващ 100% от нутриентите.", icon: <Microscope size={20} /> },
                 { title: "Етичен Избор", desc: "Сертификати IASC, Halal, Kosher и без тестове върху животни.", icon: <ShieldCheck size={20} /> },
               ].map((item, idx) => (
-                <div key={idx} className="flex items-center gap-4 p-4 bg-brand-cream rounded-2xl border border-brand-light/50 shadow-sm transition-all hover:border-brand-primary/20">
+                <div key={idx} className="flex items-center gap-4 p-4  rounded-2xl border border-brand-light/50 shadow-sm transition-all hover:border-brand-primary/20">
                   <div className=" bg-brand-dark p-2.5 rounded-xl text-white shrink-0">{item.icon}</div>
                   <div>
                     <h5 className="font-display font-bold text-brand-primary uppercase tracking-wider mb-0.5">{item.title}</h5>
@@ -434,7 +432,7 @@ const JoinTeam = () => {
     </section>
 
       {/* 5. Contact Form Section */}
-      <section id="join-form" className="py-20 md:py-32 px-6 bg-brand-cream/50 ">
+      <section id="join-form" className="py-20 md:py-32 px-6 /50 ">
         <div className="mb-16 text-left max-w-7xl mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -508,7 +506,7 @@ const JoinTeam = () => {
                       required
                       type="text"
                       placeholder="Име Фамилия"
-                      className="w-full bg-brand-cream/100 border-none px-6 py-4 rounded-2xl outline-none focus:ring-2 focus:ring-brand-primary/20 transition-all font-sans text-sm text-brand-dark"
+                      className="w-full /100 bg-brand-cream border-none px-6 py-4 rounded-2xl outline-none focus:ring-2 focus:ring-brand-primary/20 transition-all font-sans text-sm text-brand-dark"
                     />
                   </div>
                   <div className="space-y-3 text-left">
@@ -520,7 +518,7 @@ const JoinTeam = () => {
                       required
                       type="tel"
                       placeholder="+359..."
-                      className="w-full bg-brand-cream/100 border-none px-6 py-4 rounded-2xl outline-none focus:ring-2 focus:ring-brand-primary/20 transition-all font-sans text-sm text-brand-dark"
+                      className="w-full /100 bg-brand-cream  border-none px-6 py-4 rounded-2xl outline-none focus:ring-2 focus:ring-brand-primary/20 transition-all font-sans text-sm text-brand-dark"
                     />
                   </div>
                 </div>
@@ -533,7 +531,7 @@ const JoinTeam = () => {
                     name="message"
                     rows="4"
                     placeholder="Разкажи ми..."
-                    className="w-full bg-brand-cream/100 border-none px-6 py-4 rounded-2xl outline-none focus:ring-2 focus:ring-brand-primary/20 transition-all font-sans text-sm text-brand-dark resize-none"
+                    className="w-full /100 bg-brand-cream  border-none px-6 py-4 rounded-2xl outline-none focus:ring-2 focus:ring-brand-primary/20 transition-all font-sans text-sm text-brand-dark resize-none"
                   ></textarea>
                 </div>
 
