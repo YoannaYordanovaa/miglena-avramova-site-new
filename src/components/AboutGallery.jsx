@@ -86,8 +86,8 @@ const InteractiveGallery = () => {
   }, [selectedImage]);
 
   return (
-    <section ref={galleryRef} className="py-20 md:py-32 px-6 scroll-mt-10">
-      <div className="max-w-7xl mx-auto">
+    <section ref={galleryRef} className="section-container scroll-mt-10">
+      <div className="mx-auto">
         {/* Header */}
         <div className="mb-16 text-left">
           <motion.div
@@ -96,7 +96,7 @@ const InteractiveGallery = () => {
             viewport={{ once: true }}
             className="inline-block"
           >
-            <h2 className="text-4xl md:text-6xl font-display font-medium text-brand-dark case tracking-tighter leading-none mb-6">
+            <h2 className=" font-display font-medium text-brand-dark case tracking-tighter leading-none mb-6">
               Любими моменти <br />
               <span className="text-brand-primary font-light italic">с любими хора...</span>
             </h2>

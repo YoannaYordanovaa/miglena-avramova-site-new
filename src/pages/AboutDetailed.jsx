@@ -85,7 +85,7 @@ const AboutDetailed = () => {
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="font-display text-4xl md:text-6xl text-brand-dark leading-[1.1] mb-8"
+            className="font-display text-brand-dark leading-[1.1] mb-8"
           >
             За мен <br />
             <span className="text-brand-primary italic font-light">
@@ -232,12 +232,12 @@ const AboutDetailed = () => {
             viewport={{ once: true }}
             className="space-y-4"
           >
-            <h1 className="font-display text-4xl md:text-6xl text-brand-dark leading-tight tracking-tighter">
+            <h2 className="font-display text-brand-dark leading-tight tracking-tighter">
               Моят път към <br />
               <span className="text-brand-primary italic font-light relative">
                 баланса и енергията
               </span>
-            </h1>
+            </h2>
           </motion.div>
 
           {/* Highlighted Quote */}
@@ -306,7 +306,7 @@ const AboutDetailed = () => {
 
         <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center relative z-10">
           <div className="text-left space-y-8">
-            <h2 className="font-display text-4xl md:text-6xl text-white">
+            <h2 className="font-display text-white">
               Промяната, която <br />
               <span className="text-brand-primary italic">преживях лично</span>
             </h2>

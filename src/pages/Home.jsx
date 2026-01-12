@@ -45,8 +45,8 @@ const Home = () => {
 
 
       {/* 2. HERO SECTION */}
-      <section className="relative min-h-[100vh] md:min-h-screen flex items-center section-container z-10 overflow-hidden">
-        <div className="max-w-7xl mx-auto w-full">
+      <section className="relative section-container mt-4 min-h-[100vh] md:min-h-screen flex items-center section-container z-10 overflow-hidden">
+        <div className=" mx-auto w-full">
           <div className="grid lg:grid-cols-12 gap-12 items-center stack-space">
             <motion.div
               initial={{ opacity: 0, x: -40, scale: 0.95 }}
@@ -66,7 +66,7 @@ const Home = () => {
                 </span>
               </motion.div>
 
-              <h1 className=" text-brand-dark tracking-tight font-display text-5xl md:text-7xl">
+              <h1 className=" text-brand-dark tracking-tight font-display">
                 Върни си <br />
                 <span className="text-brand-primary italic font-light relative">
                   енергията
@@ -174,13 +174,13 @@ const Home = () => {
       {/* 3. ABOUT SECTION - EDITORIAL MINIMALIST */}
       <section
         id="about"
-        className="relative py-20 md:py-32 px-6 bg-white overflow-hidden"
+        className="relative section-container bg-white overflow-hidden"
       >
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 font-display text-[15vw] md:text-[10vw] text-brand-primary/5 select-none pointer-events-none whitespace-nowrap">
           Healthy Lifestyle
         </div>
 
-        <div className="max-w-7xl mx-auto px-6 relative z-10">
+        <div className=" relative z-10">
           <div className="mb-16 text-left">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -188,7 +188,7 @@ const Home = () => {
               viewport={{ once: true }}
               className="inline-block"
             >
-              <h2 className="text-4xl md:text-6xl font-display font-medium text-brand-dark case tracking-tighter leading-none mb-6">
+              <h2 className="font-display font-medium text-brand-dark case tracking-tighter leading-none mb-6">
                 Моята цел <br />
                 <span className="text-brand-primary font-light italic">
                   растеж и вдъхновение!
@@ -249,8 +249,8 @@ const Home = () => {
    
 
       {/* 4. TESTIMONIALS */}
-      <section className="py-20 md:py-32 px-6 bg-white relative overflow-hidden">
-        <div className="max-w-7xl mx-auto px-6 relative z-10">
+      <section className="section-container bg-white relative overflow-hidden">
+        <div className="relative z-10">
           <div className="flex flex-col md:flex-row items-start md:items-end justify-between mb-12 md:mb-20 gap-6">
             <div className="mb-16 text-left">
               <motion.div
@@ -259,7 +259,7 @@ const Home = () => {
                 viewport={{ once: true }}
                 className="inline-block"
               >
-                <h2 className="text-4xl md:text-6xl font-display font-medium text-brand-dark case tracking-tighter leading-none mb-6">
+                <h2 className="font-display font-medium text-brand-dark case tracking-tighter leading-none mb-6">
                   Хора, които
                   <br />
                   <span className="text-brand-primary font-light italic">
@@ -341,9 +341,9 @@ const Home = () => {
       {/* 5. CONTACT SECTION */}
       <section
         id="contact"
-        className="py-20 md:py-32 px-6  relative"
+        className="section-container relative"
       >
-        <div className="max-w-7xl mx-auto px-6 relative z-10">
+        <div className="relative z-10">
           <div className="mb-16 text-left">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -351,7 +351,7 @@ const Home = () => {
               viewport={{ once: true }}
               className="inline-block"
             >
-              <h2 className="text-4xl md:text-6xl font-display font-medium text-brand-dark case tracking-tighter leading-none mb-6">
+              <h2 className="font-display font-medium text-brand-dark case tracking-tighter leading-none mb-6">
                 Свържи се
                 <br />
                 <span className="text-brand-primary font-light italic">
@@ -393,7 +393,7 @@ const Home = () => {
                 </a>
                 <a
                   href="mailto:miglena.avramova@mail.com"
-                  className="flex items-center gap-4 group"
+                  className="flex items-center gap-4 group break-all"
                 >
                   <div className="p-3 rounded-xl bg-white/10 group-hover:bg-brand-primary transition-colors">
                     <Mail size={20} />

@@ -188,7 +188,7 @@ const Products = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
           >
-            <h2 className="text-4xl md:text-6xl font-display font-medium text-brand-dark tracking-tighter leading-none mb-6">
+            <h2 className="font-display font-medium text-brand-dark tracking-tighter leading-none mb-6">
               Разгледай <br />
               <span className="text-brand-primary font-light italic">
                 {categoryNames[category] || "Нашите Продукти"}

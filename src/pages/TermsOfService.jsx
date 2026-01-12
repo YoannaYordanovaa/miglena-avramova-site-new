@@ -63,7 +63,7 @@ const TermsOfService = () => {
            </section>
 
       {/* Content Section */}
-      <section className="py-20 px-6">
+      <section className="section-container py-5 px-6">
         <div className="max-w-3xl mx-auto">
           <div className="space-y-16">
             {sections.map((section, idx) => (

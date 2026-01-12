@@ -45,7 +45,7 @@ const PrivacyPolicy = () => {
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 px-6 bg-brand-cream/30">
+      <section className="relative section-container pt-30 bg-brand-cream/30">
         <div className="max-w-4xl mx-auto text-center">
           <Link 
             to="/" 
@@ -69,7 +69,7 @@ const PrivacyPolicy = () => {
       </section>
 
       {/* Content Section */}
-      <section className="py-20 px-6">
+      <section className="py-5 px-6">
         <div className="max-w-3xl mx-auto">
           <div className="space-y-16">
             {sections.map((section, idx) => (

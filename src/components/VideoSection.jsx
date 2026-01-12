@@ -26,8 +26,8 @@ const VideoSection = () => {
   }, [isOpen]);
 
   return (
-    <section id="video" className="overflow-hidden py-20 md:py-32 px-6">
-      <div className="max-w-7xl mx-auto px-6">
+    <section id="video" className="overflow-hidden section-container">
+      <div className="mx-auto">
         
         {/* Заглавна част */}
         <div className="mb-16 text-left">
@@ -37,7 +37,7 @@ const VideoSection = () => {
             viewport={{ once: true }}
             className="inline-block"
           >
-            <h2 className="text-4xl md:text-6xl font-display font-medium text-brand-dark case tracking-tighter leading-none mb-6">
+            <h2 className="font-display font-medium text-brand-dark case tracking-tighter leading-none mb-6">
               Защо да се присъединиш <br />
               <span className="text-brand-primary font-light italic">към нас?</span>
             </h2>
