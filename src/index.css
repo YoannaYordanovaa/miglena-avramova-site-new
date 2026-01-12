@@ -52,7 +52,7 @@
     @apply text-3xl md:text-4xl font-light;
   }
   h4 {
-    @apply text-xl md:text-xl font-light;
+    @apply text-[18px] md:text-[18px] font-light;
   }
 
   img {
