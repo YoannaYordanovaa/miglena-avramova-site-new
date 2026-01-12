@@ -137,17 +137,17 @@ const Footer = () => {
           <div className="flex gap-6 md:gap-8 font-sans text-[10px] text-gray-400 uppercase tracking-[0.1em] font-bold order-1 md:order-2">
             <Link
               smooth
-              to="/#home"
+              to="/privacyPolicy"
               className="hover:text-brand-primary transition-colors underline decoration-gray-200"
             >
-              Privacy Policy
+              Политика за поверителност
             </Link>
             <Link
               smooth
-              to="/#home"
+              to="/termsofservice"
               className="hover:text-brand-primary transition-colors underline decoration-gray-200"
             >
-              Terms of Service
+              Общи условия
             </Link>
           </div>
         </div>

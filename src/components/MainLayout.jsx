@@ -10,7 +10,7 @@ const MainLayout = ({ children }) => {
         
         {/* 1. РЕАЛИСТИЧНИ АЛОЕ ВЕРА ЕЛЕМЕНТИ */}
         <motion.img
-          src="/Aloe_Vera_Plant.png"
+          src="/Aloe_Vera_Plant.webp"
           className="absolute -top-10 -right-20 w-[350px] md:w-[550px] h-auto object-contain opacity-20"
           animate={{ 
             rotate: [15, 22, 15],
@@ -25,7 +25,7 @@ const MainLayout = ({ children }) => {
         />
 
         <motion.img
-          src="/Aloe_Vera_Plant.png"
+          src="/Aloe_Vera_Plant.webp"
           className="absolute -bottom-20 -left-10 w-[300px] md:w-[500px] h-auto object-contain opacity-15"
           animate={{ 
             rotate: [-10, -18, -10],

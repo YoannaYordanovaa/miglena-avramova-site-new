@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import { createPortal } from 'react-dom'; // 1. Добавен импорт
 import { motion, AnimatePresence } from 'framer-motion';
 import { Play, X } from 'lucide-react';
 
 const VideoSection = () => {
   const [isOpen, setIsOpen] = useState(false);
 
-  // ESC за затваряне
+  // ESC за затваряне и блокиране на скрола
   useEffect(() => {
     const handleEsc = (e) => {
       if (e.key === 'Escape') setIsOpen(false);
@@ -13,10 +14,14 @@ const VideoSection = () => {
 
     if (isOpen) {
       window.addEventListener('keydown', handleEsc);
+      document.body.style.overflow = 'hidden'; // Спираме скрола
+    } else {
+      document.body.style.overflow = 'unset'; // Пускаме скрола
     }
 
     return () => {
       window.removeEventListener('keydown', handleEsc);
+      document.body.style.overflow = 'unset';
     };
   }, [isOpen]);
 
@@ -32,20 +37,20 @@ const VideoSection = () => {
             viewport={{ once: true }}
             className="inline-block"
           >
-            <h2 className="font-display font-medium text-brand-dark case tracking-tighter leading-none mb-6">
+            <h2 className="text-4xl md:text-6xl font-display font-medium text-brand-dark case tracking-tighter leading-none mb-6">
               Защо да се присъединиш <br />
               <span className="text-brand-primary font-light italic">към нас?</span>
             </h2>
             <div className="flex items-center gap-4">
               <div className="w-12 h-[1px] bg-brand-primary" />
               <p className="font-sans text-gray-400 text-xs case tracking-[0.3em] font-medium">
-                Един проект, една визия, едно семейство
+                Превърни амбицията си в устойчив и печеливш бизнес
               </p>
             </div>
           </motion.div>
         </div>
 
-        {/* Видео */}
+        {/* Превю на Видеото */}
         <motion.div 
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -56,7 +61,7 @@ const VideoSection = () => {
           <div className="relative aspect-video md:aspect-[21/9] rounded-[2.5rem] md:rounded-[4rem] overflow-hidden bg-brand-cream border border-brand-light/20 shadow-[0_32px_64px_-15px_rgba(0,0,0,0.1)]">
             
             <img 
-              src="/video-cover.jpg" 
+              src="/video-cover.webp" 
               alt="Team Life" 
               className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
             />
@@ -90,43 +95,46 @@ const VideoSection = () => {
         </motion.div>
       </div>
 
-      {/* MODAL */}
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={() => setIsOpen(false)} // ⬅️ клик извън видеото
-            className="fixed inset-0 z-[200] bg-brand-dark/95 backdrop-blur-xl flex items-center justify-center p-4 md:p-12"
-          >
-            <button 
-              onClick={(e) => { e.stopPropagation(); setIsOpen(false); }}
-              className="absolute top-8 right-8 text-white/50 hover:text-white transition-colors"
-            >
-              <X size={40} />
-            </button>
-
+      {/* 2. MODAL С ИЗПОЛЗВАНЕ НА PORTAL */}
+      {typeof document !== "undefined" && createPortal(
+        <AnimatePresence>
+          {isOpen && (
             <motion.div 
-              initial={{ scale: 0.9, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.9, opacity: 0 }}
-              onClick={(e) => e.stopPropagation()} // ⬅️ стоп за видеото
-              className="w-full max-w-6xl aspect-video rounded-3xl overflow-hidden shadow-3xl bg-black"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setIsOpen(false)}
+              className="fixed inset-0 z-[99999] bg-brand-dark/95 backdrop-blur-xl flex items-center justify-center p-4 md:p-12"
             >
-              <iframe 
-                width="100%" 
-                height="100%" 
-                src="https://www.youtube.com/embed/2Ak1IIp9jdc" 
-                title="Miglena Avramova Team"
-                frameBorder="0" 
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                allowFullScreen
-              />
+              <button 
+                onClick={(e) => { e.stopPropagation(); setIsOpen(false); }}
+                className="absolute top-8 right-8 text-white/50 hover:text-white transition-colors z-[100000] p-2"
+              >
+                <X size={40} />
+              </button>
+
+              <motion.div 
+                initial={{ scale: 0.9, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                exit={{ scale: 0.9, opacity: 0 }}
+                onClick={(e) => e.stopPropagation()}
+                className="w-full max-w-6xl aspect-video rounded-3xl overflow-hidden shadow-3xl bg-black relative"
+              >
+                <iframe 
+                  width="100%" 
+                  height="100%" 
+                  src="https://www.youtube.com/embed/2Ak1IIp9jdc?autoplay=1" // Добавен autoplay при отваряне
+                  title="Miglena Avramova Team"
+                  frameBorder="0" 
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                  allowFullScreen
+                />
+              </motion.div>
             </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+          )}
+        </AnimatePresence>,
+        document.body
+      )}
     </section>
   );
 };

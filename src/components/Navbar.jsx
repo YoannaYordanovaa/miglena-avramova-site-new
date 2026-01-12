@@ -53,7 +53,7 @@ const Navbar = () => {
   };
 
   const menuItems = [
-    { title: "За мен", href: "#about" },
+    { title: "За мен", href: "/" },
     {
       title: "е-Магазин",
       href: "/shop",
