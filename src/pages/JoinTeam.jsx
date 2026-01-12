@@ -239,7 +239,7 @@ const JoinTeam = () => {
               viewport={{ once: true }}
               className="inline-block"
             >
-              <h2 className="font-display font-medium text-brand-dark case tracking-tighter leading-none mb-6">
+              <h2 className="font-display font-medium text-brand-dark case leading-none mb-6">
                 Защо да избереш <br />
                 <span className="text-brand-primary font-light italic">
                   моя екип?
@@ -247,7 +247,7 @@ const JoinTeam = () => {
               </h2>
               <div className="flex items-center gap-4">
                 <div className="w-12 h-[1px] bg-brand-primary" />
-                <p className="font-sans text-gray-400 text-xs case tracking-[0.3em] font-medium">
+                <p className="font-sans text-gray-400 text-xs case tracking-[0.2em] font-regular">
                   Един проект, една визия, едно семейство
                 </p>
               </div>
@@ -310,7 +310,7 @@ const JoinTeam = () => {
             viewport={{ once: true }}
             className="inline-block"
           >
-            <h2 className="font-display font-medium text-brand-dark case tracking-tighter leading-none mb-6">
+            <h2 className="font-display font-medium text-brand-dark case leading-none mb-6">
               Кои са <br />
               <span className="text-brand-primary font-light italic">
                 Форевър Ливинг?
@@ -318,7 +318,7 @@ const JoinTeam = () => {
             </h2>
             <div className="flex items-center gap-4">
               <div className="w-12 h-[1px] bg-brand-primary" />
-              <p className="font-sans text-gray-400 text-xs case tracking-[0.3em] font-medium">
+              <p className="font-sans text-gray-400 text-xs case tracking-[0.2em] font-regular">
                 Световният лидер в производството на продукти от Алое Вера!
               </p>
             </div>
@@ -565,7 +565,7 @@ const JoinTeam = () => {
               viewport={{ once: true }}
               className="inline-block"
             >
-              <h2 className="font-display font-medium text-brand-dark case tracking-tighter leading-none mb-6">
+              <h2 className="font-display font-medium text-brand-dark case leading-none mb-6">
                 Свържи се <br />
                 <span className="text-brand-primary font-light italic">
                   с мен!
@@ -573,7 +573,7 @@ const JoinTeam = () => {
               </h2>
               <div className="flex items-center gap-4">
                 <div className="w-12 h-[1px] bg-brand-primary" />
-                <p className="font-sans text-gray-400 text-xs case tracking-[0.3em] font-medium">
+                <p className="font-sans text-gray-400 text-xs case tracking-[0.2em] font-regular">
                   Нека обсъдим твоите цели и как можем да ги постигнем заедно!
                 </p>
               </div>

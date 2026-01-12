@@ -36,7 +36,7 @@ const VideoSection = () => {
             viewport={{ once: true }}
             className="inline-block"
           >
-            <h2 className="font-display font-medium text-brand-dark case tracking-tighter leading-none mb-6">
+            <h2 className="font-display font-medium text-brand-dark case leading-none mb-6">
               Защо да се присъединиш <br />
               <span className="text-brand-primary font-light italic">
                 към нас?
@@ -44,7 +44,7 @@ const VideoSection = () => {
             </h2>
             <div className="flex items-center gap-4">
               <div className="w-12 h-[1px] bg-brand-primary" />
-              <p className="font-sans text-gray-400 text-xs case tracking-[0.3em] font-medium">
+              <p className="font-sans text-gray-400 text-xs case tracking-[0.2em] font-regular">
                 Превърни амбицията си в устойчив и печеливш бизнес
               </p>
             </div>

@@ -11,6 +11,7 @@ import {
   Sparkles,
   Heart,
   Star,
+  Quote,
   MessageSquare,
 } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -35,6 +36,26 @@ const Home = () => {
     ease: "easeInOut",
   };
 
+  const testimonials = [
+  {
+    name: "Елена П.",
+    role: "Бизнес консултант",
+    image: "/images/elena.jpg", // Смени с твоя път
+    text: "Програмата с Алое Вера ми върна фокуса и лекотата, от които имах нужда.",
+  },
+  {
+    name: "Мария С.",
+    role: "Майка и Мениджър",
+    image: "/images/maria.jpg",
+    text: "Миглена ме преведе през целия процес с невероятно търпение и професионализъм.",
+  },
+  {
+    name: "Йоана К.",
+    role: "Творец",
+    image: "/images/yoana.jpg",
+    text: "Най-накрая намерих човек, който разбира, че здравето не е само витамини.",
+  },
+];
   return (
     <div ref={containerRef} className="relative  overflow-x-hidden">
       {/* 2. HERO SECTION */}
@@ -176,7 +197,7 @@ const Home = () => {
               viewport={{ once: true }}
               className="inline-block"
             >
-              <h2 className="font-display font-medium text-brand-dark case tracking-tighter leading-none mb-6">
+              <h2 className="font-display font-medium text-brand-dark case leading-none mb-6">
                 Моята цел <br />
                 <span className="text-brand-primary font-light italic">
                   растеж и вдъхновение!
@@ -184,7 +205,7 @@ const Home = () => {
               </h2>
               <div className="flex items-center gap-4">
                 <div className="w-12 h-[1px] bg-brand-primary" />
-                <p className="font-sans text-gray-400 text-xs case tracking-[0.3em] font-medium">
+                <p className="font-sans text-gray-400 text-xs case tracking-[0.2em] font-regular">
                   Да вървим заедно по пътя към една по-добра версия на себе си!
                 </p>
               </div>
@@ -246,7 +267,7 @@ const Home = () => {
                 viewport={{ once: true }}
                 className="inline-block"
               >
-                <h2 className="font-display font-medium text-brand-dark case tracking-tighter leading-none mb-6">
+                <h2 className="font-display font-medium text-brand-dark case leading-none mb-6">
                   Хора, които
                   <br />
                   <span className="text-brand-primary font-light italic">
@@ -255,7 +276,7 @@ const Home = () => {
                 </h2>
                 <div className="flex items-center gap-4">
                   <div className="w-12 h-[1px] bg-brand-primary" />
-                  <p className="font-sans text-gray-400 text-xs case tracking-[0.3em] font-medium">
+                  <p className="font-sans text-gray-400 text-xs case tracking-[0.2em] font-regular">
                     Доказателства, че промяната е възможна за всеки, който е
                     готов да опита!
                   </p>
@@ -274,55 +295,55 @@ const Home = () => {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-            {[
-              {
-                name: "Елена П.",
-                role: "Бизнес консултант",
-                text: "Програмата с Алое Вера ми върна фокуса и лекотата, от които имах нужда.",
-              },
-              {
-                name: "Мария С.",
-                role: "Майка и Мениджър",
-                text: "Миглена ме преведе през целия процес с невероятно търпение и професионализъм.",
-              },
-              {
-                name: "Йоана К.",
-                role: "Творец",
-                text: "Най-накрая намерих човек, който разбира, че здравето не е само витамини.",
-              },
-            ].map((item, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ ...entryTransition, delay: i * 0.1 }}
-                whileHover={{ y: -5 }}
-                className="p-8 rounded-[2rem] /40 border border-brand-light/50 flex flex-col justify-between shadow-sm hover:shadow-md transition-all"
-              >
-                <div className="space-y-6">
-                  <MessageSquare className="text-brand-primary/20" size={32} />
-                  <p className="font-sans text-gray-600 italic leading-relaxed">
-                    "{item.text}"
-                  </p>
-                </div>
-                <div className="mt-8 flex items-center gap-4">
-                  <div className="w-10 h-10 rounded-full bg-brand-primary text-white flex items-center justify-center font-bold">
-                    {item.name[0]}
-                  </div>
-                  <div>
-                    <p className="font-bold text-sm text-brand-dark">
-                      {item.name}
-                    </p>
-                    <p className="text-[10px] uppercase tracking-tighter text-gray-400">
-                      {item.role}
-                    </p>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
+         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+  {testimonials.map((item, i) => (
+    <motion.div
+      key={i}
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ delay: i * 0.1 }}
+      whileHover={{ y: -5 }}
+      className="p-8 rounded-[2.5rem] bg-[#fcfaf7]/50 backdrop-blur-sm border border-brand-light/50 flex flex-col justify-between shadow-sm hover:shadow-md transition-all group"
+    >
+      <div className="space-y-6">
+        {/* Икона за кавички с лек цвят */}
+        <div className="text-brand-primary/20 transition-transform group-hover:scale-110 duration-300">
+           <Quote size={40} fill="currentColor" />
+        </div>
+        
+        <p className="font-sans text-gray-600 italic leading-relaxed ">
+          "{item.text}"
+        </p>
+      </div>
+
+      <div className="mt-8 flex items-center gap-4 border-t border-brand-light/30 pt-6">
+        {/* СНИМКАТА ТУК */}
+        <div className="relative">
+          <div className="w-14 h-14 rounded-full overflow-hidden border-2 border-brand-primary/20 shadow-inner">
+            <img 
+              src={item.image} 
+              alt={item.name} 
+              className="w-full h-full object-cover"
+              onError={(e) => { e.target.src = "https://ui-avatars.com/api/?name=" + item.name }} // Fallback ако снимката липсва
+            />
           </div>
+          {/* Декоративно малко кръгче */}
+          <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-brand-primary rounded-full border-2 border-white" />
+        </div>
+
+        <div>
+          <p className=" text-base text-brand-dark">
+            {item.name}
+          </p>
+          <p className="text-[10px] uppercase tracking-widest text-brand-primary font-medium">
+            {item.role}
+          </p>
+        </div>
+      </div>
+    </motion.div>
+  ))}
+</div>
         </div>
       </section>
 
@@ -336,7 +357,7 @@ const Home = () => {
               viewport={{ once: true }}
               className="inline-block"
             >
-              <h2 className="font-display font-medium text-brand-dark case tracking-tighter leading-none mb-6">
+              <h2 className="font-display font-medium text-brand-dark case leading-none mb-6">
                 Свържи се
                 <br />
                 <span className="text-brand-primary font-light italic">
@@ -345,7 +366,7 @@ const Home = () => {
               </h2>
               <div className="flex items-center gap-4">
                 <div className="w-12 h-[1px] bg-brand-primary" />
-                <p className="font-sans text-gray-400 text-xs case tracking-[0.3em] font-medium">
+                <p className="font-sans text-gray-400 text-xs case tracking-[0.2em] font-regular">
                   Отворена линия за твоите идеи, въпроси и мечти...
                 </p>
               </div>

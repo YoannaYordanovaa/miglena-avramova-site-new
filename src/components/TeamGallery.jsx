@@ -130,7 +130,7 @@ const InteractiveGallery = () => {
             viewport={{ once: true }}
             className="inline-block"
           >
-            <h2 className="font-display font-medium text-brand-dark case tracking-tighter leading-none mb-6">
+            <h2 className="font-display font-medium text-brand-dark case leading-none mb-6">
               Запознай се <br />
               <span className="text-brand-primary font-light italic">
                 с екипа!
@@ -139,7 +139,7 @@ const InteractiveGallery = () => {
 
             <div className="flex items-center gap-4">
               <div className="w-12 h-[1px] bg-brand-primary" />
-              <p className="font-sans text-gray-400 text-xs case tracking-[0.3em] font-medium">
+              <p className="font-sans text-gray-400 text-xs case tracking-[0.2em] font-regular">
                 Хората, които ще те подкрепят по пътя към успеха!
               </p>
             </div>

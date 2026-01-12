@@ -116,7 +116,7 @@ const InteractiveGallery = () => {
             viewport={{ once: true }}
             className="inline-block"
           >
-            <h2 className=" font-display font-medium text-brand-dark case tracking-tighter leading-none mb-6">
+            <h2 className=" font-display font-medium text-brand-dark case leading-none mb-6">
               Любими моменти <br />
               <span className="text-brand-primary font-light italic">
                 с любими хора...
@@ -124,7 +124,7 @@ const InteractiveGallery = () => {
             </h2>
             <div className="flex items-center gap-4">
               <div className="w-12 h-[1px] bg-brand-primary" />
-              <p className="font-sans text-gray-400 text-xs case tracking-[0.3em] font-medium">
+              <p className="font-sans text-gray-400 text-xs case tracking-[0.2em] font-regular">
                 Защото най-големият успех е свободата да бъдеш с тези, които
                 обичаш...
               </p>
@@ -210,14 +210,14 @@ const InteractiveGallery = () => {
                 {/* Контроли за навигация */}
                 <button
                   onClick={showPrev}
-                  className="absolute left-4 md:left-10 top-1/2 -translate-y-1/2 p-3 text-brand-dark/40 hover:text-brand-dark hover:bg-brand-primary/10 rounded-full transition-all z-[100001]"
+                  className="absolute left-4 md:left-10 top-1/2 -translate-y-1/2 p-3 text-white md:text-brand-dark/40 hover:text-brand-dark hover:bg-brand-primary/10 rounded-full transition-all z-[100001]"
                 >
                   <ChevronLeft size={48} strokeWidth={1} />
                 </button>
 
                 <button
                   onClick={showNext}
-                  className="absolute right-4 md:right-10 top-1/2 -translate-y-1/2 p-3 text-brand-dark/40 hover:text-brand-dark hover:bg-brand-primary/10 rounded-full transition-all z-[100001]"
+                  className="absolute right-4 md:right-10 top-1/2 -translate-y-1/2 p-3 text-white md:text-brand-dark/40 hover:text-brand-dark hover:bg-brand-primary/10 rounded-full transition-all z-[100001]"
                 >
                   <ChevronRight size={48} strokeWidth={1} />
                 </button>
@@ -232,12 +232,12 @@ const InteractiveGallery = () => {
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: -20 }}
                   transition={{ duration: 0.3 }}
-                  className="max-w-5xl w-full flex flex-col items-center gap-8"
+                  className="mt-20 max-w-5xl w-full flex flex-col items-center gap-8"
                   onClick={(e) => e.stopPropagation()}
                 >
                   <img
                     src={selectedImage.src}
-                    className="max-w-full max-h-[75vh] object-contain rounded-2xl shadow-2xl border border-gray-100"
+                    className="max-w-full max-h-[100vh] object-contain rounded-2xl shadow-2xl border border-gray-100"
                     alt="Selected"
                   />
                   <div className="text-center">

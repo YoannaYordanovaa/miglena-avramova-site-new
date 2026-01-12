@@ -18,7 +18,7 @@ const Navbar = () => {
 
   // Уеднаквен стил за текстовете: 11px, Главни букви, Еднакъв цвят
   const menuTextStyle =
-    "font-sans text-[11px] uppercase tracking-widest font-regular text-brand-dark";
+    "font-sans text-[13px] uppercase tracking-widest font-regular text-brand-dark";
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
@@ -86,8 +86,8 @@ const Navbar = () => {
       <nav
         className={`fixed top-0 left-0 w-full transition-all duration-500 z-[100] ${
           scrolled
-            ? "h-16 bg-brand-light/95 backdrop-blur-md shadow-sm"
-            : "h-20 bg-brand-light lg:bg-transparent"
+            ? "h-16 bg-white/95 backdrop-blur-md shadow-sm"
+            : "h-20 bg-transparent lg:bg-transparent"
         }`}
       >
         <div className="max-w-7xl mx-auto h-full px-6 flex justify-between items-center">
@@ -220,14 +220,14 @@ const Navbar = () => {
                         <a
                           href={item.href}
                           onClick={(e) => handleScrollToSection(e, item.href)}
-                          className={`${menuTextStyle} text-[13px]`}
+                          className={`${menuTextStyle} text-[14px]`}
                         >
                           {item.title}
                         </a>
                       ) : (
                         <Link
                           to={item.href}
-                          className={`${menuTextStyle} text-[13px] ${
+                          className={`${menuTextStyle} text-[14px] ${
                             item.highlight ? "!text-brand-primary" : ""
                           }`}
                         >
@@ -247,7 +247,7 @@ const Navbar = () => {
                     {item.submenu && mobileExpands[item.title] && (
                       <div className="pl-4 space-y-6 border-l border-brand-primary/20 mt-4">
                         {item.submenu.map((sub, sIdx) => (
-                          <div key={sIdx} className="space-y-4">
+                          <div key={sIdx} className="space-y-6">
                             <div
                               className="flex justify-between items-center cursor-pointer"
                               onClick={() =>
@@ -274,7 +274,7 @@ const Navbar = () => {
                             </div>
 
                             {sub.subSubmenu && mobileExpands[sub.title] && (
-                              <div className="pl-4 flex flex-col space-y-4 border-l border-brand-primary/10">
+                              <div className="pl-4 flex flex-col space-y-6 border-l font-light border-brand-primary/10">
                                 {sub.subSubmenu.map((ss, ssIdx) => (
                                   <Link
                                     key={ssIdx}
