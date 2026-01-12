@@ -46,7 +46,7 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="bg-white px-6 relative overflow-hidden">
+    <footer className="bg-brand-light px-6 relative overflow-hidden">
       {/* 1. НАЙ-ГОРЕН ФИН РАЗДЕЛИТЕЛ */}
       <div className="max-w-7xl mx-auto border-t border-gray-200" />
 
@@ -117,10 +117,10 @@ const Footer = () => {
             </h4>
             <div className="space-y-4 md:space-y-6 text-brand-dark/70">
               <a
-                href="mailto:office@miglenaavramova.com"
+                href="mailto:miglena.avramova.as@gmail.com"
                 className="font-sans text-sm hover:text-brand-primary transition-colors cursor-pointer font-medium break-all block"
               >
-                office@miglenaavramova.com
+                miglena.avramova.as@gmail.com
               </a>
               <p className="font-sans text-[10px] opacity-50 uppercase tracking-[0.2em] font-bold text-gray-400">
                 BASED IN BULGARIA • OPERATES WORLDWIDE

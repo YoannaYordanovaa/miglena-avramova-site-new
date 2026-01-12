@@ -69,7 +69,7 @@ const MenuBar = ({ editor }) => {
 
   return (
     <>
-      <div className="sticky top-4 z-[100] border-b border-brand-primary/10 bg-white/95 backdrop-blur-md shadow-sm">
+      <div className="sticky top-4 z-[100] border-b border-brand-primary/10 bg-brand-light/95 backdrop-blur-md shadow-sm">
         <div className="flex items-center gap-1.5 p-2 overflow-x-auto no-scrollbar md:flex-wrap">
           <button
             type="button"
@@ -180,8 +180,8 @@ const MenuBar = ({ editor }) => {
               ref={emojiPickerRef}
               className="fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-[201] w-[90vw] max-w-[350px]"
             >
-              <div className="bg-white rounded-3xl shadow-2xl overflow-hidden border border-brand-primary/10">
-                <div className="flex justify-between items-center p-4 border-b border-brand-cream bg-white">
+              <div className="bg-brand-light rounded-3xl shadow-2xl overflow-hidden border border-brand-primary/10">
+                <div className="flex justify-between items-center p-4 border-b border-brand-cream bg-brand-light">
                   <span className="font-display italic text-brand-dark">
                     Емотикони
                   </span>
@@ -295,7 +295,7 @@ const AdminPanel = () => {
               alert("Грешна парола!");
             }
           }}
-          className="bg-white p-10 rounded-[2.5rem] shadow-2xl max-w-sm w-full space-y-6"
+          className="bg-brand-light p-10 rounded-[2.5rem] shadow-2xl max-w-sm w-full space-y-6"
         >
           <h2 className="font-display text-2xl text-center text-brand-dark leading-none">
             Вход
@@ -320,9 +320,7 @@ const AdminPanel = () => {
         <header className="flex justify-between items-center">
           <h1 className="font-display text-3xl md:text-5xl tracking-tighter">
             Админ{" "}
-            <span className="text-brand-primary italic font-normal">
-              панел
-            </span>
+            <span className="text-brand-primary italic font-normal">панел</span>
           </h1>
           <button
             onClick={() => {
@@ -330,12 +328,14 @@ const AdminPanel = () => {
               navigate("/"); // Пренасочва към заглавната страница
             }}
             className="text-gray-400 p-2 hover:text-brand-primary transition-colors flex gap-2 justify-center align-middle"
-          > Изход
+          >
+            {" "}
+            Изход
             <LogOut size={20} />
           </button>
         </header>
 
-        <section className="bg-white rounded-[2rem] md:rounded-[3.5rem] shadow-sm border border-brand-light">
+        <section className="bg-brand-light rounded-[2rem] md:rounded-[3.5rem] shadow-sm border border-brand-light">
           <form onSubmit={handleSaveNews}>
             <div className="p-5 md:p-10 space-y-6">
               <div className="space-y-3">
@@ -400,7 +400,7 @@ const AdminPanel = () => {
               />
             </div>
 
-            <div className="relative bg-white border-t border-brand-primary/5">
+            <div className="relative bg-brand-light border-t border-brand-primary/5">
               <MenuBar editor={editor} />
               <div className="prose prose-sm max-w-none p-5 md:p-14 min-h-[400px]">
                 <EditorContent editor={editor} />
@@ -438,14 +438,12 @@ const AdminPanel = () => {
 
         {/* АРХИВ */}
         <div className="grid gap-3 pt-6">
-          <h3 className="font-display text-xl md:text-2xl ml-2">
-            Архив
-          </h3>
+          <h3 className="font-display text-xl md:text-2xl ml-2">Архив</h3>
           <div className="space-y-3">
             {news.map((n) => (
               <div
                 key={n.id}
-                className="bg-white p-3 md:p-6 rounded-[1.5rem] md:rounded-[2.5rem] border border-brand-light flex items-center justify-between hover:border-brand-primary/20 transition-all shadow-sm"
+                className="bg-brand-light p-3 md:p-6 rounded-[1.5rem] md:rounded-[2.5rem] border border-brand-light flex items-center justify-between hover:border-brand-primary/20 transition-all shadow-sm"
               >
                 <div className="flex items-center gap-3 md:gap-6 overflow-hidden text-left">
                   {n.image && (

@@ -41,7 +41,7 @@ const NewsBannerSlider = ({ news = [] }) => {
         >
           {/* Overlay за четливост на текста */}
           <div className="absolute inset-0 bg-gradient-to-r from-brand-dark via-brand-dark/80 to-transparent z-10" />
-          
+
           {/* Снимка */}
           <img
             src={news[current]?.image || "/Miglena/news-placeholder.webp"}
@@ -53,7 +53,7 @@ const NewsBannerSlider = ({ news = [] }) => {
           <div className="absolute inset-0 z-20 flex items-center">
             <div className="max-w-7xl mx-auto px-6 md:px-12 w-full">
               <div className="max-w-2xl space-y-6">
-                <motion.div 
+                <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.2 }}
@@ -66,8 +66,8 @@ const NewsBannerSlider = ({ news = [] }) => {
                     {news[current]?.date}
                   </span>
                 </motion.div>
-                
-                <motion.h2 
+
+                <motion.h2
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.3 }}
@@ -75,28 +75,31 @@ const NewsBannerSlider = ({ news = [] }) => {
                 >
                   {news[current]?.title}
                 </motion.h2>
-                
-                <motion.p 
+
+                <motion.p
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.4 }}
                   className="text-white/70 font-sans font-light text-base md:text-xl line-clamp-2 leading-relaxed"
                 >
-                  {news[current]?.text?.replace(/<[^>]*>?/gm, '')}
+                  {news[current]?.text?.replace(/<[^>]*>?/gm, "")}
                 </motion.p>
 
-                <motion.div 
+                <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.5 }}
                   className="pt-4"
                 >
-                  <Link 
+                  <Link
                     to={`/news/${news[current]?.id}`}
                     className="btn-primary group inline-flex items-center"
                   >
                     Прочети повече
-                    <ArrowRight size={18} className="ml-2 group-hover:translate-x-2 transition-transform" />
+                    <ArrowRight
+                      size={18}
+                      className="ml-2 group-hover:translate-x-2 transition-transform"
+                    />
                   </Link>
                 </motion.div>
               </div>
@@ -128,7 +131,7 @@ const NewsBannerSlider = ({ news = [] }) => {
             key={idx}
             onClick={() => setCurrent(idx)}
             className={`h-1.5 transition-all duration-500 rounded-full ${
-              idx === current ? "w-8 bg-brand-primary" : "w-2 bg-white/20"
+              idx === current ? "w-8 bg-brand-primary" : "w-2 bg-brand-light/20"
             }`}
           />
         ))}

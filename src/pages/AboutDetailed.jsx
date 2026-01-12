@@ -68,7 +68,7 @@ const AboutDetailed = () => {
     <div className=" min-h-screen">
       {/* 1. HERO SECTION - Minimal & Personal */}
 
-      <section className="relative pt-32 pb-20 px-6 bg-white overflow-hidden">
+      <section className="relative pt-32 pb-20 px-6 bg-brand-light overflow-hidden">
         <div className="max-w-4xl mx-auto text-center relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 10 }}
@@ -117,7 +117,7 @@ const AboutDetailed = () => {
             <motion.div
               animate={{ y: [0, -10, 0] }}
               transition={{ duration: 4, repeat: Infinity }}
-              className="absolute -bottom-8 -right-4 md:-right-8 bg-white text-brand-dark p-6 md:p-8 rounded-[2rem] shadow-2xl max-w-[220px]"
+              className="absolute -bottom-8 -right-4 md:-right-8 bg-brand-light text-brand-dark p-6 md:p-8 rounded-[2rem] shadow-2xl max-w-[220px]"
             >
               <div className="flex gap-2 mb-3 text-brand-primary">
                 <Heart size={20} /> <PawPrint size={20} />
@@ -222,7 +222,7 @@ const AboutDetailed = () => {
 
       <section
         id="about"
-        className="relative py-12 md:py-20 bg-white overflow-hidden"
+        className="relative py-12 md:py-20 bg-brand-light overflow-hidden"
       >
         <div className="max-w-5xl mx-auto px-6 relative z-10 text-center space-y-12 md:space-y-16">
           <motion.div
@@ -353,7 +353,7 @@ const AboutDetailed = () => {
                   key={i}
                   className="flex items-center gap-4 text-white/90 group"
                 >
-                  <div className="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center text-brand-primary group-hover:bg-brand-primary group-hover:text-white transition-all">
+                  <div className="w-8 h-8 rounded-lg bg-brand-light/5 flex items-center justify-center text-brand-primary group-hover:bg-brand-primary group-hover:text-white transition-all">
                     {point.icon}
                   </div>
 
@@ -364,7 +364,7 @@ const AboutDetailed = () => {
           </div>
 
           <div className="relative">
-            <div className="p-10 md:p-16 bg-white/5 backdrop-blur-xl border border-white/10 rounded-[3rem] text-center space-y-8">
+            <div className="p-10 md:p-16 bg-brand-light/5 backdrop-blur-xl border border-white/10 rounded-[3rem] text-center space-y-8">
               <Leaf size={48} className="mx-auto text-brand-primary" />
 
               <h3 className="font-display text-2xl md:text-3xl text-white italic font-light">

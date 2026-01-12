@@ -1,25 +1,32 @@
 import React, { useState, useRef, useEffect } from "react";
 import { createPortal } from "react-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, Maximize2, ChevronDown, ChevronUp, ChevronLeft, ChevronRight } from "lucide-react";
+import {
+  X,
+  Maximize2,
+  ChevronDown,
+  ChevronUp,
+  ChevronLeft,
+  ChevronRight,
+} from "lucide-react";
 
 const photoTitles = [
-  "Екипна среща",       // Снимка 1
-  "Обучение в Офиса",   // Снимка 2
+  "Екипна среща", // Снимка 1
+  "Обучение в Офиса", // Снимка 2
   "Пътуване до Гърция", // Снимка 3
-  "Forever Global Rally",// Снимка 4
-  "Празнична Вечеря",   // Снимка 5
+  "Forever Global Rally", // Снимка 4
+  "Празнична Вечеря", // Снимка 5
   "Признание за Успех", // Снимка 6
   "Бизнес Презентация", // Снимка 7
-  "Екипен Дух",         // Снимка 8
-  "Първи Стъпки",       // Снимка 9
-  "Лятна Академия",     // Снимка 10
+  "Екипен Дух", // Снимка 8
+  "Първи Стъпки", // Снимка 9
+  "Лятна Академия", // Снимка 10
   "Мотивация и Растеж", // Снимка 11
   "Международен Форум", // Снимка 12
-  "Здраве и Алое",      // Снимка 13
+  "Здраве и Алое", // Снимка 13
   "Усмивки от Събитие", // Снимка 14
-  "Нови Възможности",   // Снимка 15
-  "Екипна Вечеря",      // Снимка 16
+  "Нови Възможности", // Снимка 15
+  "Екипна Вечеря", // Снимка 16
   "Началото на Промяната", // Снимка 17
 ];
 
@@ -41,7 +48,9 @@ const InteractiveGallery = () => {
     } else {
       document.body.style.overflow = "unset";
     }
-    return () => { document.body.style.overflow = "unset"; };
+    return () => {
+      document.body.style.overflow = "unset";
+    };
   }, [selectedImage]);
 
   const initialCount = 8;
@@ -51,8 +60,13 @@ const InteractiveGallery = () => {
 
   const handleToggle = () => {
     if (isExpanded) {
-      galleryRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
-      setTimeout(() => { setIsExpanded(false); }, 300);
+      galleryRef.current?.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+      setTimeout(() => {
+        setIsExpanded(false);
+      }, 300);
     } else {
       setIsExpanded(true);
     }
@@ -61,15 +75,21 @@ const InteractiveGallery = () => {
   // Функции за навигация в Lightbox-а
   const showNext = (e) => {
     e.stopPropagation();
-    const currentIndex = Miglena_Avramova_Photos.findIndex(img => img.id === selectedImage.id);
+    const currentIndex = Miglena_Avramova_Photos.findIndex(
+      (img) => img.id === selectedImage.id
+    );
     const nextIndex = (currentIndex + 1) % Miglena_Avramova_Photos.length;
     setSelectedImage(Miglena_Avramova_Photos[nextIndex]);
   };
 
   const showPrev = (e) => {
     e.stopPropagation();
-    const currentIndex = Miglena_Avramova_Photos.findIndex(img => img.id === selectedImage.id);
-    const prevIndex = (currentIndex - 1 + Miglena_Avramova_Photos.length) % Miglena_Avramova_Photos.length;
+    const currentIndex = Miglena_Avramova_Photos.findIndex(
+      (img) => img.id === selectedImage.id
+    );
+    const prevIndex =
+      (currentIndex - 1 + Miglena_Avramova_Photos.length) %
+      Miglena_Avramova_Photos.length;
     setSelectedImage(Miglena_Avramova_Photos[prevIndex]);
   };
 
@@ -98,19 +118,25 @@ const InteractiveGallery = () => {
           >
             <h2 className=" font-display font-medium text-brand-dark case tracking-tighter leading-none mb-6">
               Любими моменти <br />
-              <span className="text-brand-primary font-light italic">с любими хора...</span>
+              <span className="text-brand-primary font-light italic">
+                с любими хора...
+              </span>
             </h2>
             <div className="flex items-center gap-4">
               <div className="w-12 h-[1px] bg-brand-primary" />
               <p className="font-sans text-gray-400 text-xs case tracking-[0.3em] font-medium">
-                Защото най-големият успех е свободата да бъдеш с тези, които обичаш...
+                Защото най-големият успех е свободата да бъдеш с тези, които
+                обичаш...
               </p>
             </div>
           </motion.div>
         </div>
 
         {/* Галерия */}
-        <motion.div layout className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+        <motion.div
+          layout
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6"
+        >
           <AnimatePresence mode="popLayout">
             {visiblePhotos.map((photo) => (
               <motion.div
@@ -130,10 +156,12 @@ const InteractiveGallery = () => {
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-brand-dark/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
-                  <div className="absolute top-4 right-4 bg-white/20 backdrop-blur-md p-2 rounded-full text-white opacity-0 group-hover:opacity-100 transition-all">
+                  <div className="absolute top-4 right-4 bg-brand-light/20 backdrop-blur-md p-2 rounded-full text-white opacity-0 group-hover:opacity-100 transition-all">
                     <Maximize2 size={16} />
                   </div>
-                  <p className="text-white font-sans text-sm font-medium tracking-wide">{photo.title}</p>
+                  <p className="text-white font-sans text-sm font-medium tracking-wide">
+                    {photo.title}
+                  </p>
                 </div>
               </motion.div>
             ))}
@@ -142,72 +170,88 @@ const InteractiveGallery = () => {
 
         {/* Toggle Button */}
         <div className="mt-16 text-center">
-          <button onClick={handleToggle} className="btn-primary flex items-center gap-3 mx-auto group">
+          <button
+            onClick={handleToggle}
+            className="btn-primary flex items-center gap-3 mx-auto group"
+          >
             {isExpanded ? (
-              <>Скрий моменти <ChevronUp size={16} className="group-hover:-translate-y-1 transition-transform" /></>
+              <>
+                Скрий моменти{" "}
+                <ChevronUp
+                  size={16}
+                  className="group-hover:-translate-y-1 transition-transform"
+                />
+              </>
             ) : (
-              <>Виж всички моменти <ChevronDown size={16} className="group-hover:translate-y-1 transition-transform" /></>
+              <>
+                Виж всички моменти{" "}
+                <ChevronDown
+                  size={16}
+                  className="group-hover:translate-y-1 transition-transform"
+                />
+              </>
             )}
           </button>
         </div>
       </div>
 
       {/* LIGHTBOX С PORTAL */}
-      {typeof document !== "undefined" && createPortal(
-        <AnimatePresence>
-          {selectedImage && (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              className="fixed inset-0 z-[99999] bg-white/95 backdrop-blur-xl flex items-center justify-center p-4 md:p-12 cursor-zoom-out"
-              onClick={() => setSelectedImage(null)}
-            >
-              {/* Контроли за навигация */}
-              <button 
-                onClick={showPrev}
-                className="absolute left-4 md:left-10 top-1/2 -translate-y-1/2 p-3 text-brand-dark/40 hover:text-brand-dark hover:bg-brand-primary/10 rounded-full transition-all z-[100001]"
-              >
-                <ChevronLeft size={48} strokeWidth={1} />
-              </button>
-
-              <button 
-                onClick={showNext}
-                className="absolute right-4 md:right-10 top-1/2 -translate-y-1/2 p-3 text-brand-dark/40 hover:text-brand-dark hover:bg-brand-primary/10 rounded-full transition-all z-[100001]"
-              >
-                <ChevronRight size={48} strokeWidth={1} />
-              </button>
-
-              <button className="absolute top-6 right-6 p-4 text-brand-dark hover:rotate-90 transition-transform duration-300 z-[100001]">
-                <X size={36} strokeWidth={1.5} />
-              </button>
-
+      {typeof document !== "undefined" &&
+        createPortal(
+          <AnimatePresence>
+            {selectedImage && (
               <motion.div
-                key={selectedImage.id} // Важно за анимацията при смяна на снимка
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -20 }}
-                transition={{ duration: 0.3 }}
-                className="max-w-5xl w-full flex flex-col items-center gap-8"
-                onClick={(e) => e.stopPropagation()}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                className="fixed inset-0 z-[99999] bg-brand-light/95 backdrop-blur-xl flex items-center justify-center p-4 md:p-12 cursor-zoom-out"
+                onClick={() => setSelectedImage(null)}
               >
-                <img
-                  src={selectedImage.src}
-                  className="max-w-full max-h-[75vh] object-contain rounded-2xl shadow-2xl border border-gray-100"
-                  alt="Selected"
-                />
-                <div className="text-center">
-                  <h4 className="text-brand-dark font-display italic text-2xl md:text-3xl leading-none">
-                    {selectedImage.title}
-                  </h4>
-                  <div className="w-12 h-[1px] bg-brand-primary/40 mx-auto mt-6" />
-                </div>
+                {/* Контроли за навигация */}
+                <button
+                  onClick={showPrev}
+                  className="absolute left-4 md:left-10 top-1/2 -translate-y-1/2 p-3 text-brand-dark/40 hover:text-brand-dark hover:bg-brand-primary/10 rounded-full transition-all z-[100001]"
+                >
+                  <ChevronLeft size={48} strokeWidth={1} />
+                </button>
+
+                <button
+                  onClick={showNext}
+                  className="absolute right-4 md:right-10 top-1/2 -translate-y-1/2 p-3 text-brand-dark/40 hover:text-brand-dark hover:bg-brand-primary/10 rounded-full transition-all z-[100001]"
+                >
+                  <ChevronRight size={48} strokeWidth={1} />
+                </button>
+
+                <button className="absolute top-6 right-6 p-4 text-brand-dark hover:rotate-90 transition-transform duration-300 z-[100001]">
+                  <X size={36} strokeWidth={1.5} />
+                </button>
+
+                <motion.div
+                  key={selectedImage.id} // Важно за анимацията при смяна на снимка
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -20 }}
+                  transition={{ duration: 0.3 }}
+                  className="max-w-5xl w-full flex flex-col items-center gap-8"
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  <img
+                    src={selectedImage.src}
+                    className="max-w-full max-h-[75vh] object-contain rounded-2xl shadow-2xl border border-gray-100"
+                    alt="Selected"
+                  />
+                  <div className="text-center">
+                    <h4 className="text-brand-dark font-display italic text-2xl md:text-3xl leading-none">
+                      {selectedImage.title}
+                    </h4>
+                    <div className="w-12 h-[1px] bg-brand-primary/40 mx-auto mt-6" />
+                  </div>
+                </motion.div>
               </motion.div>
-            </motion.div>
-          )}
-        </AnimatePresence>,
-        document.body
-      )}
+            )}
+          </AnimatePresence>,
+          document.body
+        )}
     </section>
   );
 };

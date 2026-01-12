@@ -105,7 +105,7 @@ const JoinTeam = () => {
   return (
     <div className="  overflow-hidden">
       {/* 1. Hero Section */}
-      <section className="relative section-container mt-4 overflow-hidden text-left">
+      <section className="relative section-container mt-8 overflow-hidden text-left">
         <div className="mx-autorelative z-10">
           {/* ПРОМЯНА: Използваме cols вместо rows */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 md:gap-16 items-center">
@@ -120,7 +120,7 @@ const JoinTeam = () => {
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.5, duration: 0.8 }}
-                className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/60 backdrop-blur-md border border-brand-primary/20 shadow-sm"
+                className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-light/60 backdrop-blur-md border border-brand-primary/20 shadow-sm"
               >
                 <Sparkles size={14} className="text-brand-primary" />
                 <span className="font-sans text-[10px] md:text-xs uppercase tracking-widest text-brand-dark font-semibold">
@@ -190,7 +190,7 @@ const JoinTeam = () => {
                 className="relative group z-10 w-full max-w-[600px]"
               >
                 {/* Сменихме rounded-[40rem] на по-стабилен кръг */}
-                <div className="aspect-square rounded-full overflow-hidden border-4 md:border-8 border-white shadow-2xl bg-white">
+                <div className="aspect-square rounded-full overflow-hidden border-4 md:border-8 border-white shadow-2xl bg-brand-light">
                   <motion.img
                     src="/Miglena/Miglena_Join.webp"
                     alt="Миглена Аврамова"
@@ -227,7 +227,7 @@ const JoinTeam = () => {
         {/* Divider Between Section 3 & 4 */}
         <div className="relative flex items-center justify-center pb-20">
           <div className="w-full max-w-5xl border-t border-brand-primary/40"></div>
-          <div className="absolute  px-4">
+          <div className="absolute bg-[#fcfaf7] px-4">
             <Sparkles size={18} className="text-brand-primary/40" />
           </div>
         </div>
@@ -259,9 +259,9 @@ const JoinTeam = () => {
               <motion.div
                 key={i}
                 whileHover={{ y: -10 }}
-                className="p-10 rounded-[2.5rem] /100 border bg-brand-cream border-brand-light/50 soft-shadow transition-all"
+                className="p-8 rounded-[2.5rem] /100 border bg-brand-cream border-brand-light/50 soft-shadow transition-all"
               >
-                <div className="w-14 h-14 bg-white rounded-2xl flex items-center justify-center mb-8 shadow-sm mx-auto">
+                <div className="w-14 h-14 bg-brand-light rounded-2xl flex items-center justify-center mb-8 shadow-sm mx-auto">
                   {b.icon}
                 </div>
                 <h3 className="font-display font-medium text-brand-dark text-2xl mb-3 text-center">
@@ -301,7 +301,7 @@ const JoinTeam = () => {
       </section>
 
       {/* 4. Форевър Ливинг - Разширена Секция */}
-      <section className="relative section-container bg-white overflow-hidden">
+      <section className="relative section-container bg-brand-light overflow-hidden">
         {/* 1. ЗАГЛАВНА ЧАСТ */}
         <div className="mb-16 text-left  mx-auto">
           <motion.div
@@ -325,10 +325,6 @@ const JoinTeam = () => {
           </motion.div>
         </div>
 
-        {/* ДЕКОРАТИВЕН ВОДЕН ЗНАК (Скрит на мобилни за по-добър UX) */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 font-display text-[15vw] md:text-[10vw] text-brand-primary/5 select-none pointer-events-none whitespace-nowrap">
-          Forever
-        </div>
 
         <div className="max-w-7xl mx-auto relative z-10">
           {/* 2. ГОРЕН ГРИД: СТАТИСТИКИ И ИНФО */}
@@ -372,7 +368,7 @@ const JoinTeam = () => {
               </div>
 
               <div className="md:pt-20 space-y-6">
-                <div className="bg-white rounded-[2.5rem] shadow-sm flex flex-col items-start justify-center p-8 md:p-10 border border-brand-light min-h-[260px] md:min-h-[280px] relative overflow-hidden group">
+                <div className="bg-brand-light rounded-[2.5rem] shadow-sm flex flex-col items-start justify-center p-8 md:p-10 border border-brand-light min-h-[260px] md:min-h-[280px] relative overflow-hidden group">
                   <Sparkles className="absolute -right-4 -top-4 text-brand-primary/10 w-32 h-32 group-hover:rotate-12 transition-transform duration-700" />
                   <Briefcase
                     className="text-brand-primary mb-6"
@@ -471,9 +467,9 @@ const JoinTeam = () => {
           </div>
 
           {/* Divider Between Section 3 & 4 */}
-          <div className="relative flex items-center justify-center py-4 bg-white">
+          <div className="relative flex items-center justify-center py-4 bg-none">
             <div className="w-full max-w-5xl border-t border-brand-primary/40"></div>
-            <div className="absolute bg-white px-4">
+            <div className="absolute bg-[#fcfaf7] px-4">
               <Sparkles size={18} className="text-brand-primary/40" />
             </div>
           </div>
@@ -534,7 +530,7 @@ const JoinTeam = () => {
               <motion.div
                 key={idx}
                 whileHover={{ y: -8 }}
-                className="group p-8 md:p-10 rounded-[2.5rem] bg-white border border-gray-100 hover:border-brand-primary/20 transition-all duration-500 shadow-sm flex flex-col h-full text-left"
+                className="group p-8 md:p-10 rounded-[2.5rem] bg-brand-light border border-gray-100 hover:border-brand-primary/20 transition-all duration-500 shadow-sm flex flex-col h-full text-left"
               >
                 <span className="font-sans mx-auto text-[11px] uppercase tracking-[0.3em] text-brand-primary font-bold mb-6 opacity-60 ">
                   {item.label}
@@ -554,182 +550,243 @@ const JoinTeam = () => {
         </div>
       </section>
 
-    {/* 5. Contact Form Section */}
-<section id="join-form" className="section-container px-4 overflow-hidden">
-  <div className="max-w-7xl mx-auto">
-    {/* Заглавна част - центрирана на мобилни, ляво на десктоп */}
+      {/* 5. Contact Form Section */}
+      <section
+        id="join-form"
+        className="section-container px-4 overflow-hidden"
+      >
+        <div className="max-w-7xl mx-auto">
+          {/* Заглавна част - центрирана на мобилни, ляво на десктоп */}
 
           <div className="mb-16 text-left  mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="inline-block"
-          >
-            <h2 className="font-display font-medium text-brand-dark case tracking-tighter leading-none mb-6">
-              Свържи се <br />
-              <span className="text-brand-primary font-light italic">
-                с мен!
-              </span>
-            </h2>
-            <div className="flex items-center gap-4">
-              <div className="w-12 h-[1px] bg-brand-primary" />
-              <p className="font-sans text-gray-400 text-xs case tracking-[0.3em] font-medium">
-                    Нека обсъдим твоите цели и как можем да ги постигнем заедно!
-              </p>
-            </div>
-          </motion.div>
-        </div>
-
-    {/* Основна карта на формата */}
-    <div className="flex flex-col lg:flex-row bg-white rounded-[2rem] md:rounded-[2.5rem] soft-shadow border border-brand-light/50 overflow-hidden">
-      
-      {/* Тъмен панел (Dark Panel) */}
-      <div className="lg:w-[40%] bg-brand-dark p-8 md:p-20 text-white relative text-left overflow-hidden">
-        <div className="relative z-10 space-y-8 md:space-y-10">
-          <div className="space-y-4">
-            <h2 className="font-display text-3xl md:text-5xl text-white font-medium tracking-tighter leading-tight">
-              Готов ли си за <br />
-              <span className="text-brand-primary italic font-light">стъпка напред?</span>
-            </h2>
-          </div>
-          <p className="font-sans font-light text-white/60 leading-relaxed text-base md:text-lg">
-            Попълни формата и ще се свържа с теб за безплатна опознавателна среща!
-          </p>
-          
-          {/* Контактни методи */}
-          <div className="space-y-4 md:space-y-6 pt-4 border-t border-white/10 text-sm md:text-base">
-            <div className="flex items-center gap-4 group">
-              <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl md:rounded-2xl bg-white/10 flex items-center justify-center text-brand-primary">
-                <Mail size={18} />
-              </div>
-              <span className="font-sans font-light break-all text-[14px] md:text-base">
-                miglena.avramova.as@gmail.com
-              </span>
-            </div>
-            <div className="flex items-center gap-4 group">
-              <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl md:rounded-2xl bg-white/10 flex items-center justify-center text-brand-primary">
-                <MessageSquare size={18} />
-              </div>
-              <span className="font-sans font-light text-[14px] break-all md:text-base">
-                Viber: +359 886 787 899
-              </span>
-            </div>
-          </div>
-        </div>
-        {/* Декоративен кръг - леко смален за мобилни */}
-        <div className="absolute -bottom-10 -left-10 w-40 h-40 md:w-80 md:h-80 bg-brand-primary/10 rounded-full blur-[60px] md:blur-[100px] opacity-50" />
-      </div>
-
-      {/* Самата форма (Form Part) */}
-      <div className="flex-1 p-6 md:p-20 text-left bg-white">
-        <form onSubmit={handleSubmit} noValidate className="space-y-6 md:space-y-8">
-          <div className="grid md:grid-cols-2 gap-6 md:gap-8 text-left">
-            {/* Поле Име */}
-            <div className="space-y-2">
-              <label className={`font-sans text-xs md:text-sm font-medium text-brand-dark block ${errors.name ? "text-red-500" : ""}`}>
-                Твоето име
-              </label>
-              <input
-                name="name"
-                type="text"
-                placeholder="Име Фамилия"
-                className={`w-full bg-brand-cream border-2 px-5 py-3.5 md:px-6 md:py-4 rounded-xl md:rounded-2xl outline-none transition-all font-sans text-sm text-brand-dark ${
-                  errors.name ? "border-red-500/50 animate-shake" : "border-transparent focus:ring-2 focus:ring-brand-primary/20"
-                }`}
-              />
-              <AnimatePresence>
-                {errors.name && (
-                  <motion.p initial={{ opacity: 0, y: -5 }} animate={{ opacity: 1, y: 0 }} className="text-[10px] uppercase tracking-widest font-bold text-red-500 pl-2">
-                    {errors.name}
-                  </motion.p>
-                )}
-              </AnimatePresence>
-            </div>
-
-            {/* Поле Телефон */}
-            <div className="space-y-2 text-left">
-              <label className={`font-sans text-xs md:text-sm font-medium text-brand-dark block ${errors.phone ? "text-red-500" : ""}`}>
-                Телефонен номер
-              </label>
-              <input
-                name="phone"
-                type="tel"
-                placeholder="+359..."
-                className={`w-full bg-brand-cream border-2 px-5 py-3.5 md:px-6 md:py-4 rounded-xl md:rounded-2xl outline-none transition-all font-sans text-sm text-brand-dark ${
-                  errors.phone ? "border-red-500/50 animate-shake" : "border-transparent focus:ring-2 focus:ring-brand-primary/20"
-                }`}
-              />
-              <AnimatePresence>
-                {errors.phone && (
-                  <motion.p initial={{ opacity: 0, y: -5 }} animate={{ opacity: 1, y: 0 }} className="text-[10px] uppercase tracking-widest font-bold text-red-500 pl-2">
-                    {errors.phone}
-                  </motion.p>
-                )}
-              </AnimatePresence>
-            </div>
-          </div>
-
-          <div className="space-y-2 text-left">
-            <label className="font-sans text-xs md:text-sm font-medium text-brand-dark block">
-              Какво те мотивира?
-            </label>
-            <textarea
-              name="message"
-              rows="4"
-              placeholder="Разкажи ми..."
-              className="w-full bg-brand-cream border-none px-5 py-3.5 md:px-6 md:py-4 rounded-xl md:rounded-2xl outline-none focus:ring-2 focus:ring-brand-primary/20 transition-all font-sans text-sm text-brand-dark resize-none"
-            ></textarea>
-          </div>
-
-          {/* Privacy Checkbox */}
-          <div className="space-y-2">
-            <div className="flex items-start gap-3 py-1 text-left">
-              <input
-                id="privacy"
-                name="privacy"
-                type="checkbox"
-                className={`mt-1 w-5 h-5 rounded border-2 transition-all cursor-pointer accent-brand-primary ${
-                  privacyError ? "border-red-500 animate-shake" : "border-brand-primary/20 bg-brand-cream"
-                }`}
-              />
-              <label htmlFor="privacy" className={`text-[11px] md:text-sm font-sans leading-tight cursor-pointer transition-colors ${privacyError ? "text-red-500" : "text-gray-400"}`}>
-                Съгласен съм с{" "}
-                <Link to="/privacyPolicy" className="text-brand-dark font-medium underline underline-offset-4">
-                  Политиката за поверителност
-                </Link>
-              </label>
-            </div>
-            <AnimatePresence>
-              {privacyError && (
-                <motion.p initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }} className="text-[10px] uppercase tracking-widest font-bold text-red-500 pl-8">
-                  Потвърдете съгласието си
-                </motion.p>
-              )}
-            </AnimatePresence>
-          </div>
-
-          <div className="pt-4 text-left">
-            <button
-              type="submit"
-              disabled={status === "sending"}
-              className="btn-primary w-full md:w-auto flex items-center justify-center gap-2"
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="inline-block"
             >
-              {status === "sending" ? "Изпращане..." : "Изпрати запитване"}
-              <SendHorizonal size={16} />
-            </button>
-
-            {/* Status Messages */}
-            <AnimatePresence>
-              {status === "success" && <motion.p initial={{opacity:0}} animate={{opacity:1}} className="mt-4 text-brand-primary font-sans text-sm font-medium">Успешно изпратено!</motion.p>}
-              {status === "error" && <motion.p initial={{opacity:0}} animate={{opacity:1}} className="mt-4 text-red-500 font-sans text-sm font-medium">Грешка при изпращането.</motion.p>}
-            </AnimatePresence>
+              <h2 className="font-display font-medium text-brand-dark case tracking-tighter leading-none mb-6">
+                Свържи се <br />
+                <span className="text-brand-primary font-light italic">
+                  с мен!
+                </span>
+              </h2>
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-[1px] bg-brand-primary" />
+                <p className="font-sans text-gray-400 text-xs case tracking-[0.3em] font-medium">
+                  Нека обсъдим твоите цели и как можем да ги постигнем заедно!
+                </p>
+              </div>
+            </motion.div>
           </div>
-        </form>
-      </div>
-    </div>
-  </div>
-</section>
+
+          {/* Основна карта на формата */}
+          <div className="flex flex-col lg:flex-row bg-brand-light rounded-[2rem] md:rounded-[2.5rem] soft-shadow border border-brand-light/50 overflow-hidden">
+            {/* Тъмен панел (Dark Panel) */}
+            <div className="lg:w-[40%] bg-brand-dark p-8 md:p-20 text-white relative text-left overflow-hidden">
+              <div className="relative z-10 space-y-8 md:space-y-10">
+                <div className="space-y-4">
+                  <h2 className="font-display text-3xl md:text-5xl text-white font-medium tracking-tighter leading-tight">
+                    Готов ли си за <br />
+                    <span className="text-brand-primary italic font-light">
+                      стъпка напред?
+                    </span>
+                  </h2>
+                </div>
+                <p className="font-sans font-light text-white/60 leading-relaxed text-base md:text-lg">
+                  Попълни формата и ще се свържа с теб за безплатна
+                  опознавателна среща!
+                </p>
+
+                {/* Контактни методи */}
+                <div className="space-y-4 md:space-y-6 pt-4 border-t border-white/10 text-sm md:text-base">
+                  <div className="flex items-center gap-4 group">
+                    <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl md:rounded-2xl bg-brand-light/10 flex items-center justify-center text-brand-primary">
+                      <Mail size={18} />
+                    </div>
+                    <span className="font-sans font-light break-all text-[14px] md:text-base">
+                      miglena.avramova.as@gmail.com
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-4 group">
+                    <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl md:rounded-2xl bg-brand-light/10 flex items-center justify-center text-brand-primary">
+                      <MessageSquare size={18} />
+                    </div>
+                    <span className="font-sans font-light text-[14px] break-all md:text-base">
+                      Viber: +359 886 787 899
+                    </span>
+                  </div>
+                </div>
+              </div>
+              {/* Декоративен кръг - леко смален за мобилни */}
+              <div className="absolute -bottom-10 -left-10 w-40 h-40 md:w-80 md:h-80 bg-brand-primary/10 rounded-full blur-[60px] md:blur-[100px] opacity-50" />
+            </div>
+
+            {/* Самата форма (Form Part) */}
+            <div className="flex-1 p-6 md:p-20 text-left bg-brand-light">
+              <form
+                onSubmit={handleSubmit}
+                noValidate
+                className="space-y-6 md:space-y-8"
+              >
+                <div className="grid md:grid-cols-2 gap-6 md:gap-8 text-left">
+                  {/* Поле Име */}
+                  <div className="space-y-2">
+                    <label
+                      className={`font-sans text-xs md:text-sm font-medium text-brand-dark block ${
+                        errors.name ? "text-red-500" : ""
+                      }`}
+                    >
+                      Твоето име
+                    </label>
+                    <input
+                      name="name"
+                      type="text"
+                      placeholder="Име Фамилия"
+                      className={`w-full bg-gray-100 border-2 px-5 py-3.5 md:px-6 md:py-4 rounded-xl md:rounded-2xl outline-none transition-all font-sans text-sm text-brand-dark ${
+                        errors.name
+                          ? "border-red-500/50 animate-shake"
+                          : "border-transparent focus:ring-2 focus:ring-brand-primary/20"
+                      }`}
+                    />
+                    <AnimatePresence>
+                      {errors.name && (
+                        <motion.p
+                          initial={{ opacity: 0, y: -5 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          className="text-[10px] uppercase tracking-widest font-bold text-red-500 pl-2"
+                        >
+                          {errors.name}
+                        </motion.p>
+                      )}
+                    </AnimatePresence>
+                  </div>
+
+                  {/* Поле Телефон */}
+                  <div className="space-y-2 text-left">
+                    <label
+                      className={`font-sans text-xs md:text-sm font-medium text-brand-dark block ${
+                        errors.phone ? "text-red-500" : ""
+                      }`}
+                    >
+                      Телефонен номер
+                    </label>
+                    <input
+                      name="phone"
+                      type="tel"
+                      placeholder="+359..."
+                      className={`w-full bg-gray-100 border-2 px-5 py-3.5 md:px-6 md:py-4 rounded-xl md:rounded-2xl outline-none transition-all font-sans text-sm text-brand-dark ${
+                        errors.phone
+                          ? "border-red-500/50 animate-shake"
+                          : "border-transparent focus:ring-2 focus:ring-brand-primary/20"
+                      }`}
+                    />
+                    <AnimatePresence>
+                      {errors.phone && (
+                        <motion.p
+                          initial={{ opacity: 0, y: -5 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          className="text-[10px] uppercase tracking-widest font-bold text-red-500 pl-2"
+                        >
+                          {errors.phone}
+                        </motion.p>
+                      )}
+                    </AnimatePresence>
+                  </div>
+                </div>
+
+                <div className="space-y-2 text-left">
+                  <label className="font-sans text-xs md:text-sm font-medium text-brand-dark block">
+                    Какво те мотивира?
+                  </label>
+                  <textarea
+                    name="message"
+                    rows="4"
+                    placeholder="Разкажи ми..."
+                    className="w-full bg-gray-100 border-none px-5 py-3.5 md:px-6 md:py-4 rounded-xl md:rounded-2xl outline-none focus:ring-2 focus:ring-brand-primary/20 transition-all font-sans text-sm text-brand-dark resize-none"
+                  ></textarea>
+                </div>
+
+                {/* Privacy Checkbox */}
+                <div className="space-y-2">
+                  <div className="flex items-start gap-3 text-left">
+                    <input
+                      id="privacy"
+                      name="privacy"
+                      type="checkbox"
+                      className={`w-5 h-5 rounded border-2 transition-all cursor-pointer accent-brand-primary ${
+                        privacyError
+                          ? "border-red-500 animate-shake"
+                          : "border-brand-primary/20 bg-brand-cream"
+                      }`}
+                    />
+                    <label
+                      htmlFor="privacy"
+                      className={`text-[11px] md:text-sm font-sans leading-tight cursor-pointer transition-colors ${
+                        privacyError ? "text-red-500" : "text-gray-400"
+                      }`}
+                    >
+                      Съгласен съм с{" "}
+                      <Link
+                        to="/privacyPolicy"
+                        className="text-brand-primary font-medium underline underline-offset-4 hover:text-brand-dark"
+                      >
+                        Политиката за поверителност
+                      </Link>
+                    </label>
+                  </div>
+                  <AnimatePresence>
+                    {privacyError && (
+                      <motion.p
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: "auto" }}
+                        className="text-[10px] uppercase tracking-widest font-bold text-red-500 pl-8"
+                      >
+                        Потвърдете съгласието си
+                      </motion.p>
+                    )}
+                  </AnimatePresence>
+                </div>
+
+                <div className="pt-4 text-left">
+                  <button
+                    type="submit"
+                    disabled={status === "sending"}
+                    className="btn-primary w-full md:w-auto flex items-center justify-center gap-2"
+                  >
+                    {status === "sending"
+                      ? "Изпращане..."
+                      : "Изпрати запитване"}
+                    <SendHorizonal size={16} />
+                  </button>
+
+                  {/* Status Messages */}
+                  <AnimatePresence>
+                    {status === "success" && (
+                      <motion.p
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        className="mt-4 text-brand-primary font-sans text-sm font-medium"
+                      >
+                        Успешно изпратено!
+                      </motion.p>
+                    )}
+                    {status === "error" && (
+                      <motion.p
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        className="mt-4 text-red-500 font-sans text-sm font-medium"
+                      >
+                        Грешка при изпращането.
+                      </motion.p>
+                    )}
+                  </AnimatePresence>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   );
 };

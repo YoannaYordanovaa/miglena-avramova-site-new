@@ -70,7 +70,7 @@ const NewsDetail = () => {
         )}
 
         {/* СЪДЪРЖАНИЕ */}
-        <article className="bg-white/70 backdrop-blur-md rounded-[3rem] md:rounded-[4rem] p-8 md:p-20 shadow-sm border border-white/50 text-left relative">
+        <article className="bg-brand-light/70 backdrop-blur-md rounded-[3rem] md:rounded-[4rem] p-8 md:p-20 shadow-sm border border-white/50 text-left relative">
           <div
             className="tiptap-content font-sans leading-relaxed font-regular text-brand-dark/70"
             dangerouslySetInnerHTML={{ __html: article.text }}
@@ -110,7 +110,7 @@ const NewsDetail = () => {
               </div>
             </div>
 
-            <button className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-gray-400 hover:text-brand-primary transition-colors border border-gray-100 px-6 py-3 rounded-full hover:bg-white active:scale-95">
+            <button className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-gray-400 hover:text-brand-primary transition-colors border border-gray-100 px-6 py-3 rounded-full hover:bg-brand-light active:scale-95">
               <Share2 size={14} /> Сподели статията
             </button>
           </div>

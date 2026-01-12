@@ -86,8 +86,8 @@ const Navbar = () => {
       <nav
         className={`fixed top-0 left-0 w-full transition-all duration-500 z-[100] ${
           scrolled
-            ? "h-16 bg-white/95 backdrop-blur-md shadow-sm"
-            : "h-20 bg-white lg:bg-transparent"
+            ? "h-16 bg-brand-light/95 backdrop-blur-md shadow-sm"
+            : "h-20 bg-brand-light lg:bg-transparent"
         }`}
       >
         <div className="max-w-7xl mx-auto h-full px-6 flex justify-between items-center">
@@ -132,7 +132,7 @@ const Navbar = () => {
 
                 {item.submenu && (
                   <div className="absolute top-full left-0 w-64 pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
-                    <div className="bg-white border border-brand-light shadow-2xl rounded-[1.2rem] p-2">
+                    <div className="bg-brand-light border border-brand-light shadow-2xl rounded-[1.2rem] p-2">
                       {item.submenu.map((sub, sIdx) => (
                         <div key={sIdx} className="relative group/sub">
                           <div className="flex justify-between items-center px-4 py-3 rounded-lg hover:bg-brand-light/50 transition-colors cursor-pointer">
@@ -155,7 +155,7 @@ const Navbar = () => {
                           </div>
 
                           {sub.subSubmenu && (
-                            <div className="absolute top-0 left-[calc(100%+0.5rem)] w-52 bg-white shadow-2xl border border-brand-light rounded-[1rem] p-2 opacity-0 invisible group-hover/sub:opacity-100 group-hover/sub:visible transition-all duration-300">
+                            <div className="absolute top-0 left-[calc(100%+0.5rem)] w-52 bg-brand-light shadow-2xl border border-brand-light rounded-[1rem] p-2 opacity-0 invisible group-hover/sub:opacity-100 group-hover/sub:visible transition-all duration-300">
                               {sub.subSubmenu.map((ss, ssIdx) => (
                                 <Link
                                   key={ssIdx}

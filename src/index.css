@@ -5,7 +5,7 @@
   /* Цветова палитра */
   --color-brand-dark: #003f00;
   --color-brand-primary: #74ab1a;
-  --color-brand-light: #f2f7f0;
+  --color-brand-light: #fcfaf7BF;
   --color-brand-cream: #faf9f6;
 
   /* Типография */
@@ -35,19 +35,34 @@
   }
 
   /* Автоматична типография */
-  h1, h2, h3, h4 {
+  h1,
+  h2,
+  h3,
+  h4 {
     @apply font-display text-brand-dark leading-tight;
   }
 
-  h1 { @apply text-5xl md:text-7xl font-normal; }
-  h2 { @apply text-5xl md:text-6xl font-light; }
-  h3 { @apply text-3xl md:text-4xl font-light; }
-  h4 { @apply text-xl md:text-xl font-light; }
+  h1 {
+    @apply text-5xl md:text-7xl font-normal;
+  }
+  h2 {
+    @apply text-5xl md:text-6xl font-light;
+  }
+  h3 {
+    @apply text-3xl md:text-4xl font-light;
+  }
+  h4 {
+    @apply text-xl md:text-xl font-light;
+  }
 
-  img { @apply h-auto max-w-full block; }
+  img {
+    @apply h-auto max-w-full block;
+  }
 
   /* Предотвратява автоматичния зуум на iPhone при форми */
-  input, textarea, select {
+  input,
+  textarea,
+  select {
     font-size: 16px !important;
   }
 
@@ -59,8 +74,10 @@
 /* --- 2. ГЛОБАЛНИ КОМПОНЕНТИ --- */
 @layer components {
   /* Глобален стандарт за секция - ВАЖНО ЗА КОНСИСТЕНТНОСТ */
-  .section-container{
-    @apply py-20 md:py-24 px-6 md:px-24 max-w-7xl mx-auto relative z-10 md:rounded-[2.5rem] ;
+  .section-container {
+    @apply py-16 md:py-24 px-6 md:px-24 max-w-7xl mx-auto relative z-10 
+        
+         rounded-none md:rounded-[2.5rem];
   }
 
   /* Стандарт за разстояние между елементи */
@@ -84,12 +101,12 @@
     text-brand-dark border-2 border-brand-dark/10
     px-8 py-4 md:px-10 md:py-5 rounded-full 
     font-sans font-medium uppercase tracking-[0.15em] text-[10px] md:text-[11px]
-    transition-all duration-300 hover:bg-white hover:border-brand-primary
+    transition-all duration-300 hover:bg-brand-light hover:border-brand-primary
     hover:text-brand-primary active:scale-95 cursor-pointer text-center no-underline;
   }
 
   .glass-card {
-    @apply bg-white/70 backdrop-blur-md border border-white/20 shadow-xl rounded-[2rem];
+    @apply bg-brand-light/70 backdrop-blur-md border border-white/20 shadow-xl rounded-[2rem];
   }
 
   .quote-style {
@@ -99,36 +116,65 @@
 
 /* --- 3. ПОМОЩНИ КЛАСОВЕ --- */
 @layer utilities {
-  .text-balance { text-wrap: balance; }
-  .no-scrollbar::-webkit-scrollbar { display: none; }
-  .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-  .soft-shadow { box-shadow: 0 20px 50px rgba(0, 63, 0, 0.05); }
+  .text-balance {
+    text-wrap: balance;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .soft-shadow {
+    box-shadow: 0 20px 50px rgba(0, 63, 0, 0.05);
+  }
 }
 
 /* --- 4. АНИМАЦИИ --- */
 @keyframes float {
-  0% { transform: translateY(0px); }
-  50% { transform: translateY(-10px); }
-  100% { transform: translateY(0px); }
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
 }
 
 @keyframes pulse-subtle {
-  0% { box-shadow: 0 0 0 0 rgba(116, 171, 26, 0.4); }
-  70% { box-shadow: 0 0 0 12px rgba(116, 171, 26, 0); }
-  100% { box-shadow: 0 0 0 0 rgba(116, 171, 26, 0); }
+  0% {
+    box-shadow: 0 0 0 0 rgba(116, 171, 26, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 12px rgba(116, 171, 26, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(116, 171, 26, 0);
+  }
 }
 
 /* Предотвратяване на "трептене" при мобилни */
 @media (hover: none) {
-  .btn-primary:hover, .btn-outline:hover {
+  .btn-primary:hover,
+  .btn-outline:hover {
     transform: none !important;
   }
 }
 
 @keyframes shake {
-  0%, 100% { transform: translateX(0); }
-  25% { transform: translateX(-4px); }
-  75% { transform: translateX(4px); }
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-4px);
+  }
+  75% {
+    transform: translateX(4px);
+  }
 }
 
 .animate-shake {

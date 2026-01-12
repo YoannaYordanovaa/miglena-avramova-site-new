@@ -33,25 +33,25 @@ const Products = () => {
     shop: "Всички продукти",
   };
 
-   const [news, setNews] = useState(() => {
-      const saved = localStorage.getItem("miglena_news");
-      return saved
-        ? JSON.parse(saved)
-        : [
-            {
-              id: 1,
-              title: "Ново начало",
-              text: "Програмата C9 вече е с обновени рецепти!",
-              date: "28.12.2025",
-            },
-            {
-              id: 2,
-              title: "Екипно събитие",
-              text: "Очакваме ви на следващия уелнес семинар в София.",
-              date: "15.01.2026",
-            },
-          ];
-    });
+  const [news, setNews] = useState(() => {
+    const saved = localStorage.getItem("miglena_news");
+    return saved
+      ? JSON.parse(saved)
+      : [
+          {
+            id: 1,
+            title: "Ново начало",
+            text: "Програмата C9 вече е с обновени рецепти!",
+            date: "28.12.2025",
+          },
+          {
+            id: 2,
+            title: "Екипно събитие",
+            text: "Очакваме ви на следващия уелнес семинар в София.",
+            date: "15.01.2026",
+          },
+        ];
+  });
 
   const sortOptions = [
     { value: "default", label: "Сортирай по" },
@@ -178,7 +178,7 @@ const Products = () => {
   };
 
   return (
-    <div className="py-20 md:py-20 min-h-screen bg-white pb-20">
+    <div className="py-20 md:py-20 min-h-screen bg-brand-light pb-20">
       {/* 1. ПОСТАВИ ГО НАЙ-ОТГОРЕ */}
       <NewsBannerSlider news={news} />
       <div className="max-w-7xl mx-auto px-6 relative z-10 pt-10">
@@ -197,7 +197,7 @@ const Products = () => {
             <div className="flex items-center gap-4">
               <div className="w-12 h-[1px] bg-brand-primary" />
               <p className="font-sans text-gray-400 text-xs tracking-[0.3em] font-medium uppercase">
-                Един проект, една визия, едно семейство
+                От растението, до продукта, до теб!
               </p>
             </div>
           </motion.div>
@@ -222,7 +222,7 @@ const Products = () => {
           <div className="relative min-w-[240px] z-40">
             <button
               onClick={() => setIsSortOpen(!isSortOpen)}
-              className="w-full flex items-center justify-between bg-gray-50/50 backdrop-blur-sm border border-gray-100 px-6 py-4 rounded-full font-sans text-[11px] tracking-widest text-brand-dark uppercase hover:bg-white hover:shadow-md transition-all duration-300 outline-none"
+              className="w-full flex items-center justify-between bg-gray-50/50 backdrop-blur-sm border border-gray-100 px-6 py-4 rounded-full font-sans text-[11px] tracking-widest text-brand-dark uppercase hover:bg-brand-light hover:shadow-md transition-all duration-300 outline-none"
             >
               <span className="font-medium">{currentSortLabel}</span>
               <motion.div animate={{ rotate: isSortOpen ? 180 : 0 }}>
@@ -241,7 +241,7 @@ const Products = () => {
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 5 }}
                     exit={{ opacity: 0, y: 10 }}
-                    className="absolute top-full left-0 w-full mt-2 bg-white/95 backdrop-blur-xl border border-gray-100 rounded-[2rem] shadow-2xl overflow-hidden z-20 p-2"
+                    className="absolute top-full left-0 w-full mt-2 bg-brand-light/95 backdrop-blur-xl border border-gray-100 rounded-[2rem] shadow-2xl overflow-hidden z-20 p-2"
                   >
                     {sortOptions.map((option) => (
                       <button
@@ -314,7 +314,7 @@ const Products = () => {
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
                     transition={{ duration: 0.3 }}
-                    className="bg-white flex flex-col group overflow-hidden rounded-[2rem] border border-gray-100 hover:shadow-2xl transition-all duration-500"
+                    className="bg-brand-light flex flex-col group overflow-hidden rounded-[2rem] border border-gray-100 hover:shadow-2xl transition-all duration-500"
                   >
                     <div className="relative aspect-square bg-white p-5 overflow-hidden flex items-center justify-center">
                       <img
@@ -322,7 +322,7 @@ const Products = () => {
                         alt={product.h1}
                         className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-700"
                       />
-                      <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm text-brand-dark text-[9px] font-bold px-3 py-1 rounded-full shadow-sm">
+                      <div className="absolute top-4 left-4 bg-brand-light/90 backdrop-blur-sm text-brand-dark text-[9px] font-bold px-3 py-1 rounded-full shadow-sm">
                         Код: {product.id}
                       </div>
                       <div className="absolute top-4 right-4 bg-brand-primary text-white w-16 h-16 rounded-full flex items-center justify-center font-black text-sm shadow-lg ">

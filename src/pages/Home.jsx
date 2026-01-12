@@ -18,8 +18,6 @@ import { Link } from "react-router-dom";
 const Home = () => {
   const containerRef = useRef(null);
 
-
-
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end end"],
@@ -38,14 +36,9 @@ const Home = () => {
   };
 
   return (
-    <div
-      ref={containerRef}
-      className="relative  overflow-x-hidden"
-    >
-
-
+    <div ref={containerRef} className="relative  overflow-x-hidden">
       {/* 2. HERO SECTION */}
-      <section className="relative section-container mt-4 min-h-[100vh] md:min-h-screen flex items-center section-container z-10 overflow-hidden">
+      <section className="relative section-container mt-8 min-h-[100vh] md:min-h-screen flex items-center section-container z-10 overflow-hidden">
         <div className=" mx-auto w-full">
           <div className="grid lg:grid-cols-12 gap-12 items-center stack-space">
             <motion.div
@@ -58,7 +51,7 @@ const Home = () => {
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.5, duration: 0.8 }}
-                className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/60 backdrop-blur-md border border-brand-primary/20 shadow-sm"
+                className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-light/60 backdrop-blur-md border border-brand-primary/20 shadow-sm"
               >
                 <Sparkles size={14} className="text-brand-primary" />
                 <span className="font-sans text-[10px] md:text-xs uppercase tracking-widest text-brand-dark font-semibold">
@@ -126,7 +119,7 @@ const Home = () => {
                 whileHover={{ scale: 1.02 }}
                 className="relative group z-10"
               >
-                <div className="aspect-square rounded-[20rem] overflow-hidden border-4 md:border-8 border-brand-cream shadow-2xl bg-white">
+                <div className="aspect-square rounded-[20rem] overflow-hidden border-4 md:border-8 border-brand-cream shadow-2xl bg-brand-light">
                   <motion.img
                     src="/Miglena/Miglena_About.webp"
                     alt="Миглена Аврамова"
@@ -138,7 +131,7 @@ const Home = () => {
                 <motion.div
                   animate={{ y: [0, -12, 0] }}
                   transition={floatingTransition}
-                  className="absolute -bottom-6 md:-bottom-10 -left-4 md:-left-8 bg-white/95 backdrop-blur-md px-8 py-5 rounded-full shadow-[0_20px_50px_rgba(0,0,0,0.1)] border border-brand-light/50 z-20 flex items-center gap-3"
+                  className="absolute -bottom-6 md:-bottom-10 -left-4 md:-left-8 bg-brand-light/95 backdrop-blur-md px-8 py-5 rounded-full shadow-[0_20px_50px_rgba(0,0,0,0.1)] border border-brand-light/50 z-20 flex items-center gap-3"
                 >
                   <Heart
                     className="text-brand-primary"
@@ -169,17 +162,12 @@ const Home = () => {
         </div>
       </section>
 
-
-
       {/* 3. ABOUT SECTION - EDITORIAL MINIMALIST */}
       <section
         id="about"
-        className="relative section-container bg-white overflow-hidden"
+        className="relative section-container bg-brand-light overflow-hidden"
       >
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 font-display text-[15vw] md:text-[10vw] text-brand-primary/5 select-none pointer-events-none whitespace-nowrap">
-          Healthy Lifestyle
-        </div>
-
+      
         <div className=" relative z-10">
           <div className="mb-16 text-left">
             <motion.div
@@ -246,10 +234,9 @@ const Home = () => {
       {/* 4. GALLERY SECTION */}
 
       <AboutGallery />
-   
 
       {/* 4. TESTIMONIALS */}
-      <section className="section-container bg-white relative overflow-hidden">
+      <section className="section-container bg-brand-light relative overflow-hidden">
         <div className="relative z-10">
           <div className="flex flex-col md:flex-row items-start md:items-end justify-between mb-12 md:mb-20 gap-6">
             <div className="mb-16 text-left">
@@ -269,7 +256,8 @@ const Home = () => {
                 <div className="flex items-center gap-4">
                   <div className="w-12 h-[1px] bg-brand-primary" />
                   <p className="font-sans text-gray-400 text-xs case tracking-[0.3em] font-medium">
-                    Доказателства, че промяната е възможна за всеки, който е готов да опита!
+                    Доказателства, че промяната е възможна за всеки, който е
+                    готов да опита!
                   </p>
                 </div>
               </motion.div>
@@ -339,10 +327,7 @@ const Home = () => {
       </section>
 
       {/* 5. CONTACT SECTION */}
-      <section
-        id="contact"
-        className="section-container relative"
-      >
+      <section id="contact" className="section-container relative">
         <div className="relative z-10">
           <div className="mb-16 text-left">
             <motion.div
@@ -367,7 +352,7 @@ const Home = () => {
             </motion.div>
           </div>
           <div className="grid lg:grid-cols-12 gap-6 md:gap-8 items-stretch">
-            <div className="lg:col-span-5 bg-brand-dark rounded-[2.5rem] p-12 md:p-12 text-white flex flex-col justify-between overflow-hidden relative">
+            <div className="lg:col-span-5 bg-brand-dark rounded-[2.5rem] p-10 md:p-12 text-white flex flex-col justify-between overflow-hidden relative">
               <div className="relative z-10 space-y-6">
                 <h2 className="text-3xl md:text-5xl font-display text-white leading-tight">
                   Направи първата крачка <br />
@@ -386,20 +371,20 @@ const Home = () => {
                   href="tel:+359886787899"
                   className="flex items-center gap-4 group"
                 >
-                  <div className="p-3 rounded-xl bg-white/10 group-hover:bg-brand-primary transition-colors">
+                  <div className="p-3 rounded-xl bg-brand-light/10 group-hover:bg-brand-primary transition-colors">
                     <Phone size={20} />
                   </div>
-                  <span className="text-lg font-light">0886 787 899</span>
+                  <span className="font-sans font-light break-all text-[14px] md:text-base">0886 787 899</span>
                 </a>
                 <a
                   href="mailto:miglena.avramova@mail.com"
                   className="flex items-center gap-4 group break-all"
                 >
-                  <div className="p-3 rounded-xl bg-white/10 group-hover:bg-brand-primary transition-colors">
+                  <div className="p-3 rounded-xl bg-brand-light/10 group-hover:bg-brand-primary transition-colors">
                     <Mail size={20} />
                   </div>
-                  <span className="text-lg font-light">
-                    miglena.avramova@mail.com
+                  <span className="font-sans font-light break-all text-[14px] md:text-base">
+                    miglena.avramova.as@gmail.com
                   </span>
                 </a>
               </div>
@@ -431,7 +416,7 @@ const Home = () => {
                   whileHover={{ scale: 1.02 }}
                   href={social.href}
                   target="_blank"
-                  className="bg-white p-8 rounded-[2.5rem] shadow-sm border border-brand-light flex flex-col justify-between group"
+                  className="bg-brand-light p-8 rounded-[2.5rem] shadow-sm border border-brand-light flex flex-col justify-between group"
                 >
                   <div className={social.color}>{social.icon}</div>
                   <div className="mt-12">
@@ -455,7 +440,7 @@ const Home = () => {
                 whileHover={{ scale: 1.02 }}
                 href="https://www.tiktok.com/@avramovamiglenaa"
                 target="_blank"
-                className="md:col-span-2 bg-white p-8 rounded-[2.5rem] shadow-sm border border-brand-light flex items-center justify-between group"
+                className="md:col-span-2 bg-brand-light p-8 rounded-[2.5rem] shadow-sm border border-brand-light flex items-center justify-between group"
               >
                 <div className="flex items-center gap-6">
                   <div className="p-4 bg-brand-dark text-white rounded-2xl">
