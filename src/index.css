@@ -5,7 +5,7 @@
   /* Цветова палитра */
   --color-brand-dark: #003f00;
   --color-brand-primary: #74ab1a;
-  --color-brand-light: #fcfaf7BF;
+  --color-brand-light: #fcfaf7CC;
   --color-brand-cream: #faf9f6;
 
   /* Типография */
@@ -27,32 +27,45 @@
     text-rendering: optimizeLegibility;
   }
 
-  body {
-    /* Промених text-gray-400 на по-тъмен нюанс за по-добра четливост */
-    @apply bg-brand-cream font-sans text-gray-600 font-normal antialiased overflow-x-hidden;
-    line-height: 1.5;
+ body {
+    /* text-base (16px) на телефон, text-lg (18px) на десктоп е златният стандарт */
+    @apply bg-brand-cream font-sans text-gray-600 text-base md:text-lg font-normal antialiased overflow-x-hidden;
+    line-height: 1.6; /* Малко повече разстояние между редовете за въздух */
     margin: 0;
   }
 
   /* Автоматична типография */
-  h1,
-  h2,
-  h3,
-  h4 {
-    @apply font-display text-brand-dark leading-tight;
+  h1, h2, h3, h4 {
+    @apply font-display text-brand-dark leading-[1.1] tracking-tight;
   }
 
+  /* HERO ЗАГЛАВИЕ: Голямо и впечатляващо */
   h1 {
-    @apply text-5xl md:text-7xl font-normal;
+    /* 36px на мобилни -> 72px на десктоп */
+    @apply text-[2.25rem] md:text-6xl lg:text-7xl font-medium;
   }
+
+  /* СЕКЦИОННИ ЗАГЛАВИЯ: Ясни и четливи */
   h2 {
-    @apply text-5xl md:text-6xl font-light tracking-tighter;
+    /* 30px на мобилни -> 48px-56px на десктоп */
+    @apply text-[1.875rem] md:text-5xl lg:text-6xl font-medium tracking-tighter;
   }
+
+  /* ПОДЗАГЛАВИЯ И КАРТИ */
   h3 {
-    @apply text-3xl md:text-4xl font-light;
+    /* 24px на мобилни -> 32px-36px на десктоп */
+    @apply text-2xl md:text-3xl lg:text-4xl font-medium;
   }
+
+  /* МАЛКИ ЗАГЛАВИЯ (Feature cards) */
   h4 {
-    @apply text-[18px] md:text-[18px] font-light;
+    /* 18px на мобилни -> 20px-22px на десктоп */
+    @apply text-lg md:text-xl lg:text-2xl font-semibold;
+  }
+
+  /* ДОПЪЛНИТЕЛЕН КЛАС ЗА ЕКСТРА МАЛЪК ТЕКСТ (Labels) */
+  .text-label {
+    @apply text-[10px] md:text-xs uppercase tracking-[0.2em] font-bold text-brand-primary;
   }
 
   img {
@@ -75,9 +88,7 @@
 @layer components {
   /* Глобален стандарт за секция - ВАЖНО ЗА КОНСИСТЕНТНОСТ */
   .section-container {
-    @apply py-16 md:py-24 px-6 md:px-24 max-w-7xl mx-auto relative z-10 
-        
-         rounded-none md:rounded-[2.5rem];
+    @apply py-16 md:py-24 px-6 md:px-24 mx-auto relative z-10 
   }
 
   /* Стандарт за разстояние между елементи */

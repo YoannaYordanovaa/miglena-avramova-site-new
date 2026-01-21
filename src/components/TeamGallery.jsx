@@ -51,7 +51,7 @@ const InteractiveGallery = () => {
   const [isExpanded, setIsExpanded] = useState(false);
   const galleryRef = useRef(null);
 
-  // Блокиране на скрола на body при отворена снимка
+  // Спираме скрола на основната страница, когато снимката е отворена
   useEffect(() => {
     if (selectedImage) {
       document.body.style.overflow = "hidden";
@@ -74,7 +74,6 @@ const InteractiveGallery = () => {
         behavior: "smooth",
         block: "start",
       });
-
       setTimeout(() => {
         setIsExpanded(false);
       }, 300);
@@ -83,9 +82,9 @@ const InteractiveGallery = () => {
     }
   };
 
-  // Функции за навигация
+  // Функции за навигация в Lightbox-а
   const showNext = (e) => {
-    e?.stopPropagation();
+    e.stopPropagation();
     const currentIndex = Miglena_Avramova_Photos.findIndex(
       (img) => img.id === selectedImage.id
     );
@@ -94,7 +93,7 @@ const InteractiveGallery = () => {
   };
 
   const showPrev = (e) => {
-    e?.stopPropagation();
+    e.stopPropagation();
     const currentIndex = Miglena_Avramova_Photos.findIndex(
       (img) => img.id === selectedImage.id
     );
@@ -104,12 +103,12 @@ const InteractiveGallery = () => {
     setSelectedImage(Miglena_Avramova_Photos[prevIndex]);
   };
 
-  // Слушател за клавиатура
+  // Поддръжка на клавишни стрелки
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (!selectedImage) return;
-      if (e.key === "ArrowRight") showNext();
-      if (e.key === "ArrowLeft") showPrev();
+      if (e.key === "ArrowRight") showNext(e);
+      if (e.key === "ArrowLeft") showPrev(e);
       if (e.key === "Escape") setSelectedImage(null);
     };
     window.addEventListener("keydown", handleKeyDown);
@@ -117,10 +116,7 @@ const InteractiveGallery = () => {
   }, [selectedImage]);
 
   return (
-    <section
-      ref={galleryRef}
-      className="section-container bg-brand-light scroll-mt-10"
-    >
+    <section ref={galleryRef} className="section-container scroll-mt-10">
       <div className="mx-auto">
         {/* Header */}
         <div className="mb-16 text-left">
@@ -130,59 +126,66 @@ const InteractiveGallery = () => {
             viewport={{ once: true }}
             className="inline-block"
           >
-            <h2 className="font-display font-medium text-brand-dark case leading-none mb-6">
-              Запознай се <br />
+            <h1 className=" font-display font-medium text-brand-dark case leading-none mb-4">
+              Любими моменти <br />
               <span className="text-brand-primary font-light italic">
-                с екипа!
+                с любими хора...
               </span>
-            </h2>
-
+            </h1>
             <div className="flex items-center gap-4">
               <div className="w-12 h-[1px] bg-brand-primary" />
               <p className="font-sans text-gray-400 text-xs case tracking-[0.2em] font-regular">
-                Хората, които ще те подкрепят по пътя към успеха!
+                Защото най-големият успех е свободата да бъдеш с тези, които
+                обичаш...
               </p>
             </div>
           </motion.div>
         </div>
 
-        {/* Галерия */}
-        <motion.div
-          layout
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6"
-        >
-          <AnimatePresence mode="popLayout">
-            {visiblePhotos.map((photo) => (
-              <motion.div
-                key={photo.id}
-                layout
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.9 }}
-                transition={{ duration: 0.4, ease: "circOut" }}
-                onClick={() => setSelectedImage(photo)}
-                className="relative aspect-[4/5] rounded-[1.5rem] overflow-hidden cursor-pointer group bg-gray-50 shadow-sm"
-              >
-                <img
-                  src={photo.src}
-                  alt={photo.title}
-                  loading="lazy"
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                />
+       {/* Галерия */}
+<motion.div
+  layout
+  className={`
+    /* Базови стилове за мобилни */
+    flex snap-x snap-mandatory no-scrollbar -mx-6 px-6 gap-4
+    
+    /* АКО Е РАЗПЪНАТО: Преминаваме към решетка или wrap-ване */
+    ${isExpanded 
+      ? "flex-wrap overflow-x-visible pb-10" 
+      : "overflow-x-auto pb-6"}
 
-                <div className="absolute inset-0 bg-brand-dark/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
-                  <div className="absolute top-4 right-4 bg-brand-light/20 backdrop-blur-md p-2 rounded-full text-white opacity-0 group-hover:opacity-100 transition-all">
-                    <Maximize2 size={16} />
-                  </div>
-                  <p className="text-white font-sans text-sm font-medium tracking-wide">
-                    {photo.title}
-                  </p>
-                </div>
-              </motion.div>
-            ))}
-          </AnimatePresence>
-        </motion.div>
-
+    /* ДЕСКТОП: Винаги решетка */
+    sm:grid sm:grid-cols-2 lg:grid-cols-4 sm:overflow-x-visible sm:pb-0 sm:mx-0 sm:px-0 md:gap-6
+  `}
+>
+  <AnimatePresence mode="popLayout">
+    {visiblePhotos.map((photo) => (
+      <motion.div
+        key={photo.id}
+        layout
+        initial={{ opacity: 0, scale: 0.9 }}
+        animate={{ opacity: 1, scale: 1 }}
+        exit={{ opacity: 0, scale: 0.9 }}
+        transition={{ duration: 0.4, ease: "circOut" }}
+        onClick={() => setSelectedImage(photo)}
+        className={`
+          /* Снимката на телефон: Ако НЕ е разпънато, заема 80% за скрол. Ако Е разпънато, заема около 45% за решетка */
+          ${isExpanded ? "min-w-[calc(50%-1rem)]" : "min-w-[80vw]"}
+          sm:min-w-0 
+          relative aspect-[4/5] rounded-[2rem] overflow-hidden cursor-pointer group bg-gray-50 shadow-sm snap-center
+        `}
+      >
+        <img
+          src={photo.src}
+          alt={photo.title}
+          loading="lazy"
+          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+        />
+        {/* ... останалият код за overlay-а остава същият ... */}
+      </motion.div>
+    ))}
+  </AnimatePresence>
+</motion.div>
         {/* Toggle Button */}
         <div className="mt-16 text-center">
           <button
@@ -219,50 +222,47 @@ const InteractiveGallery = () => {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                className="fixed inset-0 z-[99999] bg-brand-light/95 backdrop-blur-xl flex items-center justify-center p-6"
+                className="fixed inset-0 z-[99999] bg-brand-light/95 backdrop-blur-xl flex items-center justify-center p-4 md:p-12 cursor-zoom-out"
                 onClick={() => setSelectedImage(null)}
               >
-                {/* Стрелки за навигация */}
+                {/* Контроли за навигация */}
                 <button
                   onClick={showPrev}
-                  className="absolute left-4 md:left-10 top-1/2 -translate-y-1/2 p-3 text-brand-dark/40 hover:text-brand-dark hover:bg-brand-primary/10 rounded-full transition-all z-[100001]"
+                  className="absolute left-4 md:left-10 top-1/2 -translate-y-1/2 p-3 text-white md:text-brand-dark/40 hover:text-brand-dark hover:bg-brand-primary/10 rounded-full transition-all z-[100001]"
                 >
                   <ChevronLeft size={48} strokeWidth={1} />
                 </button>
 
                 <button
                   onClick={showNext}
-                  className="absolute right-4 md:right-10 top-1/2 -translate-y-1/2 p-3 text-brand-dark/40 hover:text-brand-dark hover:bg-brand-primary/10 rounded-full transition-all z-[100001]"
+                  className="absolute right-4 md:right-10 top-1/2 -translate-y-1/2 p-3 text-white md:text-brand-dark/40 hover:text-brand-dark hover:bg-brand-primary/10 rounded-full transition-all z-[100001]"
                 >
                   <ChevronRight size={48} strokeWidth={1} />
                 </button>
 
-                <button
-                  className="absolute top-6 right-6 p-3 hover:rotate-90 transition-transform duration-300 text-brand-dark z-[100001]"
-                  onClick={() => setSelectedImage(null)}
-                >
-                  <X size={32} strokeWidth={1.5} />
+                <button className="absolute top-6 right-6 p-4 text-brand-dark hover:rotate-90 transition-transform duration-300 z-[100001]">
+                  <X size={36} strokeWidth={1.5} />
                 </button>
 
                 <motion.div
-                  key={selectedImage.id} // Ключът позволява на Framer Motion да анимира смяната
+                  key={selectedImage.id} // Важно за анимацията при смяна на снимка
                   initial={{ opacity: 0, x: 20 }}
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: -20 }}
                   transition={{ duration: 0.3 }}
-                  className="max-w-4xl w-full flex flex-col items-center"
+                  className="mt-20 max-w-5xl w-full flex flex-col items-center gap-8"
                   onClick={(e) => e.stopPropagation()}
                 >
                   <img
                     src={selectedImage.src}
-                    className="max-w-full max-h-[75vh] object-contain rounded-2xl shadow-2xl"
+                    className="max-w-full max-h-[100vh] object-contain rounded-2xl shadow-2xl border border-gray-100"
                     alt="Selected"
                   />
-                  <div className="mt-8 text-center">
-                    <h4 className="text-brand-dark font-display italic text-2xl md:text-3xl">
+                  <div className="text-center">
+                    <h4 className="text-brand-dark font-display italic text-2xl md:text-3xl leading-none">
                       {selectedImage.title}
                     </h4>
-                    <div className="w-8 h-[2px] bg-brand-primary mx-auto mt-4 opacity-40" />
+                    <div className="w-12 h-[1px] bg-brand-primary/40 mx-auto mt-6" />
                   </div>
                 </motion.div>
               </motion.div>

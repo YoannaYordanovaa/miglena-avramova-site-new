@@ -36,12 +36,12 @@ const VideoSection = () => {
             viewport={{ once: true }}
             className="inline-block"
           >
-            <h2 className="font-display font-medium text-brand-dark case leading-none mb-6">
+            <h1 className="font-display font-medium text-brand-dark case leading-none mb-4">
               Защо да се присъединиш <br />
               <span className="text-brand-primary font-light italic">
                 към нас?
               </span>
-            </h2>
+            </h1>
             <div className="flex items-center gap-4">
               <div className="w-12 h-[1px] bg-brand-primary" />
               <p className="font-sans text-gray-400 text-xs case tracking-[0.2em] font-regular">
@@ -59,7 +59,7 @@ const VideoSection = () => {
           className="relative group cursor-pointer"
           onClick={() => setIsOpen(true)}
         >
-          <div className="relative aspect-video md:aspect-[21/9] rounded-[2.5rem] md:rounded-[4rem] overflow-hidden bg-brand-cream border border-brand-light/20 shadow-[0_32px_64px_-15px_rgba(0,0,0,0.1)]">
+          <div className="relative aspect-video md:aspect-[21/9] rounded-[2rem] md:rounded-[4rem] overflow-hidden bg-brand-cream border border-brand-light/20 shadow-[0_32px_64px_-15px_rgba(0,0,0,0.1)]">
             <img
               src="/video-cover.webp"
               alt="Team Life"
@@ -87,7 +87,7 @@ const VideoSection = () => {
             </div>
 
             <div className="absolute bottom-10 left-10 hidden md:block">
-              <p className="text-white font-display text-xs font-medium case tracking-[0.4em] opacity-80">
+              <p className="text-white font-display font-medium case tracking-[0.4em] opacity-90">
                 Нека ти разкажа...
               </p>
             </div>

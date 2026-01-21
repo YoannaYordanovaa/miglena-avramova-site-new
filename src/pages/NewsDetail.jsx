@@ -23,7 +23,7 @@ const NewsDetail = () => {
     );
 
   return (
-    <div className="bg-brand-cream min-h-screen pt-24 md:pt-32 pb-20 px-4 md:px-6 font-sans text-brand-dark overflow-x-hidden">
+    <div className="bg-brand-cream min-h-screen section-container font-sans text-brand-dark overflow-x-hidden">
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}

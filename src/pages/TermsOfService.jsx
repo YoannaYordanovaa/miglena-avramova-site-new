@@ -51,8 +51,8 @@ const TermsOfService = () => {
   return (
     <div className="min-h-screen bg-brand-light">
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 px-6 bg-brand-cream/30">
-        <div className="max-w-4xl mx-auto text-center">
+      <section className="section-container bg-brand-cream/30">
+        <div className=" max-w-7xl mx-auto text-center">
           <Link
             to="/"
             className="inline-flex items-center gap-2 text-brand-primary mb-8 hover:-translate-x-2 transition-transform font-sans text-xs uppercase tracking-widest font-bold"
@@ -78,7 +78,7 @@ const TermsOfService = () => {
 
       {/* Content Section */}
       <section className="section-container py-5 px-6">
-        <div className="max-w-3xl mx-auto">
+        <div className="max-w-7xl mx-auto">
           <div className="space-y-16">
             {sections.map((section, idx) => (
               <motion.div

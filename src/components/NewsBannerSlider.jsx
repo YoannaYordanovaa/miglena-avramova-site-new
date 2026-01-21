@@ -28,7 +28,7 @@ const NewsBannerSlider = ({ news = [] }) => {
   if (!news || news.length === 0) return null;
 
   return (
-    <section className="relative h-[400px] md:h-[400px] w-full overflow-hidden bg-brand-dark ">
+    <section className="relative h-[400px] md:h-[400px] w-full overflow-hidden bg-brand-dark mt-20">
       <AnimatePresence initial={false} custom={direction} mode="wait">
         <motion.div
           key={current}

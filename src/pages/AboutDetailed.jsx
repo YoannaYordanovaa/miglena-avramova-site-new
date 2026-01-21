@@ -1,9 +1,6 @@
 import React, { useState } from "react";
-
 import { motion, AnimatePresence } from "framer-motion";
-
 import AboutGallery from "../components/AboutGallery";
-
 import {
   Heart,
   Dog,
@@ -16,140 +13,106 @@ import {
   Briefcase,
   Quote,
   PawPrint,
-  ChevronDown, // Добавено, за да не гърми грешка за Briefcase/ChevronDown
+  ChevronDown,
 } from "lucide-react";
-
-import { useNavigate } from "react-router-dom";
-
-import { Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 const AboutDetailed = () => {
   const navigate = useNavigate();
-
   const [selectedImg, setSelectedImg] = useState(null);
 
   const entryTransition = { duration: 1.6, ease: [0.16, 1, 0.3, 1] };
-
-  const credentials = [
-    {
-      icon: <Dog size={22} />,
-
-      title: "Медицинска експертиза",
-
-      desc: "Ветеринарен лекар по education, с дълбоко разбиране за тялото, здравето и силата на природата.",
-    },
-
-    {
-      icon: <Briefcase size={22} />,
-
-      title: "Бизнес опит",
-
-      desc: "Предприемач с реален практически опит в изграждането и развитието на устойчив бизнес.",
-    },
-
-    {
-      icon: <Star size={22} />,
-
-      title: "Личен опит с продуктите на Форевър",
-
-      desc: "Преминала през собствена промяна със C9 – –10 кг и ново начало за здравето и енергията.",
-    },
-
-    {
-      icon: <Heart size={22} />,
-
-      title: "Моята мисия",
-
-      desc: "Помагам на хората да открият своя път към свобода, баланс и по-смислен начин на живот.",
-    },
-  ];
+  const floatingTransition = {
+    duration: 4,
+    repeat: Infinity,
+    ease: "easeInOut",
+  };
 
   return (
-    <div className=" min-h-screen">
-      {/* 1. HERO SECTION - Minimal & Personal */}
-
-      <section className="relative pt-32 pb-20 px-6 bg-brand-light overflow-hidden">
-        <div className="max-w-4xl mx-auto text-center relative z-10">
+    <div className="w-full">
+      {/* 1. STORY SECTION - Full Width Split Design */}
+      <section className="relative w-full flex flex-col lg:flex-row items-stretch overflow-hidden pt-20 md:pt-20">
+        {/* ЛЯВА ЧАСТ: Визуален център (Снимката) */}
+        <div className="relative w-full lg:w-1/2 min-h-[450px] md:min-h-[600px] lg:min-h-[85vh] overflow-hidden">
           <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="inline-flex items-center gap-2 mb-6 text-brand-primary"
+            initial={{ scale: 1.05, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 1.5 }}
+            className="absolute inset-0"
           >
-            <PawPrint size={18} />
-
-            <span className="font-sans text-[10px] uppercase tracking-[0.4em] font-bold text-brand-dark">
-              Лична история
-            </span>
+            <img
+              src="/Miglena/Miglena_aboutDetailed2.jpg"
+              className="w-full h-full object-cover object-center"
+              alt="Миглена"
+            />
+            {/* Overlay за преход */}
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent to-white/5 hidden lg:block" />
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent to-white/10 lg:hidden" />
           </motion.div>
 
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="font-display text-brand-dark leading-[1.1] mb-8"
-          >
-            За мен <br />
-            <span className="text-brand-primary italic font-light">
-              и моя път
-            </span>
-          </motion.h1>
-        </div>
-      </section>
-
-      {/* 2. STORY SECTION - Editorial Layout */}
-
-      <section className="py-20 px-6">
-        <div className="max-w-7xl mx-auto grid lg:grid-cols-12 gap-16 items-start">
-          {/* Left Side: Images & Floating Badge */}
-
-          <div className="lg:col-span-5 relative">
+          {/* Бадж върху снимката */}
+          <div className="absolute bottom-8 left-8 md:bottom-12 md:left-12 z-20">
             <motion.div
-              initial={{ opacity: 0, scale: 0.98 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              className="aspect-[4/5] rounded-[3rem] overflow-hidden shadow-2xl border-[12px] border-white"
+              initial={{ x: -20, opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              transition={{ delay: 1 }}
+              className="bg-brand-primary text-white p-5 md:p-7 rounded-tr-[3rem] shadow-2xl backdrop-blur-sm bg-brand-primary/95"
             >
-              <img
-                src="/Miglena/Miglena_aboutDetailed.webp"
-                className="w-full h-full object-cover"
-                alt="Миглена"
-              />
-            </motion.div>
-
-            <motion.div
-              animate={{ y: [0, -10, 0] }}
-              transition={{ duration: 4, repeat: Infinity }}
-              className="absolute -bottom-8 -right-4 md:-right-8 bg-brand-light text-brand-dark p-6 md:p-8 rounded-[2rem] shadow-2xl max-w-[220px]"
-            >
-              <div className="flex gap-2 mb-3 text-brand-primary">
-                <Heart size={20} /> <PawPrint size={20} />
-              </div>
-
-              <p className="text-sm font-regular leading-relaxed opacity-90 italic">
-                От ветеринарната медицина до уелнес лидерството.
+              <p className="font-display italic text-2xl md:text-3xl">
+                10+ години
+              </p>
+              <p className="text-[9px] md:text-[10px] uppercase tracking-[0.2em] font-bold opacity-80">
+                Опит и отдаденост
               </p>
             </motion.div>
           </div>
+        </div>
 
-          {/* Right Side: Narrative */}
+        {/* ДЯСНА ЧАСТ: Текст и Типография */}
+        <div className="w-full lg:w-1/2 flex items-center justify-center p-8 md:p-16 lg:p-24 relative">
+          {/* Декоративна буква на заден план */}
+          <span className="absolute top-10 right-10 text-[12rem] md:text-[18rem] font-display font-bold text-brand-light/15 leading-none select-none pointer-events-none">
+            M
+          </span>
 
-          <div className="lg:col-span-7 space-y-12 text-left">
-            <div className="space-y-6 font-sans text-gray-500 text-lg font-light leading-relaxed">
-              <h2 className="font-display text-4xl md:text-5xl text-brand-dark tracking-tight">
-                Здравей, казвам се{" "}
-                <span className="text-brand-primary italic font-light">
-                  Миглена!
-                </span>
-              </h2>
+          <div className="max-w-xl relative z-10 space-y-10 md:space-y-14">
+            {/* Заглавие */}
+            <div className="pt-7 text-left">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                className="inline-block"
+              >
+                <h1 className="font-display font-medium text-brand-dark case leading-none mb-4">
+                  Здравей, аз съм <br />
+                  <span className="text-brand-primary font-light italic">
+                    Миглена!
+                  </span>
+                </h1>
+                <div className="flex items-center gap-4">
+                  <div className="w-12 h-[1px] bg-brand-primary" />
+                  <p className="font-sans text-gray-400 text-xs case tracking-[0.2em] font-regular">
+                    Моята лична история
+                  </p>
+                </div>
+              </motion.div>
+            </div>
 
-              <p>
-                По професия съм{" "}
-                <strong className="text-brand-dark">ветеринарен лекар</strong>.
-                Имам две прекрасни дъщери и съпруг, който ме подкрепя в
-                начинанията ми. Винаги съм обичала животните, така научих и
-                дъщерите си и поради тази причина вкъщи живеем с няколко
-                наемателя, които често забравят за своите задължения - котарака
-                Кирчо, морското свинче Дарвин и един африкански охлюв, който все
-                още не си е избрал име...
-              </p>
+            {/* Съдържание */}
+            <div className="space-y-8 font-sans text-gray-600 text-base md:text-lg font-light leading-relaxed">
+              <div className="relative pl-6 md:pl-8 border-l-2 border-brand-primary/10">
+                <p>
+                  По професия съм{" "}
+                  <strong className="text-brand-dark">ветеринарен лекар</strong>
+                  . Имам две прекрасни дъщери и съпруг, който ме подкрепя в
+                  начинанията ми. Винаги съм обичала животните, така научих и
+                  дъщерите си и поради тази причина вкъщи живеем с няколко
+                  наемателя, които често забравят за своите задължения -
+                  котарака Кирчо, морското свинче Дарвин и един африкански
+                  охлюв.
+                </p>
+              </div>
 
               <p>
                 Въпреки това от над 10 години не практикувам професията си, тъй
@@ -159,129 +122,99 @@ const AboutDetailed = () => {
                 време, но чакането си заслужаваше...{" "}
               </p>
 
-              {/* SCROLL DOWN ИНДИКАТОР - ВГРАДЕН ПОД ЦИТАТА */}
+              {/* Бутон за скрол надолу - Минималистичен дизайн */}
+<div className="pt-6 flex mx-auto justify-center">
+  <button
+    onClick={() =>
+      document
+        .querySelector("#about")
+        ?.scrollIntoView({ behavior: "smooth" })
+    }
+    className="group relative flex flex-col items-center gap-3 transition-all"
+    aria-label="Скрол надолу към трансформацията"
+  >
+     {/* Дискретен текст под стрелките (по избор, може да се премахне) */}
+    <span className="text-[9px] uppercase tracking-[0.3em] text-brand-dark/40 font-bold group-hover:text-brand-primary transition-colors">
+      Виж повече
+    </span>
+    {/* Основният кръг */}
+    <div className="w-16 h-16 md:w-16 md:h-16">
+      <motion.div
+        animate={{ y: [0, 6, 0] }}
+        transition={{
+          duration: 2,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+        className="flex flex-col items-center -space-y-4 text-brand-primary group-hover:text-white transition-colors"
+      >
+        <ChevronDown size={28} strokeWidth={1.2} />
+        <ChevronDown size={28} strokeWidth={1.2} className="opacity-40" />
+      </motion.div>
+    </div>
 
-              <div className="flex flex-col items-center justify-center py-10 space-y-2">
-                <span className="text-[10px] uppercase tracking-[0.4em] text-brand-primary font-bold opacity-60">
-                  Продължи нататък
-                </span>
-
-                <motion.a
-                  href="#about"
-                  onClick={(e) => {
-                    e.preventDefault();
-
-                    document
-                      .querySelector("#about")
-                      ?.scrollIntoView({ behavior: "smooth" });
-                  }}
-                  className="flex flex-col items-center cursor-pointer group"
-                >
-                  {/* Анимирани стрелки */}
-
-                  <div className="flex flex-col items-center -space-y-2">
-                    <motion.div
-                      animate={{ y: [0, 8, 0], opacity: [0.3, 1, 0.3] }}
-                      transition={{
-                        duration: 2,
-                        repeat: Infinity,
-                        ease: "easeInOut",
-                      }}
-                    >
-                      <ChevronDown
-                        size={24}
-                        className="text-brand-primary"
-                        strokeWidth={1.5}
-                      />
-                    </motion.div>
-
-                    <motion.div
-                      animate={{ y: [0, 8, 0], opacity: [0.3, 1, 0.3] }}
-                      transition={{
-                        duration: 2,
-                        repeat: Infinity,
-                        ease: "easeInOut",
-                        delay: 0.3,
-                      }}
-                    >
-                      <ChevronDown
-                        size={24}
-                        className="text-brand-primary"
-                        strokeWidth={1.5}
-                      />
-                    </motion.div>
-                  </div>
-                </motion.a>
-              </div>
+   
+  </button>
+</div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* 3. MISSION SECTION */}
+      {/* 3. MISSION SECTION - Кремав фон до края */}
+      <section id="about" className="bg-brand-light w-full overflow-hidden">
+        <div className="section-container mx-auto">
+          <div className="max-w-4xl mx-auto text-center space-y-6 md:space-y-4 relative z-10">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={entryTransition}
+              viewport={{ once: true }}
+              className="space-y-4"
+            >
+              <h1 className="font-display text-brand-dark leading-tight tracking-tighter">
+                Моят път към <br />
+                <span className="text-brand-primary italic font-light relative">
+                  баланса и енергията
+                </span>
+              </h1>
+            </motion.div>
 
-      <section
-        id="about"
-        className="relative py-12 md:py-20 bg-brand-light overflow-hidden"
-      >
-        <div className="max-w-5xl mx-auto px-6 relative z-10 text-center space-y-12 md:space-y-16">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={entryTransition}
-            viewport={{ once: true }}
-            className="space-y-4"
-          >
-            <h2 className="font-display text-brand-dark leading-tight tracking-tighter">
-              Моят път към <br />
-              <span className="text-brand-primary italic font-light relative">
-                баланса и енергията
-              </span>
-            </h2>
-          </motion.div>
+            {/* Highlighted Quote */}
+            <div className="border-y border-brand-light relative py-8">
+              <Quote
+                className="absolute top-4 left-0 text-brand-primary opacity-20"
+                size={40}
+              />
+              <h3 className="font-display text-2xl md:text-3xl text-brand-primary italic pl-10 leading-relaxed">
+                "Винаги съм вярвала, че няма нищо случайно на този свят и моята
+                среща с <strong>Форевър Ливинг</strong> не беше изключение..."
+              </h3>
+            </div>
 
-          {/* Highlighted Quote */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ ...entryTransition, delay: 0.2 }}
+              viewport={{ once: true }}
+              className="space-y-10"
+            >
+              <p className="font-sans leading-relaxed max-w-4xl mx-auto font-light">
+                Днес имам честта да работя с прекрасен екип и вдъхновяващи
+                ментори, които ме подкрепят и насърчават във всичките ми
+                начинания. Успях не само да открия своето призвание, но и да
+                помогна на много други хора като мен!
+              </p>
 
-          <div className="border-y border-brand-light relative">
-            <Quote
-              className="absolute top-4 left-0 text-brand-primary opacity-20"
-              size={40}
-            />
+              <p className="font-sans leading-relaxed max-w-4xl mx-auto font-light ">
+                Вярвам, че всяка жена заслужава да се чувства значима, финансово
+                независима и изпълнена с енергия. Ако и ти усещаш, че е време да
+                спреш да отлагаш мечтите си и търсиш среда, която да те дърпа
+                нагоре, аз съм тук, за да ти подам ръка. Нека извървим този път
+                заедно.
+              </p>
 
-            <h3 className="font-display text-2xl md:text-3xl text-brand-primary italic pl-10 leading-relaxed">
-              "Винаги съм вярвала, че няма нищо случайно на този свят и моята
-              среща с <strong>Форевър Ливинг</strong> не беше изключение..."
-            </h3>
-          </div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ ...entryTransition, delay: 0.2 }}
-            viewport={{ once: true }}
-            className="space-y-10"
-          >
-            <p className="font-sans text-xl text-gray-500 leading-relaxed max-w-4xl mx-auto font-light">
-              Днес имам честта да работя с прекрасен екип и вдъхновяващи
-              ментори, които ме подкрепят и насърчават във всичките ми
-              начинания. Успях не само да открия своето призвание, но и да
-              помогна на много други хора като мен!
-            </p>
-
-            <p className="font-sans text-xl text-gray-500 leading-relaxed max-w-4xl mx-auto font-light">
-              Вярвам, че всяка жена заслужава да се чувства значима, финансово
-              независима и изпълнена с енергия. Ако и ти усещаш, че е време да
-              спреш да отлагаш мечтите си и търсиш среда, която да те дърпа
-              нагоре, аз съм тук, за да ти подам ръка. Нека извървим този път
-              заедно.
-            </p>
-
-            <div className="flex justify-center pt-6">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.8, duration: 0.8 }}
-              >
+              <div className="flex justify-center pt-6">
                 <Link
                   to="/join"
                   className="btn-primary group w-full sm:w-auto text-center justify-center flex items-center px-10 py-5"
@@ -289,106 +222,143 @@ const AboutDetailed = () => {
                   Ела в моя екип!{" "}
                   <ArrowRight
                     size={18}
-                    strokeWidth={1.2}
                     className="ml-2 group-hover:translate-x-2 transition-transform"
                   />
                 </Link>
-              </motion.div>
-            </div>
-          </motion.div>
+              </div>
+            </motion.div>
+          </div>
         </div>
       </section>
 
-      {/* 7. TRANSFORMATION SECTION */}
-
-      <section className="py-24 px-6 bg-brand-dark relative overflow-hidden text-left">
+      {/* 7. TRANSFORMATION SECTION - Тъмен фон до края */}
+      <section className="bg-none w-full relative overflow-hidden">
         <div className="absolute top-0 right-0 w-1/2 h-full bg-brand-primary/5 blur-3xl rounded-full" />
-
-        <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center relative z-10">
-          <div className="text-left space-y-8">
-            <h2 className="font-display text-white">
-              Промяната, която <br />
-              <span className="text-brand-primary italic">преживях лично</span>
-            </h2>
-
-            <p className="text-white/60 text-xl font-light max-w-lg">
-              Когато ме питат кой е любимият ми продукт, отговарям без
-              колебание:{" "}
-              <Link
-                to="https://foreverliving.com/shop/bgr/bg-BG/products/475-C9-GEL-VANILLA?fboId=359100008314&purchaseFlowType=PERSONAL&languageCode=bg-BG&memberTitleId=8&storeId=74&countryCode=bgr&isBots=true&discountConfigType=11&uniqueExtRefID=4729ffc1-e225-4e04-a56e-f54ecf9e1dac&shortenUrl=thealoeveraco.shop/CZNu1yA4&referralUuid=b77a9075-fbc8-4d85-a029-37ea2d45b79b"
-                className="inline-flex items-center gap-1.5 text-white font-semibold group border-b border-brand-light hover:text-brand-primary hover:border-brand-primary transition-all duration-300"
-              >
-                Програмата C9!
-                <ArrowRight
-                  size={18}
-                  strokeWidth={1.2}
-                  className="ml-2 group-hover:translate-x-2 transition-transform"
-                />
-              </Link>
-            </p>
-
-            <div className="space-y-4 text-white">
-              {[
-                { label: "Общо 10 кг по-малко", icon: <Sparkles size={16} /> },
-
-                {
-                  label: "Регулирано кръвно налягане",
-                  icon: <Heart size={16} />,
-                },
-
-                {
-                  label: "Край на безсънието и главоболието",
-                  icon: <Star size={16} />,
-                },
-
-                {
-                  label: "Невероятен прилив на енергия",
-                  icon: <Zap size={16} />,
-                },
-              ].map((point, i) => (
+        <div className="section-container mx-auto relative z-10">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            <div className="text-left space-y-8">
+              <div className="mb-16 text-left">
                 <motion.div
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ delay: i * 0.1 }}
-                  key={i}
-                  className="flex items-center gap-4 text-white/90 group"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  className="inline-block"
                 >
-                  <div className="w-8 h-8 rounded-lg bg-brand-light/5 flex items-center justify-center text-brand-primary group-hover:bg-brand-primary group-hover:text-white transition-all">
-                    {point.icon}
+                  <h1 className="font-display font-medium text-brand-dark case leading-none mb-4">
+                    Промяната, която <br />
+                    <span className="text-brand-primary font-light italic">
+                      преживях лично
+                    </span>
+                  </h1>
+                  <div className="flex items-center gap-4">
+                    <div className="w-12 h-[1px] bg-brand-primary" />
+                    <p className="font-sans text-gray-400 text-xs case tracking-[0.2em] font-regular">
+                      Да вървим заедно по пътя към една по-добра версия на себе
+                      си!
+                    </p>
                   </div>
-
-                  <span className="text-lg font-light">{point.label}</span>
                 </motion.div>
-              ))}
+              </div>
+
+              <p className="font-light">
+                Когато ме питат кой е любимият ми продукт, отговарям без
+                колебание:{" "}
+                <Link
+                  to="https://foreverliving.com/shop/bgr/bg-BG/products/475-C9-GEL-VANILLA?fboId=359100008314"
+                  target="_blank"
+                  className="inline-flex items-center gap-1 font-semibold group border-b border-brand-dark hover:text-brand-primary hover:border-brand-primary transition-all duration-300"
+                >
+                  Програмата C9!
+                  <ArrowRight
+                    size={18}
+                    className="ml-2 group-hover:translate-x-2 transition-transform"
+                  />
+                </Link>
+              </p>
+
+              <div className="space-y-4">
+                {[
+                  {
+                    label: "Общо 10 кг по-малко",
+                    icon: <Sparkles size={16} />,
+                  },
+                  {
+                    label: "Регулирано кръвно налягане",
+                    icon: <Heart size={16} />,
+                  },
+                  {
+                    label: "Край на безсънието и главоболието",
+                    icon: <Star size={16} />,
+                  },
+                  {
+                    label: "Невероятен прилив на енергия",
+                    icon: <Zap size={16} />,
+                  },
+                ].map((point, i) => (
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ delay: i * 0.1 }}
+                    className="
+        flex items-center gap-4 
+        bg-white p-3 rounded-2xl 
+        border border-brand-light/50 
+        shadow-[0_4px_20px_-10px_rgba(0,0,0,0.05)] 
+        hover:shadow-[0_10px_30px_-15px_rgba(0,0,0,0.1)] 
+        transition-all duration-300
+        group relative overflow-hidden
+      "
+                  >
+                    {/* Икона с по-силен контраст */}
+                    <div
+                      className="
+        w-10 h-10 rounded-xl 
+        bg-brand-light flex items-center justify-center 
+        text-brand-primary 
+        group-hover:bg-brand-primary group-hover:text-white 
+        transition-all duration-500 shadow-inner
+      "
+                    >
+                      {point.icon}
+                    </div>
+
+                    <p className="text-brand-dark font-normal text-sm md:text-base tracking-tight">
+                      {point.label}
+                    </p>
+
+                    {/* Дискретен Sparkle ефект при ховър (по желание) */}
+                    <div className="absolute right-4 opacity-0 group-hover:opacity-10 transition-opacity">
+                      {point.icon}
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
             </div>
-          </div>
 
-          <div className="relative">
-            <div className="p-10 md:p-16 bg-brand-light/5 backdrop-blur-xl border border-white/10 rounded-[3rem] text-center space-y-8">
-              <Leaf size={48} className="mx-auto text-brand-primary" />
-
-              <h3 className="font-display text-2xl md:text-3xl text-white italic font-light">
-                "Влюбих се в продуктите и в свободата, която ми дават."
-              </h3>
-
-              <button
-                onClick={() => navigate("/join")}
-                className="btn-primary mx-auto flex items-center"
-              >
-                Разгледай продуктите!
-                <ArrowRight
-                  size={18}
-                  strokeWidth={1.2}
-                  className="ml-2 group-hover:translate-x-2 transition-transform"
-                />
-              </button>
+            <div className="relative">
+              <div className="p-10 md:p-16 bg-brand-light border border-white/10 rounded-[3rem] text-center space-y-8">
+                <Leaf size={48} className="mx-auto text-brand-primary" />
+                <h3 className="font-display text-2xl md:text-3xl italic font-light">
+                  "Влюбих се в продуктите и в свободата, която ми дават."
+                </h3>
+                <button
+                  onClick={() => navigate("/join")}
+                  className="btn-primary mx-auto flex items-center"
+                >
+                  Разгледай продуктите!
+                  <ArrowRight
+                    size={18}
+                    className="ml-2 group-hover:translate-x-2 transition-transform"
+                  />
+                </button>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
       {/* Lightbox Modal */}
-
       <AnimatePresence>
         {selectedImg && (
           <motion.div
@@ -409,8 +379,6 @@ const AboutDetailed = () => {
     </div>
   );
 };
-
-// Помощни икони
 
 const Zap = ({ size, className }) => (
   <svg

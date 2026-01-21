@@ -342,7 +342,7 @@ const AdminPanel = () => {
                 <label className=" font-sans tracking-widest text-gray-400 ml-4 py-4 ">
                   Водеща снимка
                 </label>
-                <div className="relative aspect-[16/9] md:aspect-[21/9] bg-brand-cream rounded-[1.5rem] overflow-hidden border-2 border-dashed border-brand-primary/10">
+                <div className="relative aspect-[16/9] md:aspect-[21/9] bg-brand-cream rounded-[2rem] overflow-hidden border-2 border-dashed border-brand-primary/10">
                   {formData.image ? (
                     <>
                       <img
@@ -443,7 +443,7 @@ const AdminPanel = () => {
             {news.map((n) => (
               <div
                 key={n.id}
-                className="bg-brand-light p-3 md:p-6 rounded-[1.5rem] md:rounded-[2.5rem] border border-brand-light flex items-center justify-between hover:border-brand-primary/20 transition-all shadow-sm"
+                className="bg-brand-light p-3 md:p-6 rounded-[2rem] md:rounded-[2.5rem] border border-brand-light flex items-center justify-between hover:border-brand-primary/20 transition-all shadow-sm"
               >
                 <div className="flex items-center gap-3 md:gap-6 overflow-hidden text-left">
                   {n.image && (

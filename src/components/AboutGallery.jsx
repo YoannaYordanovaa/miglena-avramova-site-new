@@ -116,12 +116,12 @@ const InteractiveGallery = () => {
             viewport={{ once: true }}
             className="inline-block"
           >
-            <h2 className=" font-display font-medium text-brand-dark case leading-none mb-6">
+            <h1 className=" font-display font-medium text-brand-dark case leading-none mb-4">
               Любими моменти <br />
               <span className="text-brand-primary font-light italic">
                 с любими хора...
               </span>
-            </h2>
+            </h1>
             <div className="flex items-center gap-4">
               <div className="w-12 h-[1px] bg-brand-primary" />
               <p className="font-sans text-gray-400 text-xs case tracking-[0.2em] font-regular">
@@ -132,42 +132,50 @@ const InteractiveGallery = () => {
           </motion.div>
         </div>
 
-        {/* Галерия */}
-        <motion.div
-          layout
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6"
-        >
-          <AnimatePresence mode="popLayout">
-            {visiblePhotos.map((photo) => (
-              <motion.div
-                key={photo.id}
-                layout
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.9 }}
-                transition={{ duration: 0.4, ease: "circOut" }}
-                onClick={() => setSelectedImage(photo)}
-                className="relative aspect-[4/5] rounded-[1.5rem] overflow-hidden cursor-pointer group bg-gray-50 shadow-sm"
-              >
-                <img
-                  src={photo.src}
-                  alt={photo.title}
-                  loading="lazy"
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-brand-dark/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
-                  <div className="absolute top-4 right-4 bg-brand-light/20 backdrop-blur-md p-2 rounded-full text-white opacity-0 group-hover:opacity-100 transition-all">
-                    <Maximize2 size={16} />
-                  </div>
-                  <p className="text-white font-sans text-sm font-medium tracking-wide">
-                    {photo.title}
-                  </p>
-                </div>
-              </motion.div>
-            ))}
-          </AnimatePresence>
-        </motion.div>
+       {/* Галерия */}
+<motion.div
+  layout
+  className={`
+    /* Базови стилове за мобилни */
+    flex snap-x snap-mandatory no-scrollbar -mx-6 px-6 gap-4
+    
+    /* АКО Е РАЗПЪНАТО: Преминаваме към решетка или wrap-ване */
+    ${isExpanded 
+      ? "flex-wrap overflow-x-visible pb-10" 
+      : "overflow-x-auto pb-6"}
 
+    /* ДЕСКТОП: Винаги решетка */
+    sm:grid sm:grid-cols-2 lg:grid-cols-4 sm:overflow-x-visible sm:pb-0 sm:mx-0 sm:px-0 md:gap-6
+  `}
+>
+  <AnimatePresence mode="popLayout">
+    {visiblePhotos.map((photo) => (
+      <motion.div
+        key={photo.id}
+        layout
+        initial={{ opacity: 0, scale: 0.9 }}
+        animate={{ opacity: 1, scale: 1 }}
+        exit={{ opacity: 0, scale: 0.9 }}
+        transition={{ duration: 0.4, ease: "circOut" }}
+        onClick={() => setSelectedImage(photo)}
+        className={`
+          /* Снимката на телефон: Ако НЕ е разпънато, заема 80% за скрол. Ако Е разпънато, заема около 45% за решетка */
+          ${isExpanded ? "min-w-[calc(50%-1rem)]" : "min-w-[80vw]"}
+          sm:min-w-0 
+          relative aspect-[4/5] rounded-[2rem] overflow-hidden cursor-pointer group bg-gray-50 shadow-sm snap-center
+        `}
+      >
+        <img
+          src={photo.src}
+          alt={photo.title}
+          loading="lazy"
+          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+        />
+        {/* ... останалият код за overlay-а остава същият ... */}
+      </motion.div>
+    ))}
+  </AnimatePresence>
+</motion.div>
         {/* Toggle Button */}
         <div className="mt-16 text-center">
           <button

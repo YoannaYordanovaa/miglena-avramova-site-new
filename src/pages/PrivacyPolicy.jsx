@@ -52,7 +52,7 @@ const PrivacyPolicy = () => {
     <div className="min-h-screen bg-brand-light">
       {/* Hero Section */}
       <section className="relative section-container pt-30 bg-brand-cream/30">
-        <div className="max-w-4xl mx-auto text-center">
+        <div className=" max-w-7xl mx-auto text-center">
           <Link
             to="/"
             className="inline-flex items-center gap-2 text-brand-primary mb-8 hover:-translate-x-2 transition-transform font-sans text-xs uppercase tracking-widest font-bold"
@@ -77,8 +77,8 @@ const PrivacyPolicy = () => {
       </section>
 
       {/* Content Section */}
-      <section className="py-5 px-6">
-        <div className="max-w-3xl mx-auto">
+      <section className="section-container">
+        <div className="max-w-7xl mx-auto">
           <div className="space-y-16">
             {sections.map((section, idx) => (
               <motion.div

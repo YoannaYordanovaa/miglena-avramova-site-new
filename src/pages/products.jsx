@@ -178,22 +178,22 @@ const Products = () => {
   };
 
   return (
-    <div className="py-20 md:py-20 min-h-screen bg-brand-light pb-20">
+    <div className=" min-h-screen bg-brand-light ">
       {/* 1. ПОСТАВИ ГО НАЙ-ОТГОРЕ */}
       <NewsBannerSlider news={news} />
-      <div className="max-w-7xl mx-auto px-6 relative z-10 pt-10">
+      <div className=" section-container mx-auto relative z-10 pt-10">
         {/* Header */}
-        <div className="mb-16 text-left">
+        <div className="max-w-7xl mb-16 text-left">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
           >
-            <h2 className="font-display font-medium text-brand-dark tracking-tighter leading-none mb-6">
+            <h1 className="font-display font-medium text-brand-dark tracking-tighter leading-none mb-6">
               Разгледай <br />
               <span className="text-brand-primary font-light italic">
                 {categoryNames[category] || "Нашите Продукти"}
               </span>
-            </h2>
+            </h1>
             <div className="flex items-center gap-4">
               <div className="w-12 h-[1px] bg-brand-primary" />
               <p className="font-sans text-gray-400 text-xs tracking-[0.3em] font-medium uppercase">
