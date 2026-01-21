@@ -72,10 +72,10 @@ const JoinTeam = () => {
   const factScrollRef = useRef(null);
 
   const [activeIndex, setActiveIndex] = useState(0);
-  const scrollRef = useRef(null); 
+  const scrollRef = useRef(null);
 
   return (
-    <div className="  overflow-hidden">
+    <div className=" overflow-hidden">
       {/* 1. Hero Section */}
       <section className="relative section-container mt-4 md:mt-8 overflow-hidden">
         <div className="mx-auto relative z-10 max-w-7xl">
@@ -177,7 +177,6 @@ const JoinTeam = () => {
 
       {/* 2. Benefits Grid */}
       <section className="section-container ">
-
         <div className="mx-auto">
           <div className="mb-16 text-left">
             <motion.div
@@ -275,9 +274,12 @@ const JoinTeam = () => {
       </section>
 
       {/* 4. Форевър Ливинг - Разширена Секция */}
-      <section id="forever-section" className="relative section-container bg-brand-light overflow-hidden">
+      <section
+        id="forever-section"
+        className="relative section-container bg-brand-light overflow-hidden"
+      >
         {/* 1. ЗАГЛАВНА ЧАСТ */}
-        <div className="mb-16 text-left  max-w-7xl  mx-auto">
+        <div className="mb-16 text-left max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}

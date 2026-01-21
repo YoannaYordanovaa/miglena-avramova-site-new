@@ -83,7 +83,7 @@ const Home = () => {
             >
               <div className="flex flex-col lg:flex-row items-center gap-1 lg:gap-3">
                 <Sparkles size={16} className="text-brand-primary lg:size-4" />
-                <span className="text-[9px] lg:text-[11px] font-bold uppercase tracking-widest text-brand-dark whitespace-nowrap">
+                <span className="text-[9px] lg:text-[11px] uppercase tracking-widest text-brand-dark whitespace-nowrap">
                   10+ Години Опит
                 </span>
               </div>
@@ -136,10 +136,17 @@ const Home = () => {
       <section id="about" className="relative section-container bg-brand-light overflow-hidden">
         <div className="relative z-10 max-w-7xl">
           <div className="mb-16 text-left">
-            <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="inline-block">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="inline-block"
+            >
               <h1 className="font-display font-medium text-brand-dark case leading-none mb-4">
-                Моята цел <br />
-                <span className="text-brand-primary font-light italic">растеж и вдъхновение!</span>
+                Моята цел  <br />
+                <span className="text-brand-primary font-light italic">
+                 растеж и вдъхновение!
+                </span>
               </h1>
               <div className="flex items-center gap-4">
                 <div className="w-12 h-[1px] bg-brand-primary" />
@@ -175,20 +182,26 @@ const Home = () => {
       {/* 4. TESTIMONIALS */}
       <section className="section-container bg-brand-light relative overflow-hidden">
         <div className="relative z-10 max-w-7xl">
-          <div className="flex flex-col md:flex-row items-start md:items-end justify-between mb-12 md:mb-20 gap-6">
-            <div className="text-left">
-              <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-                <h1 className="font-display font-medium text-brand-dark case leading-none mb-4 text-4xl md:text-6xl">
-                  Хора, които <br /> <span className="text-brand-primary font-light italic">трансформираха ежедневието си</span>
-                </h1>
-              </motion.div>
-            </div>
-            <div className="flex flex-col items-start gap-2">
-              <div className="flex text-brand-primary">
-                {[...Array(5)].map((_, i) => <Star key={i} size={18} fill="currentColor" />)}
+          <div className="mb-16 text-left">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="inline-block"
+            >
+              <h1 className="font-display font-medium text-brand-dark case leading-none mb-4">
+                Хора, които<br />
+                <span className="text-brand-primary font-light italic">
+                трансформираха ежедневието си
+                </span>
+              </h1>
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-[1px] bg-brand-primary" />
+                <p className="font-sans text-gray-400 text-xs case tracking-[0.2em] font-regular">
+                 Доверие, изградено с години!
+                </p>
               </div>
-              <p className="font-sans text-xs uppercase tracking-widest font-bold text-gray-400">Доверие, изградено с години</p>
-            </div>
+            </motion.div>
           </div>
 
           <div ref={scrollRef} onScroll={handleScroll} className="flex overflow-x-auto snap-x snap-mandatory no-scrollbar -mx-6 px-6 pb-4 gap-6 md:grid md:grid-cols-2 lg:grid-cols-3 md:overflow-x-visible md:pb-0 md:mx-0 md:px-0 md:gap-8">
@@ -232,10 +245,24 @@ const Home = () => {
       <section id="contact" className="section-container relative">
         <div className="relative z-10 max-w-7xl">
           <div className="mb-16 text-left">
-            <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="inline-block"
+            >
               <h1 className="font-display font-medium text-brand-dark case leading-none mb-4">
-                Свържи се <br /> <span className="text-brand-primary font-light italic">с мен!</span>
+                Свържи се<br />
+                <span className="text-brand-primary font-light italic">
+                с мен!
+                </span>
               </h1>
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-[1px] bg-brand-primary" />
+                <p className="font-sans text-gray-400 text-xs case tracking-[0.2em] font-regular">
+                 Нека обсъдим твоите цели и как можем да ги постигнем заедно!
+                </p>
+              </div>
             </motion.div>
           </div>
           <div className="grid lg:grid-cols-12 gap-6 md:gap-8 items-stretch">
