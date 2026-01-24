@@ -58,7 +58,7 @@ const Home = () => {
       <div className="flex flex-col lg:flex-row w-full mb-16 md:mb-0">
 
      {/* IMAGE */}
-<div className="relative w-full lg:h-screen lg:w-1/2 lg:order-2">
+<div className="relative w-full lg:h-screen lg:w-1/2 lg:order-2 ">
   <motion.div
     initial={{ scale: 1.05, opacity: 0 }}
     animate={{ scale: 1, opacity: 1 }}
@@ -124,7 +124,7 @@ const Home = () => {
             >
               {/* EYEBROW */}
               <div className="flex items-center gap-3 mb-6 justify-center lg:justify-start">
-                <div className="h-px w-8 bg-brand-primary" />
+                <div className="h-px w-8 bg-brand-primary" /> 
                 <p className="text-[10px] uppercase tracking-[0.3em] font-bold text-brand-primary">
                   Добре дошъл!
                 </p>

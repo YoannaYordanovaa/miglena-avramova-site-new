@@ -191,3 +191,19 @@
 .animate-shake {
   animation: shake 0.2s ease-in-out 0s 2;
 }
+
+  .custom-scrollbar::-webkit-scrollbar {
+    height: 4px; /* Тънък и дискретен */
+  }
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: #74ab1a; /* Вашият brand-primary цвят */
+    border-radius: 10px;
+    transition: all 0.3s;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #5d8a15;
+  }

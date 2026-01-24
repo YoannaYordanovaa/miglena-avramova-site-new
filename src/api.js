@@ -1,15 +1,17 @@
 // Променяме URL-а към твоя сървър
-const BASE_URL = "http://localhost:3010"; 
+const BASE_URL = "https://iglika.me"; 
 
+// api.js
 export const fetchProducts = async (category) => {
   const endpoints = {
+    'drinks-and-supplements': '/getProducts', // Вземаме всичко и филтрираме по-долу
+    'cosmetics': '/getProducts',             // Вземаме всичко и филтрираме по-долу
     'drinks': '/getDrinks',
     'supplements': '/getSupplements',
     'face': '/getFace',
     'body': '/getBody',
     'hygiene': '/getPersonalhygiene',
     'weight-loss': '/getWeightcontrol',
-    'cosmetics': '/getCosmetics',
     'packages': '/getPackages',
     'shop': '/getProducts' 
   };
@@ -17,8 +19,17 @@ export const fetchProducts = async (category) => {
   const path = endpoints[category] || '/getProducts';
   try {
     const response = await fetch(`${BASE_URL}${path}`);
-    if (!response.ok) throw new Error("Network response was not ok");
-    return await response.json();
+    let data = await response.json();
+
+    // Логика за обединяване на категориите
+    if (category === 'cosmetics') {
+      return data.filter(p => ['Грижа за лицето', 'Грижа за тялото', 'Лична хигиена'].includes(p.category));
+    }
+    if (category === 'drinks-and-supplements') {
+      return data.filter(p => ['Напитки', 'Добавки'].includes(p.category));
+    }
+
+    return data;
   } catch (error) {
     console.error("Fetch error:", error);
     return [];

@@ -5,7 +5,10 @@ export default function ScrollToTop() {
   const { pathname } = useLocation();
 
   useEffect(() => {
-    window.scrollTo(0, 0);
+    // Ако адресът НЕ започва с "/shop", тогава скролвай до горе
+    if (!pathname.startsWith("/shop")) {
+      window.scrollTo(0, 0);
+    }
   }, [pathname]);
 
   return null;
