@@ -98,12 +98,19 @@ const Navbar = () => {
         }`}
       >
         <div className="max-w-7xl mx-auto h-full px-6 flex justify-between items-center">
-          <Link to="/" className="flex items-center group">
+          <Link
+            to="/"
+            className="flex items-center group"
+            onClick={() => {
+              if (window.location.pathname === "/") {
+                window.scrollTo({ top: 0, behavior: "smooth" });
+              }
+            }}
+          >
             <img
               src="/logo.svg"
               alt="Лого"
-              className="h-14 md:h-16 w-auto object-contain transition-all duration-500 group-hover:opacity-80 group-hover:scale-105 
-               "
+              className="h-14 md:h-14 w-auto object-contain transition-all duration-500 group-hover:opacity-80 group-hover:scale-105"
             />
           </Link>
 

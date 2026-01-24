@@ -115,7 +115,7 @@ app.post("/submit-form", upload.none(), (req, res) => {
   const transporter = nodemailer.createTransport({
     service: "Gmail",
     auth: {
-      user: process.env.EMAIL_USER,    // Твоят имейл в .env
+      user: process.env.EMAIL_USER, // Твоят имейл в .env
       pass: process.env.EMAIL_PASSWORD, // Твоята App Password в .env
     },
   });
@@ -138,12 +138,48 @@ app.post("/submit-form", upload.none(), (req, res) => {
   transporter.sendMail(mailOptions, (error, info) => {
     if (error) {
       console.error("Грешка при имейл:", error);
-      res.status(500).json({ success: false, message: "Грешка при изпращане." });
+      res
+        .status(500)
+        .json({ success: false, message: "Грешка при изпращане." });
     } else {
       console.log("Email sent: " + info.response);
       res.status(200).json({ success: true, message: "Изпратено успешно!" });
     }
   });
+});
+
+app.get("/sitemap.xml", async (req, res) => {
+  res.header("Content-Type", "application/xml");
+
+  // Вземаме продуктите и новините от базата
+  const products = await new Promise((resolve) =>
+    db.query("SELECT id FROM forever_table", (err, r) => resolve(r)),
+  );
+  const news = await new Promise((resolve) =>
+    db.query("SELECT id FROM news", (err, r) => resolve(r)),
+  );
+
+  let xml = `<?xml version="1.0" encoding="UTF-8"?>`;
+  xml += `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">`;
+
+  // Статични страници
+  const staticPages = ["", "shop", "news", "contact"];
+  staticPages.forEach((page) => {
+    xml += `<url><loc>https://miglenaavramova.com/${page}</loc><priority>0.8</priority></url>`;
+  });
+
+  // Динамични страници за продукти
+  products.forEach((p) => {
+    xml += `<url><loc>https://miglenaavramova.com/product/${p.id}</loc><priority>0.6</priority></url>`;
+  });
+
+  // Динамични страници за новини
+  news.forEach((n) => {
+    xml += `<url><loc>https://miglenaavramova.com/news/${n.id}</loc><priority>0.7</priority></url>`;
+  });
+
+  xml += `</urlset>`;
+  res.send(xml);
 });
 
 // 5. Стартиране
