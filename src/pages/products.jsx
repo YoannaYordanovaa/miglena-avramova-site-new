@@ -6,6 +6,7 @@ import {
   ChevronLeft,
   ChevronRight,
   ChevronDown,
+  ListFilter,
   ArrowRight,
 } from "lucide-react";
 import { useParams } from "react-router-dom";
@@ -183,12 +184,15 @@ const Products = () => {
       <NewsBannerSlider news={news} />
       <div className=" section-container mx-auto relative z-10 pt-10">
         {/* Header */}
-        <div className="max-w-7xl mb-16 text-left">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-          >
-            <h1 className="font-display font-medium text-brand-dark tracking-tighter leading-none mb-6">
+         <div className="mb-16 text-left">
+                    <motion.div
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      className="inline-block"
+                    >
+
+            <h1 className="font-display font-medium text-brand-dark case leading-none mb-4">
               Разгледай <br />
               <span className="text-brand-primary font-light italic">
                 {categoryNames[category] || "Нашите Продукти"}
@@ -196,7 +200,7 @@ const Products = () => {
             </h1>
             <div className="flex items-center gap-4">
               <div className="w-12 h-[1px] bg-brand-primary" />
-              <p className="font-sans text-gray-400 text-xs tracking-[0.3em] font-medium uppercase">
+              <p className="font-sans text-gray-400 text-xs case tracking-[0.2em] font-regular">
                 От растението, до продукта, до теб!
               </p>
             </div>
@@ -204,67 +208,76 @@ const Products = () => {
         </div>
 
         {/* Инструменти */}
-        <div className="flex flex-col md:flex-row gap-4 mb-12">
-          <div className="relative flex-1">
-            <Search
-              className="absolute left-5 top-1/2 -translate-y-1/2 text-brand-primary/40"
-              size={18}
-            />
-            <input
-              type="text"
-              value={searchTerm}
-              placeholder="Търсене по име или код..."
-              className="w-full pl-14 pr-6 py-4 rounded-full bg-gray-50 border-none shadow-sm focus:ring-2 focus:ring-brand-primary/20 outline-none text-sm text-brand-dark transition-all placeholder:text-gray-400"
-              onChange={(e) => setSearchTerm(e.target.value)}
-            />
-          </div>
+      <div className="flex flex-col md:flex-row gap-4 mb-12">
+  {/* SEARCH */}
+  <div className="relative flex-1 group">
+    <Search
+      className="absolute left-6 top-1/2 -translate-y-1/2 text-brand-primary group-focus-within:text-brand-primary transition-colors"
+      size={18}
+    />
+    <input
+      type="text"
+      value={searchTerm}
+      placeholder="Търсене по име или код..."
+      className="w-full pl-14 pr-6 py-4 rounded-full bg-gray-50 border border-transparent shadow-sm hover:shadow-md focus:bg-white focus:ring-2 focus:ring-brand-primary/20 focus:border-brand-primary/10 outline-none text-sm text-brand-dark transition-all placeholder:text-gray-400"
+      onChange={(e) => setSearchTerm(e.target.value)}
+    />
+  </div>
 
-          <div className="relative min-w-[240px] z-40">
-            <button
-              onClick={() => setIsSortOpen(!isSortOpen)}
-              className="w-full flex items-center justify-between bg-gray-50/50 backdrop-blur-sm border border-gray-100 px-6 py-4 rounded-full font-sans text-[11px] tracking-widest text-brand-dark uppercase hover:bg-brand-light hover:shadow-md transition-all duration-300 outline-none"
-            >
-              <span className="font-medium">{currentSortLabel}</span>
-              <motion.div animate={{ rotate: isSortOpen ? 180 : 0 }}>
-                <ChevronDown size={16} className="text-brand-primary" />
-              </motion.div>
-            </button>
+  {/* SORT / FILTER */}
+  <div className="relative min-w-[260px] z-40">
+    <button
+      onClick={() => setIsSortOpen(!isSortOpen)}
+      className={`w-full flex items-center justify-between pl-6 pr-6 py-4 rounded-full border shadow-sm transition-all duration-300 outline-none font-sans text-[11px] tracking-widest uppercase ${
+        isSortOpen 
+          ? "bg-white border-brand-primary/20 ring-2 ring-brand-primary/20 shadow-md text-brand-primary" 
+          : "bg-gray-50 border-transparent text-brand-dark hover:bg-white hover:shadow-md"
+      }`}
+    >
+      <div className="flex items-center gap-3">
+        <ListFilter size={16} className={isSortOpen ? "text-brand-primary" : "text-brand-primary"} />
+        <span className="font-normal">{currentSortLabel}</span>
+      </div>
+      <motion.div animate={{ rotate: isSortOpen ? 180 : 0 }} className="flex items-center">
+        <ChevronDown size={16} />
+      </motion.div>
+    </button>
 
-            <AnimatePresence>
-              {isSortOpen && (
-                <>
-                  <div
-                    className="fixed inset-0 z-10"
-                    onClick={() => setIsSortOpen(false)}
-                  />
-                  <motion.div
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 5 }}
-                    exit={{ opacity: 0, y: 10 }}
-                    className="absolute top-full left-0 w-full mt-2 bg-brand-light/95 backdrop-blur-xl border border-gray-100 rounded-[2rem] shadow-2xl overflow-hidden z-20 p-2"
-                  >
-                    {sortOptions.map((option) => (
-                      <button
-                        key={option.value}
-                        onClick={() => {
-                          setSortBy(option.value);
-                          setIsSortOpen(false);
-                        }}
-                        className={`w-full text-left px-5 py-3.5 rounded-2xl font-sans text-[11px] uppercase tracking-wider transition-all ${
-                          sortBy === option.value
-                            ? "bg-brand-primary text-white font-bold"
-                            : "text-brand-dark hover:bg-brand-primary/10 hover:text-brand-primary"
-                        }`}
-                      >
-                        {option.label}
-                      </button>
-                    ))}
-                  </motion.div>
-                </>
-              )}
-            </AnimatePresence>
-          </div>
-        </div>
+    <AnimatePresence>
+      {isSortOpen && (
+        <>
+          <div
+            className="fixed inset-0 z-10"
+            onClick={() => setIsSortOpen(false)}
+          />
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 8 }}
+            exit={{ opacity: 0, y: 10 }}
+            className="absolute top-full left-0 w-full mt-2 bg-white/95 backdrop-blur-xl border border-brand-primary/10 rounded-[2rem] shadow-2xl overflow-hidden z-20 p-2"
+          >
+            {sortOptions.map((option) => (
+              <button
+                key={option.value}
+                onClick={() => {
+                  setSortBy(option.value);
+                  setIsSortOpen(false);
+                }}
+                className={`w-full text-left px-5 py-3.5 rounded-2xl font-sans text-[10px] uppercase tracking-widest transition-all ${
+                  sortBy === option.value
+                    ? "bg-brand-primary text-white font-bold shadow-lg shadow-brand-primary/20"
+                    : "text-brand-dark hover:bg-brand-primary/10 hover:text-brand-primary"
+                }`}
+              >
+                {option.label}
+              </button>
+            ))}
+          </motion.div>
+        </>
+      )}
+    </AnimatePresence>
+  </div>
+</div>
 
         {/* Брояч и Инфо */}
         <div className="mb-12 flex flex-col items-center justify-center text-center">

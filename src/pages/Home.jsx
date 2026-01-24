@@ -53,84 +53,127 @@ const Home = () => {
   return (
     <div ref={containerRef} className="relative overflow-x-hidden">
       {/* 2. HERO SECTION */}
-      <section className="relative w-full overflow-hidden flex items-center pt-20 md:pt-24 lg:pt-0 lg:min-h-screen">
-        <div className="flex flex-col lg:flex-row w-full items-stretch">
-          <div className="relative w-full h-[50vh] lg:h-screen lg:w-1/2 lg:order-2 lg:pt-20">
-            <motion.div
-              initial={{ scale: 1.05, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{ duration: 1.2 }}
-              className="h-full w-full relative will-change-transform"
-              style={{
-                WebkitMaskImage: 'linear-gradient(to bottom, black 75%, transparent 100%)',
-                maskImage: 'linear-gradient(to bottom, black 75%, transparent 100%)',
-              }}
-            >
-              <div className="hidden lg:block absolute inset-y-0 left-0 w-40 bg-gradient-to-r from-brand-cream to-transparent z-10" />
-              <img
-                src="/Miglena/Miglena_About.webp"
-                className="w-full h-full object-cover object-top lg:object-center"
-                alt="Миглена Аврамова"
-                loading="eager"
-                fetchpriority="high"
-              />
-            </motion.div>
+
+    <section className="relative w-full overflow-hidden lg:pt-0 lg:min-h-screen ">
+      <div className="flex flex-col lg:flex-row w-full mb-16 md:mb-0">
+
+     {/* IMAGE */}
+<div className="relative w-full lg:h-screen lg:w-1/2 lg:order-2">
+  <motion.div
+    initial={{ scale: 1.05, opacity: 0 }}
+    animate={{ scale: 1, opacity: 1 }}
+    transition={{ duration: 1.2 }}
+    className="relative w-full h-full overflow-hidden"
+    style={{
+      // Прилагаме маската само ако екранът е по-малък от 1024px
+      WebkitMaskImage: typeof window !== 'undefined' && window.innerWidth < 1024 
+        ? "linear-gradient(to bottom, black 80%, transparent 100%)" 
+        : "none",
+      maskImage: typeof window !== 'undefined' && window.innerWidth < 1024 
+        ? "linear-gradient(to bottom, black 80%, transparent 100%)" 
+        : "none",
+    }}
+  >
+    {/* mobile gradient overlay */}
+    <div className="absolute inset-0 lg:hidden z-10" />
+
+    <img
+      src="/Miglena/Miglena_About.webp"
+      alt="Миглена Аврамова"
+      className="w-full h-full object-cover object-top lg:object-center"
+      loading="eager"
+      fetchpriority="high"
+    />
+  </motion.div>
+
+{/* FLOATING BADGE */}
+<motion.div
+  animate={{ y: [0, -10, 0] }}
+  transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+  className="absolute z-20 
+             /* Позиция за мобилни */
+             top-48 right-6 
+             /* Позиция за десктоп: връщаме ширина по съдържанието и фиксираме позицията */
+             lg:top-auto lg:bottom-24 lg:left-[-32px] lg:right-auto lg:w-fit
+             
+             backdrop-blur-md bg-white/90 border border-brand-primary/10
+             px-4 py-3 rounded-2xl shadow-xl will-change-transform"
+>
+  <div className="flex items-center gap-2 whitespace-nowrap">
+    <Sparkles size={16} className="text-brand-primary shrink-0" />
+    <span className="text-[10px] lg:text-[11px] uppercase tracking-widest text-brand-dark ">
+      10+ години опит
+    </span>
+  </div>
+</motion.div>
+</div>
+
+        {/* TEXT */}
+        <div className="relative w-full lg:w-1/2 flex items-center justify-center lg:justify-end z-20">
+          <div className="max-w-xl lg:max-w-2xl px-4 lg:px-16">
 
             <motion.div
-              animate={{ y: [0, -10, 0] }}
-              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute z-30 shadow-xl backdrop-blur-md bg-white/90 top-6 right-6 p-4 rounded-2xl lg:top-auto lg:bottom-20 lg:left-[-30px] border border-brand-primary/10 will-change-transform"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4, duration: 0.9 }}
+              className="bg-white lg:bg-transparent
+                          sm:-mt-24 lg:mt-0
+                         p-8 sm:p-10 lg:p-0
+                         rounded-[2.5rem] lg:rounded-none
+                         shadow-2xl lg:shadow-none"
             >
-              <div className="flex flex-col lg:flex-row items-center gap-1 lg:gap-3">
-                <Sparkles size={16} className="text-brand-primary lg:size-4" />
-                <span className="text-[9px] lg:text-[11px] uppercase tracking-widest text-brand-dark whitespace-nowrap">
-                  10+ Години Опит
+              {/* EYEBROW */}
+              <div className="flex items-center gap-3 mb-6 justify-center lg:justify-start">
+                <div className="h-px w-8 bg-brand-primary" />
+                <p className="text-[10px] uppercase tracking-[0.3em] font-bold text-brand-primary">
+                  Добре дошъл!
+                </p>
+              </div>
+
+              {/* HEADLINE */}
+              <h1 className="text-brand-dark font-display tracking-tighter mb-8 text-center lg:text-left ">
+                Върни си <br className="lg:hidden" />
+                <span className="text-brand-primary italic font-light relative inline-block">
+                  енергията
+                  <svg
+                    className="absolute -bottom-2 left-0 w-full h-2 text-brand-primary/20"
+                    viewBox="0 0 300 12"
+                  >
+                    <path
+                      d="M1 10C50 3 150 3 299 10"
+                      stroke="currentColor"
+                      strokeWidth="6"
+                      fill="none"
+                    />
+                  </svg>
                 </span>
+                <br /> и баланса
+              </h1>
+
+              {/* DESCRIPTION */}
+              <p className="font-light text-center lg:text-left
+                            lg:border-l-2 lg:border-brand-primary/20 lg:pl-6 mb-10">
+                Вдъхновявам хората да излязат от рутината и да се посветят на себе си,
+                своите хобита и близките си!
+              </p>
+
+              {/* CTA */}
+              <div className="flex justify-center lg:justify-start">
+                <Link
+                  to="/join"
+                  className="btn-primary group w-full sm:w-auto text-center justify-center flex items-center px-10 py-5 "
+                >
+                  Започни днес
+                  <ArrowRight size={18} strokeWidth={1.2} className="ml-2 group-hover:translate-x-2 transition-transform" />
+                </Link>
               </div>
             </motion.div>
           </div>
-
-          <div className="relative w-full lg:w-1/2 flex items-center justify-center lg:justify-end z-20">
-            <div className="section-container lg:max-w-2xl lg:px-12 xl:px-20">
-              <motion.div
-                initial={{ opacity: 0, x: -30 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.5, duration: 1 }}
-                className="bg-white lg:bg-transparent -mt-20 lg:mt-0 p-8 md:p-12 lg:p-0 rounded-[2.5rem] lg:rounded-none shadow-2xl lg:shadow-none mx-4 sm:mx-0 will-change-transform"
-              >
-                <div className="flex items-center gap-3 mb-6 justify-center lg:justify-start">
-                  <div className="h-[1px] w-8 bg-brand-primary" />
-                  <p className="text-[10px] uppercase tracking-[0.3em] font-bold text-brand-primary">
-                    Добре дошъл!
-                  </p>
-                </div>
-                <h1 className="text-brand-dark font-display mb-8 text-center lg:text-left tracking-tighter">
-                  Върни си <br />
-                  <span className="text-brand-primary italic font-light relative">
-                    енергията
-                    <svg className="absolute -bottom-2 left-0 w-full h-2 text-brand-primary/20" viewBox="0 0 300 12">
-                      <path d="M1 10C50 3 150 3 299 10" stroke="currentColor" strokeWidth="6" fill="none" />
-                    </svg>
-                  </span>
-                  <br /> и баланса
-                </h1>
-                <div className="space-y-8 md:space-y-10">
-                  <p className="font-sans font-light text-base md:text-xl leading-relaxed text-center lg:text-left lg:border-l-2 lg:border-brand-primary/20 lg:pl-6">
-                    Вдъхновявам хората да излязат от рутината и да се посветят на себе си, своите хобита и близките си.
-                  </p>
-                  <div className="flex flex-col sm:flex-row items-center gap-6 justify-center lg:justify-start pb-2">
-                    <Link to="/join" className="btn-primary w-full sm:w-auto px-10 py-5 rounded-full shadow-xl shadow-brand-primary/20 flex items-center justify-center gap-3 active:scale-95 transition-transform">
-                      Започни днес
-                      <ArrowRight size={18} />
-                    </Link>
-                  </div>
-                </div>
-              </motion.div>
-            </div>
-          </div>
         </div>
-        <div className="hidden lg:block absolute top-[-10%] left-[-10%] w-[40%] h-[60%] bg-brand-primary/5 rounded-full blur-[120px] -z-10" />
-      </section>
+      </div>
+    </section>
+
+
 
       {/* 3. ABOUT SECTION */}
       <section id="about" className="relative section-container bg-brand-light overflow-hidden">

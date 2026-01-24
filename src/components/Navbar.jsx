@@ -1,23 +1,28 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import {
-  ChevronDown,
-  Menu,
-  X,
-  MessageCircle,
-  ChevronRight,
-} from "lucide-react";
+import { ChevronDown, Menu, X, ChevronRight, Sparkles } from "lucide-react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [mobileExpands, setMobileExpands] = useState({});
+  const [activeMenu, setActiveMenu] = useState(null); // За Hover на главното меню
+  const [activeSubMenu, setActiveSubMenu] = useState(null); // За Клик на подменюто (Козметика)
+
   const location = useLocation();
   const navigate = useNavigate();
 
-  // Уеднаквен стил за текстовете: 11px, Главни букви, Еднакъв цвят
-  const menuTextStyle =
+  const isHomePage = location.pathname === "/";
+  const isTransparentHero = isHomePage && !scrolled;
+
+  const topLevelTextStyle = `font-sans text-[11px] uppercase tracking-widest font-regular transition-colors duration-300 ${
+    isTransparentHero
+      ? "text-white"
+      : "text-brand-dark hover:text-brand-primary"
+  }`;
+
+  const dropdownTextStyle =
     "font-sans text-[11px] uppercase tracking-widest font-regular text-brand-dark";
 
   useEffect(() => {
@@ -28,7 +33,13 @@ const Navbar = () => {
 
   useEffect(() => {
     setIsOpen(false);
+    setActiveMenu(null);
+    setActiveSubMenu(null);
   }, [location]);
+
+  const toggleExpand = (key) => {
+    setMobileExpands((prev) => ({ ...prev, [key]: !prev[key] }));
+  };
 
   const handleScrollToSection = (e, href) => {
     if (href.startsWith("#")) {
@@ -46,10 +57,6 @@ const Navbar = () => {
       }
       setIsOpen(false);
     }
-  };
-
-  const toggleExpand = (key) => {
-    setMobileExpands((prev) => ({ ...prev, [key]: !prev[key] }));
   };
 
   const menuItems = [
@@ -87,7 +94,7 @@ const Navbar = () => {
         className={`fixed top-0 left-0 w-full transition-all duration-500 z-[100] ${
           scrolled
             ? "h-16 bg-white/95 backdrop-blur-md shadow-sm"
-            : "h-20 bg-transparent lg:bg-transparent"
+            : "h-20 bg-transparent"
         }`}
       >
         <div className="max-w-7xl mx-auto h-full px-6 flex justify-between items-center">
@@ -95,97 +102,156 @@ const Navbar = () => {
             <img
               src="/logo.svg"
               alt="Лого"
-              className="h-14 md:h-16 w-auto object-contain transition-all duration-500 group-hover:opacity-80 group-hover:scale-105"
+              className="h-14 md:h-16 w-auto object-contain transition-all duration-500 group-hover:opacity-80 group-hover:scale-105 
+               "
             />
           </Link>
 
           {/* Desktop Menu */}
           <div className="hidden lg:flex items-center space-x-1">
-            {menuItems.map((item, idx) => (
-              <div key={idx} className="relative group px-0.5">
-                {item.href.startsWith("#") ? (
-                  <a
-                    href={item.href}
-                    onClick={(e) => handleScrollToSection(e, item.href)}
-                    className={`${menuTextStyle} px-4 py-2 hover:text-brand-primary transition-all cursor-pointer block`}
-                  >
-                    {item.title}
-                  </a>
-                ) : (
-                  <Link
-                    to={item.href}
-                    className={`transition-all duration-300 ${menuTextStyle} ${
-                      item.highlight
-                        ? "btn-primary !px-8 !py-4 !text-white"
-                        : "px-4 py-2 hover:text-brand-primary flex items-center gap-1"
-                    }`}
-                  >
-                    {item.title}
-                    {item.submenu && !item.highlight && (
-                      <ChevronDown
-                        size={14}
-                        className="opacity-40 group-hover:opacity-100 group-hover:rotate-180 transition-all duration-300"
-                      />
-                    )}
-                  </Link>
-                )}
+            {menuItems.map((item, idx) => {
+              const isMenuOpen = activeMenu === item.title;
 
-                {item.submenu && (
-                  <div className="absolute top-full left-0 w-64 pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
-                    <div className="bg-white border border-brand-light shadow-2xl rounded-[1.2rem] p-2">
-                      {item.submenu.map((sub, sIdx) => (
-                        <div key={sIdx} className="relative group/sub">
-                          <div className="flex justify-between items-center px-4 py-3 rounded-lg hover:bg-brand-light/50 transition-colors cursor-pointer">
-                            {sub.subSubmenu ? (
-                              <span className={menuTextStyle}>{sub.title}</span>
-                            ) : (
-                              <Link
-                                to={sub.href}
-                                className={`${menuTextStyle} w-full`}
-                              >
-                                {sub.title}
-                              </Link>
-                            )}
-                            {sub.subSubmenu && (
-                              <ChevronRight
-                                size={14}
-                                className="text-brand-primary/60"
-                              />
-                            )}
-                          </div>
+              return (
+                <div
+                  key={idx}
+                  className="relative px-0.5"
+                  onMouseEnter={() => item.submenu && setActiveMenu(item.title)}
+                  onMouseLeave={() => {
+                    setActiveMenu(null);
+                    setActiveSubMenu(null);
+                  }}
+                >
+                  {item.href.startsWith("#") ? (
+                    <a
+                      href={item.href}
+                      onClick={(e) => handleScrollToSection(e, item.href)}
+                      // Премахнато hover:text-brand-primary оттук
+                      className={`${topLevelTextStyle} px-4 py-2 transition-all cursor-pointer block`}
+                    >
+                      {item.title}
+                    </a>
+                  ) : (
+                    <Link
+                      to={item.href}
+                      // Премахнато hover:text-brand-primary оттук
+                      className={`transition-all duration-300 flex items-center gap-1 ${topLevelTextStyle} ${
+                        item.highlight
+                          ? "btn-primary !px-8 !py-4 !text-white ml-4"
+                          : "px-4 py-2" // Оставено чисто
+                      }`}
+                    >
+                      {item.title}
+                      {item.submenu && !item.highlight && (
+                        <ChevronDown
+                          size={14}
+                          className={`transition-transform duration-300 ${isMenuOpen ? "rotate-180" : ""} ${
+                            isTransparentHero ? "text-white/70" : "opacity-40"
+                          }`}
+                        />
+                      )}
+                    </Link>
+                  )}
 
-                          {sub.subSubmenu && (
-                            <div className="absolute top-0 left-[calc(100%+0.5rem)] w-52 bg-white shadow-2xl border border-brand-light rounded-[1rem] p-2 opacity-0 invisible group-hover/sub:opacity-100 group-hover/sub:visible transition-all duration-300">
-                              {sub.subSubmenu.map((ss, ssIdx) => (
-                                <Link
-                                  key={ssIdx}
-                                  to={ss.href}
-                                  className={`block px-4 py-3 ${menuTextStyle} hover:text-brand-primary hover:bg-brand-light/40 rounded-md transition-all`}
+                  {/* Dropdown - Отваря се с Hover */}
+                  <AnimatePresence>
+                    {item.submenu && isMenuOpen && (
+                      <motion.div
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: 10 }}
+                        className="absolute top-full left-1/2 -translate-x-1/2 w-64 pt-2 z-[110]"
+                      >
+                        {/* Невидим мост за стабилност на мишката */}
+                        <div className="absolute top-0 left-0 w-full h-2" />
+
+                        <div className="bg-white border border-brand-light shadow-2xl rounded-2xl p-2 overflow-hidden">
+                          {item.submenu.map((sub, sIdx) => {
+                            const isSubOpen = activeSubMenu === sub.title;
+
+                            return (
+                              <div key={sIdx} className="flex flex-col">
+                                <div
+                                  onClick={(e) => {
+                                    if (sub.subSubmenu) {
+                                      e.preventDefault();
+                                      e.stopPropagation();
+                                      setActiveSubMenu(
+                                        isSubOpen ? null : sub.title,
+                                      );
+                                    }
+                                  }}
+                                  className="flex justify-between items-center px-4 py-3 rounded-xl hover:bg-brand-light transition-colors cursor-pointer"
                                 >
-                                  {ss.title}
-                                </Link>
-                              ))}
-                            </div>
-                          )}
+                                  {sub.subSubmenu ? (
+                                    <span className={dropdownTextStyle}>
+                                      {sub.title}
+                                    </span>
+                                  ) : (
+                                    <Link
+                                      to={sub.href}
+                                      className={`${dropdownTextStyle} w-full`}
+                                    >
+                                      {sub.title}
+                                    </Link>
+                                  )}
+                                  {sub.subSubmenu && (
+                                    <ChevronDown
+                                      size={14}
+                                      className={`text-brand-primary/60 transition-transform duration-300 ${
+                                        isSubOpen ? "rotate-180" : ""
+                                      }`}
+                                    />
+                                  )}
+                                </div>
+
+                                {/* Sub-Submenu - Отваря се с КЛИК (Accordion) */}
+                                <AnimatePresence>
+                                  {sub.subSubmenu && isSubOpen && (
+                                    <motion.div
+                                      initial={{ height: 0, opacity: 0 }}
+                                      animate={{ height: "auto", opacity: 1 }}
+                                      exit={{ height: 0, opacity: 0 }}
+                                      className="overflow-hidden bg-brand-cream/30 rounded-xl mx-1 mb-1"
+                                    >
+                                      <div className="flex flex-col py-1">
+                                        {sub.subSubmenu.map((ss, ssIdx) => (
+                                          <Link
+                                            key={ssIdx}
+                                            to={ss.href}
+                                            className={`block px-8 py-2.5 ${dropdownTextStyle} hover:text-brand-primary hover:bg-white/50 rounded-lg mx-1 transition-all`}
+                                          >
+                                            {ss.title}
+                                          </Link>
+                                        ))}
+                                      </div>
+                                    </motion.div>
+                                  )}
+                                </AnimatePresence>
+                              </div>
+                            );
+                          })}
                         </div>
-                      ))}
-                    </div>
-                  </div>
-                )}
-              </div>
-            ))}
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              );
+            })}
           </div>
+
           <button
             onClick={() => setIsOpen(true)}
-            className="lg:hidden p-2 text-brand-dark hover:text-brand-primary transition-colors"
-            aria-label="Open Menu"
+            className={`lg:hidden p-2.5 transition-colors ${
+              isTransparentHero ? "text-brand-dark" : "text-brand-dark"
+            } hover:text-brand-primary`}
           >
             <Menu size={28} />
           </button>
         </div>
       </nav>
 
-      {/* Mobile Menu Overlay */}
+      {/* Mobile Menu Panel (Остава на КЛИК изцяло) */}
       <AnimatePresence>
         {isOpen && (
           <>
@@ -204,32 +270,29 @@ const Navbar = () => {
             >
               <button
                 onClick={() => setIsOpen(false)}
-                className="absolute top-6 right-6 p-2"
+                className="absolute top-6 right-6 p-2 text-brand-dark"
               >
                 <X size={24} />
               </button>
-
               <div className="flex flex-col space-y-8">
                 {menuItems.map((item, idx) => (
                   <div key={idx} className="space-y-4">
                     <div
-                      className="flex justify-between items-center group"
+                      className="flex justify-between items-center"
                       onClick={() => item.submenu && toggleExpand(item.title)}
                     >
                       {item.href.startsWith("#") ? (
                         <a
                           href={item.href}
                           onClick={(e) => handleScrollToSection(e, item.href)}
-                          className={`${menuTextStyle} text-[13px]`}
+                          className={`${dropdownTextStyle} text-[13px]`}
                         >
                           {item.title}
                         </a>
                       ) : (
                         <Link
                           to={item.href}
-                          className={`${menuTextStyle} text-[13px] ${
-                            item.highlight ? "!text-brand-primary" : ""
-                          }`}
+                          className={`${dropdownTextStyle} text-[13px] ${item.highlight ? "!text-brand-primary" : ""}`}
                         >
                           {item.title}
                         </Link>
@@ -237,49 +300,37 @@ const Navbar = () => {
                       {item.submenu && (
                         <ChevronDown
                           size={18}
-                          className={`text-brand-dark/60 transition-transform duration-300 ${
-                            mobileExpands[item.title] ? "rotate-180" : ""
-                          }`}
+                          className={`text-brand-dark/60 transition-transform ${mobileExpands[item.title] ? "rotate-180" : ""}`}
                         />
                       )}
                     </div>
-
                     {item.submenu && mobileExpands[item.title] && (
                       <div className="pl-4 space-y-6 border-l border-brand-primary/20 mt-4">
                         {item.submenu.map((sub, sIdx) => (
                           <div key={sIdx} className="space-y-6">
                             <div
-                              className="flex justify-between items-center cursor-pointer"
+                              className="flex justify-between items-center"
                               onClick={() =>
                                 sub.subSubmenu && toggleExpand(sub.title)
                               }
                             >
-                              {sub.subSubmenu ? (
-                                <span className={menuTextStyle}>
-                                  {sub.title}
-                                </span>
-                              ) : (
-                                <Link to={sub.href} className={menuTextStyle}>
-                                  {sub.title}
-                                </Link>
-                              )}
+                              <span className={dropdownTextStyle}>
+                                {sub.title}
+                              </span>
                               {sub.subSubmenu && (
                                 <ChevronDown
                                   size={16}
-                                  className={`text-brand-primary/50 transition-transform ${
-                                    mobileExpands[sub.title] ? "rotate-180" : ""
-                                  }`}
+                                  className={`text-brand-primary/50 transition-transform ${mobileExpands[sub.title] ? "rotate-180" : ""}`}
                                 />
                               )}
                             </div>
-
                             {sub.subSubmenu && mobileExpands[sub.title] && (
                               <div className="pl-4 flex flex-col space-y-6 border-l font-light border-brand-primary/10">
                                 {sub.subSubmenu.map((ss, ssIdx) => (
                                   <Link
                                     key={ssIdx}
                                     to={ss.href}
-                                    className={menuTextStyle}
+                                    className={dropdownTextStyle}
                                   >
                                     {ss.title}
                                   </Link>
