@@ -1,24 +1,50 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { motion } from "framer-motion";
-import { ArrowLeft, Calendar, Share2, ArrowRight, User } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { ArrowLeft, Calendar, Share2, ArrowRight } from "lucide-react";
+
+// Пътят към вашия бекенд
+const API_URL = "http://localhost:3010";
 
 const NewsDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
+
+  // --- ВСИЧКИ ХУКОВЕ ТРЯБВА ДА СА ТУК (НАЙ-ОТГОРЕ) ---
   const [article, setArticle] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [copied, setCopied] = useState(false); // Дефинираме променливата тук
 
   useEffect(() => {
-    const saved = JSON.parse(localStorage.getItem("miglena_news") || "[]");
-    const found = saved.find((n) => n.id.toString() === id);
-    setArticle(found);
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    const fetchArticle = async () => {
+      try {
+        const response = await fetch(`${API_URL}/getNews`);
+        const allNews = await response.json();
+        const found = allNews.find((n) => n.id.toString() === id);
+        setArticle(found);
+      } catch (error) {
+        console.error("Грешка при изтегляне на статията:", error);
+      } finally {
+        setLoading(false);
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+    };
+    fetchArticle();
   }, [id]);
 
-  if (!article)
+  // --- УСЛОВНИТЕ ПРОВЕРКИ ЗА RETURN ТРЯБВА ДА СА СЛЕД ХУКОВЕТЕ ---
+  if (loading)
     return (
       <div className="min-h-screen flex items-center justify-center bg-brand-cream">
         <div className="w-12 h-12 border-4 border-brand-primary border-t-transparent rounded-full animate-spin"></div>
+      </div>
+    );
+
+  if (!article)
+    return (
+      <div className="min-h-screen flex flex-col items-center justify-center bg-brand-cream space-y-6">
+        <p className="font-display text-2xl text-brand-dark italic">Статията не е намерена...</p>
+        <button onClick={() => navigate("/news")} className="btn-primary">Назад към новини</button>
       </div>
     );
 
@@ -43,12 +69,12 @@ const NewsDetail = () => {
 
         {/* Хедър на статията */}
         <header className="space-y-6 mb-12 text-center">
-          <div className="flex items-center gap-4 text-brand-primary font-bold text-[10px] uppercase tracking-[0.3em]">
-            <span className="bg-brand-primary/10 px-3 py-1 rounded-full flex items-center gap-2">
+          <div className="flex justify-center items-center gap-4 text-brand-primary font-bold text-[10px] uppercase tracking-[0.3em]">
+            <span className="bg-brand-primary/10 px-4 py-2 rounded-full flex items-center gap-2">
               <Calendar size={12} /> {article.date}
             </span>
           </div>
-          <h1 className="font-display text-brand-dark tracking-tighter text-balance">
+          <h1 className="font-display text-4xl md:text-6xl text-brand-dark tracking-tighter text-balance leading-[1.1]">
             {article.title}
           </h1>
         </header>
@@ -59,11 +85,11 @@ const NewsDetail = () => {
             initial={{ scale: 0.95, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ delay: 0.2 }}
-            className="mb-12 rounded-[2.5rem] md:rounded-[4rem] overflow-hidden shadow-2xl border-[6px] md:border-[12px] border-white soft-shadow"
+            className="mb-12 rounded-[2.5rem] md:rounded-[4rem] overflow-hidden shadow-2xl border-[6px] md:border-[12px] border-white"
           >
             <img
-              src={article.image}
-              className="w-full h-full object-cover max-h-[500px]"
+              src={`${API_URL}${article.image}`}
+              className="w-full h-auto object-cover max-h-[600px]"
               alt={article.title}
             />
           </motion.div>
@@ -72,13 +98,13 @@ const NewsDetail = () => {
         {/* СЪДЪРЖАНИЕ */}
         <article className="bg-brand-light/70 backdrop-blur-md rounded-[3rem] md:rounded-[4rem] p-8 md:p-20 shadow-sm border border-white/50 text-left relative">
           <div
-            className="tiptap-content font-sans leading-relaxed font-regular text-brand-dark/70"
-            dangerouslySetInnerHTML={{ __html: article.text }}
-          />
+  className="article-content"
+  dangerouslySetInnerHTML={{ __html: article.text }}
+/>
 
-          {/* Бутон за действие (Action Button) */}
+          {/* Бутон за действие */}
           {article.buttonText && article.buttonLink && (
-            <div className="mt-16 pt-12 border-t border-brand-light flex justify-center md:justify-start">
+            <div className="mt-12 pt-12 border-t border-brand-light flex justify-center md:justify-start">
               <a
                 href={article.buttonLink}
                 target="_blank"
@@ -110,60 +136,64 @@ const NewsDetail = () => {
               </div>
             </div>
 
-            <button className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-gray-400 hover:text-brand-primary transition-colors border border-gray-100 px-6 py-3 rounded-full hover:bg-brand-light active:scale-95">
-              <Share2 size={14} /> Сподели статията
+            {/* БУТОН ЗА СПОДЕЛЯНЕ */}
+            <button
+              onClick={() => {
+                if (navigator.share) {
+                  navigator.share({ title: article.title, url: window.location.href });
+                } else {
+                  navigator.clipboard.writeText(window.location.href);
+                  setCopied(true);
+                  setTimeout(() => setCopied(false), 2000);
+                }
+              }}
+              className={`
+                relative overflow-hidden flex items-center gap-2 px-8 py-4 rounded-full 
+                text-[10px] font-black uppercase tracking-[0.2em] transition-all duration-500
+                ${copied 
+                  ? "bg-brand-primary text-white border-brand-primary shadow-lg" 
+                  : "bg-white text-gray-400 border border-gray-100 hover:text-brand-primary hover:border-brand-primary/30"
+                }
+              `}
+            >
+              <AnimatePresence mode="wait">
+                {copied ? (
+                  <motion.span
+                    key="copied"
+                    initial={{ y: 10, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    exit={{ y: -10, opacity: 0 }}
+                  >
+                    Линкът е копиран
+                  </motion.span>
+                ) : (
+                  <motion.div
+                    key="share"
+                    initial={{ y: 10, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    exit={{ y: -10, opacity: 0 }}
+                    className="flex items-center gap-2"
+                  >
+                    <Share2 size={14} /> Сподели статията
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </button>
           </div>
-
-          {/* Декоративен елемент */}
-          <div className="absolute -top-10 -right-10 w-32 h-32 bg-brand-primary/5 rounded-full blur-3xl -z-10 animate-pulse"></div>
         </article>
-
-        {/* Долна навигация */}
-        <div className="mt-12 text-center">
-          <p className="font-display italic text-brand-dark/40 ">
-            Благодарим ви, че четете нашия блог.
-          </p>
-        </div>
       </motion.div>
 
       <style
         dangerouslySetInnerHTML={{
           __html: `
-        .tiptap-content p { margin-bottom: 1.8rem; line-height: 1.8; }
-        .tiptap-content b, .tiptap-content strong { font-weight: 700; color: #003f00; font-style: normal; }
-        .tiptap-content a { color: #74ab1a; text-decoration: underline; text-underline-offset: 4px; font-weight: 600; transition: opacity 0.3s; }
-        .tiptap-content a:hover { opacity: 0.7; }
-        
-        .tiptap-content h2 { font-family: "Cormorant Infant", serif; font-size: 2.2rem; color: #003f00; margin: 3rem 0 1.5rem; font-style: italic; line-height: 1.2; }
-        .tiptap-content h3 { font-family: "Cormorant Infant", serif; font-size: 1.8rem; color: #003f00; margin: 2rem 0 1rem; font-style: italic; }
-        
-        .tiptap-content ul { list-style-type: disc; padding-left: 1.5rem; margin-bottom: 2rem; color: #74ab1a; }
-        .tiptap-content ol { list-style-type: decimal; padding-left: 1.5rem; margin-bottom: 2rem; color: #74ab1a; }
-        .tiptap-content li { margin-bottom: 0.8rem; color: #4b5563; }
-        
+        .tiptap-content p { margin-bottom: 1.8rem; line-height: 1.8; font-size: 1.15rem; }
+        .tiptap-content b, .tiptap-content strong { font-weight: 700; color: #003f00; }
+        .tiptap-content h2 { font-family: "Cormorant Infant", serif; font-size: 2.5rem; color: #003f00; margin: 3.5rem 0 1.5rem; font-style: italic; line-height: 1.1; }
         .tiptap-content blockquote { 
-          border-left: 4px solid #74ab1a; 
-          padding: 1rem 0 1rem 2rem; 
-          margin: 3rem 0; 
-          font-size: 1.5rem; 
-          color: #003f00; 
-          background: rgba(116, 171, 26, 0.03);
-          border-radius: 0 2rem 2rem 0;
+          border-left: 5px solid #74ab1a; padding: 1.5rem 2.5rem; margin: 3.5rem 0; 
+          font-size: 1.6rem; color: #003f00; font-style: italic; background: rgba(116, 171, 26, 0.04); border-radius: 0 2.5rem 2.5rem 0;
         }
-
-        .tiptap-content img { 
-          border-radius: 2rem; 
-          margin: 3rem auto; 
-          box-shadow: 0 20px 40px rgba(0,0,0,0.08);
-          border: 4px solid white;
-        }
-
-        @media (max-width: 768px) {
-          .tiptap-content h2 { font-size: 1.8rem; }
-          .tiptap-content blockquote { font-size: 1.2rem; padding-left: 1.5rem; }
-          .tiptap-content p { font-size: 1.1rem; }
-        }
+        .tiptap-content img { border-radius: 2rem; margin: 3.5rem auto; box-shadow: 0 25px 50px rgba(0,0,0,0.1); border: 6px solid white; max-width: 100%; height: auto; }
       `,
         }}
       />

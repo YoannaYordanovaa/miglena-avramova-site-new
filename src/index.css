@@ -207,3 +207,84 @@
   .custom-scrollbar::-webkit-scrollbar-thumb:hover {
     background: #5d8a15;
   }
+
+/* --- СТИЛОВЕ ЗА СЪДЪРЖАНИЕ НА СТАТИИТЕ --- */
+.article-content {
+  /* Базови настройки за текста */
+  @apply font-sans text-gray-600;
+  line-height: 1.8;
+}
+
+.article-content p { 
+  margin-bottom: 1.8rem; 
+  font-size: 1.15rem; 
+}
+
+.article-content h2 { 
+  font-family: var(--font-display); 
+  font-size: 2.5rem; 
+  color: var(--color-brand-dark); 
+  margin: 3.5rem 0 1.5rem; 
+  font-style: italic; 
+  line-height: 1.1; 
+}
+
+.article-content h3 { 
+  font-family: var(--font-display); 
+  font-size: 2rem; 
+  color: var(--color-brand-dark); 
+  margin: 2.5rem 0 1rem; 
+  font-style: italic; 
+}
+
+/* СТИЛОВЕ ЗА СПИСЪЦИ (BULLET POINTS) */
+.article-content ul { 
+  list-style-type: disc !important; 
+  padding-left: 1.5rem; 
+  margin-bottom: 2rem; 
+  @apply space-y-2;
+}
+
+.article-content ol { 
+  list-style-type: decimal !important; 
+  padding-left: 1.5rem; 
+  margin-bottom: 2rem; 
+  @apply space-y-2;
+}
+
+.article-content li { 
+  display: list-item !important;
+  padding-left: 0.5rem;
+}
+
+/* Маркерите (точките) да са в брандовия цвят */
+.article-content ul li::marker {
+  color: var(--color-brand-primary);
+}
+
+.article-content blockquote { 
+  border-left: 5px solid var(--color-brand-primary); 
+  padding: 1.5rem 2.5rem; 
+  margin: 3.5rem 0; 
+  font-size: 1.6rem; 
+  color: var(--color-brand-dark); 
+  font-style: italic; 
+  background: rgba(116, 171, 26, 0.04); 
+  border-radius: 0 2.5rem 2.5rem 0; 
+}
+
+.article-content img { 
+  border-radius: 2rem; 
+  margin: 3.5rem auto; 
+  display: block; 
+  box-shadow: 0 25px 50px rgba(0,0,0,0.1); 
+  border: 6px solid white; 
+  max-width: 100%; 
+  height: auto; 
+}
+
+.article-content a {
+  color: var(--color-brand-primary);
+  text-decoration: underline;
+  @apply font-medium transition-opacity hover:opacity-70;
+}

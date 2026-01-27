@@ -105,14 +105,14 @@ const VideoSection = () => {
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 onClick={() => setIsOpen(false)}
-                className="fixed inset-0 z-[99999] bg-brand-dark/95 backdrop-blur-xl flex items-center justify-center p-4 md:p-12"
+                className="fixed inset-0 z-[99999] bg-brand-light/95 backdrop-blur-xl  flex items-center justify-center p-4 md:p-12"
               >
                 <button
                   onClick={(e) => {
                     e.stopPropagation();
                     setIsOpen(false);
                   }}
-                  className="absolute top-8 right-8 text-white/50 hover:text-white transition-colors z-[100000] p-2"
+                  className="absolute top-8 right-8 text-brand-primary hover:text-brand-dark transition-colors z-[100000] p-2"
                 >
                   <X size={40} />
                 </button>

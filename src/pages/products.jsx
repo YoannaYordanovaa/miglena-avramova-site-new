@@ -13,6 +13,8 @@ import { useParams, useNavigate, Link } from "react-router-dom";
 import { fetchProducts, getOrderUrl } from "../api";
 import NewsBannerSlider from "../components/NewsBannerSlider";
 
+const API_URL = "http://localhost:3010";
+
 const Products = () => {
   const { category } = useParams();
   const [products, setProducts] = useState([]);
@@ -22,6 +24,7 @@ const Products = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [isSortOpen, setIsSortOpen] = useState(false);
   const productsPerPage = 12;
+  const [news, setNews] = useState([]);
 
   const categoryNames = {
     drinks: "Напитки от Алое",
@@ -36,25 +39,26 @@ const Products = () => {
     shop: "Всички продукти",
   };
 
-  const [news, setNews] = useState(() => {
-    const saved = localStorage.getItem("miglena_news");
-    return saved
-      ? JSON.parse(saved)
-      : [
-          {
-            id: 1,
-            title: "Ново начало",
-            text: "Програмата C9 вече е с обновени рецепти!",
-            date: "28.12.2025",
-          },
-          {
-            id: 2,
-            title: "Екипно събитие",
-            text: "Очакваме ви на следващия уелнес семинар в София.",
-            date: "15.01.2026",
-          },
-        ];
-  });
+  // 2. Добавяме useEffect за зареждане на новините от бекенда
+  useEffect(() => {
+    const loadNews = async () => {
+      try {
+        // Добавяме timestamp (?t=...), за да избегнем кеширането от браузъра
+        const response = await fetch(
+          `${API_URL}/getNews?t=${new Date().getTime()}`,
+        );
+        const data = await response.json();
+        setNews(data);
+
+        // По избор: изчистваме стария кеш, за да не обърква системата
+        localStorage.removeItem("miglena_news");
+      } catch (error) {
+        console.error("Грешка при зареждане на новините в магазина:", error);
+      }
+    };
+
+    loadNews();
+  }, []); // Изпълнява се веднъж при зареждане на компонента
 
   const sortOptions = [
     { value: "default", label: "Сортирай по" },
@@ -219,7 +223,7 @@ const Products = () => {
     <div className="min-h-screen bg-brand-light">
       <NewsBannerSlider news={news} />
       <div className="section-container mx-auto relative z-10 pt-10">
-        <div className="mb-16 text-left">
+        <div className="mb-12 text-left">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -269,7 +273,73 @@ const Products = () => {
           </motion.div>
         </div>
 
-        <div className="flex flex-col md:flex-row gap-4 mb-12">
+        <div className="mb-12 flex flex-col items-start justify-center text-center">
+          <button
+            onClick={() =>
+              window.open("https://thealoeveraco.shop/20rQ6mPC", "_blank")
+            }
+            className="btn-primary mb-6"
+          >
+            <span>
+              Ела в моя екип и пазарувай с{" "}
+              <span className="font-bold">-30%</span> отстъпка!
+            </span>
+            <ArrowRight size={18} className="ml-2" />
+          </button>
+        </div>
+
+        <div id="categories" className="relative mb-10 ">
+          <div className="flex overflow-x-auto gap-4 pt-4 pb-6 scroll-smooth custom-scrollbar px-2">
+            {categoriesList.map((cat) => {
+              const isActive = (category || "shop") === cat.id;
+              return (
+                <button
+                  key={cat.id}
+                  onClick={() => handleCategoryClick(cat.id)}
+                  className="flex flex-col items-center gap-3 min-w-[100px] group transition-all pt-2"
+                >
+                  <div
+                    className={`w-16 h-16 sm:w-20 sm:h-20 rounded-full flex items-center justify-center transition-all duration-500 border-2 ${
+                      isActive
+                        ? "bg-brand-primary border-brand-primary shadow-xl scale-110 -translate-y-1"
+                        : "bg-white border-gray-50 group-hover:border-brand-primary/30"
+                    }`}
+                  >
+                    <img
+                      src={`/Category_Icons/${cat.icon}`} // Пътят до вашата папка в public
+                      alt={cat.label}
+                      className={`w-18 h-18 transition-all duration-500 ${
+                        isActive ? "brightness-0 invert" : ""
+                      }`}
+                      /* brightness-0 invert прави черна икона бяла, когато е активна */
+                    />
+                  </div>
+                  <span
+                    className={`font-sans text-[10px] uppercase tracking-[0.15em] transition-colors whitespace-nowrap ${isActive ? "text-brand-primary font-bold" : "text-gray-400 group-hover:text-brand-dark"}`}
+                  >
+                    {cat.label}
+                  </span>
+                  <div className="h-1">
+                    <AnimatePresence>
+                      {isActive && (
+                        <motion.div
+                          layoutId="activeDot"
+                          className="w-1.5 h-1.5 rounded-full bg-brand-primary mx-auto"
+                          initial={{ scale: 0 }}
+                          animate={{ scale: 1 }}
+                          exit={{ scale: 0 }}
+                        />
+                      )}
+                    </AnimatePresence>
+                  </div>
+                </button>
+              );
+            })}
+          </div>
+          <div className="absolute right-0 top-0 bottom-6 w-16 bg-gradient-to-l from-brand-light via-brand-light/50 to-transparent pointer-events-none lg:hidden" />
+        </div>
+
+        <div className="flex flex-col md:flex-row gap-4 mb-6">
           <div className="relative flex-1 group">
             <Search
               className="absolute left-6 top-1/2 -translate-y-1/2 text-brand-primary transition-colors"
@@ -339,76 +409,13 @@ const Products = () => {
           </div>
         </div>
 
-        <div className="mb-12 flex flex-col items-center justify-center text-center">
-          <button
-            onClick={() =>
-              window.open("https://thealoeveraco.shop/20rQ6mPC", "_blank")
-            }
-            className="btn-primary mb-6"
-          >
-            <span>
-              Ела в моя екип и пазарувай с{" "}
-              <span className="font-bold">-30%</span> отстъпка!
-            </span>
-            <ArrowRight size={18} className="ml-2" />
-          </button>
-          <p className="font-sans text-[10px] uppercase tracking-[0.2em] text-gray-400 font-bold">
+        <div className="mb-6 flex flex-col items-center justify-center text-center">
+          <p className="font-sans text-[10px] uppercase tracking-[0.2em] text-gray-400 font-bold mx-auto">
             Резултати:{" "}
             <span className="text-brand-primary">
               {filteredAndSortedProducts.length}
             </span>
           </p>
-        </div>
-
-        <div id="categories" className="relative mb-16 scroll-mt-20">
-          <div className="flex overflow-x-auto gap-4 pt-4 pb-6 scroll-smooth custom-scrollbar px-2">
-            {categoriesList.map((cat) => {
-              const isActive = (category || "shop") === cat.id;
-              return (
-                <button
-                  key={cat.id}
-                  onClick={() => handleCategoryClick(cat.id)}
-                  className="flex flex-col items-center gap-3 min-w-[100px] group transition-all pt-2"
-                >
-                  <div
-                    className={`w-16 h-16 sm:w-20 sm:h-20 rounded-full flex items-center justify-center transition-all duration-500 border-2 ${
-                      isActive
-                        ? "bg-brand-primary border-brand-primary shadow-xl scale-110 -translate-y-1"
-                        : "bg-white border-gray-50 group-hover:border-brand-primary/30"
-                    }`}
-                  >
-                    <img
-                      src={`/Category_Icons/${cat.icon}`} // Пътят до вашата папка в public
-                      alt={cat.label}
-                      className={`w-18 h-18 transition-all duration-500 ${
-                        isActive ? "brightness-0 invert" : ""
-                      }`}
-                      /* brightness-0 invert прави черна икона бяла, когато е активна */
-                    />
-                  </div>
-                  <span
-                    className={`font-sans text-[10px] uppercase tracking-[0.15em] transition-colors whitespace-nowrap ${isActive ? "text-brand-primary font-bold" : "text-gray-400 group-hover:text-brand-dark"}`}
-                  >
-                    {cat.label}
-                  </span>
-                  <div className="h-1">
-                    <AnimatePresence>
-                      {isActive && (
-                        <motion.div
-                          layoutId="activeDot"
-                          className="w-1.5 h-1.5 rounded-full bg-brand-primary mx-auto"
-                          initial={{ scale: 0 }}
-                          animate={{ scale: 1 }}
-                          exit={{ scale: 0 }}
-                        />
-                      )}
-                    </AnimatePresence>
-                  </div>
-                </button>
-              );
-            })}
-          </div>
-          <div className="absolute right-0 top-0 bottom-6 w-16 bg-gradient-to-l from-brand-light via-brand-light/50 to-transparent pointer-events-none lg:hidden" />
         </div>
 
         <div id="products-grid" className="scroll-mt-32">

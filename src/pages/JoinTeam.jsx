@@ -456,14 +456,7 @@ const JoinTeam = () => {
               </motion.div>
             ))}
 
-            <div className="flex justify-center items-center">
-              <a
-                href="#join-form"
-                className="btn-primary w-full sm:w-auto text-center"
-              >
-                Кандидатствай сега
-              </a>{" "}
-            </div>
+
           </div>
 
           {/* Divider Between Section 3 & 4 */}
@@ -593,6 +586,14 @@ const JoinTeam = () => {
               ))}
             </div>
           </div>
+                      <div className="flex justify-center items-center mx-auto mt-10">
+              <a
+                href="#join-form"
+                className="btn-primary w-full sm:w-auto text-center"
+              >
+                Кандидатствай сега
+              </a>{" "}
+            </div>
         </div>
       </section>
 

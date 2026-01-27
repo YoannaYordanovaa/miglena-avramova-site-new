@@ -342,7 +342,7 @@ const Home = () => {
                   </div>
                 </motion.a>
               ))}
-              <motion.a whileHover={{ scale: 1.02 }} href="https://www.tiktok.com/@avramovamiglenaa" target="_blank" className="md:col-span-2 bg-brand-light p-8 rounded-[2.5rem] shadow-sm border border-brand-light flex items-center justify-between group will-change-transform">
+              <motion.a whileHover={{ scale: 1.02 }} href="https://www.tiktok.com/@megiavramovakonsultant?_r=1&_t=ZN-93QTIBTlW6g" target="_blank" className="md:col-span-2 bg-brand-light p-8 rounded-[2.5rem] shadow-sm border border-brand-light flex items-center justify-between group will-change-transform">
                 <div className="flex items-center gap-6">
                   <div className="p-4 bg-brand-dark text-white rounded-2xl"><Video size={24} /></div>
                   <div className="text-left">
