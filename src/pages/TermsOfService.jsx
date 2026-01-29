@@ -49,10 +49,10 @@ const TermsOfService = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-brand-light">
+    <div className="min-h-screen bg-brand-light mt-10">
       {/* Hero Section */}
       <section className="section-container bg-brand-cream/30">
-        <div className=" max-w-7xl mx-auto text-center">
+        <div className=" stack-space ">
           <Link
             to="/"
             className="inline-flex items-center gap-2 text-brand-primary mb-8 hover:-translate-x-2 transition-transform font-sans text-xs uppercase tracking-widest font-bold"
@@ -63,7 +63,7 @@ const TermsOfService = () => {
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="font-display text-5xl md:text-7xl text-brand-dark mb-6 tracking-tighter"
+            className="font-display text-5xl md:text-7xl text-brand-dark tracking-tighter"
           >
             Общи <br />
             <span className="text-brand-primary italic font-light">
@@ -95,10 +95,10 @@ const TermsOfService = () => {
                   </div>
                 </div>
                 <div>
-                  <h2 className="font-display text-2xl md:text-3xl text-brand-dark">
+                  <h2 className="font-display text-2xl text-brand-dark">
                     {section.title}
                   </h2>
-                  <p className="font-sans text-gray-500 text-lg leading-relaxed font-light pt-4">
+                  <p className="font-sans text-gray-500 font-light pt-4">
                     {section.content}
                   </p>
                 </div>
@@ -107,9 +107,9 @@ const TermsOfService = () => {
           </div>
 
           {/* Final Statement */}
-          <div className="mt-24 pt-12 border-t border-brand-light">
+          <div className=" pt-20 border-t border-brand-light">
             <p className="font-sans text-gray-400 text-sm text-center leading-relaxed italic">
-              Използвайки този уебсайт, Вие потвърждавате, че сте прочели и
+              *Използвайки този уебсайт, Вие потвърждавате, че сте прочели и
               разбрали настоящите Общи условия. За допълнителна информация, моля
               свържете се с нас.
             </p>

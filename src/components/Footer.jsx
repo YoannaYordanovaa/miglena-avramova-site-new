@@ -131,10 +131,10 @@ const Footer = () => {
 
         {/* 2. ДОЛЕН ФИН РАЗДЕЛИТЕЛ И ПРАВНА ЛЕНТА */}
         <div className="pt-8 border-t border-gray-200 flex flex-col md:flex-row justify-between items-center gap-6 text-center">
-          <p className="font-sans text-[10px] text-gray-400 uppercase tracking-[0.2em] font-bold order-2 md:order-1">
+          <p className="font-sans text-[10px] text-gray-400 uppercase tracking-[0.2em] order-2 md:order-1">
             © {currentYear} Miglena Avramova • Forever Business Owner
           </p>
-          <div className="flex gap-6 md:gap-8 font-sans text-[10px] text-gray-400 uppercase tracking-[0.1em] font-bold order-1 md:order-2">
+          <div className="flex gap-6 md:gap-8 font-sans text-[10px] text-gray-400 uppercase tracking-[0.1em] order-1 md:order-2">
             <Link
               smooth
               to="/privacyPolicy"

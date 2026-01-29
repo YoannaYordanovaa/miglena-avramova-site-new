@@ -10,40 +10,9 @@ import {
   ChevronRight,
 } from "lucide-react";
 
-const photoTitles = [
-  "Екипна среща", // Снимка 1
-  "Обучение в Офиса", // Снимка 2
-  "Пътуване до Гърция", // Снимка 3
-  "Forever Global Rally", // Снимка 4
-  "Празнична Вечеря", // Снимка 5
-  "Признание за Успех", // Снимка 6
-  "Бизнес Презентация", // Снимка 7
-  "Екипен Дух", // Снимка 8
-  "Първи Стъпки", // Снимка 9
-  "Лятна Академия", // Снимка 10
-  "Мотивация и Растеж", // Снимка 11
-  "Международен Форум", // Снимка 12
-  "Здраве и Алое", // Снимка 13
-  "Усмивки от Събитие", // Снимка 14
-  "Нови Възможности", // Снимка 15
-  "Екипна Вечеря", // Снимка 16
-  "Началото на Промяната", // Снимка 17
-  "Екипна среща", // Снимка 18
-  "Обучение в Офиса", // Снимка 19
-  "Пътуване до Гърция", // Снимка 20
-  "Forever Global Rally", // Снимка 21
-  "Празнична Вечеря", // Снимка 22
-  "Признание за Успех", // Снимка 23
-  "Бизнес Презентация", // Снимка 24
-  "Екипен Дух", // Снимка 25
-  "Първи Стъпки", // Снимка 26
-  "Лятна Академия", // Снимка 27
-  "Мотивация и Растеж", // Снимка 28
-];
 const Miglena_Avramova_Photos = Array.from({ length: 28 }, (_, i) => ({
   id: i + 1,
   src: `/Team/Miglena_Avramova_${i + 1}.webp`,
-  title: photoTitles[i] || `Любим момент ${i + 1}`,
 }));
 
 const InteractiveGallery = () => {
@@ -116,8 +85,8 @@ const InteractiveGallery = () => {
   }, [selectedImage]);
 
   return (
-    <section ref={galleryRef} className="section-container scroll-mt-10">
-      <div className="mx-auto">
+    <section ref={galleryRef} className="section-container scroll-mt-10 bg-brand-light">
+      <div className="stack-space">
         {/* Header */}
         <div className="mb-16 text-left">
           <motion.div
@@ -262,7 +231,6 @@ const InteractiveGallery = () => {
                     <h4 className="text-brand-dark font-display italic text-2xl md:text-3xl leading-none">
                       {selectedImage.title}
                     </h4>
-                    <div className="w-12 h-[1px] bg-brand-primary/40 mx-auto mt-6" />
                   </div>
                 </motion.div>
               </motion.div>

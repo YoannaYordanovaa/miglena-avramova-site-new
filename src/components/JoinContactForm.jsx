@@ -57,12 +57,12 @@ const ContactForm = () => {
           
       <section
         id="join-form"
-        className="section-container px-4 overflow-hidden"
+        className="section-container "
       >
-        <div className="max-w-7xl mx-auto">
+        <div className="stack-space">
           {/* Заглавна част - центрирана на мобилни, ляво на десктоп */}
 
-          <div className="mb-16 text-left  mx-auto">
+          <div className="mb-16 text-left mx-auto">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}

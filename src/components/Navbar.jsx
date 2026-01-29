@@ -8,7 +8,7 @@ const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileExpands, setMobileExpands] = useState({});
   const [activeMenu, setActiveMenu] = useState(null); // За Hover на главното меню
-  const [activeSubMenu, setActiveSubMenu] = useState(null); // За Клик на подменюто (Козметика)
+  const [activeSubMenu, setActiveSubMenu] = useState(null); // За Клик на подменюто (Козметика/Напитки)
 
   const location = useLocation();
   const navigate = useNavigate();
@@ -133,7 +133,6 @@ const Navbar = () => {
                     <a
                       href={item.href}
                       onClick={(e) => handleScrollToSection(e, item.href)}
-                      // Премахнато hover:text-brand-primary оттук
                       className={`${topLevelTextStyle} px-4 py-2 transition-all cursor-pointer block`}
                     >
                       {item.title}
@@ -141,18 +140,19 @@ const Navbar = () => {
                   ) : (
                     <Link
                       to={item.href}
-                      // Премахнато hover:text-brand-primary оттук
                       className={`transition-all duration-300 flex items-center gap-1 ${topLevelTextStyle} ${
                         item.highlight
                           ? "btn-primary !px-8 !py-4 !text-white ml-4"
-                          : "px-4 py-2" // Оставено чисто
+                          : "px-4 py-2"
                       }`}
                     >
                       {item.title}
                       {item.submenu && !item.highlight && (
                         <ChevronDown
                           size={14}
-                          className={`transition-transform duration-300 ${isMenuOpen ? "rotate-180" : ""} ${
+                          className={`transition-transform duration-300 ${
+                            isMenuOpen ? "rotate-180" : ""
+                          } ${
                             isTransparentHero ? "text-white/70" : "opacity-40"
                           }`}
                         />
@@ -169,7 +169,6 @@ const Navbar = () => {
                         exit={{ opacity: 0, y: 10 }}
                         className="absolute top-full left-1/2 -translate-x-1/2 w-64 pt-2 z-[110]"
                       >
-                        {/* Невидим мост за стабилност на мишката */}
                         <div className="absolute top-0 left-0 w-full h-2" />
 
                         <div className="bg-white border border-brand-light shadow-2xl rounded-2xl p-2 overflow-hidden">
@@ -178,41 +177,39 @@ const Navbar = () => {
 
                             return (
                               <div key={sIdx} className="flex flex-col">
-                                <div
-                                  onClick={(e) => {
-                                    if (sub.subSubmenu) {
+                                {sub.subSubmenu ? (
+                                  // АКО ИМА ПОД-ПОДМЕНЮ (Козметика, Напитки)
+                                  <div
+                                    onClick={(e) => {
                                       e.preventDefault();
                                       e.stopPropagation();
                                       setActiveSubMenu(
                                         isSubOpen ? null : sub.title,
                                       );
-                                    }
-                                  }}
-                                  className="flex justify-between items-center px-4 py-3 rounded-xl hover:bg-brand-light transition-colors cursor-pointer"
-                                >
-                                  {sub.subSubmenu ? (
+                                    }}
+                                    className="flex justify-between items-center px-4 py-3 rounded-xl hover:bg-brand-light transition-colors cursor-pointer"
+                                  >
                                     <span className={dropdownTextStyle}>
                                       {sub.title}
                                     </span>
-                                  ) : (
-                                    <Link
-                                      to={sub.href}
-                                      className={`${dropdownTextStyle} w-full`}
-                                    >
-                                      {sub.title}
-                                    </Link>
-                                  )}
-                                  {sub.subSubmenu && (
                                     <ChevronDown
                                       size={14}
                                       className={`text-brand-primary/60 transition-transform duration-300 ${
                                         isSubOpen ? "rotate-180" : ""
                                       }`}
                                     />
-                                  )}
-                                </div>
+                                  </div>
+                                ) : (
+                                  // АКО НЯМА ПОД-ПОДМЕНЮ (Контрол на теглото, Пакети) -> Директен Линк
+                                  <Link
+                                    to={sub.href}
+                                    className={`flex items-center px-4 py-3 rounded-xl hover:bg-brand-light transition-colors ${dropdownTextStyle}`}
+                                  >
+                                    {sub.title}
+                                  </Link>
+                                )}
 
-                                {/* Sub-Submenu - Отваря се с КЛИК (Accordion) */}
+                                {/* Sub-Submenu Accordion */}
                                 <AnimatePresence>
                                   {sub.subSubmenu && isSubOpen && (
                                     <motion.div
@@ -249,16 +246,14 @@ const Navbar = () => {
 
           <button
             onClick={() => setIsOpen(true)}
-            className={`lg:hidden p-2.5 transition-colors ${
-              isTransparentHero ? "text-brand-dark" : "text-brand-dark"
-            } hover:text-brand-primary`}
+            className="lg:hidden p-2.5 text-brand-dark hover:text-brand-primary transition-colors"
           >
             <Menu size={28} />
           </button>
         </div>
       </nav>
 
-      {/* Mobile Menu Panel (Остава на КЛИК изцяло) */}
+      {/* Mobile Menu Panel */}
       <AnimatePresence>
         {isOpen && (
           <>
@@ -299,7 +294,9 @@ const Navbar = () => {
                       ) : (
                         <Link
                           to={item.href}
-                          className={`${dropdownTextStyle} text-[13px] ${item.highlight ? "!text-brand-primary" : ""}`}
+                          className={`${dropdownTextStyle} text-[13px] ${
+                            item.highlight ? "!text-brand-primary" : ""
+                          }`}
                         >
                           {item.title}
                         </Link>
@@ -307,10 +304,13 @@ const Navbar = () => {
                       {item.submenu && (
                         <ChevronDown
                           size={18}
-                          className={`text-brand-dark/60 transition-transform ${mobileExpands[item.title] ? "rotate-180" : ""}`}
+                          className={`text-brand-dark/60 transition-transform ${
+                            mobileExpands[item.title] ? "rotate-180" : ""
+                          }`}
                         />
                       )}
                     </div>
+
                     {item.submenu && mobileExpands[item.title] && (
                       <div className="pl-4 space-y-6 border-l border-brand-primary/20 mt-4">
                         {item.submenu.map((sub, sIdx) => (
@@ -318,16 +318,29 @@ const Navbar = () => {
                             <div
                               className="flex justify-between items-center"
                               onClick={() =>
-                                sub.subSubmenu && toggleExpand(sub.title)
+                                sub.subSubmenu
+                                  ? toggleExpand(sub.title)
+                                  : navigate(sub.href)
                               }
                             >
-                              <span className={dropdownTextStyle}>
-                                {sub.title}
-                              </span>
+                              {sub.subSubmenu ? (
+                                <span className={dropdownTextStyle}>
+                                  {sub.title}
+                                </span>
+                              ) : (
+                                <Link
+                                  to={sub.href}
+                                  className={dropdownTextStyle}
+                                >
+                                  {sub.title}
+                                </Link>
+                              )}
                               {sub.subSubmenu && (
                                 <ChevronDown
                                   size={16}
-                                  className={`text-brand-primary/50 transition-transform ${mobileExpands[sub.title] ? "rotate-180" : ""}`}
+                                  className={`text-brand-primary/50 transition-transform ${
+                                    mobileExpands[sub.title] ? "rotate-180" : ""
+                                  }`}
                                 />
                               )}
                             </div>

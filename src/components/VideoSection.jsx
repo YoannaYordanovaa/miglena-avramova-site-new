@@ -26,8 +26,8 @@ const VideoSection = () => {
   }, [isOpen]);
 
   return (
-    <section id="video" className="overflow-hidden section-container">
-      <div className="mx-auto">
+    <section id="video" className="section-container">
+      <div className="stack-space ">
         {/* Заглавна част */}
         <div className="mb-16 text-left">
           <motion.div

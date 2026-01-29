@@ -220,9 +220,9 @@ const Products = () => {
   };
 
   return (
-    <div className="min-h-screen bg-brand-light">
+    <section className="min-h-screen ">
       <NewsBannerSlider news={news} />
-      <div className="section-container mx-auto relative z-10 pt-10">
+      <div className="stack-space pt-10">
         <div className="mb-12 text-left">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -409,7 +409,7 @@ const Products = () => {
           </div>
         </div>
 
-        <div className="mb-6 flex flex-col items-center justify-center text-center">
+        <div className="mb-6 flex flex-col items-center justify-center text-center ">
           <p className="font-sans text-[10px] uppercase tracking-[0.2em] text-gray-400 font-bold mx-auto">
             Резултати:{" "}
             <span className="text-brand-primary">
@@ -418,13 +418,13 @@ const Products = () => {
           </p>
         </div>
 
-        <div id="products-grid" className="scroll-mt-32">
+        <div id="products-grid" className="scroll-mt-32 px-6">
           {loading ? (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
               {[...Array(8)].map((_, n) => (
                 <div
                   key={n}
-                  className="bg-gray-50 rounded-[2.5rem] p-8 h-[520px] animate-pulse"
+                  className=" rounded-[2.5rem] p-8 h-[520px] animate-pulse"
                 />
               ))}
             </div>
@@ -433,7 +433,7 @@ const Products = () => {
               <motion.div
                 layout
                 key={`${category}-${sortBy}-${searchTerm}`}
-                className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-10"
+                className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-6"
               >
                 <AnimatePresence mode="popLayout">
                   {currentItems.map((product) => (
@@ -609,7 +609,7 @@ const Products = () => {
           )}
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

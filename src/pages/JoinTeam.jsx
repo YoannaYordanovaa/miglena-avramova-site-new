@@ -77,8 +77,8 @@ const JoinTeam = () => {
   return (
     <div className=" overflow-hidden">
       {/* 1. Hero Section */}
-      <section className="relative section-container mt-4 md:mt-8 overflow-hidden">
-        <div className="mx-auto relative z-10 max-w-7xl">
+      <section className="section-container ">
+        <div className="stack-space">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-16 items-center">
             {/* ТЕКСТОВА ЧАСТ - Първа на мобилни, Лява на десктоп */}
             <motion.div
@@ -175,9 +175,17 @@ const JoinTeam = () => {
       {/* 3. Video & Experience Section */}
       <VideoSection />
 
+      {/* Divider Between Section 3 & 4 */}
+      <div className="relative flex items-center justify-center py-4 bg-none ">
+        <div className="w-full max-w-5xl border-t border-brand-primary/40"></div>
+        <div className="absolute bg-none px-4">
+          <Sparkles size={18} className="text-brand-primary/40" />
+        </div>
+      </div>
+
       {/* 2. Benefits Grid */}
       <section className="section-container ">
-        <div className="mx-auto">
+        <div className="stack-space">
           <div className="mb-16 text-left">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -276,317 +284,303 @@ const JoinTeam = () => {
       {/* 4. Форевър Ливинг - Разширена Секция */}
       <section
         id="forever-section"
-        className="relative section-container bg-brand-light overflow-hidden"
+        className="section-container bg-brand-light"
       >
-        {/* 1. ЗАГЛАВНА ЧАСТ */}
-        <div className="mb-16 text-left max-w-7xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="inline-block"
-          >
-            <h1 className="font-display font-medium text-brand-dark case leading-none mb-4">
-              Кои са <br />
-              <span className="text-brand-primary font-light italic">
-                Форевър Ливинг?
-              </span>
-            </h1>
-            <div className="flex items-center gap-4">
-              <div className="w-12 h-[1px] bg-brand-primary" />
-              <p className="font-sans text-gray-400 text-xs case tracking-[0.2em] font-regular">
-                Световният лидер в производството на продукти от Алое Вера!
-              </p>
-            </div>
-          </motion.div>
-        </div>
-
-        <div className="max-w-7xl mx-auto relative z-10">
-          {/* 2. ГОРЕН ГРИД: СТАТИСТИКИ И ИНФО */}
-          <div className="grid lg:grid-cols-12 gap-12 md:gap-16 items-start mb-10 ">
-            {/* Лява страна: Визуални Статистики */}
-            <div className="lg:col-span-7 grid grid-cols-1 md:grid-cols-2 gap-6 relative">
-              <div className="space-y-6">
-                <motion.div
-                  whileHover={{ y: -5 }}
-                  className="bg-brand-primary p-10 md:p-12 rounded-[2.5rem] text-white shadow-2xl shadow-brand-primary/20"
-                >
-                  <h4 className="font-display text-6xl md:text-7xl font-medium mb-3 italic tracking-tighter text-white">
-                    45+
-                  </h4>
-                  <div className="space-y-1">
-                    <p className="font-sans text-[12px] uppercase tracking-[0.2em] font-bold opacity-90">
-                      Години Лидерство
-                    </p>
-                    <p className="font-sans text-sm opacity-75 font-light leading-relaxed">
-                      Стабилност от 1978 г. без промяна в мисията.
-                    </p>
-                  </div>
-                </motion.div>
-
-                <motion.div
-                  whileHover={{ y: -5 }}
-                  className="bg-brand-dark p-10 md:p-12 rounded-[2.5rem] text-white shadow-xl"
-                >
-                  <h4 className="font-display text-6xl md:text-7xl font-medium mb-3 italic tracking-tighter text-white">
-                    160+
-                  </h4>
-                  <div className="space-y-1">
-                    <p className="font-sans text-[12px] uppercase tracking-[0.2em] font-bold opacity-90">
-                      Държави
-                    </p>
-                    <p className="font-sans text-sm opacity-75 font-light leading-relaxed">
-                      Глобално присъствие и логистична мрежа.
-                    </p>
-                  </div>
-                </motion.div>
-              </div>
-
-              <div className="md:pt-20 space-y-6">
-                <div className="bg-brand-light rounded-[2.5rem] shadow-sm flex flex-col items-start justify-center p-8 md:p-10 border border-brand-light min-h-[260px] md:min-h-[280px] relative overflow-hidden group">
-                  <Sparkles className="absolute -right-4 -top-4 text-brand-primary/10 w-32 h-32 group-hover:rotate-12 transition-transform duration-700" />
-                  <Briefcase
-                    className="text-brand-primary mb-6"
-                    size={32}
-                    strokeWidth={1.5}
-                  />
-                  <p className="font-display text-brand-dark text-3xl tracking-tighter leading-tight">
-                    Бизнес без <br />
-                    <span className="text-brand-primary italic font-light">
-                      граници
-                    </span>
-                  </p>
-                  <p className="text-[10px] text-gray-400 mt-6 font-sans uppercase tracking-widest leading-relaxed">
-                    Възможност за доходи <br /> от всяка точка на света.
-                  </p>
-                </div>
-
-                <div className=" border border-brand-primary/10 rounded-[2.5rem] p-8 flex flex-col items-center justify-center text-center">
-                  <TrendingUp className="text-brand-primary mb-2" size={20} />
-                  <p className="font-sans text-[10px] uppercase tracking-[0.2em] text-brand-dark font-bold leading-relaxed">
-                    Вертикално Интегрирани
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            {/* Дясна страна: Подробна Информация */}
-            <div className="lg:col-span-5 space-y-10 py-4">
-              <div className="space-y-6">
-                <h1 className="font-display text-4xl md:text-5xl font-medium text-brand-dark tracking-tighter leading-tight">
-                  Стабилност, която <br />
-                  <span className="text-brand-primary italic font-light font-display">
-                    променя животи
-                  </span>
-                </h1>
-              </div>
-
-              <div className="space-y-8 font-sans text-gray-500 text-lg leading-relaxed font-light">
-                <p>
-                  <a
-                    href="https://foreverliving.com/bgr/bg-bg/about"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-brand-primary font-bold hover:text-brand-dark underline transition-colors"
-                  >
-                    Форевър Ливинг
-                  </a>{" "}
-                  е най-големият производител и дистрибутор на продукти от Алое
-                  Вера в света. Компанията притежава над 50 милиона растения в
-                  собствените си плантации в Доминиканската република и Тексас.
-                </p>
-                <div className="p-8 /40 rounded-3xl border-l-4 border-brand-primary italic text-brand-dark/80 text-base shadow-sm leading-relaxed">
-                  „Ние контролираме целия процес – от засаждането на растението
-                  до доставката до вашия дом. Това гарантира чистота без
-                  компромиси.“
-                </div>
-              </div>
-            </div>
-          </div>
-          {/* Малките карти (3 броя в колона) */}
-          <div className="flex flex-col space-y-6 mb-20 w-full relative z-10 px-2 md:grid md:grid-cols-3 md:space-y-0 md:gap-12">
-            {[
-              {
-                title: "Пълна Прозрачност",
-                desc: "Собствени плантации, заводи и логистика – без външни доставчици.",
-                icon: <BookOpenCheck size={24} />,
-              },
-              {
-                title: "Наука и Патенти",
-                desc: "Уникален процес на студена стабилизация, запазващ 100% от нутриентите.",
-                icon: <Microscope size={24} />,
-              },
-              {
-                title: "Етичен Избор",
-                desc: "Сертификати IASC, Halal, Kosher и без тестове върху животни.",
-                icon: <ShieldCheck size={24} />,
-              },
-            ].map((item, idx) => (
-              <motion.div
-                key={idx}
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: idx * 0.2 }}
-                className="group relative flex items-start gap-6"
-              >
-                {/* Лява страна: Икона и Линия */}
-                <div className="flex flex-col items-center shrink-0">
-                  <div className="w-12 h-12 rounded-full border border-brand-primary/20 flex items-center justify-center text-brand-primary bg-white shadow-sm group-hover:bg-brand-primary group-hover:text-white transition-all duration-500">
-                    {item.icon}
-                  </div>
-                  {/* Вертикална линия, която свързва елементите на мобилни */}
-                  <div className="w-[1px] h-full bg-gradient-to-b from-brand-primary/20 to-transparent mt-4 md:hidden"></div>
-                </div>
-
-                {/* Дясна страна: Текст */}
-                <div className="flex-1 pt-1">
-                  <div className="flex items-center gap-3 mb-2">
-                    <h3 className="font-display text-2xl text-brand-dark tracking-tight">
-                      {item.title}
-                    </h3>
-                  </div>
-                  <p className="font-sans text-gray-500 leading-relaxed font-light text-[15px] md:text-base">
-                    {item.desc}
-                  </p>
-
-                  {/* Долен кант за мобилни */}
-                  <div className="w-full h-[1px] bg-brand-light mt-8 md:hidden"></div>
-                </div>
-              </motion.div>
-            ))}
-
-
-          </div>
-
-          {/* Divider Between Section 3 & 4 */}
-          <div className="relative flex items-center justify-center py-4 bg-none">
-            <div className="w-full max-w-5xl border-t border-brand-primary/40"></div>
-            <div className="absolute bg-none px-4">
-              <Sparkles size={18} className="text-brand-primary/40" />
-            </div>
-          </div>
-
+        <div className="stack-space">
           {/* 1. ЗАГЛАВНА ЧАСТ */}
-          <div className=" text-center max-w-7xl mx-auto section-container ">
+          <div className="mb-16 text-left">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="max-w-3xl mx-auto" // Ограничаваме ширината на текста за по-добра четимост
+              className="inline-block"
             >
-              <h1 className="font-display font-medium text-brand-dark tracking-tighter leading-none mb-12">
-                Стабилност <br />
+              <h1 className="font-display font-medium text-brand-dark case leading-none mb-4">
+                Кои са <br />
                 <span className="text-brand-primary font-light italic">
-                  отвъд финансовия успех
+                  Форевър Ливинг?
                 </span>
               </h1>
-
-              {/* ВЪВЕДЖАЩО ИЗРЕЧЕНИЕ */}
-
-              <div className="border-y border-brand-light relative">
-                <Quote
-                  className="absolute top-4 left-0 text-brand-primary opacity-20"
-                  size={40}
-                />
-
-                <h3 className="font-display text-gray-600/50 italic pl-10 leading-relaxed">
-                  "Партньорството с Forever ви дава не само финансова свобода,
-                  но и спокойствието на една етична и дългосрочна основа."
-                </h3>
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-[1px] bg-brand-primary" />
+                <p className="font-sans text-gray-400 text-xs case tracking-[0.2em] font-regular">
+                  Световният лидер в производството на продукти от Алое Вера!
+                </p>
               </div>
             </motion.div>
           </div>
 
-          {/* 3. ДОЛЕН ПАНЕЛ: ФАКТИ */}
-          <div className="relative">
-            <div
-              ref={factScrollRef}
-              onScroll={() => {
-                if (factScrollRef.current) {
-                  const { scrollLeft, offsetWidth } = factScrollRef.current;
-                  setFactIndex(Math.round(scrollLeft / offsetWidth));
-                }
-              }}
-              className="
+          <div className="mx-auto z-10">
+            {/* 2. ГОРЕН ГРИД: СТАТИСТИКИ И ИНФО */}
+            <div className="grid lg:grid-cols-12 gap-12 md:gap-16 items-start mb-10 ">
+              {/* Лява страна: Визуални Статистики */}
+              <div className="lg:col-span-7 grid grid-cols-1 md:grid-cols-2 gap-6 relative">
+                <div className="space-y-6">
+                  <motion.div
+                    whileHover={{ y: -5 }}
+                    className="bg-brand-primary p-10 md:p-12 rounded-[2.5rem] text-white shadow-2xl shadow-brand-primary/20"
+                  >
+                    <h4 className="font-display text-6xl md:text-7xl font-medium mb-3 italic tracking-tighter text-white">
+                      45+
+                    </h4>
+                    <div className="space-y-1">
+                      <p className="font-sans text-[12px] uppercase tracking-[0.2em] font-bold opacity-90">
+                        Години Лидерство
+                      </p>
+                      <p className="font-sans text-sm opacity-75 font-light leading-relaxed">
+                        Стабилност от 1978 г. без промяна в мисията.
+                      </p>
+                    </div>
+                  </motion.div>
+
+                  <motion.div
+                    whileHover={{ y: -5 }}
+                    className="bg-brand-dark p-10 md:p-12 rounded-[2.5rem] text-white shadow-xl"
+                  >
+                    <h4 className="font-display text-6xl md:text-7xl font-medium mb-3 italic tracking-tighter text-white">
+                      160+
+                    </h4>
+                    <div className="space-y-1">
+                      <p className="font-sans text-[12px] uppercase tracking-[0.2em] font-bold opacity-90">
+                        Държави
+                      </p>
+                      <p className="font-sans text-sm opacity-75 font-light leading-relaxed">
+                        Глобално присъствие и логистична мрежа.
+                      </p>
+                    </div>
+                  </motion.div>
+                </div>
+
+                <div className="md:pt-20 space-y-6">
+                  <div className="bg-brand-light rounded-[2.5rem] shadow-sm flex flex-col items-start justify-center p-8 md:p-10 border border-brand-light min-h-[260px] md:min-h-[280px] relative overflow-hidden group">
+                    <Sparkles className="absolute -right-4 -top-4 text-brand-primary/10 w-32 h-32 group-hover:rotate-12 transition-transform duration-700" />
+                    <Briefcase
+                      className="text-brand-primary mb-6"
+                      size={32}
+                      strokeWidth={1.5}
+                    />
+                    <p className="font-display text-brand-dark text-3xl tracking-tighter leading-tight">
+                      Бизнес без <br />
+                      <span className="text-brand-primary italic font-light">
+                        граници
+                      </span>
+                    </p>
+                    <p className="text-[10px] text-gray-400 mt-6 font-sans uppercase tracking-widest leading-relaxed">
+                      Възможност за доходи <br /> от всяка точка на света.
+                    </p>
+                  </div>
+
+                  <div className=" border border-brand-primary/10 rounded-[2.5rem] p-8 flex flex-col items-center justify-center text-center">
+                    <TrendingUp className="text-brand-primary mb-2" size={20} />
+                    <p className="font-sans text-[10px] uppercase tracking-[0.2em] text-brand-dark font-bold leading-relaxed">
+                      Вертикално Интегрирани
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Дясна страна: Подробна Информация */}
+              <div className="lg:col-span-5 space-y-10 py-4">
+                <div className="space-y-6">
+                  <h1 className="font-display text-4xl md:text-5xl font-medium text-brand-dark tracking-tighter leading-tight">
+                    Стабилност, която <br />
+                    <span className="text-brand-primary italic font-light font-display">
+                      променя животи
+                    </span>
+                  </h1>
+                </div>
+
+                <div className="space-y-8 font-sans text-gray-500 text-lg leading-relaxed font-light">
+                  <p>
+                    <a
+                      href="https://foreverliving.com/bgr/bg-bg/about"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-brand-primary font-bold hover:text-brand-dark underline transition-colors"
+                    >
+                      Форевър Ливинг
+                    </a>{" "}
+                    е най-големият производител и дистрибутор на продукти от
+                    Алое Вера в света. Компанията притежава над 50 милиона
+                    растения в собствените си плантации в Доминиканската
+                    република и Тексас.
+                  </p>
+                  <div className="p-8 /40 rounded-3xl border-l-4 border-brand-primary italic text-brand-dark/80 text-base shadow-sm leading-relaxed">
+                    „Ние контролираме целия процес – от засаждането на
+                    растението до доставката до вашия дом. Това гарантира
+                    чистота без компромиси.“
+                  </div>
+                </div>
+              </div>
+            </div>
+            {/* Малките карти (3 броя в колона) */}
+            <div className="flex flex-col space-y-6 w-full relative z-10 px-2 md:grid md:grid-cols-3 md:space-y-0 md:gap-12">
+              {[
+                {
+                  title: "Пълна Прозрачност",
+                  desc: "Собствени плантации, заводи и логистика – без външни доставчици.",
+                  icon: <BookOpenCheck size={24} />,
+                },
+                {
+                  title: "Наука и Патенти",
+                  desc: "Уникален процес на студена стабилизация, запазващ 100% от нутриентите.",
+                  icon: <Microscope size={24} />,
+                },
+                {
+                  title: "Етичен Избор",
+                  desc: "Сертификати IASC, Halal, Kosher и без тестове върху животни.",
+                  icon: <ShieldCheck size={24} />,
+                },
+              ].map((item, idx) => (
+                <motion.div
+                  key={idx}
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: idx * 0.2 }}
+                  className="group relative flex items-start gap-6"
+                >
+                  {/* Лява страна: Икона и Линия */}
+                  <div className="flex flex-col items-center shrink-0">
+                    <div className="w-12 h-12 rounded-full border border-brand-primary/20 flex items-center justify-center text-brand-primary bg-white shadow-sm group-hover:bg-brand-primary group-hover:text-white transition-all duration-500">
+                      {item.icon}
+                    </div>
+                    {/* Вертикална линия, която свързва елементите на мобилни */}
+                    <div className="w-[1px] h-full bg-gradient-to-b from-brand-primary/20 to-transparent mt-4 md:hidden"></div>
+                  </div>
+
+                  {/* Дясна страна: Текст */}
+                  <div className="flex-1 pt-1">
+                    <div className="flex items-center gap-3 mb-2">
+                      <h3 className="font-display text-2xl text-brand-dark tracking-tight">
+                        {item.title}
+                      </h3>
+                    </div>
+                    <p className="font-sans text-gray-500 leading-relaxed font-light text-[15px] md:text-base">
+                      {item.desc}
+                    </p>
+
+                    {/* Долен кант за мобилни */}
+                    <div className="w-full h-[1px] bg-brand-light mt-8 md:hidden"></div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+
+            {/* 1. ЗАГЛАВНА ЧАСТ */}
+            <div className=" text-center mt-4 mb-4 md:mt-20 md:mb-20">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                className="max-w-3xl mx-auto" // Ограничаваме ширината на текста за по-добра четимост
+              >
+
+                {/* ВЪВЕДЖАЩО ИЗРЕЧЕНИЕ */}
+
+                <div className="border-y border-brand-light relative">
+                  <Quote
+                    className="absolute top-4 left-0 text-brand-primary"
+                    size={40}
+                  />
+
+                  <h3 className="font-display text-xl md:text-3xl text-brand-primary italic pl-10 leading-relaxed">
+                    "Партньорството с Forever ви дава не само финансова свобода,
+                    но и спокойствието на една етична и дългосрочна основа."
+                  </h3>
+                </div>
+              </motion.div>
+            </div>
+
+            {/* 3. ДОЛЕН ПАНЕЛ: ФАКТИ */}
+            <div className="relative">
+              <div
+                ref={factScrollRef}
+                onScroll={() => {
+                  if (factScrollRef.current) {
+                    const { scrollLeft, offsetWidth } = factScrollRef.current;
+                    setFactIndex(Math.round(scrollLeft / offsetWidth));
+                  }
+                }}
+                className="
       /* Мобилни: Хоризонтален скрол */
       flex overflow-x-auto snap-x snap-mandatory no-scrollbar -mx-6 px-6 pb-4 gap-6
       /* Десктоп: Решетка */
       md:grid md:grid-cols-3 md:overflow-x-visible md:pb-0 md:mx-0 md:px-0 md:gap-8
     "
-            >
-              {[
-                {
-                  label: "Сигурност",
-                  title: "Частна Компания",
-                  text: "Forever е финансово независима компания без дългове. Това позволява на борда да взема решения в интерес на партньорите.",
-                  icon: <Target size={24} />,
-                },
-                {
-                  label: "Завещание",
-                  title: "Наследяем Бизнес",
-                  text: "Изградената от Вас мрежа и доходи могат да бъдат прехвърлени на Вашите наследници – сигурност за Вашето семейство.",
-                  icon: <Award size={24} />,
-                },
-                {
-                  label: "Екология",
-                  title: "Еко Отпечатък",
-                  text: "Плантациите на Forever пречистват земната атмосфера от над 2 милиона тона CO2 ежегодно. Помагате активно на планетата.",
-                  icon: <Sprout size={24} />,
-                },
-              ].map((item, idx) => (
-                <motion.div
-                  key={idx}
-                  whileHover={{ y: -8 }}
-                  className="
+              >
+                {[
+                  {
+                    label: "Сигурност",
+                    title: "Частна Компания",
+                    text: "Forever е финансово независима компания без дългове. Това позволява на борда да взема решения в интерес на партньорите.",
+                    icon: <Target size={24} />,
+                  },
+                  {
+                    label: "Завещание",
+                    title: "Наследяем Бизнес",
+                    text: "Изградената от Вас мрежа и доходи могат да бъдат прехвърлени на Вашите наследници – сигурност за Вашето семейство.",
+                    icon: <Award size={24} />,
+                  },
+                  {
+                    label: "Екология",
+                    title: "Еко Отпечатък",
+                    text: "Плантациите на Forever пречистват земната атмосфера от над 2 милиона тона CO2 ежегодно. Помагате активно на планетата.",
+                    icon: <Sprout size={24} />,
+                  },
+                ].map((item, idx) => (
+                  <motion.div
+                    key={idx}
+                    whileHover={{ y: -8 }}
+                    className="
           /* Важно за мобилния изглед: */
           min-w-[85vw] md:min-w-0 snap-center
           /* Стил на картата: */
           group p-8 md:p-10 rounded-[2.5rem] bg-[#fcfaf7]/80 backdrop-blur-md border border-white shadow-sm hover:shadow-xl hover:border-brand-primary/20 transition-all duration-500 flex flex-col h-full text-center
         "
-                >
-                  <span className="font-sans text-[10px] md:text-[11px] uppercase tracking-[0.3em] text-brand-primary font-bold mb-6 opacity-60">
-                    {item.label}
-                  </span>
+                  >
+                    <span className="font-sans text-[10px] md:text-[11px] uppercase tracking-[0.3em] text-brand-primary font-bold mb-6 opacity-60">
+                      {item.label}
+                    </span>
 
-                  <div className="w-14 h-14 mx-auto rounded-2xl bg-brand-primary text-white flex items-center justify-center mb-6 transition-transform duration-700 shadow-lg shadow-brand-primary/20">
-                    {React.cloneElement(item.icon, {
-                      className: "text-white",
-                      size: 28,
-                    })}
-                  </div>
+                    <div className="w-14 h-14 mx-auto rounded-2xl bg-brand-primary text-white flex items-center justify-center mb-6 transition-transform duration-700 shadow-lg shadow-brand-primary/20">
+                      {React.cloneElement(item.icon, {
+                        className: "text-white",
+                        size: 28,
+                      })}
+                    </div>
 
-                  <h3 className="font-display text-2xl text-brand-dark font-medium mb-4 tracking-tight">
-                    {item.title}
-                  </h3>
+                    <h3 className="font-display text-2xl text-brand-dark font-medium mb-4 tracking-tight">
+                      {item.title}
+                    </h3>
 
-                  <p className="font-sans leading-relaxed font-light text-sm md:text-base">
-                    {item.text}
-                  </p>
+                    <p className="font-sans leading-relaxed font-light text-sm md:text-base">
+                      {item.text}
+                    </p>
 
-                  {/* Малък визуален индикатор за мобилни */}
-                  <div className="mt-auto pt-6 md:hidden">
-                    <div className="w-8 h-1 bg-brand-primary/10 mx-auto rounded-full" />
-                  </div>
-                </motion.div>
-              ))}
+                    {/* Малък визуален индикатор за мобилни */}
+                    <div className="mt-auto pt-6 md:hidden">
+                      <div className="w-8 h-1 bg-brand-primary/10 mx-auto rounded-full" />
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+
+              {/* ДИНАМИЧНИ ТОЧКИ (PAGINATION DOTS) - Mobile Only */}
+              <div className="flex justify-center gap-2 mt-6 md:hidden">
+                {[0, 1, 2].map((i) => (
+                  <div
+                    key={i}
+                    className={`h-1.5 transition-all duration-300 rounded-full ${
+                      factIndex === i
+                        ? "w-8 bg-brand-primary"
+                        : "w-2 bg-brand-primary/20"
+                    }`}
+                  />
+                ))}
+              </div>
             </div>
-
-            {/* ДИНАМИЧНИ ТОЧКИ (PAGINATION DOTS) - Mobile Only */}
-            <div className="flex justify-center gap-2 mt-6 md:hidden">
-              {[0, 1, 2].map((i) => (
-                <div
-                  key={i}
-                  className={`h-1.5 transition-all duration-300 rounded-full ${
-                    factIndex === i
-                      ? "w-8 bg-brand-primary"
-                      : "w-2 bg-brand-primary/20"
-                  }`}
-                />
-              ))}
-            </div>
-          </div>
-                      <div className="flex justify-center items-center mx-auto mt-10">
+            <div className="flex justify-center items-center mx-auto mt-10">
               <a
                 href="#join-form"
                 className="btn-primary w-full sm:w-auto text-center"
@@ -594,6 +588,7 @@ const JoinTeam = () => {
                 Кандидатствай сега
               </a>{" "}
             </div>
+          </div>
         </div>
       </section>
 

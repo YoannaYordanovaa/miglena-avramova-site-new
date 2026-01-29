@@ -49,10 +49,10 @@ const PrivacyPolicy = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-brand-light">
+    <div className="min-h-screen bg-brand-light mt-10">
       {/* Hero Section */}
-      <section className="relative section-container pt-30 bg-brand-cream/30">
-        <div className=" max-w-7xl mx-auto text-center">
+      <section className="section-container bg-brand-cream/30">
+        <div className="stack-space ">
           <Link
             to="/"
             className="inline-flex items-center gap-2 text-brand-primary mb-8 hover:-translate-x-2 transition-transform font-sans text-xs uppercase tracking-widest font-bold"
@@ -63,7 +63,7 @@ const PrivacyPolicy = () => {
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="font-display text-5xl md:text-7xl text-brand-dark mb-6 tracking-tighter"
+            className="font-display text-5xl md:text-7xl text-brand-dark tracking-tighter"
           >
             Политика за <br />
             <span className="text-brand-primary italic font-light">
@@ -77,8 +77,8 @@ const PrivacyPolicy = () => {
       </section>
 
       {/* Content Section */}
-      <section className="section-container">
-        <div className="max-w-7xl mx-auto">
+      <section className="relative">
+        <div className="stack-space">
           <div className="space-y-16">
             {sections.map((section, idx) => (
               <motion.div
@@ -93,11 +93,11 @@ const PrivacyPolicy = () => {
                   <div className="w-12 h-12 rounded-2xl bg-brand-primary/10 flex items-center justify-center text-brand-primary group-hover:bg-brand-primary group-hover:text-white transition-all duration-500">
                     {section.icon}
                   </div>
-                  <h2 className="font-display text-2xl md:text-3xl text-brand-dark">
+                  <h2 className="font-display text-2xl text-brand-dark">
                     {section.title}
                   </h2>
                 </div>
-                <p className="font-sans text-gray-500 text-lg leading-relaxed font-light pl-16">
+                <p className="font-sans text-gray-500 font-light pl-16">
                   {section.content}
                 </p>
               </motion.div>

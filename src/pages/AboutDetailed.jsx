@@ -29,44 +29,31 @@ const AboutDetailed = () => {
   };
 
   return (
-    <div className="w-full">
+    <div className="relative overflow-x-hidden">
       {/* 1. STORY SECTION - Full Width Split Design */}
-      <section className="relative w-full flex flex-col lg:flex-row items-stretch overflow-hidden pt-20 md:pt-20">
+      <section className="relative w-full flex flex-col lg:flex-row items-stretch overflow-hidden max-w-[1924px] mx-auto pt-20 md:pt-20">
         {/* ЛЯВА ЧАСТ: Визуален център (Снимката) */}
-        <div className="relative w-full lg:w-1/2 min-h-[450px] md:min-h-[600px] lg:min-h-[85vh] overflow-hidden">
-          <motion.div
-            initial={{ scale: 1.05, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 1.5 }}
-            className="absolute inset-0"
-          >
-            <img
-              src="/Miglena/Miglena_aboutDetailed2.jpg"
-              className="w-full h-full object-cover object-center"
-              alt="Миглена"
-            />
-            {/* Overlay за преход */}
-            <div className="absolute inset-0 bg-gradient-to-r from-transparent to-white/5 hidden lg:block" />
-            <div className="absolute inset-0 bg-gradient-to-b from-transparent to-white/10 lg:hidden" />
-          </motion.div>
+       {/* ЛЯВА ЧАСТ: Визуален център (Снимката) */}
+{/* Промяна: Ограничаваме височината до максимум 700px-800px на десктоп и центрираме съдържанието */}
+<div className="relative w-full lg:w-1/2 flex items-center justify-center lg:h-[700px] xl:h-[800px] min-h-[450px] md:min-h-[600px] overflow-hidden">
+  <motion.div
+    initial={{ scale: 1.05, opacity: 0 }}
+    animate={{ scale: 1, opacity: 1 }}
+    transition={{ duration: 1.5 }}
+    className="relative w-full h-full lg:max-w-[1920px] mx-auto overflow-hidden" // Ограничаваме максималната ширина на контейнера
+  >
+    <img
+      src="/Miglena/Miglena_aboutDetailed2.jpg"
+      className="w-full h-full object-cover object-center"
+      alt="Миглена"
+    />
+    {/* Overlay за преход */}
+    <div className="absolute inset-0 bg-gradient-to-r from-transparent to-white/5 hidden lg:block" />
+    <div className="absolute inset-0 bg-gradient-to-b from-transparent to-white/10 lg:hidden" />
+  </motion.div>
 
-          {/* Бадж върху снимката */}
-          <div className="absolute bottom-8 left-8 md:bottom-12 md:left-12 z-20">
-            <motion.div
-              initial={{ x: -20, opacity: 0 }}
-              animate={{ x: 0, opacity: 1 }}
-              transition={{ delay: 1 }}
-              className="bg-brand-primary text-white p-5 md:p-7 rounded-tr-[3rem] shadow-2xl backdrop-blur-sm bg-brand-primary/95"
-            >
-              <p className="font-display italic text-2xl md:text-3xl">
-                10+ години
-              </p>
-              <p className="text-[9px] md:text-[10px] uppercase tracking-[0.2em] font-bold opacity-80">
-                Опит и отдаденост
-              </p>
-            </motion.div>
-          </div>
-        </div>
+
+</div>
 
         {/* ДЯСНА ЧАСТ: Текст и Типография */}
         <div className="w-full lg:w-1/2 flex items-center justify-center p-8 md:p-16 lg:p-24 relative">
@@ -77,7 +64,7 @@ const AboutDetailed = () => {
 
           <div className="max-w-xl relative z-10 space-y-10 md:space-y-14">
             {/* Заглавие */}
-            <div className="pt-7 text-left">
+            <div className=" text-left">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -114,71 +101,72 @@ const AboutDetailed = () => {
                 </p>
               </div>
 
-              <p>
-                Въпреки това от над 10 години не практикувам професията си, тъй
-                като професионалният ми път ме отведе в друга посока – към
-                собствен бизнес. Който фалира... Започнах да си търся работа,
-                както повечето хора през периода на Covid-кризата. Отне ми
-                време, но чакането си заслужаваше...{" "}
-              </p>
-
               {/* Бутон за скрол надолу - Минималистичен дизайн */}
-<div className="pt-6 flex mx-auto justify-center">
-  <button
-    onClick={() =>
-      document
-        .querySelector("#about")
-        ?.scrollIntoView({ behavior: "smooth" })
-    }
-    className="group relative flex flex-col items-center gap-3 transition-all"
-    aria-label="Скрол надолу към трансформацията"
-  >
-     {/* Дискретен текст под стрелките (по избор, може да се премахне) */}
-    <span className="text-[9px] uppercase tracking-[0.3em] text-brand-dark/40 font-bold group-hover:text-brand-primary transition-colors">
-      Виж повече
-    </span>
-    {/* Основният кръг */}
-    <div className="w-16 h-16 md:w-16 md:h-16">
-      <motion.div
-        animate={{ y: [0, 6, 0] }}
-        transition={{
-          duration: 2,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-        className="flex flex-col items-center -space-y-4 text-brand-primary group-hover:text-white transition-colors"
-      >
-        <ChevronDown size={28} strokeWidth={1.2} />
-        <ChevronDown size={28} strokeWidth={1.2} className="opacity-40" />
-      </motion.div>
-    </div>
-
-   
-  </button>
-</div>
+              <div className="pt-6 flex mx-auto justify-center">
+                <button
+                  onClick={() =>
+                    document
+                      .querySelector("#about")
+                      ?.scrollIntoView({ behavior: "smooth" })
+                  }
+                  className="group relative flex flex-col items-center gap-3 transition-all"
+                  aria-label="Скрол надолу към трансформацията"
+                >
+                  {/* Дискретен текст под стрелките (по избор, може да се премахне) */}
+                  <span className="text-[9px] uppercase tracking-[0.3em] text-brand-dark/40 font-bold group-hover:text-brand-primary transition-colors">
+                    Виж повече
+                  </span>
+                  {/* Основният кръг */}
+                  <div className="w-16 h-16 md:w-16 md:h-16">
+                    <motion.div
+                      animate={{ y: [0, 6, 0] }}
+                      transition={{
+                        duration: 2,
+                        repeat: Infinity,
+                        ease: "easeInOut",
+                      }}
+                      className="flex flex-col items-center -space-y-4 text-brand-primary group-hover:text-white transition-colors"
+                    >
+                      <ChevronDown size={28} strokeWidth={1.2} />
+                      <ChevronDown
+                        size={28}
+                        strokeWidth={1.2}
+                        className="opacity-40"
+                      />
+                    </motion.div>
+                  </div>
+                </button>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
       {/* 3. MISSION SECTION - Кремав фон до края */}
-      <section id="about" className="bg-brand-light w-full overflow-hidden">
-        <div className="section-container mx-auto">
-          <div className="max-w-4xl mx-auto text-center space-y-6 md:space-y-4 relative z-10">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={entryTransition}
-              viewport={{ once: true }}
-              className="space-y-4"
-            >
-              <h1 className="font-display text-brand-dark leading-tight tracking-tighter">
-                Моят път към <br />
-                <span className="text-brand-primary italic font-light relative">
-                  баланса и енергията
-                </span>
-              </h1>
-            </motion.div>
+      <section id="about" className="bg-brand-light section-container">
+        <div className="stack-space ">
+            <div className="mb-8 text-left">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                className="inline-block"
+              >
+                <h1 className="font-display font-medium text-brand-dark case leading-none mb-4">
+                  Хора, които
+                  <br />
+                  <span className="text-brand-primary font-light italic">
+                    трансформираха ежедневието си
+                  </span>
+                </h1>
+                <div className="flex items-center gap-4">
+                  <div className="w-12 h-[1px] bg-brand-primary" />
+                  <p className="font-sans text-gray-400 text-xs case tracking-[0.2em] font-regular">
+                    Доверие, изградено с години!
+                  </p>
+                </div>
+              </motion.div>
+            </div>
 
             {/* Highlighted Quote */}
             <div className="border-y border-brand-light relative py-8">
@@ -197,16 +185,25 @@ const AboutDetailed = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ ...entryTransition, delay: 0.2 }}
               viewport={{ once: true }}
-              className="space-y-10"
+              className="space-y-5"
             >
-              <p className="font-sans leading-relaxed max-w-4xl mx-auto font-light">
+                            
+              <p className="font-sans leading-relaxed max-w-7xl font-light ">
+                От над 10 години не практикувам професията си, тъй
+                като професионалният ми път ме отведе в друга посока – към
+                собствен бизнес. Който фалира... Започнах да си търся работа,
+                както повечето хора през периода на Covid-кризата. Отне ми
+                време, но чакането си заслужаваше...{" "}
+              </p>
+
+              <p className="font-sans leading-relaxed max-w-7xl font-light">
                 Днес имам честта да работя с прекрасен екип и вдъхновяващи
                 ментори, които ме подкрепят и насърчават във всичките ми
                 начинания. Успях не само да открия своето призвание, но и да
                 помогна на много други хора като мен!
               </p>
 
-              <p className="font-sans leading-relaxed max-w-4xl mx-auto font-light ">
+              <p className="font-sans leading-relaxed max-w-7xl font-light ">
                 Вярвам, че всяка жена заслужава да се чувства значима, финансово
                 независима и изпълнена с енергия. Ако и ти усещаш, че е време да
                 спреш да отлагаш мечтите си и търсиш среда, която да те дърпа
@@ -214,12 +211,14 @@ const AboutDetailed = () => {
                 заедно.
               </p>
 
-              <div className="flex justify-center pt-6">
+
+
+              <div className="flex justify-start pt-6">
                 <Link
                   to="/join"
                   className="btn-primary group w-full sm:w-auto text-center justify-center flex items-center px-10 py-5"
                 >
-                  Ела в моя екип!{" "}
+                  Научи повече тук{" "}
                   <ArrowRight
                     size={18}
                     className="ml-2 group-hover:translate-x-2 transition-transform"
@@ -228,13 +227,11 @@ const AboutDetailed = () => {
               </div>
             </motion.div>
           </div>
-        </div>
       </section>
 
       {/* 7. TRANSFORMATION SECTION - Тъмен фон до края */}
-      <section className="bg-none w-full relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-1/2 h-full bg-brand-primary/5 blur-3xl rounded-full" />
-        <div className="section-container mx-auto relative z-10">
+      <section className="section-container">
+        <div className="stack-space ">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div className="text-left space-y-8">
               <div className="mb-16 text-left">

@@ -49,7 +49,7 @@ const NewsDetail = () => {
     );
 
   return (
-    <div className="bg-brand-cream min-h-screen section-container font-sans text-brand-dark overflow-x-hidden">
+    <div className="section-container text-brand-dark overflow-x-hidden">
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
@@ -85,7 +85,7 @@ const NewsDetail = () => {
             initial={{ scale: 0.95, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ delay: 0.2 }}
-            className="mb-12 rounded-[2.5rem] md:rounded-[4rem] overflow-hidden shadow-2xl border-[6px] md:border-[12px] border-white"
+            className="mb-12 rounded-[2.5rem] md:rounded-[2.5rem] overflow-hidden shadow-2xl border-[6px] md:border-[6px] border-white"
           >
             <img
               src={`${API_URL}${article.image}`}
@@ -96,7 +96,7 @@ const NewsDetail = () => {
         )}
 
         {/* СЪДЪРЖАНИЕ */}
-        <article className="bg-brand-light/70 backdrop-blur-md rounded-[3rem] md:rounded-[4rem] p-8 md:p-20 shadow-sm border border-white/50 text-left relative">
+        <article className="bg-brand-light backdrop-blur-md rounded-[2.5rem] md:rounded-[2.5rem] p-8 md:p-20 shadow-sm border border-white/50 text-left relative">
           <div
   className="article-content"
   dangerouslySetInnerHTML={{ __html: article.text }}
@@ -183,20 +183,7 @@ const NewsDetail = () => {
         </article>
       </motion.div>
 
-      <style
-        dangerouslySetInnerHTML={{
-          __html: `
-        .tiptap-content p { margin-bottom: 1.8rem; line-height: 1.8; font-size: 1.15rem; }
-        .tiptap-content b, .tiptap-content strong { font-weight: 700; color: #003f00; }
-        .tiptap-content h2 { font-family: "Cormorant Infant", serif; font-size: 2.5rem; color: #003f00; margin: 3.5rem 0 1.5rem; font-style: italic; line-height: 1.1; }
-        .tiptap-content blockquote { 
-          border-left: 5px solid #74ab1a; padding: 1.5rem 2.5rem; margin: 3.5rem 0; 
-          font-size: 1.6rem; color: #003f00; font-style: italic; background: rgba(116, 171, 26, 0.04); border-radius: 0 2.5rem 2.5rem 0;
-        }
-        .tiptap-content img { border-radius: 2rem; margin: 3.5rem auto; box-shadow: 0 25px 50px rgba(0,0,0,0.1); border: 6px solid white; max-width: 100%; height: auto; }
-      `,
-        }}
-      />
+  
     </div>
   );
 };
