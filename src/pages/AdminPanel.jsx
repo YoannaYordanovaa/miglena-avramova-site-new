@@ -333,7 +333,7 @@ const AdminPanel = () => {
                 Админ{" "}
                 <span className="text-brand-primary font-light">Вход</span>
               </h2>
-              <p className="font-sans text-[10px] uppercase tracking-[0.2em] text-gray-400 font-bold">
+              <p className="font-sans text-[10px] uppercase tracking-[0.2em] text-gray-500 font-bold">
                 Само за оторизиран достъп
               </p>
             </div>
@@ -362,7 +362,7 @@ const AdminPanel = () => {
               <button
                 type="button"
                 onClick={() => navigate("/")}
-                className="text-[10px] uppercase tracking-widest text-gray-400 hover:text-brand-dark transition-colors font-bold"
+                className="text-[10px] uppercase tracking-widest text-gray-500 hover:text-brand-dark transition-colors font-bold"
               >
                 Назад към сайта
               </button>
@@ -385,7 +385,7 @@ const AdminPanel = () => {
               setIsAuthenticated(false);
               navigate("/");
             }}
-            className="text-gray-400 p-2 hover:text-brand-primary transition-colors flex gap-2 items-center"
+            className="text-gray-500 p-2 hover:text-brand-primary transition-colors flex gap-2 items-center"
           >
             Изход <LogOut size={20} />
           </button>
@@ -395,10 +395,10 @@ const AdminPanel = () => {
           <form onSubmit={handleSaveNews}>
             <div className="p-5 md:p-10 space-y-6">
               <div className="space-y-3">
-                <label className="font-sans tracking-widest text-gray-400 ml-4">
+                <label className="font-sans text-gray-500 ml-4">
                   Водеща снимка
                 </label>
-                <div className="relative aspect-[16/9] md:aspect-[21/9] bg-gray-100 rounded-[2rem] overflow-hidden border-2 border-dashed border-brand-primary/10">
+                <div className="relative aspect-[16/9] md:aspect-[21/9] bg-white rounded-[2rem] overflow-hidden border-2 border-dashed border-brand-primary/10">
                   {formData.imagePreview ? (
                     <>
                       <img
@@ -425,12 +425,12 @@ const AdminPanel = () => {
                       </button>
                     </>
                   ) : (
-                    <label className="absolute inset-0 flex flex-col items-center justify-center cursor-pointer hover:bg-brand-primary/5 transition-colors text-center">
+                    <label className="absolute inset-0 flex flex-col items-center justify-center cursor-pointer hover:bg-brand-primary/20 transition-colors text-center">
                       <ImageIcon
                         size={24}
                         className="text-brand-primary/20 mb-1"
                       />
-                      <span className="text-[9px] font-bold uppercase tracking-widest text-gray-400">
+                      <span className="text-[9px] font-bold uppercase tracking-widest text-gray-500">
                         Качи снимка
                       </span>
                       <input
@@ -452,7 +452,7 @@ const AdminPanel = () => {
                 }
                 className="
     w-full px-6 py-5 rounded-2xl outline-none transition-all duration-300 border-2
-    bg-white border-gray-100 text-gray-400 shadow-lg
+    bg-white border-gray-100 text-gray shadow-lg
     focus:bg-white focus:border-brand-primary focus:text-gray-500 focus:shadow-lg
     font-sans text-xl md:text-3xl font-medium
   "
@@ -484,7 +484,7 @@ const AdminPanel = () => {
                   }
                   className="
     w-full px-6 py-5 rounded-2xl outline-none transition-all duration-300 border-2
-    bg-white border-gray-100 text-gray-400 shadow-lg
+    bg-white border-gray-100 text-gray shadow-lg
     focus:bg-white focus:border-brand-primary focus:text-gray-500 focus:shadow-lg
     font-sans text-xl md:text-3xl font-medium
   "
@@ -497,7 +497,7 @@ const AdminPanel = () => {
                   }
                   className="
     w-full px-6 py-5 rounded-2xl outline-none transition-all duration-300 border-2
-    bg-white border-gray-100 text-gray-400 shadow-lg
+    bg-white border-gray-100 text-gray shadow-lg
     focus:bg-white focus:border-brand-primary focus:text-gray-500 focus:shadow-lg
     font-sans text-xl md:text-3xl font-medium
   "
@@ -523,7 +523,7 @@ const AdminPanel = () => {
             {news.map((n) => (
               <div
                 key={n.id}
-                className="bg-brand-light p-3 md:p-4 rounded-[2rem] border border-brand-light flex items-center justify-between hover:border-brand-primary/20 transition-all shadow-sm"
+                className="bg-white p-3 md:p-4 rounded-[2rem] border border-brand-light flex items-center justify-between hover:border-brand-primary/20 transition-all shadow-sm"
               >
                 <div className="flex items-center gap-3 md:gap-4 overflow-hidden text-left">
                   {n.image && (
@@ -537,7 +537,7 @@ const AdminPanel = () => {
                     <p className="text-sm md:text-base text-brand-dark truncate font-medium">
                       {n.title}
                     </p>
-                    <p className="text-[10px] text-gray-400 uppercase tracking-widest">
+                    <p className="text-[10px] text-gray-500 uppercase tracking-widest">
                       {n.date}
                     </p>
                   </div>

@@ -433,7 +433,7 @@ const Products = () => {
               <motion.div
                 layout
                 key={`${category}-${sortBy}-${searchTerm}`}
-                className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-6"
+                className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-6 mb-10 md:mb-20"
               >
                 <AnimatePresence mode="popLayout">
                   {currentItems.map((product) => (
@@ -538,7 +538,7 @@ const Products = () => {
               </motion.div>
 
               {totalPages > 1 && (
-                <div className="flex flex-col sm:flex-row justify-center items-center gap-4 mt-20 mb-10">
+                <div className="flex flex-col sm:flex-row justify-center items-center gap-4 mb-10">
                   <div className="flex items-center gap-1 sm:gap-3 bg-white/50 p-1.5 rounded-full shadow-sm border border-gray-100">
                     {/* Предишна страница */}
                     <button
