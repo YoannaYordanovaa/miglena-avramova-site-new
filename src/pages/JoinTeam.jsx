@@ -88,8 +88,12 @@ const JoinTeam = () => {
               className="lg:col-span-7 space-y-6 md:space-y-8 text-center lg:text-left order-2 lg:order-1"
             >
               <motion.div
-                  animate={{ y: [0, -10, 0] }}
-              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                animate={{ y: [0, -10, 0] }}
+                transition={{
+                  duration: 4,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
                 className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-light/60 backdrop-blur-md border border-brand-primary/20"
               >
                 <Sparkles size={14} className="text-brand-primary" />
@@ -169,19 +173,8 @@ const JoinTeam = () => {
         </div>
       </section>
 
-      {/* 4. Team Gallery */}
-      <TeamGallery />
-
       {/* 3. Video & Experience Section */}
       <VideoSection />
-
-      {/* Divider Between Section 3 & 4 */}
-      <div className="relative flex items-center justify-center py-4 bg-none ">
-        <div className="w-full max-w-5xl border-t border-brand-primary/40"></div>
-        <div className="absolute bg-none px-4">
-          <Sparkles size={18} className="text-brand-primary/40" />
-        </div>
-      </div>
 
       {/* 2. Benefits Grid */}
       <section className="section-container ">
@@ -280,6 +273,17 @@ const JoinTeam = () => {
           </div>
         </div>
       </section>
+
+      
+  <div className="flex items-center justify-center w-full opacity-100">
+    <div className="h-[1px] flex-grow bg-gradient-to-r from-transparent to-brand-primary" />
+    <div className="mx-4 rotate-45 border border-brand-primary w-2 h-2" />
+    <div className="h-[1px] flex-grow bg-gradient-to-l from-transparent to-brand-primary" />
+  </div>
+
+
+      {/* 4. Team Gallery */}
+      <TeamGallery />
 
       {/* 4. Форевър Ливинг - Разширена Секция */}
       <section
@@ -475,7 +479,6 @@ const JoinTeam = () => {
                 viewport={{ once: true }}
                 className="max-w-3xl mx-auto" // Ограничаваме ширината на текста за по-добра четимост
               >
-
                 {/* ВЪВЕДЖАЩО ИЗРЕЧЕНИЕ */}
 
                 <div className="border-y border-brand-light relative">

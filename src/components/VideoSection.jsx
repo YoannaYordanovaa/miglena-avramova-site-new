@@ -26,7 +26,7 @@ const VideoSection = () => {
   }, [isOpen]);
 
   return (
-    <section id="video" className="section-container">
+    <section id="video" className="section-container bg-brand-cream">
       <div className="stack-space ">
         {/* Заглавна част */}
         <div className="mb-16 text-left">
@@ -39,7 +39,7 @@ const VideoSection = () => {
             <h1 className="font-display font-medium text-brand-dark case leading-none mb-4">
               Защо да се присъединиш <br />
               <span className="text-brand-primary font-light italic">
-                към нас?
+                към моя екип?
               </span>
             </h1>
             <div className="flex items-center gap-4">
@@ -87,7 +87,7 @@ const VideoSection = () => {
             </div>
 
             <div className="absolute bottom-10 left-10 hidden md:block">
-              <p className="text-white font-display font-medium case tracking-[0.4em] opacity-90">
+              <p className="text-white font-display font-medium tracking-[0.2em] opacity-60">
                 Нека ти разкажа...
               </p>
             </div>

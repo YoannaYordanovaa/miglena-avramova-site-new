@@ -92,9 +92,9 @@ const InteractiveGallery = () => {
             className="inline-block"
           >
             <h1 className="font-display font-medium text-brand-dark leading-none mb-4">
-              Любими моменти <br />
+              Запознай се <br />
               <span className="text-brand-primary font-light italic">
-                с любими хора...
+                с екипа!
               </span>
             </h1>
             <div className="flex items-center gap-4">
