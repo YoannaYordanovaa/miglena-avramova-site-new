@@ -107,7 +107,7 @@ const TermsOfService = () => {
           </div>
 
           {/* Final Statement */}
-          <div className=" pt-20 border-t border-brand-light">
+          <div className=" mt-15 mb-15 border-t border-brand-light">
             <p className="font-sans text-gray-400 text-sm text-center leading-relaxed italic">
               *Използвайки този уебсайт, Вие потвърждавате, че сте прочели и
               разбрали настоящите Общи условия. За допълнителна информация, моля

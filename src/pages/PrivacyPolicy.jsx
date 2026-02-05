@@ -107,7 +107,7 @@ const PrivacyPolicy = () => {
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
-            className="mt-20 p-10 bg-brand-dark rounded-[3rem] text-center text-white"
+            className="mt-15 mb-15 p-10 bg-brand-dark rounded-[3rem] text-center text-white"
           >
             <h3 className="font-display text-2xl mb-4 text-brand-light italic">
               Въпроси относно Вашите данни?
