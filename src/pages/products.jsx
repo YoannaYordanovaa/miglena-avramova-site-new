@@ -223,7 +223,7 @@ const Products = () => {
     <section className="min-h-screen ">
       <NewsBannerSlider news={news} />
       <div className="stack-space pt-10">
-        <div className="mb-12 text-left">
+        <div className=" text-left">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -273,15 +273,15 @@ const Products = () => {
           </motion.div>
         </div>
 
-        <div className="mb-12 flex flex-col items-start justify-center text-center">
+        <div className=" flex flex-col items-start justify-center text-center">
           <button
             onClick={() =>
               window.open("https://thealoeveraco.shop/20rQ6mPC", "_blank")
             }
-            className="btn-primary mb-6"
+            className="btn-primary"
           >
             <span>
-              Ела в моя екип и пазарувай с{" "}
+             Пазарувай с{" "}
               <span className="font-bold">-30%</span> отстъпка!
             </span>
             <ArrowRight size={18} className="ml-2" />
