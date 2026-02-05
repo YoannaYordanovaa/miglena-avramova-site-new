@@ -29,12 +29,12 @@ const VideoSection = () => {
     <section id="video" className="section-container bg-brand-cream">
       <div className="stack-space ">
         {/* Заглавна част */}
-        <div className="mb-16 text-left">
+        <div className="mb-12 text-left">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="inline-block"
+             initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="inline-block"
           >
             <h1 className="font-display font-medium text-brand-dark case leading-none mb-4">
               Защо да се присъединиш <br />

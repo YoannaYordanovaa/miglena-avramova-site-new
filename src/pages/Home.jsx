@@ -52,7 +52,6 @@ const Home = () => {
 
   return (
     <div ref={containerRef} className="relative overflow-x-hidden">
-
       {/* 2. HERO SECTION */}
       <section className="relative w-full overflow-hidden lg:pt-0 lg:min-h-screen">
         <div className="flex flex-col lg:flex-row w-full max-w-[1924px] mx-auto mb-16 md:mb-0 lg:min-h-screen">
@@ -163,7 +162,7 @@ const Home = () => {
                 <div className="flex justify-center lg:justify-start">
                   <Link
                     to="/join"
-                    className="btn-primary group w-full sm:w-auto text-center justify-center flex items-center px-10 py-5 "
+                    className="btn-primary  "
                   >
                     Започни днес
                     <ArrowRight
@@ -180,12 +179,9 @@ const Home = () => {
       </section>
 
       {/* 2. ABOUT SECTION */}
-      <section
-        id="about"
-        className="section-container bg-brand-light "
-      >
+      <section id="about" className="section-container bg-brand-light ">
         <div className="stack-space">
-          <div className="mb-16 text-left">
+          <div className="mb-12 text-left">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -222,24 +218,14 @@ const Home = () => {
               баланс, удовлетворение и възможност да изразят себе си по
               най-добрия начин.
             </p>
-            <div className="flex justify-start pt-6">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.8, duration: 0.8 }}
-              >
-                <Link
-                  to="/about"
-                  className="btn-primary group w-full sm:w-auto text-center justify-center flex items-center px-10 py-5"
-                >
-                  Научи повече{" "}
-                  <ArrowRight
-                    size={18}
-                    strokeWidth={1.2}
-                    className="ml-2 group-hover:translate-x-2 transition-transform"
-                  />
-                </Link>
-              </motion.div>
+            <div className="flex justify-start ">
+              <Link to="/about" className="btn-primary ">
+                Научи повече тук{" "}
+                <ArrowRight
+                  size={18}
+                  className="ml-2 group-hover:translate-x-2 transition-transform"
+                />
+              </Link>
             </div>
           </motion.div>
         </div>
@@ -250,7 +236,7 @@ const Home = () => {
       {/* 4. TESTIMONIALS */}
       <section className="section-container bg-brand-light">
         <div className="stack-space ">
-          <div className="mb-16 text-left">
+          <div className="mb-12 text-left">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -258,16 +244,16 @@ const Home = () => {
               className="inline-block"
             >
               <h1 className="font-display font-medium text-brand-dark case leading-none mb-4">
-                Хора, които
+                Средата, която
                 <br />
                 <span className="text-brand-primary font-light italic">
-                  трансформираха ежедневието си
+                  те дърпа нагоре
                 </span>
               </h1>
               <div className="flex items-center gap-4">
                 <div className="w-12 h-[1px] bg-brand-primary" />
                 <p className="font-sans text-gray-400 text-xs case tracking-[0.2em] font-regular">
-                  Доверие, изградено с години!
+                  Твоят успех е нашата обща победа!
                 </p>
               </div>
             </motion.div>
@@ -327,9 +313,11 @@ const Home = () => {
 
       {/* 5. CONTACT SECTION */}
       <section id="contact" className="section-container">
-        <div className="stack-space 
-        ">
-          <div className="mb-16 text-left">
+        <div
+          className="stack-space 
+        "
+        >
+          <div className="mb-12 text-left">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}

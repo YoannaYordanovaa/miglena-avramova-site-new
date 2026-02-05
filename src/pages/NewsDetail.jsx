@@ -109,7 +109,7 @@ const NewsDetail = () => {
                 href={article.buttonLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn-primary group"
+                className="btn-primary "
               >
                 {article.buttonText}
                 <ArrowRight

@@ -256,7 +256,7 @@ const ContactForm = () => {
                   <button
                     type="submit"
                     disabled={status === "sending"}
-                    className="btn-primary w-full md:w-auto flex items-center justify-center gap-2"
+                    className="btn-primary "
                   >
                     {status === "sending"
                       ? "Изпращане..."

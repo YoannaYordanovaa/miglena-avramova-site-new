@@ -349,7 +349,7 @@ const AdminPanel = () => {
                 />
               </div>
 
-              <button className="btn-primary w-full py-5 rounded-2xl shadow-lg shadow-brand-primary/20 hover:shadow-xl hover:shadow-brand-primary/30 active:scale-[0.98] transition-all duration-300 group flex items-center justify-center gap-3">
+              <button className="btn-primary ">
                 <span className="text-xs uppercase ">Влез в панела</span>
                 <ArrowRight
                   size={16}
@@ -505,7 +505,7 @@ const AdminPanel = () => {
               </div>
               <button
                 type="submit"
-                className="btn-primary w-full flex items-center justify-center gap-3"
+                className="btn-primary "
               >
                 <Save size={18} />{" "}
                 {editingId ? "Обнови статията" : "Публикувай статията"}

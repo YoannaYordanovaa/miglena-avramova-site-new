@@ -115,12 +115,18 @@ const Footer = () => {
             <h4 className="font-sans text-[10px] font-bold uppercase tracking-[0.3em] text-brand-primary mb-6 md:mb-8">
               Контакти
             </h4>
-            <div className="space-y-4 md:space-y-6 text-brand-dark/70">
+            <div className="space-y-4 md:space-y-4 text-brand-dark/70">
               <a
                 href="mailto:miglena.avramova.as@gmail.com"
                 className="font-sans text-sm hover:text-brand-primary transition-colors cursor-pointer font-medium break-all block"
               >
                 miglena.avramova.as@gmail.com
+              </a>
+              <a
+                href="tel:+359886787899"
+                className="font-sans text-sm hover:text-brand-primary transition-colors cursor-pointer font-medium break-all block"
+              >
+                +359 886 787 899
               </a>
               <p className="font-sans text-[10px] opacity-50 uppercase tracking-[0.2em] font-bold text-gray-400">
                 BASED IN BULGARIA • OPERATES WORLDWIDE

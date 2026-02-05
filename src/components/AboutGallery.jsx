@@ -84,7 +84,7 @@ const InteractiveGallery = () => {
     <section ref={galleryRef} className="section-container scroll-mt-10">
       <div className="stack-space">
         {/* Header */}
-        <div className="mb-16 text-left">
+        <div className="mb-12 text-left">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -144,10 +144,10 @@ const InteractiveGallery = () => {
         </motion.div>
 
         {/* Toggle Button */}
-        <div className="mt-16 text-center">
+        <div className="text-center">
           <button
             onClick={handleToggle}
-            className="btn-primary flex items-center gap-3 mx-auto group"
+            className="btn-primary "
           >
             {isExpanded ? (
               <>

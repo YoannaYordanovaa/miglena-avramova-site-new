@@ -33,27 +33,25 @@ const AboutDetailed = () => {
       {/* 1. STORY SECTION - Full Width Split Design */}
       <section className="relative w-full flex flex-col lg:flex-row items-stretch overflow-hidden max-w-[1924px] mx-auto pt-20 md:pt-20">
         {/* ЛЯВА ЧАСТ: Визуален център (Снимката) */}
-       {/* ЛЯВА ЧАСТ: Визуален център (Снимката) */}
-{/* Промяна: Ограничаваме височината до максимум 700px-800px на десктоп и центрираме съдържанието */}
-<div className="relative w-full lg:w-1/2 flex items-center justify-center lg:h-[700px] xl:h-[800px] min-h-[450px] md:min-h-[600px] overflow-hidden">
-  <motion.div
-    initial={{ scale: 1.05, opacity: 0 }}
-    animate={{ scale: 1, opacity: 1 }}
-    transition={{ duration: 1.5 }}
-    className="relative w-full h-full lg:max-w-[1920px] mx-auto overflow-hidden" // Ограничаваме максималната ширина на контейнера
-  >
-    <img
-      src="/Miglena/Miglena_aboutDetailed2.jpg"
-      className="w-full h-full object-cover object-center"
-      alt="Миглена"
-    />
-    {/* Overlay за преход */}
-    <div className="absolute inset-0 bg-gradient-to-r from-transparent to-white/5 hidden lg:block" />
-    <div className="absolute inset-0 bg-gradient-to-b from-transparent to-white/10 lg:hidden" />
-  </motion.div>
-
-
-</div>
+        {/* ЛЯВА ЧАСТ: Визуален център (Снимката) */}
+        {/* Промяна: Ограничаваме височината до максимум 700px-800px на десктоп и центрираме съдържанието */}
+        <div className="relative w-full lg:w-1/2 flex items-center justify-center lg:h-[700px] xl:h-[800px] min-h-[450px] md:min-h-[600px] overflow-hidden">
+          <motion.div
+            initial={{ scale: 1.05, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 1.5 }}
+            className="relative w-full h-full lg:max-w-[1920px] mx-auto overflow-hidden" // Ограничаваме максималната ширина на контейнера
+          >
+            <img
+              src="/Miglena/Miglena_aboutDetailed2.jpg"
+              className="w-full h-full object-cover object-center"
+              alt="Миглена"
+            />
+            {/* Overlay за преход */}
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent to-white/5 hidden lg:block" />
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent to-white/10 lg:hidden" />
+          </motion.div>
+        </div>
 
         {/* ДЯСНА ЧАСТ: Текст и Типография */}
         <div className="w-full lg:w-1/2 flex items-center justify-center p-8 md:p-16 lg:p-24 relative">
@@ -145,88 +143,85 @@ const AboutDetailed = () => {
       {/* 3. MISSION SECTION - Кремав фон до края */}
       <section id="about" className="bg-brand-light section-container">
         <div className="stack-space ">
-            <div className="mb-8 text-left">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                className="inline-block"
-              >
-                <h1 className="font-display font-medium text-brand-dark case leading-none mb-4">
-                  Хора, които
-                  <br />
-                  <span className="text-brand-primary font-light italic">
-                    трансформираха ежедневието си
-                  </span>
-                </h1>
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-[1px] bg-brand-primary" />
-                  <p className="font-sans text-gray-400 text-xs case tracking-[0.2em] font-regular">
-                    Доверие, изградено с години!
-                  </p>
-                </div>
-              </motion.div>
-            </div>
-
-            {/* Highlighted Quote */}
-            <div className="border-y border-brand-light relative py-8">
-              <Quote
-                className="absolute top-4 left-0 text-brand-primary opacity-20"
-                size={40}
-              />
-              <h3 className="font-display text-2xl md:text-3xl text-brand-primary italic pl-10 leading-relaxed">
-                "Винаги съм вярвала, че няма нищо случайно на този свят и моята
-                среща с <strong>Форевър Ливинг</strong> не беше изключение..."
-              </h3>
-            </div>
-
+          <div className="mb-8 text-left">
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ ...entryTransition, delay: 0.2 }}
               viewport={{ once: true }}
-              className="space-y-5"
+              className="inline-block"
             >
-                            
-              <p className="font-sans leading-relaxed max-w-7xl font-light ">
-                От над 10 години не практикувам професията си, тъй
-                като професионалният ми път ме отведе в друга посока – към
-                собствен бизнес. Който фалира... Започнах да си търся работа,
-                както повечето хора през периода на Covid-кризата. Отне ми
-                време, но чакането си заслужаваше...{" "}
-              </p>
-
-              <p className="font-sans leading-relaxed max-w-7xl font-light">
-                Днес имам честта да работя с прекрасен екип и вдъхновяващи
-                ментори, които ме подкрепят и насърчават във всичките ми
-                начинания. Успях не само да открия своето призвание, но и да
-                помогна на много други хора като мен!
-              </p>
-
-              <p className="font-sans leading-relaxed max-w-7xl font-light ">
-                Вярвам, че всяка жена заслужава да се чувства значима, финансово
-                независима и изпълнена с енергия. Ако и ти усещаш, че е време да
-                спреш да отлагаш мечтите си и търсиш среда, която да те дърпа
-                нагоре, аз съм тук, за да ти подам ръка. Нека извървим този път
-                заедно.
-              </p>
-
-
-
-              <div className="flex justify-start pt-6">
-                <Link
-                  to="/join"
-                  className="btn-primary group w-full sm:w-auto text-center justify-center flex items-center px-10 py-5"
-                >
-                  Научи повече тук{" "}
-                  <ArrowRight
-                    size={18}
-                    className="ml-2 group-hover:translate-x-2 transition-transform"
-                  />
-                </Link>
+              <h1 className="font-display font-medium text-brand-dark case leading-none mb-4">
+                Не е късно
+                <br />
+                <span className="text-brand-primary font-light italic">
+                  да започнеш отново...
+                </span>
+              </h1>
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-[1px] bg-brand-primary" />
+                <p className="font-sans text-gray-400 text-xs case tracking-[0.2em] font-regular">
+                  Всяка трудност е просто подготовка за нещо по-добро.
+                </p>
               </div>
             </motion.div>
           </div>
+
+          {/* Highlighted Quote */}
+          <div className="border-y border-brand-light relative py-8">
+            <Quote
+              className="absolute top-4 left-0 text-brand-primary opacity-20"
+              size={40}
+            />
+            <h3 className="font-display text-2xl md:text-3xl text-brand-primary italic pl-10 leading-relaxed">
+              "Винаги съм вярвала, че няма нищо случайно на този свят и моята
+              среща с <strong>Форевър Ливинг</strong> не беше изключение..."
+            </h3>
+          </div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ ...entryTransition, delay: 0.2 }}
+            viewport={{ once: true }}
+            className="space-y-5"
+          >
+            <p className="font-sans leading-relaxed max-w-7xl font-light ">
+              От над 10 години не практикувам професията си, тъй като
+              професионалният ми път ме отведе в друга посока – към собствен
+              бизнес. Който фалира... Започнах да си търся работа, както
+              повечето хора през периода на Covid-кризата. Отне ми време, но
+              чакането си заслужаваше...{" "}
+            </p>
+
+            <p className="font-sans leading-relaxed max-w-7xl font-light">
+              Днес имам честта да работя с прекрасен екип и вдъхновяващи
+              ментори, които ме подкрепят и насърчават във всичките ми
+              начинания. Успях не само да открия своето призвание, но и да
+              помогна на много други хора като мен!
+            </p>
+
+            <p className="font-sans leading-relaxed max-w-7xl font-light ">
+              Вярвам, че всяка жена заслужава да се чувства значима, финансово
+              независима и изпълнена с енергия. Ако и ти усещаш, че е време да
+              спреш да отлагаш мечтите си и търсиш среда, която да те дърпа
+              нагоре, аз съм тук, за да ти подам ръка. Нека извървим този път
+              заедно.
+            </p>
+
+            <div className="flex justify-start pt-6">
+              <Link
+                to="/join"
+                className="btn-primary "
+              >
+                Научи повече тук{" "}
+                <ArrowRight
+                  size={18}
+                  className="ml-2 group-hover:translate-x-2 transition-transform"
+                />
+              </Link>
+            </div>
+          </motion.div>
+        </div>
       </section>
 
       {/* 7. TRANSFORMATION SECTION - Тъмен фон до края */}
@@ -234,7 +229,7 @@ const AboutDetailed = () => {
         <div className="stack-space ">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div className="text-left space-y-8">
-              <div className="mb-16 text-left">
+              <div className="mb-12 text-left">
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -250,8 +245,7 @@ const AboutDetailed = () => {
                   <div className="flex items-center gap-4">
                     <div className="w-12 h-[1px] bg-brand-primary" />
                     <p className="font-sans text-gray-400 text-xs case tracking-[0.2em] font-regular">
-                      Да вървим заедно по пътя към една по-добра версия на себе
-                      си!
+                      Резултатите, които върнаха баланса в тялото ми.
                     </p>
                   </div>
                 </motion.div>
@@ -341,7 +335,7 @@ const AboutDetailed = () => {
                 </h3>
                 <button
                   onClick={() => navigate("/join")}
-                  className="btn-primary mx-auto flex items-center"
+                  className="btn-primary "
                 >
                   Разгледай продуктите!
                   <ArrowRight

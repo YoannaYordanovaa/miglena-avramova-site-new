@@ -134,18 +134,19 @@ const JoinTeam = () => {
               <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start items-center pt-4">
                 <a
                   href="#join-form"
-                  className="btn-primary w-full sm:w-auto text-center"
+                  className="btn-primary "
                 >
                   Кандидатствай сега
                 </a>
                 <a
                   href="#video"
-                  className="btn-outline w-full sm:w-auto flex items-center justify-center gap-2 group"
+                  className="btn-outline "
                 >
                   Научи повече
                   <ArrowRight
                     size={18}
-                    className="group-hover:translate-x-2 transition-transform"
+                strokeWidth={1.2}
+                className="group-hover:translate-x-2 transition-transform shrink-0"
                   />
                 </a>
               </div>
@@ -179,7 +180,7 @@ const JoinTeam = () => {
       {/* 2. Benefits Grid */}
       <section className="section-container ">
         <div className="stack-space">
-          <div className="mb-16 text-left">
+          <div className="mb-12 text-left">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -250,7 +251,7 @@ const JoinTeam = () => {
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mt-12 md:mt-16">
             <a
               href="#join-form"
-              className="btn-primary flex items-center justify-center gap-2 group w-full sm:w-auto text-center"
+              className="btn-primary"
             >
               <span>Собственик на Форевър бизнес</span>
               <ArrowRight
@@ -261,7 +262,7 @@ const JoinTeam = () => {
             </a>
             <a
               href="#video"
-              className="btn-outline flex items-center justify-center gap-2 group w-full sm:w-auto text-center"
+              className="btn-outline "
             >
               <span>Преференциален клиент</span>
               <ArrowRight
@@ -292,7 +293,7 @@ const JoinTeam = () => {
       >
         <div className="stack-space">
           {/* 1. ЗАГЛАВНА ЧАСТ */}
-          <div className="mb-16 text-left">
+          <div className="mb-12 text-left">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -386,12 +387,12 @@ const JoinTeam = () => {
               {/* Дясна страна: Подробна Информация */}
               <div className="lg:col-span-5 space-y-10 py-4">
                 <div className="space-y-6">
-                  <h1 className="font-display text-4xl md:text-5xl font-medium text-brand-dark tracking-tighter leading-tight">
+                  <h2 className="font-display text-4xl md:text-5xl ">
                     Стабилност, която <br />
                     <span className="text-brand-primary italic font-light font-display">
                       променя животи
                     </span>
-                  </h1>
+                  </h2>
                 </div>
 
                 <div className="space-y-8 font-sans text-gray-500 text-lg leading-relaxed font-light">
@@ -586,7 +587,7 @@ const JoinTeam = () => {
             <div className="flex justify-center items-center mx-auto mt-10">
               <a
                 href="#join-form"
-                className="btn-primary w-full sm:w-auto text-center"
+                className="btn-primary "
               >
                 Кандидатствай сега
               </a>{" "}
