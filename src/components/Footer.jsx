@@ -35,7 +35,7 @@ const Footer = () => {
     },
     {
       Icon: Video, // TikTok
-      href: "https://www.tiktok.com/@avramovamiglenaa",
+      href: "https://www.tiktok.com/@megiavramovakonsultant",
       label: "TikTok",
     },
     {
