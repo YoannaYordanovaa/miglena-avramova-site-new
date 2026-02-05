@@ -112,9 +112,9 @@ const VideoSection = () => {
                     e.stopPropagation();
                     setIsOpen(false);
                   }}
-                  className="absolute top-8 right-8 text-brand-primary hover:text-brand-dark transition-colors z-[100000] p-2"
-                >
-                  <X size={40} />
+                 className="absolute top-6 right-6 p-4 text-brand-dark hover:rotate-90 transition-transform duration-300 z-[100001]"
+                           >
+                             <X size={36} strokeWidth={1.5} />
                 </button>
 
                 <motion.div

@@ -88,12 +88,12 @@ const JoinTeam = () => {
               className="lg:col-span-7 space-y-6 md:space-y-8 text-center lg:text-left order-2 lg:order-1"
             >
               <motion.div
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
+                  animate={{ y: [0, -10, 0] }}
+              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
                 className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-light/60 backdrop-blur-md border border-brand-primary/20"
               >
                 <Sparkles size={14} className="text-brand-primary" />
-                <span className="font-sans text-[10px] md:text-xs uppercase tracking-widest text-brand-dark font-semibold">
+                <span className="text-[10px] lg:text-[11px] uppercase tracking-widest text-brand-dark ">
                   Личен ментор
                 </span>
               </motion.div>

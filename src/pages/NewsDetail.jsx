@@ -44,7 +44,7 @@ const NewsDetail = () => {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center bg-brand-cream space-y-6">
         <p className="font-display text-2xl text-brand-dark italic">Статията не е намерена...</p>
-        <button onClick={() => navigate("/news")} className="btn-primary">Назад към новини</button>
+        <button onClick={() => navigate("/news")} className="btn-primary">Назад към начало</button>
       </div>
     );
 
@@ -59,12 +59,12 @@ const NewsDetail = () => {
         {/* Бутон Назад */}
         <button
           onClick={() => navigate(-1)}
-          className="group flex items-center gap-3 text-gray-400 hover:text-brand-primary transition-all mb-8 md:mb-12 uppercase text-[10px] font-bold tracking-[0.2em] italic"
+          className="group flex items-center gap-3 text-gray-400 hover:text-brand-primary transition-all mb-8 md:mb-12 uppercase text-[12px]"
         >
           <div className="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center group-hover:border-brand-primary group-hover:bg-brand-primary group-hover:text-white transition-all">
             <ArrowLeft size={16} />
           </div>
-          Към всички новини
+          Назад към продукти
         </button>
 
         {/* Хедър на статията */}
@@ -85,7 +85,7 @@ const NewsDetail = () => {
             initial={{ scale: 0.95, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ delay: 0.2 }}
-            className="mb-12 rounded-[2.5rem] md:rounded-[2.5rem] overflow-hidden shadow-2xl border-[6px] md:border-[6px] border-white"
+            className="mb-12 rounded-[2.5rem] md:rounded-[2.5rem] bg-white overflow-hidden shadow-2xl border-[6px] md:border-[6px] border-white"
           >
             <img
               src={`${API_URL}${article.image}`}
@@ -98,13 +98,13 @@ const NewsDetail = () => {
         {/* СЪДЪРЖАНИЕ */}
         <article className="bg-brand-light backdrop-blur-md rounded-[2.5rem] md:rounded-[2.5rem] p-8 md:p-20 shadow-sm border border-white/50 text-left relative">
           <div
-  className="article-content"
+  className="article-content bg-brand-light!"
   dangerouslySetInnerHTML={{ __html: article.text }}
 />
 
           {/* Бутон за действие */}
           {article.buttonText && article.buttonLink && (
-            <div className="mt-12 pt-12 border-t border-brand-light flex justify-center md:justify-start">
+            <div className="pt-12 border-t border-brand-light flex justify-center md:justify-start">
               <a
                 href={article.buttonLink}
                 target="_blank"
