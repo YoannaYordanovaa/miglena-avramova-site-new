@@ -17,8 +17,8 @@ const Footer = () => {
     { name: "За мен", path: "/about" },
     { name: "Разгледай продукти", path: "/shop" },
     { name: "Включи се", path: "/join" },
-    { name: "Галерия", path: "/joingallery" },
-    { name: "Видео", path: "/joinvideo" },
+     { name: "За Форевър", path: "/join#forever-section" },
+      { name: "Видео", path: "/join#video" },
   ];
 
   // Масив със социални мрежи
