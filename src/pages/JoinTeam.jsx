@@ -94,9 +94,10 @@ const JoinTeam = () => {
                   repeat: Infinity,
                   ease: "easeInOut",
                 }}
-                className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-light/60 backdrop-blur-md border border-brand-primary/20"
+                className="inline-flex items-center gap-2 backdrop-blur-md bg-white/90 border border-brand-primary/10
+             px-4 py-3 rounded-2xl shadow-xl will-change-transform"
               >
-                <Sparkles size={14} className="text-brand-primary" />
+                <Sparkles size={16} className="text-brand-primary shrink-0" />
                 <span className="text-[10px] lg:text-[11px] uppercase tracking-widest text-brand-dark ">
                   Личен ментор
                 </span>
