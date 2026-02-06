@@ -29,7 +29,7 @@
 
  body {
     /* text-base (16px) на телефон, text-lg (18px) на десктоп е златният стандарт */
-    @apply bg-brand-cream font-sans text-gray-600 text-base md:text-lg font-normal antialiased overflow-x-hidden;
+    @apply bg-brand-cream font-sans text-gray-600 text-base md:text-lg font-light antialiased overflow-x-hidden;
     line-height: 1.6; /* Малко повече разстояние между редовете за въздух */
     margin: 0;
   }

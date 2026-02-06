@@ -484,7 +484,7 @@ const JoinTeam = () => {
 
                 <div className="border-y border-brand-light relative">
                   <Quote
-                    className="absolute top-4 left-0 text-brand-primary"
+                    className="absolute top-4 left-0 text-brand-primary opacity-20"
                     size={40}
                   />
 

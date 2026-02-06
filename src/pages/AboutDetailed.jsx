@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import AboutGallery from "../components/AboutGallery";
+import { HashLink } from "react-router-hash-link";
 import {
   Heart,
   Dog,
@@ -26,6 +27,14 @@ const AboutDetailed = () => {
     duration: 4,
     repeat: Infinity,
     ease: "easeInOut",
+  };
+
+  // --- ТУК ТРЯБВА ДА ДОБАВИШ ТЕЗИ ДВА РЕДА ---
+  const standardTransition = { duration: 0.9, ease: [0.22, 1, 0.36, 1] };
+  const fadeUpVariant = {
+    initial: { opacity: 0, y: 30 },
+    whileInView: { opacity: 1, y: 0 },
+    viewport: { once: true, margin: "-100px" },
   };
 
   return (
@@ -140,87 +149,197 @@ const AboutDetailed = () => {
         </div>
       </section>
 
-      {/* 3. MISSION SECTION - Кремав фон до края */}
-      <section id="about" className="bg-brand-light section-container">
-        <div className="stack-space ">
-          <div className="mb-8 text-left">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="inline-block"
-            >
-              <h1 className="font-display font-medium text-brand-dark case leading-none mb-4">
-                Не е късно
-                <br />
-                <span className="text-brand-primary font-light italic">
-                  да започнеш отново...
-                </span>
-              </h1>
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-[1px] bg-brand-primary" />
-                <p className="font-sans text-gray-400 text-xs case tracking-[0.2em] font-regular">
-                  Всяка трудност е просто подготовка за нещо по-добро.
+      <section
+        id="about"
+        className="bg-brand-light section-container overflow-hidden"
+      >
+        <div className="stack-space">
+          {/* ЕТАП 1: ЗАГЛАВИЕ И ПЪРВОНАЧАЛЕН КОНТАКТ */}
+          <div className="grid lg:grid-cols-12 gap-10 items-end mb-12">
+            <div className="lg:col-span-8">
+              <motion.div
+                initial={{ opacity: 0, x: -30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={standardTransition}
+              >
+                <h1 className="font-display font-medium text-brand-dark case leading-none mb-4">
+                  Не е късно <br />
+                  <span className="text-brand-primary font-light italic">
+                    да започнеш отново...
+                  </span>
+                </h1>
+                <div className="flex items-center gap-4">
+                  <div className="w-12 h-[1px] bg-brand-primary" />
+                  <p className="font-sans text-gray-400 text-xs case tracking-[0.2em] font-regular">
+                    Всяка трудност е просто подготовка за нещо по-добро.
+                  </p>
+                </div>
+              </motion.div>
+            </div>
+          </div>
+
+          {/* ЕТАП 2: ЛИЧНАТА ИСТОРИЯ (С ефект на списание) */}
+          <div className="grid lg:grid-cols-12 gap-12 lg:gap-20">
+            {/* Лява част: Миналото и Предизвикателствата */}
+            <div className="lg:col-span-5 space-y-12">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                className="relative"
+              >
+                <Quote
+                  className="text-brand-primary/10 absolute -top-10 -left-6"
+                  size={100}
+                />
+                <p className="font-sans">
+                  От над 10 години не практикувам професията си, тъй като
+                  професионалният ми път ме отведе в друга посока – към собствен
+                  бизнес, който фалира...
+                  <br />
+                  <br />
+                  Започнах да си търся работа, както повечето хора през периода
+                  на Covid-кризата. Отне ми време, но чакането си заслужаваше...
                 </p>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                className="bg-brand-primary/5 p-8 rounded-tr-[3rem] rounded-bl-[3rem] border-l-4 border-brand-primary"
+              >
+                <p className="font-sans leading-relaxed text-brand-dark/80 italic ">
+                  Когато бях малка и ме питаха каква искам да стана като
+                  порасна, не знаех и винаги се чудех как така другите деца са
+                  толкова наясно. Мъжът ми казва, че просто тогава не съм знаела
+                  за мрежовия маркетинг, иначе съм щяла да взема решение на
+                  момента.
+                </p>
+              </motion.div>
+            </div>
+
+            {/* Дясна част: Промяната и Призванието */}
+            <div className="lg:col-span-7 space-y-6">
+              <motion.div
+                initial={{ opacity: 0, x: 30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                className="space-y-6"
+              >
+                <p className="font-sans">
+                  Години наред търсех призванието си, нещото, в което ще успея.
+                  При всеки провал благодарях за знанията и опита, които съм
+                  получила, и вярвах, че един ден ще мога да приложа всичко
+                  научено, че ще открия най-подходящата за мен работа. И така
+                  една случайна (или не дотолкова случайна) среща отвори нова
+                  врата пред мен...
+                </p>
+
+                <div className="border-y border-brand-light relative pb-6">
+                  <Quote
+                    className="absolute top-4 left-0 text-brand-primary opacity-20"
+                    size={40}
+                  />
+
+                  <h3 className="font-display text-xl md:text-3xl text-brand-primary italic pl-10 leading-relaxed">
+                    "Винаги съм вярвала, че няма нищо случайно на този свят и
+                    моята среща с Форевър Ливинг не беше изключение..."
+                  </h3>
+                </div>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                className="flex flex-col md:flex-row gap-8 items-center bg-white p-8 rounded-[2.5rem] shadow-sm border border-brand-primary/5"
+              >
+                <div className="flex-1">
+                  <p className="font-sans leading-relaxed text-gray-600">
+                    Днес имам честта да работя с прекрасен екип и вдъхновяващи
+                    ментори, които ме подкрепят и насърчават във всичките ми
+                    начинания. Успях не само да открия своето призвание, но и да
+                    помогна на много други хора като мен!
+                  </p>
+                </div>
+                <div className="shrink-0 w-px h-20 bg-brand-primary/20 hidden md:block" />
+                <HashLink
+                  smooth
+                  to="/join#forever-section"
+                  className="text-brand-primary font-display text-xl font-bold hover:text-brand-dark transition-colors text-center md:text-left"
+                >
+                  Кои са <br /> Форевър Ливинг?
+                </HashLink>
+              </motion.div>
+            </div>
+          </div>
+          {/* ЕТАП 3: ФИНАЛНО ПОСЛАНИЕ */}
+          <div className="relative">
+            <motion.div
+              variants={fadeUpVariant}
+              initial="initial"
+              whileInView="whileInView"
+              viewport={fadeUpVariant.viewport}
+              transition={standardTransition}
+              className="max-w-5xl mx-auto text-center"
+            >
+              {/* Декоративна икона над текста */}
+              <div className="flex items-center justify-center w-full opacity-100 my-15 md:my-20">
+                <div className="h-px grow bg-gradient-to-r from-transparent to-brand-primary" />
+                <div className="mx-4 rotate-45 border border-brand-primary w-2 h-2" />
+                <div className="h-px flex-grow bg-gradient-to-l from-transparent to-brand-primary" />
+              </div>
+
+              <h2 className="font-display text-4xl md:text-5xl mb-10">
+                Вярвам, че всяка жена заслужава да се чувства финансово
+               {" "}
+                <span className="text-brand-primary italic font-light">
+                  независима
+                </span>{" "}
+                и изпълнена с
+                <span className="relative inline-block ml-3">
+                  енергия
+                  <svg
+                    className="absolute -bottom-2 left-0 w-full h-3 text-brand-primary/20"
+                    viewBox="0 0 100 10"
+                  >
+                    <path
+                      d="M0 5 Q 25 0, 50 5 T 100 5"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                    />
+                  </svg>
+                </span>
+              </h2>
+
+              <div className="max-w-2xl mx-auto space-y-10">
+                <p className="font-sans ">
+                  Ако и ти усещаш, че е време да спреш да отлагаш мечтите си и
+                  търсиш среда, която да те дърпа нагоре, аз съм тук, за да ти
+                  подам ръка.
+                  <span className="text-brand-dark font-medium">
+                    {" "}
+                    Нека извървим този път заедно!
+                  </span>
+                </p>
+
+                <div className="flex justify-center">
+                  <Link to="/join" className="btn-primary ">
+                    <span className="relative z-10 flex items-center gap-3">
+                      Започни своята промяна
+                      <ArrowRight
+                        size={20}
+                        className="group-hover:translate-x-2 transition-transform"
+                      />
+                    </span>
+                  </Link>
+                </div>
               </div>
             </motion.div>
           </div>
-
-          {/* Highlighted Quote */}
-          <div className="border-y border-brand-light relative py-8">
-            <Quote
-              className="absolute top-4 left-0 text-brand-primary opacity-20"
-              size={40}
-            />
-            <h3 className="font-display text-2xl md:text-3xl text-brand-primary italic pl-10 leading-relaxed">
-              "Винаги съм вярвала, че няма нищо случайно на този свят и моята
-              среща с <strong>Форевър Ливинг</strong> не беше изключение..."
-            </h3>
-          </div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ ...entryTransition, delay: 0.2 }}
-            viewport={{ once: true }}
-            className="space-y-5"
-          >
-            <p className="font-sans leading-relaxed max-w-7xl font-light ">
-              От над 10 години не практикувам професията си, тъй като
-              професионалният ми път ме отведе в друга посока – към собствен
-              бизнес. Който фалира... Започнах да си търся работа, както
-              повечето хора през периода на Covid-кризата. Отне ми време, но
-              чакането си заслужаваше...{" "}
-            </p>
-
-            <p className="font-sans leading-relaxed max-w-7xl font-light">
-              Днес имам честта да работя с прекрасен екип и вдъхновяващи
-              ментори, които ме подкрепят и насърчават във всичките ми
-              начинания. Успях не само да открия своето призвание, но и да
-              помогна на много други хора като мен!
-            </p>
-
-            <p className="font-sans leading-relaxed max-w-7xl font-light ">
-              Вярвам, че всяка жена заслужава да се чувства значима, финансово
-              независима и изпълнена с енергия. Ако и ти усещаш, че е време да
-              спреш да отлагаш мечтите си и търсиш среда, която да те дърпа
-              нагоре, аз съм тук, за да ти подам ръка. Нека извървим този път
-              заедно.
-            </p>
-
-            <div className="flex justify-start pt-6">
-              <Link
-                to="/join"
-                className="btn-primary "
-              >
-                Научи повече тук{" "}
-                <ArrowRight
-                  size={18}
-                  className="ml-2 group-hover:translate-x-2 transition-transform"
-                />
-              </Link>
-            </div>
-          </motion.div>
         </div>
       </section>
 
