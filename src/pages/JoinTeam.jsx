@@ -127,8 +127,7 @@ const JoinTeam = () => {
               </h1>
 
               <p className="font-sans font-light max-w-xl mx-auto lg:mx-0 leading-relaxed border-l-0 lg:border-l-2 border-brand-primary/20 lg:pl-6">
-                Търся амбициозни хора, които искат да променят стандарта си на
-                живот и да изградят кариера в уелнес индустрията.
+                Изгради кариера, която не те затваря в офис, а ти дава енергията и времето да живееш живота, който искаш!
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start items-center pt-4">
