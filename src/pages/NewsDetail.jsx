@@ -58,7 +58,7 @@ const NewsDetail = () => {
       >
         {/* Бутон Назад */}
         <button
-          onClick={() => navigate(-1)}
+          onClick={() => navigate("/shop")}
           className="group flex items-center gap-3 text-gray-400 hover:text-brand-primary transition-all mb-8 md:mb-12 uppercase text-[12px]"
         >
           <div className="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center group-hover:border-brand-primary group-hover:bg-brand-primary group-hover:text-white transition-all">
