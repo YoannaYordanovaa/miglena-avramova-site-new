@@ -10,8 +10,8 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const helmet = require("helmet");
 const rateLimit = require("express-rate-limit");
-const sharp = require("sharp"); 
-const winston = require("winston"); 
+const sharp = require("sharp");
+const winston = require("winston");
 
 const app = express();
 
@@ -20,7 +20,7 @@ const logger = winston.createLogger({
   level: "info",
   format: winston.format.combine(
     winston.format.timestamp(),
-    winston.format.json()
+    winston.format.json(),
   ),
   transports: [
     new winston.transports.File({ filename: "logs/error.log", level: "error" }), // Само грешки
@@ -29,7 +29,9 @@ const logger = winston.createLogger({
 });
 
 if (process.env.NODE_ENV !== "production") {
-  logger.add(new winston.transports.Console({ format: winston.format.simple() }));
+  logger.add(
+    new winston.transports.Console({ format: winston.format.simple() }),
+  );
 }
 
 // --- 1. СИГУРНОСТ (HELMET & CORS) ---
@@ -70,17 +72,21 @@ app.use("/uploads", express.static(path.join(__dirname, "public", "uploads")));
 // --- 4. MIDDLEWARE ЗА JWT ЗАЩИТА ---
 const verifyToken = (req, res, next) => {
   const token = req.headers["authorization"]?.split(" ")[1];
-  if (!token) return res.status(403).json({ success: false, message: "Няма токен." });
+  if (!token)
+    return res.status(403).json({ success: false, message: "Няма токен." });
 
   jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
-    if (err) return res.status(401).json({ success: false, message: "Невалиден токен." });
+    if (err)
+      return res
+        .status(401)
+        .json({ success: false, message: "Невалиден токен." });
     req.userId = decoded.id;
     next();
   });
 };
 
 // --- 5. CONFIG НА MULTER (Memory Storage за Sharp) ---
-const storage = multer.memoryStorage(); // Снимката влиза първо в RAM
+const storage = multer.memoryStorage();
 const upload = multer({
   storage: storage,
   fileFilter: (req, file, cb) => {
@@ -88,23 +94,26 @@ const upload = multer({
     if (allowed.includes(file.mimetype)) cb(null, true);
     else cb(new Error("Невалиден формат!"), false);
   },
-  limits: { fileSize: 10 * 1024 * 1024 }, // Позволяваме до 10MB преди обработка
+  limits: { fileSize: 10 * 1024 * 1024 },
 });
 
 // --- 6. БАЗА ДАННИ ---
-const db = mysql.createPool({
-  host: process.env.DB_HOST,
-  user: process.env.DB_USER,
-  password: process.env.DB_PASSWORD,
-  database: process.env.DB_NAME,
-  waitForConnections: true,
-  connectionLimit: 10,
-}).promise();
+const db = mysql
+  .createPool({
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME,
+    waitForConnections: true,
+    connectionLimit: 10,
+  })
+  .promise();
 
 // --- 7. ВАЛИДАЦИЯ ---
 const validateNews = (req, res, next) => {
   const { title, text } = req.body;
-  if (!title || title.trim().length < 3) return res.status(400).json({ message: "Заглавието е кратко." });
+  if (!title || title.trim().length < 3)
+    return res.status(400).json({ message: "Заглавието е кратко." });
   next();
 };
 
@@ -115,49 +124,64 @@ app.post("/admin/login", loginLimiter, async (req, res) => {
   const isMatch = await bcrypt.compare(password, process.env.ADMIN_HASH);
 
   if (isMatch) {
-    const token = jwt.sign({ id: "admin" }, process.env.JWT_SECRET, { expiresIn: "24h" });
+    const token = jwt.sign({ id: "admin" }, process.env.JWT_SECRET, {
+      expiresIn: "24h",
+    });
     return res.json({ success: true, token });
   }
   res.status(401).json({ success: false, message: "Грешна парола!" });
 });
 
-
-
 // ЗАПИС С ОПТИМИЗАЦИЯ (Sharp)
-app.post("/saveNews", verifyToken, upload.single("image"), validateNews, async (req, res) => {
-  try {
-    const { title, text, buttonText, buttonLink, date } = req.body;
-    let imagePath = null;
+app.post(
+  "/saveNews",
+  verifyToken,
+  upload.single("image"),
+  validateNews,
+  async (req, res) => {
+    try {
+      const { title, text, buttonText, buttonLink, date } = req.body;
+      let imagePath = null;
 
-    if (req.file) {
-      const fileName = `${Date.now()}-${Math.round(Math.random() * 1e9)}.webp`;
-      const dir = path.join(__dirname, "public", "uploads", "news");
-      if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
+      if (req.file) {
+        const fileName = `${Date.now()}-${Math.round(Math.random() * 1e9)}.webp`;
+        const dir = path.join(__dirname, "public", "uploads", "news");
+        if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
 
-      const fullPath = path.join(dir, fileName);
+        const fullPath = path.join(dir, fileName);
 
-      // Оптимизация на снимката
-      await sharp(req.file.buffer)
-        .resize(1200, null, { withoutEnlargement: true }) // Макс 1200px ширина
-        .webp({ quality: 80 }) // Компресия 80%
-        .toFile(fullPath);
+        await sharp(req.file.buffer)
+          .resize(1200, null, { withoutEnlargement: true })
+          .webp({ quality: 80 })
+          .toFile(fullPath);
 
-      imagePath = `/uploads/news/${fileName}`;
+        imagePath = `/uploads/news/${fileName}`;
+      }
+
+      const sql =
+        "INSERT INTO news (title, image, text, buttonText, buttonLink, date) VALUES (?, ?, ?, ?, ?, ?)";
+      await db.execute(sql, [
+        title,
+        imagePath,
+        text,
+        buttonText,
+        buttonLink,
+        date,
+      ]);
+      res.json({ success: true, message: "Статията е запазена успешно!" });
+    } catch (err) {
+      logger.error(`Грешка при запис на новина: ${err.message}`);
+      res.status(500).json({ success: false, error: err.message });
     }
-
-    const sql = "INSERT INTO news (title, image, text, buttonText, buttonLink, date) VALUES (?, ?, ?, ?, ?, ?)";
-    await db.execute(sql, [title, imagePath, text, buttonText, buttonLink, date]);
-    res.json({ success: true, message: "Статията е запазена успешно!" });
-  } catch (err) {
-    logger.error(`Грешка при запис на новина: ${err.message}`);
-    res.status(500).json({ success: false, error: err.message });
-  }
-});
+  },
+);
 
 app.delete("/deleteNews/:id", verifyToken, async (req, res) => {
   try {
     const id = req.params.id;
-    const [rows] = await db.execute("SELECT image FROM news WHERE id = ?", [id]);
+    const [rows] = await db.execute("SELECT image FROM news WHERE id = ?", [
+      id,
+    ]);
     if (rows.length > 0 && rows[0].image) {
       const filePath = path.join(__dirname, "public", rows[0].image);
       if (fs.existsSync(filePath)) fs.unlinkSync(filePath);
@@ -175,7 +199,7 @@ app.get("/getNews", async (req, res) => {
     const [results] = await db.execute("SELECT * FROM news ORDER BY id DESC");
     res.json(results);
   } catch (err) {
-    console.error("!!! DATABASE ERROR:", err); // ТОВА ЩЕ ИЗПИШЕ ГРЕШКАТА В ТЕРМИНАЛА
+    console.error("!!! DATABASE ERROR:", err);
     res.status(500).json({ error: "DB Error", details: err.message });
   }
 });
@@ -205,9 +229,15 @@ app.post("/submit-form", contactLimiter, upload.none(), async (req, res) => {
 
 // Глобален Error Handler с логване (Winston)
 app.use((err, req, res, next) => {
-  logger.error(`${err.message} - ${req.originalUrl} - ${req.method} - ${req.ip}`);
-  res.status(500).json({ success: false, message: "Вътрешна грешка в сървъра." });
+  logger.error(
+    `${err.message} - ${req.originalUrl} - ${req.method} - ${req.ip}`,
+  );
+  res
+    .status(500)
+    .json({ success: false, message: "Вътрешна грешка в сървъра." });
 });
 
 const PORT = process.env.PORT || 3010;
-app.listen(PORT, () => console.log(`✅ Професионално защитен сървър на порт ${PORT}`));
+app.listen(PORT, () =>
+  console.log(`✅ Професионално защитен сървър на порт ${PORT}`),
+);

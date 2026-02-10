@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { createPortal } from "react-dom"; // 1. Добавен импорт
+import { createPortal } from "react-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { Play, X } from "lucide-react";
 
 const VideoSection = () => {
   const [isOpen, setIsOpen] = useState(false);
 
-  // ESC за затваряне и блокиране на скрола
   useEffect(() => {
     const handleEsc = (e) => {
       if (e.key === "Escape") setIsOpen(false);
@@ -14,9 +13,9 @@ const VideoSection = () => {
 
     if (isOpen) {
       window.addEventListener("keydown", handleEsc);
-      document.body.style.overflow = "hidden"; // Спираме скрола
+      document.body.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = "unset"; // Пускаме скрола
+      document.body.style.overflow = "unset";
     }
 
     return () => {
@@ -31,10 +30,10 @@ const VideoSection = () => {
         {/* Заглавна част */}
         <div className="mb-12 text-left">
           <motion.div
-             initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="inline-block"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="inline-block"
           >
             <h1 className="font-display font-medium text-brand-dark case leading-none mb-4">
               Защо да се присъединиш <br />
@@ -112,9 +111,9 @@ const VideoSection = () => {
                     e.stopPropagation();
                     setIsOpen(false);
                   }}
-                 className="absolute top-6 right-6 p-4 text-brand-dark hover:rotate-90 transition-transform duration-300 z-[100001]"
-                           >
-                             <X size={36} strokeWidth={1.5} />
+                  className="absolute top-6 right-6 p-4 text-brand-dark hover:rotate-90 transition-transform duration-300 z-[100001]"
+                >
+                  <X size={36} strokeWidth={1.5} />
                 </button>
 
                 <motion.div
@@ -127,7 +126,7 @@ const VideoSection = () => {
                   <iframe
                     width="100%"
                     height="100%"
-                    src="https://www.youtube.com/embed/2Ak1IIp9jdc?autoplay=1" // Добавен autoplay при отваряне
+                    src="https://www.youtube.com/embed/2Ak1IIp9jdc?autoplay=1"
                     title="Miglena Avramova Team"
                     frameBorder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -137,7 +136,7 @@ const VideoSection = () => {
               </motion.div>
             )}
           </AnimatePresence>,
-          document.body
+          document.body,
         )}
     </section>
   );

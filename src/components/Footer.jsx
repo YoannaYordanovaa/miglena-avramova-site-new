@@ -5,7 +5,7 @@ import {
   Facebook,
   Instagram,
   Youtube,
-  Video, // Използваме Video за TikTok, тъй като е стандартна икона
+  Video,
   ArrowUpRight,
 } from "lucide-react";
 
@@ -17,8 +17,8 @@ const Footer = () => {
     { name: "За мен", path: "/about" },
     { name: "Разгледай продукти", path: "/shop" },
     { name: "Включи се", path: "/join" },
-     { name: "За Форевър", path: "/join#forever-section" },
-      { name: "Видео", path: "/join#video" },
+    { name: "За Форевър", path: "/join#forever-section" },
+    { name: "Видео", path: "/join#video" },
   ];
 
   // Масив със социални мрежи
@@ -40,14 +40,14 @@ const Footer = () => {
     },
     {
       Icon: Youtube,
-      href: "https://www.youtube.com/@miglenaavramova1848", // Сложи твоя актуален линк тук
+      href: "https://www.youtube.com/@miglenaavramova1848",
       label: "YouTube",
     },
   ];
 
   return (
     <footer className="bg-brand-light px-6 relative overflow-hidden">
-      {/* 1. НАЙ-ГОРЕН ФИН РАЗДЕЛИТЕЛ */}
+      {/* РАЗДЕЛИТЕЛ */}
       <div className="max-w-7xl mx-auto border-t border-gray-200" />
 
       <div className="max-w-7xl mx-auto py-12 md:py-10 md:pt-20 relative z-10">
@@ -66,7 +66,7 @@ const Footer = () => {
               лидерството заедно.
             </p>
 
-            {/* СОЦИАЛНИ МРЕЖИ - ОБНОВЕНИ */}
+            {/* СОЦИАЛНИ МРЕЖИ */}
             <div className="flex gap-4">
               {socialLinks.map(({ Icon, href, label }, idx) => (
                 <a
@@ -135,7 +135,7 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* 2. ДОЛЕН ФИН РАЗДЕЛИТЕЛ И ПРАВНА ЛЕНТА */}
+        {/* ДОЛЕН РАЗДЕЛИТЕЛ */}
         <div className="pt-8 border-t border-gray-200 flex flex-col md:flex-row justify-between items-center gap-6 text-center">
           <p className="font-sans text-[10px] text-gray-400 uppercase tracking-[0.2em] order-2 md:order-1">
             © {currentYear} Miglena Avramova • Forever Business Owner

@@ -29,7 +29,6 @@ const AboutDetailed = () => {
     ease: "easeInOut",
   };
 
-  // --- ТУК ТРЯБВА ДА ДОБАВИШ ТЕЗИ ДВА РЕДА ---
   const standardTransition = { duration: 0.9, ease: [0.22, 1, 0.36, 1] };
   const fadeUpVariant = {
     initial: { opacity: 0, y: 30 },
@@ -39,32 +38,28 @@ const AboutDetailed = () => {
 
   return (
     <div className="relative overflow-x-hidden">
-      {/* 1. STORY SECTION - Full Width Split Design */}
+      {/* 1. STORY SECTION */}
       <section className="relative w-full flex flex-col lg:flex-row items-stretch overflow-hidden max-w-[1924px] mx-auto pt-20 md:pt-20">
-        {/* ЛЯВА ЧАСТ: Визуален център (Снимката) */}
-        {/* ЛЯВА ЧАСТ: Визуален център (Снимката) */}
-        {/* Промяна: Ограничаваме височината до максимум 700px-800px на десктоп и центрираме съдържанието */}
+        {/* ЛЯВА ЧАСТ */}
         <div className="relative w-full lg:w-1/2 flex items-center justify-center lg:h-[700px] xl:h-[800px] min-h-[450px] md:min-h-[600px] overflow-hidden">
           <motion.div
             initial={{ scale: 1.05, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ duration: 1.5 }}
-            className="relative w-full h-full lg:max-w-[1920px] mx-auto overflow-hidden" // Ограничаваме максималната ширина на контейнера
+            className="relative w-full h-full lg:max-w-[1920px] mx-auto overflow-hidden"
           >
             <img
               src="/Miglena/Miglena_aboutDetailed2.jpg"
               className="w-full h-full object-cover object-center"
               alt="Миглена"
             />
-            {/* Overlay за преход */}
             <div className="absolute inset-0 bg-gradient-to-r from-transparent to-white/5 hidden lg:block" />
             <div className="absolute inset-0 bg-gradient-to-b from-transparent to-white/10 lg:hidden" />
           </motion.div>
         </div>
 
-        {/* ДЯСНА ЧАСТ: Текст и Типография */}
+        {/* ДЯСНА ЧАСТ*/}
         <div className="w-full lg:w-1/2 flex items-center justify-center p-8 md:p-16 lg:p-24 relative">
-          {/* Декоративна буква на заден план */}
           <span className="absolute top-10 right-10 text-[12rem] md:text-[18rem] font-display font-bold text-brand-light/15 leading-none select-none pointer-events-none">
             M
           </span>
@@ -108,7 +103,7 @@ const AboutDetailed = () => {
                 </p>
               </div>
 
-              {/* Бутон за скрол надолу - Минималистичен дизайн */}
+              {/* Бутон за скрол надолу */}
               <div className="pt-6 flex mx-auto justify-center">
                 <button
                   onClick={() =>
@@ -119,11 +114,10 @@ const AboutDetailed = () => {
                   className="group relative flex flex-col items-center gap-3 transition-all"
                   aria-label="Скрол надолу към трансформацията"
                 >
-                  {/* Дискретен текст под стрелките (по избор, може да се премахне) */}
                   <span className="text-[9px] uppercase tracking-[0.3em] text-brand-dark/40 font-bold group-hover:text-brand-primary transition-colors">
                     Виж повече
                   </span>
-                  {/* Основният кръг */}
+
                   <div className="w-16 h-16 md:w-16 md:h-16">
                     <motion.div
                       animate={{ y: [0, 6, 0] }}
@@ -179,9 +173,9 @@ const AboutDetailed = () => {
             </div>
           </div>
 
-          {/* ЕТАП 2: ЛИЧНАТА ИСТОРИЯ (С ефект на списание) */}
+          {/* ЕТАП 2: ЛИЧНАТА ИСТОРИЯ */}
           <div className="grid lg:grid-cols-12 gap-12 lg:gap-20">
-            {/* Лява част: Миналото и Предизвикателствата */}
+            {/* Лява част */}
             <div className="lg:col-span-5 space-y-12">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -220,7 +214,7 @@ const AboutDetailed = () => {
               </motion.div>
             </div>
 
-            {/* Дясна част: Промяната и Призванието */}
+            {/* Дясна част */}
             <div className="lg:col-span-7 space-y-6">
               <motion.div
                 initial={{ opacity: 0, x: 30 }}
@@ -285,7 +279,6 @@ const AboutDetailed = () => {
               transition={standardTransition}
               className="max-w-5xl mx-auto text-center"
             >
-              {/* Декоративна икона над текста */}
               <div className="flex items-center justify-center w-full opacity-100 my-15 md:my-20">
                 <div className="h-px grow bg-gradient-to-r from-transparent to-brand-primary" />
                 <div className="mx-4 rotate-45 border border-brand-primary w-2 h-2" />
@@ -293,8 +286,7 @@ const AboutDetailed = () => {
               </div>
 
               <h2 className="font-display text-4xl md:text-5xl mb-10">
-                Вярвам, че всяка жена заслужава да се чувства финансово
-               {" "}
+                Вярвам, че всяка жена заслужава да се чувства финансово{" "}
                 <span className="text-brand-primary italic font-light">
                   независима
                 </span>{" "}
@@ -343,7 +335,7 @@ const AboutDetailed = () => {
         </div>
       </section>
 
-      {/* 7. TRANSFORMATION SECTION - Тъмен фон до края */}
+      {/* 7. TRANSFORMATION SECTION */}
       <section className="section-container">
         <div className="stack-space ">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
@@ -420,7 +412,6 @@ const AboutDetailed = () => {
         group relative overflow-hidden
       "
                   >
-                    {/* Икона с по-силен контраст */}
                     <div
                       className="
         w-10 h-10 rounded-xl 
@@ -437,7 +428,6 @@ const AboutDetailed = () => {
                       {point.label}
                     </p>
 
-                    {/* Дискретен Sparkle ефект при ховър (по желание) */}
                     <div className="absolute right-4 opacity-0 group-hover:opacity-10 transition-opacity">
                       {point.icon}
                     </div>

@@ -1,16 +1,44 @@
-# React + Vite
+# 🌿 Miglena Avramova - Wellness & Business Platform
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A professional full-stack web platform designed for wellness consultations, health product distribution, and team management. Built with a focus on speed, security, and modern user experience.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Key Features
 
-## React Compiler
+### Frontend (React + Vite)
+- **Dynamic Shop:** Category-based filtering with automated order link generation.
+- **Interactive News:** Modern slider for latest updates and detailed article pages.
+- **Rich Text Management:** Integrated **Tiptap Editor** in the Admin Panel for easy content formatting.
+- **Fluid Animations:** Smooth transitions and UI interactions using **Framer Motion**.
+- **Responsive Design:** Fully optimized for mobile, tablet, and desktop devices.
 
-The React Compiler is currently not compatible with SWC. See [this issue](https://github.com/vitejs/vite-plugin-react/issues/428) for tracking the progress.
+### Backend (Node.js + Express)
+- **Advanced Security:**
+    - **Helmet.js:** Protection against common web vulnerabilities via HTTP headers.
+    - **Rate Limiting:** Brute-force protection for login and contact forms.
+    - **JWT Authorization:** Secure, token-based access to the admin dashboard.
+    - **Bcrypt:** Industry-standard password hashing.
+- **Media Optimization:** Automatic image resizing and conversion to `.webp` via **Sharp**.
+- **Centralized Logging:** Professional error tracking using **Winston**.
+- **Spam Protection:** Integrated **Honeypot** trap to block automated bots.
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 🛠 Tech Stack
+
+| Layer | Technology |
+| :--- | :--- |
+| **Frontend** | React 19, Vite, Tailwind CSS, Framer Motion, Lucide Icons |
+| **Backend** | Node.js, Express, Multer, JWT, Bcrypt |
+| **Database** | MySQL (Connection Pooling) |
+| **Utilities** | Sharp (Images), Winston (Logging), Nodemailer (Email) |
+
+---
+
+## 📦 Installation & Setup
+
+### 1. Clone the repository
+```bash
+git clone [https://github.com/your-username/miglena-site.git](https://github.com/your-username/miglena-site.git)
+cd miglena-site

@@ -3,7 +3,6 @@ import { motion } from "framer-motion";
 import { ArrowRight, Calendar } from "lucide-react";
 import { Link } from "react-router-dom";
 
-// Пътят към твоя бекенд
 const API_URL = "http://localhost:3010";
 
 const News = () => {
@@ -31,9 +30,12 @@ const News = () => {
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="mb-20 text-left space-y-4">
-          <span className="font-accent text-3xl text-brand-primary block">актуално</span>
+          <span className="font-accent text-3xl text-brand-primary block">
+            актуално
+          </span>
           <h1 className="font-display text-5xl md:text-7xl text-brand-dark tracking-tighter italic">
-            Новини & <span className="text-brand-primary not-italic">Събития</span>
+            Новини &{" "}
+            <span className="text-brand-primary not-italic">Събития</span>
           </h1>
           <p className="font-sans text-gray-500 text-xl max-w-2xl font-light">
             Бъдете в крак с последните новини от света на уелнеса и нашия екип.
@@ -53,8 +55,12 @@ const News = () => {
               >
                 {/* Снимка на новината (Добавена) */}
                 <div className="relative h-64 overflow-hidden">
-                  <img 
-                    src={item.image ? `${API_URL}${item.image}` : "/news-placeholder.webp"} 
+                  <img
+                    src={
+                      item.image
+                        ? `${API_URL}${item.image}`
+                        : "/news-placeholder.webp"
+                    }
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                     alt={item.title}
                   />
@@ -71,12 +77,11 @@ const News = () => {
                   </h2>
 
                   <p className="font-sans text-gray-500 leading-relaxed mb-8 line-clamp-3 flex-grow font-light text-lg">
-                    {/* Премахваме HTML таговете, за да не се виждат <h2> или <p> в превюто */}
                     {item.text?.replace(/<[^>]*>?/gm, "")}
                   </p>
 
-                  <Link 
-                    to={`/news/${item.id}`} 
+                  <Link
+                    to={`/news/${item.id}`}
                     className="pt-6 border-t border-brand-light flex items-center justify-between group/link"
                   >
                     <span className="text-[10px] uppercase tracking-widest text-gray-400 font-bold group-hover/link:text-brand-primary transition-colors">
@@ -91,7 +96,9 @@ const News = () => {
             ))
           ) : !loading ? (
             <div className="col-span-full py-20 text-center border-2 border-dashed border-brand-primary/20 rounded-[3rem]">
-              <p className="text-gray-400 font-display text-2xl italic">В момента няма нови новини...</p>
+              <p className="text-gray-400 font-display text-2xl italic">
+                В момента няма нови новини...
+              </p>
             </div>
           ) : (
             <div className="col-span-full text-center py-20">

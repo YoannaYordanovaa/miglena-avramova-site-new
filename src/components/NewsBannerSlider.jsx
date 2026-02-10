@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from "react"; // Добавяме useMemo за оптимизация
+import React, { useState, useEffect, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, ChevronLeft, ChevronRight, Calendar } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -9,9 +9,8 @@ const NewsBannerSlider = ({ news = [] }) => {
   const [current, setCurrent] = useState(0);
   const [direction, setDirection] = useState(0);
 
-  // ГАРАНТИРАМЕ, че news е масив преди да правим slice
   const safeNews = Array.isArray(news) ? news : [];
-  
+
   const limitedNews = useMemo(() => safeNews.slice(0, 4), [safeNews]);
 
   useEffect(() => {
@@ -49,8 +48,16 @@ const NewsBannerSlider = ({ news = [] }) => {
           <motion.img
             initial={{ scale: 1.2 }}
             animate={{ scale: 1.05 }}
-            transition={{ duration: 20, repeat: Infinity, repeatType: "reverse" }}
-            src={limitedNews[current]?.image ? `${API_URL}${limitedNews[current].image}` : "/Miglena/news-placeholder.webp"}
+            transition={{
+              duration: 20,
+              repeat: Infinity,
+              repeatType: "reverse",
+            }}
+            src={
+              limitedNews[current]?.image
+                ? `${API_URL}${limitedNews[current].image}`
+                : "/Miglena/news-placeholder.webp"
+            }
             className="w-full h-full object-cover opacity-70"
             alt={limitedNews[current]?.title}
           />
@@ -101,7 +108,10 @@ const NewsBannerSlider = ({ news = [] }) => {
                     className="group relative inline-flex items-center gap-3 text-brand-primary"
                   >
                     <span className="relative z-10">Виж повече</span>
-                    <ArrowRight size={18} className="relative z-10 group-hover:translate-x-2 transition-transform" />
+                    <ArrowRight
+                      size={18}
+                      className="relative z-10 group-hover:translate-x-2 transition-transform"
+                    />
                   </Link>
                 </motion.div>
               </div>
@@ -115,13 +125,19 @@ const NewsBannerSlider = ({ news = [] }) => {
           onClick={() => paginate(-1)}
           className="w-14 h-14 rounded-full border border-white/10 bg-white/5 backdrop-blur-md flex items-center justify-center text-white hover:bg-brand-primary hover:border-brand-primary transition-all duration-300 group"
         >
-          <ChevronLeft size={24} className="group-hover:-translate-x-1 transition-transform" />
+          <ChevronLeft
+            size={24}
+            className="group-hover:-translate-x-1 transition-transform"
+          />
         </button>
         <button
           onClick={() => paginate(1)}
           className="w-14 h-14 rounded-full border border-white/10 bg-white/5 backdrop-blur-md flex items-center justify-center text-white hover:bg-brand-primary hover:border-brand-primary transition-all duration-300 group"
         >
-          <ChevronRight size={24} className="group-hover:translate-x-1 transition-transform" />
+          <ChevronRight
+            size={24}
+            className="group-hover:translate-x-1 transition-transform"
+          />
         </button>
       </div>
 
@@ -137,7 +153,9 @@ const NewsBannerSlider = ({ news = [] }) => {
           >
             <div
               className={`h-[3px] transition-all duration-700 rounded-full ${
-                idx === current ? "w-12 bg-brand-primary" : "w-6 bg-white/20 group-hover:bg-white/40"
+                idx === current
+                  ? "w-12 bg-brand-primary"
+                  : "w-6 bg-white/20 group-hover:bg-white/40"
               }`}
             />
           </button>

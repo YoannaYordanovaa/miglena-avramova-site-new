@@ -16,8 +16,8 @@ import { Link } from "react-router-dom";
 
 const Home = () => {
   const containerRef = useRef(null);
-  const scrollRef = useRef(null); // Дефинирано само веднъж
-  const [activeIndex, setActiveIndex] = useState(0); // Дефинирано само веднъж
+  const scrollRef = useRef(null);
+  const [activeIndex, setActiveIndex] = useState(0);
 
   const entryTransition = { duration: 0.8, ease: [0.22, 1, 0.36, 1] };
 
@@ -63,7 +63,6 @@ const Home = () => {
               transition={{ duration: 1.2 }}
               className="relative w-full h-full overflow-hidden"
               style={{
-                // Прилагаме маската само ако екранът е по-малък от 1024px
                 WebkitMaskImage:
                   typeof window !== "undefined" && window.innerWidth < 1024
                     ? "linear-gradient(to bottom, black 80%, transparent 100%)"
@@ -154,15 +153,13 @@ const Home = () => {
                   className="font-light text-center lg:text-left
                             lg:border-l-2 lg:border-brand-primary/20 lg:pl-6 mb-10"
                 >
-                  Позволи си да излезеш от рутината и да преоткриеш радостта от свободното време, споделено с любими хора.
+                  Позволи си да излезеш от рутината и да преоткриеш радостта от
+                  свободното време, споделено с любими хора.
                 </p>
 
                 {/* CTA */}
                 <div className="flex justify-center lg:justify-start">
-                  <Link
-                    to="/join"
-                    className="btn-primary  "
-                  >
+                  <Link to="/join" className="btn-primary  ">
                     Започни днес
                     <ArrowRight
                       size={18}
@@ -209,11 +206,11 @@ const Home = () => {
             className="space-y-10"
           >
             <p className="font-sans text-left text-gray-500 leading-relaxed font-light">
-              Здравей, казвам се Миглена и съм тук, за да ти разкажа
-              как всеки ден се срещам с хора, които търсят по-здравословен,
-              смислен и свободен начин на живот. Хора, които искат да се
-              измъкнат от рутината на работа от 9:00 до 17:00 и да се посветят
-              на своите хобита, близки и личностно развитие...
+              Здравей, казвам се Миглена и съм тук, за да ти разкажа как всеки
+              ден се срещам с хора, които търсят по-здравословен, смислен и
+              свободен начин на живот. Хора, които искат да се измъкнат от
+              рутината на работа от 9:00 до 17:00 и да се посветят на своите
+              хобита, близки и личностно развитие...
             </p>
             <div className="flex justify-start ">
               <Link to="/about" className="btn-primary ">

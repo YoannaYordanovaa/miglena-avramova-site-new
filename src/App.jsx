@@ -7,21 +7,18 @@ import AboutDetailed from "./pages/AboutDetailed";
 import JoinTeam from "./pages/JoinTeam";
 import Footer from "./components/Footer";
 import ScrollToTop from "./components/ScrollToTop";
-import Products from "./pages/products"; 
-import News from "./components/News"; 
+import Products from "./pages/products";
+import News from "./components/News";
 import AdminPanel from "./pages/AdminPanel";
 import NewsDetail from "./pages/NewsDetail";
-import TeamGallery from "./components/TeamGallery";
-import VideoSection from "./components/VideoSection";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsOfService from "./pages/TermsOfService";
-
 
 function App() {
   return (
     <Router>
       <ScrollToTop />
-  
+
       <div className="min-h-screen selection:bg-brand-primary selection:text-white">
         <Navbar />
         <main>
@@ -35,8 +32,6 @@ function App() {
               <Route path="/news" element={<News />} />
               <Route path="/admin" element={<AdminPanel />} />
               <Route path="/news/:id" element={<NewsDetail />} />
-              <Route path="/joingallery" element={<TeamGallery />} />
-              <Route path="/joinvideo" element={<VideoSection />} />
               <Route path="/privacyPolicy" element={<PrivacyPolicy />} />
               <Route path="/termsofservice" element={<TermsOfService />} />
             </Routes>

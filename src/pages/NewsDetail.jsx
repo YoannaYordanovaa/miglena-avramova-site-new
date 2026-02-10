@@ -3,18 +3,15 @@ import { useParams, useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowLeft, Calendar, Share2, ArrowRight } from "lucide-react";
 
-// Пътят към вашия бекенд
 const API_URL = "http://localhost:3010";
 
 const NewsDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
 
-  // --- ВСИЧКИ ХУКОВЕ ТРЯБВА ДА СА ТУК (НАЙ-ОТГОРЕ) ---
   const [article, setArticle] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [copied, setCopied] = useState(false); // Дефинираме променливата тук
-
+  const [copied, setCopied] = useState(false);
   useEffect(() => {
     const fetchArticle = async () => {
       try {
@@ -32,7 +29,6 @@ const NewsDetail = () => {
     fetchArticle();
   }, [id]);
 
-  // --- УСЛОВНИТЕ ПРОВЕРКИ ЗА RETURN ТРЯБВА ДА СА СЛЕД ХУКОВЕТЕ ---
   if (loading)
     return (
       <div className="min-h-screen flex items-center justify-center bg-brand-cream">
@@ -43,8 +39,12 @@ const NewsDetail = () => {
   if (!article)
     return (
       <div className="min-h-screen flex flex-col items-center justify-center bg-brand-cream space-y-6">
-        <p className="font-display text-2xl text-brand-dark italic">Статията не е намерена...</p>
-        <button onClick={() => navigate("/news")} className="btn-primary">Назад към начало</button>
+        <p className="font-display text-2xl text-brand-dark italic">
+          Статията не е намерена...
+        </p>
+        <button onClick={() => navigate("/news")} className="btn-primary">
+          Назад към начало
+        </button>
       </div>
     );
 
@@ -98,9 +98,9 @@ const NewsDetail = () => {
         {/* СЪДЪРЖАНИЕ */}
         <article className="bg-brand-cream backdrop-blur-md rounded-[2.5rem] md:rounded-[2.5rem] p-8 md:p-20 shadow-sm border border-white/50 text-left relative">
           <div
-  className="article-content bg-brand-light!"
-  dangerouslySetInnerHTML={{ __html: article.text }}
-/>
+            className="article-content bg-brand-light!"
+            dangerouslySetInnerHTML={{ __html: article.text }}
+          />
 
           {/* Бутон за действие */}
           {article.buttonText && article.buttonLink && (
@@ -140,7 +140,10 @@ const NewsDetail = () => {
             <button
               onClick={() => {
                 if (navigator.share) {
-                  navigator.share({ title: article.title, url: window.location.href });
+                  navigator.share({
+                    title: article.title,
+                    url: window.location.href,
+                  });
                 } else {
                   navigator.clipboard.writeText(window.location.href);
                   setCopied(true);
@@ -150,9 +153,10 @@ const NewsDetail = () => {
               className={`
                 relative overflow-hidden flex items-center gap-2 px-8 py-4 rounded-full 
                 text-[10px] font-black uppercase tracking-[0.2em] transition-all duration-500
-                ${copied 
-                  ? "bg-brand-primary text-white border-brand-primary shadow-lg" 
-                  : "bg-white text-gray-400 border border-gray-100 hover:text-brand-primary hover:border-brand-primary/30"
+                ${
+                  copied
+                    ? "bg-brand-primary text-white border-brand-primary shadow-lg"
+                    : "bg-white text-gray-400 border border-gray-100 hover:text-brand-primary hover:border-brand-primary/30"
                 }
               `}
             >
@@ -182,8 +186,6 @@ const NewsDetail = () => {
           </div>
         </article>
       </motion.div>
-
-  
     </div>
   );
 };

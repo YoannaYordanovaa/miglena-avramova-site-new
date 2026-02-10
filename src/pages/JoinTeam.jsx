@@ -59,7 +59,6 @@ const JoinTeam = () => {
     },
   ];
 
-  // Функция, която следи коя карта е в центъра
   const handleScroll = () => {
     if (scrollRef.current) {
       const { scrollLeft, offsetWidth } = scrollRef.current;
@@ -128,25 +127,20 @@ const JoinTeam = () => {
               </h1>
 
               <p className="font-sans font-light max-w-xl mx-auto lg:mx-0 leading-relaxed border-l-0 lg:border-l-2 border-brand-primary/20 lg:pl-6">
-                Изгради кариера, която не те затваря в офис, а ти дава енергията и времето да живееш живота, който искаш!
+                Изгради кариера, която не те затваря в офис, а ти дава енергията
+                и времето да живееш живота, който искаш!
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start items-center pt-4">
-                <a
-                  href="#join-form"
-                  className="btn-primary "
-                >
+                <a href="#join-form" className="btn-primary ">
                   Кандидатствай сега
                 </a>
-                <a
-                  href="#video"
-                  className="btn-outline "
-                >
+                <a href="#video" className="btn-outline ">
                   Научи повече
                   <ArrowRight
                     size={18}
-                strokeWidth={1.2}
-                className="group-hover:translate-x-2 transition-transform shrink-0"
+                    strokeWidth={1.2}
+                    className="group-hover:translate-x-2 transition-transform shrink-0"
                   />
                 </a>
               </div>
@@ -233,7 +227,7 @@ const JoinTeam = () => {
             ))}
           </div>
 
-          {/* ТОЧКИ (PAGINATION DOTS) - Видими само на мобилни */}
+          {/* PAGINATION DOTS */}
           <div className="flex justify-center gap-2 mt-6 md:hidden">
             {benefits.map((_, i) => (
               <div
@@ -247,12 +241,9 @@ const JoinTeam = () => {
             ))}
           </div>
 
-          {/* БУТОНИ - На телефон стават един под друг за по-лесно кликане */}
+          {/* БУТОНИ */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mt-12 md:mt-16">
-            <a
-              href="#join-form"
-              className="btn-primary"
-            >
+            <a href="#join-form" className="btn-primary">
               <span>Собственик на Форевър бизнес</span>
               <ArrowRight
                 size={18}
@@ -260,10 +251,7 @@ const JoinTeam = () => {
                 className="group-hover:translate-x-2 transition-transform shrink-0"
               />
             </a>
-            <a
-              href="#video"
-              className="btn-outline "
-            >
+            <a href="#video" className="btn-outline ">
               <span>Преференциален клиент</span>
               <ArrowRight
                 size={18}
@@ -275,13 +263,11 @@ const JoinTeam = () => {
         </div>
       </section>
 
-      
-  <div className="flex items-center justify-center w-full opacity-100">
-    <div className="h-[1px] flex-grow bg-gradient-to-r from-transparent to-brand-primary" />
-    <div className="mx-4 rotate-45 border border-brand-primary w-2 h-2" />
-    <div className="h-[1px] flex-grow bg-gradient-to-l from-transparent to-brand-primary" />
-  </div>
-
+      <div className="flex items-center justify-center w-full opacity-100">
+        <div className="h-[1px] flex-grow bg-gradient-to-r from-transparent to-brand-primary" />
+        <div className="mx-4 rotate-45 border border-brand-primary w-2 h-2" />
+        <div className="h-[1px] flex-grow bg-gradient-to-l from-transparent to-brand-primary" />
+      </div>
 
       {/* 4. Team Gallery */}
       <TeamGallery />
@@ -418,7 +404,7 @@ const JoinTeam = () => {
                 </div>
               </div>
             </div>
-            {/* Малките карти (3 броя в колона) */}
+            {/* Малки карти (3 броя в колона) */}
             <div className="flex flex-col space-y-6 w-full relative z-10 px-2 md:grid md:grid-cols-3 md:space-y-0 md:gap-12">
               {[
                 {
@@ -478,7 +464,7 @@ const JoinTeam = () => {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                className="max-w-3xl mx-auto" // Ограничаваме ширината на текста за по-добра четимост
+                className="max-w-3xl mx-auto"
               >
                 {/* ВЪВЕДЖАЩО ИЗРЕЧЕНИЕ */}
 
@@ -585,10 +571,7 @@ const JoinTeam = () => {
               </div>
             </div>
             <div className="flex justify-center items-center mx-auto mt-10">
-              <a
-                href="#join-form"
-                className="btn-primary "
-              >
+              <a href="#join-form" className="btn-primary ">
                 Кандидатствай сега
               </a>{" "}
             </div>

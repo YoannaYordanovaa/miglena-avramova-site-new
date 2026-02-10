@@ -5,9 +5,9 @@ import { Leaf } from "lucide-react";
 const MainLayout = ({ children }) => {
   return (
     <div className="relative min-h-screen bg-brand-cream overflow-x-hidden">
-      {/* --- ГЛОБАЛЕН ПРИРОДЕН ФОН --- */}
+      {/* --- ГЛОБАЛЕН ФОН --- */}
       <div className="fixed inset-0 pointer-events-none z-0">
-        {/* 1. РЕАЛИСТИЧНИ АЛОЕ ВЕРА ЕЛЕМЕНТИ */}
+        {/* 1. ЕЛЕМЕНТИ */}
         <motion.img
           src="/Aloe_Vera_Plant.webp"
           className="absolute -top-10 -right-20 w-[350px] md:w-[550px] h-auto object-contain opacity-20"
@@ -40,7 +40,7 @@ const MainLayout = ({ children }) => {
           }}
         />
 
-        {/* 2. ПРИРОДНИ ИКОНИ */}
+        {/* 2. ИКОНИ */}
         <motion.div
           className="absolute top-1/4 left-[15%] text-brand-primary opacity-20"
           animate={{
@@ -73,7 +73,6 @@ const MainLayout = ({ children }) => {
           <Leaf size={35} strokeWidth={1} />
         </motion.div>
 
-        {/* 3. ЧИСТИ ЗЕЛЕНИ И ЗЛАТИСТИ СИЯНИЯ (БЕЗ РОЗОВО) */}
         {/* Смарагдов акцент в горния десен ъгъл */}
         <div className="absolute top-[10%] right-[0%] w-[600px] h-[600px] bg-brand-primary/15 rounded-full blur-[130px]" />
 

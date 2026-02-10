@@ -7,8 +7,8 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [mobileExpands, setMobileExpands] = useState({});
-  const [activeMenu, setActiveMenu] = useState(null); // За Hover на главното меню
-  const [activeSubMenu, setActiveSubMenu] = useState(null); // За Клик на подменюто (Козметика/Напитки)
+  const [activeMenu, setActiveMenu] = useState(null);
+  const [activeSubMenu, setActiveSubMenu] = useState(null);
 
   const location = useLocation();
   const navigate = useNavigate();
@@ -178,7 +178,6 @@ const Navbar = () => {
                             return (
                               <div key={sIdx} className="flex flex-col">
                                 {sub.subSubmenu ? (
-                                  // АКО ИМА ПОД-ПОДМЕНЮ (Козметика, Напитки)
                                   <div
                                     onClick={(e) => {
                                       e.preventDefault();
@@ -200,7 +199,6 @@ const Navbar = () => {
                                     />
                                   </div>
                                 ) : (
-                                  // АКО НЯМА ПОД-ПОДМЕНЮ (Контрол на теглото, Пакети) -> Директен Линк
                                   <Link
                                     to={sub.href}
                                     className={`flex items-center px-4 py-3 rounded-xl hover:bg-brand-light transition-colors ${dropdownTextStyle}`}

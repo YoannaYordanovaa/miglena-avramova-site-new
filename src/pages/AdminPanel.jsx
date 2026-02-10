@@ -25,7 +25,6 @@ import {
   Upload,
 } from "lucide-react";
 
-// Използваме системна променлива за URL или localhost при разработка
 const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3010";
 
 // --- КОМПОНЕНТ ЗА ЛЕНТАТА С ИНСТРУМЕНТИ ---

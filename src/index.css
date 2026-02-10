@@ -5,7 +5,7 @@
   /* Цветова палитра */
   --color-brand-dark: #003f00;
   --color-brand-primary: #74ab1a;
-  --color-brand-light: #fcfaf7CC;
+  --color-brand-light: #fcfaf7cc;
   --color-brand-cream: #faf9f6;
 
   /* Типография */
@@ -27,39 +27,37 @@
     text-rendering: optimizeLegibility;
   }
 
- body {
-    /* text-base (16px) на телефон, text-lg (18px) на десктоп е златният стандарт */
+  body {
     @apply bg-brand-cream font-sans text-gray-600 text-base md:text-lg font-light antialiased overflow-x-hidden;
-    line-height: 1.6; /* Малко повече разстояние между редовете за въздух */
+    line-height: 1.6;
     margin: 0;
   }
 
   /* Автоматична типография */
-  h1, h2, h3, h4 {
+  h1,
+  h2,
+  h3,
+  h4 {
     @apply font-display text-brand-dark leading-[1.1] tracking-tight;
   }
 
-  /* HERO ЗАГЛАВИЕ: Голямо и впечатляващо */
+  /* HERO ЗАГЛАВИЕ */
   h1 {
-    /* 36px на мобилни -> 72px на десктоп */
     @apply text-[2.25rem] md:text-6xl lg:text-7xl font-medium;
   }
 
-  /* СЕКЦИОННИ ЗАГЛАВИЯ: Ясни и четливи */
+  /* СЕКЦИОННИ ЗАГЛАВИЯ */
   h2 {
-    /* 30px на мобилни -> 48px-56px на десктоп */
     @apply text-[1.875rem] md:text-5xl lg:text-6xl font-medium tracking-tighter;
   }
 
   /* ПОДЗАГЛАВИЯ И КАРТИ */
   h3 {
-    /* 24px на мобилни -> 32px-36px на десктоп */
     @apply text-2xl md:text-3xl lg:text-4xl font-medium;
   }
 
   /* МАЛКИ ЗАГЛАВИЯ (Feature cards) */
   h4 {
-    /* 18px на мобилни -> 20px-22px на десктоп */
     @apply text-lg md:text-xl lg:text-2xl font-semibold;
   }
 
@@ -72,7 +70,6 @@
     @apply h-auto max-w-full block;
   }
 
-  /* Предотвратява автоматичния зуум на iPhone при форми */
   input,
   textarea,
   select {
@@ -86,9 +83,9 @@
 
 /* --- 2. ГЛОБАЛНИ КОМПОНЕНТИ --- */
 @layer components {
-  /* Глобален стандарт за секция - ВАЖНО ЗА КОНСИСТЕНТНОСТ */
+  /* Глобален стандарт за секция */
   .section-container {
-    @apply py-16 md:py-24 px-6 md:px-30 mx-auto relative z-10 overflow-hidden 
+    @apply py-16 md:py-24 px-6 md:px-30 mx-auto relative z-10 overflow-hidden;
   }
 
   /* Стандарт за разстояние между елементи */
@@ -167,7 +164,6 @@
   }
 }
 
-/* Предотвратяване на "трептене" при мобилни */
 @media (hover: none) {
   .btn-primary:hover,
   .btn-outline:hover {
@@ -192,94 +188,91 @@
   animation: shake 0.2s ease-in-out 0s 2;
 }
 
-  .custom-scrollbar::-webkit-scrollbar {
-    height: 4px; /* Тънък и дискретен */
-  }
-  .custom-scrollbar::-webkit-scrollbar-track {
-    background: #f1f1f1;
-    border-radius: 10px;
-  }
-  .custom-scrollbar::-webkit-scrollbar-thumb {
-    background: #74ab1a; /* Вашият brand-primary цвят */
-    border-radius: 10px;
-    transition: all 0.3s;
-  }
-  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-    background: #5d8a15;
-  }
+.custom-scrollbar::-webkit-scrollbar {
+  height: 4px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #74ab1a;
+  border-radius: 10px;
+  transition: all 0.3s;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #5d8a15;
+}
 
 /* --- СТИЛОВЕ ЗА СЪДЪРЖАНИЕ НА СТАТИИТЕ --- */
 .article-content {
-    @apply bg-white font-sans text-gray-600 text-base md:text-lg font-normal antialiased overflow-x-hidden;
-    line-height: 1.6; /* Малко повече разстояние между редовете за въздух */
-    margin: 0;
+  @apply bg-white font-sans text-gray-600 text-base md:text-lg font-normal antialiased overflow-x-hidden;
+  line-height: 1.6;
+  margin: 0;
 }
 
-.article-content p { 
-  margin-bottom: 1rem; 
-
+.article-content p {
+  margin-bottom: 1rem;
 }
 
-.article-content h2 { 
-  font-family: var(--font-display); 
-  font-size: 1.5rem; 
-  color: var(--color-brand-dark); 
-  margin: 3.5rem 0 1.5rem; 
-  line-height: 1.1; 
+.article-content h2 {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  color: var(--color-brand-dark);
+  margin: 3.5rem 0 1.5rem;
+  line-height: 1.1;
 }
 
-.article-content h3 { 
-  font-family: var(--font-display); 
-  font-size: 2rem; 
-  color: var(--color-brand-dark); 
-  margin: 2.5rem 0 1rem; 
-  font-style: italic; 
+.article-content h3 {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  color: var(--color-brand-dark);
+  margin: 2.5rem 0 1rem;
+  font-style: italic;
 }
 
-/* СТИЛОВЕ ЗА СПИСЪЦИ (BULLET POINTS) */
-.article-content ul { 
-  list-style-type: disc !important; 
-  padding-left: 1.5rem; 
-  margin-bottom: 2rem; 
+.article-content ul {
+  list-style-type: disc !important;
+  padding-left: 1.5rem;
+  margin-bottom: 2rem;
   @apply space-y-1;
 }
 
-.article-content ol { 
-  list-style-type: decimal !important; 
-  padding-left: 1.5rem; 
-  margin-bottom: 2rem; 
+.article-content ol {
+  list-style-type: decimal !important;
+  padding-left: 1.5rem;
+  margin-bottom: 2rem;
   @apply space-y-1;
 }
 
-.article-content li { 
+.article-content li {
   display: list-item !important;
   padding-left: 0.5rem;
 }
 
-/* Маркерите (точките) да са в брандовия цвят */
 .article-content ul li::marker {
   color: var(--color-brand-primary);
 }
 
-.article-content blockquote { 
-  border-left: 5px solid var(--color-brand-primary); 
-  padding: 1.5rem 2.5rem; 
-  margin: 3.5rem 0; 
-  font-size: 1.6rem; 
-  color: var(--color-brand-dark); 
-  font-style: italic; 
-  background: rgba(116, 171, 26, 0.04); 
-  border-radius: 0 2.5rem 2.5rem 0; 
+.article-content blockquote {
+  border-left: 5px solid var(--color-brand-primary);
+  padding: 1.5rem 2.5rem;
+  margin: 3.5rem 0;
+  font-size: 1.6rem;
+  color: var(--color-brand-dark);
+  font-style: italic;
+  background: rgba(116, 171, 26, 0.04);
+  border-radius: 0 2.5rem 2.5rem 0;
 }
 
-.article-content img { 
-  border-radius: 2rem; 
-  margin: 3.5rem auto; 
-  display: block; 
-  box-shadow: 0 25px 50px rgba(0,0,0,0.1); 
-  border: 6px solid white; 
-  max-width: 100%; 
-  height: auto; 
+.article-content img {
+  border-radius: 2rem;
+  margin: 3.5rem auto;
+  display: block;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.1);
+  border: 6px solid white;
+  max-width: 100%;
+  height: auto;
 }
 
 .article-content a {

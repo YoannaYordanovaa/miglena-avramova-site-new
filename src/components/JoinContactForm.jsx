@@ -7,13 +7,12 @@ const ContactForm = () => {
   const [status, setStatus] = useState("");
   const [errors, setErrors] = useState({});
   const [privacyError, setPrivacyError] = useState(false);
-  
-  // 1. Използваме обект за състоянието на формата (важно за Honeypot и контролирани входове)
+
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
     message: "",
-    honeypot: "" // Скритото поле за ботове
+    honeypot: "",
   });
 
   const handleChange = (e) => {
@@ -21,36 +20,34 @@ const ContactForm = () => {
   };
 
   const handleSubmit = async (e) => {
-  e.preventDefault();
-  const newErrors = {};
+    e.preventDefault();
+    const newErrors = {};
 
-  // Регулярен израз за телефон: 
-  // Позволява незадължителен "+" в началото и между 7 и 15 цифри/интервала
-  const phoneRegex = /^\+?[0-9\s]{7,15}$/;
+    const phoneRegex = /^\+?[0-9\s]{7,15}$/;
 
-  // Валидация на име
-  if (!formData.name.trim()) {
-    newErrors.name = "Моля, въведете име";
-  }
+    // Валидация на име
+    if (!formData.name.trim()) {
+      newErrors.name = "Моля, въведете име";
+    }
 
-  // Валидация на телефон
-  if (!formData.phone.trim()) {
-    newErrors.phone = "Моля, въведете телефон";
-  } else if (!phoneRegex.test(formData.phone.trim())) {
-    newErrors.phone = "Невалиден формат (напр. +359 88...)";
-  }
+    // Валидация на телефон
+    if (!formData.phone.trim()) {
+      newErrors.phone = "Моля, въведете телефон";
+    } else if (!phoneRegex.test(formData.phone.trim())) {
+      newErrors.phone = "Невалиден формат (напр. +359 88...)";
+    }
 
-  // Валидация на съгласие
-  if (!e.target.privacy.checked) setPrivacyError(true);
+    // Валидация на съгласие
+    if (!e.target.privacy.checked) setPrivacyError(true);
 
-  if (Object.keys(newErrors).length > 0 || !e.target.privacy.checked) {
-    setErrors(newErrors);
-    setTimeout(() => {
-      setErrors({});
-      setPrivacyError(false);
-    }, 3000);
-    return;
-  }
+    if (Object.keys(newErrors).length > 0 || !e.target.privacy.checked) {
+      setErrors(newErrors);
+      setTimeout(() => {
+        setErrors({});
+        setPrivacyError(false);
+      }, 3000);
+      return;
+    }
 
     setStatus("sending");
 
@@ -58,7 +55,6 @@ const ContactForm = () => {
       const response = await fetch("http://localhost:3010/submit-form", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        // 2. Изпращаме целия formData обект, включително honeypot
         body: JSON.stringify(formData),
       });
 
@@ -66,11 +62,9 @@ const ContactForm = () => {
 
       if (response.ok) {
         setStatus("success");
-        // Изчистваме формата при успех
         setFormData({ name: "", phone: "", message: "", honeypot: "" });
         e.target.reset();
       } else {
-        // Показваме съобщение за грешка (напр. от Rate Limiter-а)
         console.error(result.message);
         setStatus("error");
       }
@@ -91,7 +85,9 @@ const ContactForm = () => {
           >
             <h1 className="font-display font-medium text-brand-dark case leading-none mb-4">
               Свържи се <br />
-              <span className="text-brand-primary font-light italic">с мен!</span>
+              <span className="text-brand-primary font-light italic">
+                с мен!
+              </span>
             </h1>
             <div className="flex items-center gap-4">
               <div className="w-12 h-[1px] bg-brand-primary" />
@@ -109,11 +105,14 @@ const ContactForm = () => {
               <div className="space-y-4">
                 <h2 className="font-display text-3xl md:text-5xl text-white font-medium tracking-tighter leading-tight">
                   Готов ли си за <br />
-                  <span className="text-brand-primary italic font-light">стъпка напред?</span>
+                  <span className="text-brand-primary italic font-light">
+                    стъпка напред?
+                  </span>
                 </h2>
               </div>
               <p className="font-sans font-light text-white/60 leading-relaxed text-base md:text-lg">
-                Попълни формата и ще се свържа с теб за безплатна опознавателна среща!
+                Попълни формата и ще се свържа с теб за безплатна опознавателна
+                среща!
               </p>
 
               <div className="space-y-4 md:space-y-6 pt-4 border-t border-white/10 text-sm md:text-base">
@@ -140,14 +139,17 @@ const ContactForm = () => {
 
           {/* Форма */}
           <div className="flex-1 p-6 md:p-20 text-left bg-brand-light">
-            <form onSubmit={handleSubmit} noValidate className="space-y-6 md:space-y-8">
-              
-              {/* 3. HONEYPOT КАПАН - Абсолютно скрит за хора */}
-              <div style={{ display: 'none' }} aria-hidden="true">
-                <input 
-                  type="text" 
-                  name="honeypot" 
-                  tabIndex="-1" 
+            <form
+              onSubmit={handleSubmit}
+              noValidate
+              className="space-y-6 md:space-y-8"
+            >
+              {/* 3. HONEYPOT */}
+              <div style={{ display: "none" }} aria-hidden="true">
+                <input
+                  type="text"
+                  name="honeypot"
+                  tabIndex="-1"
                   autoComplete="off"
                   value={formData.honeypot}
                   onChange={handleChange}
@@ -156,7 +158,9 @@ const ContactForm = () => {
 
               <div className="grid md:grid-cols-2 gap-6 md:gap-8">
                 <div className="space-y-2">
-                  <label className={`font-sans text-xs md:text-sm font-medium text-brand-dark block ${errors.name ? "text-red-500" : ""}`}>
+                  <label
+                    className={`font-sans text-xs md:text-sm font-medium text-brand-dark block ${errors.name ? "text-red-500" : ""}`}
+                  >
                     Твоето име
                   </label>
                   <input
@@ -169,7 +173,11 @@ const ContactForm = () => {
                   />
                   <AnimatePresence>
                     {errors.name && (
-                      <motion.p initial={{ opacity: 0, y: -5 }} animate={{ opacity: 1, y: 0 }} className="text-[10px] uppercase tracking-widest font-bold text-red-500 pl-2">
+                      <motion.p
+                        initial={{ opacity: 0, y: -5 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        className="text-[10px] uppercase tracking-widest font-bold text-red-500 pl-2"
+                      >
                         {errors.name}
                       </motion.p>
                     )}
@@ -177,7 +185,9 @@ const ContactForm = () => {
                 </div>
 
                 <div className="space-y-2">
-                  <label className={`font-sans text-xs md:text-sm font-medium text-brand-dark block ${errors.phone ? "text-red-500" : ""}`}>
+                  <label
+                    className={`font-sans text-xs md:text-sm font-medium text-brand-dark block ${errors.phone ? "text-red-500" : ""}`}
+                  >
                     Телефонен номер
                   </label>
                   <input
@@ -190,7 +200,11 @@ const ContactForm = () => {
                   />
                   <AnimatePresence>
                     {errors.phone && (
-                      <motion.p initial={{ opacity: 0, y: -5 }} animate={{ opacity: 1, y: 0 }} className="text-[10px] uppercase tracking-widest font-bold text-red-500 pl-2">
+                      <motion.p
+                        initial={{ opacity: 0, y: -5 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        className="text-[10px] uppercase tracking-widest font-bold text-red-500 pl-2"
+                      >
                         {errors.phone}
                       </motion.p>
                     )}
@@ -220,8 +234,17 @@ const ContactForm = () => {
                     type="checkbox"
                     className={`w-5 h-5 rounded border-2 transition-all cursor-pointer accent-brand-primary ${privacyError ? "border-red-500" : "border-brand-primary/20 bg-brand-cream"}`}
                   />
-                  <label htmlFor="privacy" className={`text-[11px] md:text-sm font-sans leading-tight cursor-pointer transition-colors ${privacyError ? "text-red-500" : "text-gray-400"}`}>
-                    Съгласен съм с <Link to="/privacyPolicy" className={`text-[11px] md:text-sm font-sans leading-tight cursor-pointer transition-colors ${privacyError ? "text-red-500" : "text-brand-primary underline-offset-4"}`}>Политиката за поверителност</Link>
+                  <label
+                    htmlFor="privacy"
+                    className={`text-[11px] md:text-sm font-sans leading-tight cursor-pointer transition-colors ${privacyError ? "text-red-500" : "text-gray-400"}`}
+                  >
+                    Съгласен съм с{" "}
+                    <Link
+                      to="/privacyPolicy"
+                      className={`text-[11px] md:text-sm font-sans leading-tight cursor-pointer transition-colors ${privacyError ? "text-red-500" : "text-brand-primary underline-offset-4"}`}
+                    >
+                      Политиката за поверителност
+                    </Link>
                   </label>
                 </div>
               </div>
@@ -238,12 +261,20 @@ const ContactForm = () => {
 
                 <AnimatePresence>
                   {status === "success" && (
-                    <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="mt-4 text-brand-primary font-sans text-sm font-medium">
+                    <motion.p
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      className="mt-4 text-brand-primary font-sans text-sm font-medium"
+                    >
                       Успешно изпратено!
                     </motion.p>
                   )}
                   {status === "error" && (
-                    <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="mt-4 text-red-500 font-sans text-sm font-medium">
+                    <motion.p
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      className="mt-4 text-red-500 font-sans text-sm font-medium"
+                    >
                       Грешка при изпращането или твърде много опити.
                     </motion.p>
                   )}

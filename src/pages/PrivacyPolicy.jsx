@@ -4,7 +4,6 @@ import { ShieldCheck, Lock, Eye, FileText, ArrowLeft } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const PrivacyPolicy = () => {
-  // Скролване до горе при зареждане
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);

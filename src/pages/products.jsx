@@ -39,18 +39,15 @@ const Products = () => {
     shop: "Всички продукти",
   };
 
-  // 2. Добавяме useEffect за зареждане на новините от бекенда
   useEffect(() => {
     const loadNews = async () => {
       try {
-        // Добавяме timestamp (?t=...), за да избегнем кеширането от браузъра
         const response = await fetch(
           `${API_URL}/getNews?t=${new Date().getTime()}`,
         );
         const data = await response.json();
         setNews(data);
 
-        // По избор: изчистваме стария кеш, за да не обърква системата
         localStorage.removeItem("miglena_news");
       } catch (error) {
         console.error("Грешка при зареждане на новините в магазина:", error);
@@ -58,7 +55,7 @@ const Products = () => {
     };
 
     loadNews();
-  }, []); // Изпълнява се веднъж при зареждане на компонента
+  }, []);
 
   const sortOptions = [
     { value: "default", label: "Сортирай по" },
@@ -135,19 +132,16 @@ const Products = () => {
     loadData();
   }, [category]);
 
-  // В Products.jsx добавете това:
   useEffect(() => {
-    // Скролва до горе само веднъж при първото влизане в магазина
     window.scrollTo(0, 0);
-  }, []); // Празен масив означава "само при първо зареждане"
+  }, []);
 
   const handleCategoryClick = (catId) => {
-    // 1. Сменяме адреса
     navigate(`/shop/${catId === "shop" ? "" : catId}`);
   };
 
   const filteredAndSortedProducts = useMemo(() => {
-    if (!products || loading) return []; // Добавете || loading
+    if (!products || loading) return [];
     let result = products.filter((p) => {
       const search = searchTerm.toLowerCase();
       return (
@@ -281,8 +275,7 @@ const Products = () => {
             className="btn-primary"
           >
             <span>
-             Пазарувай с{" "}
-              <span className="font-bold">-30%</span> отстъпка!
+              Пазарувай с <span className="font-bold">-30%</span> отстъпка!
             </span>
             <ArrowRight size={18} className="ml-2" />
           </button>
@@ -306,12 +299,11 @@ const Products = () => {
                     }`}
                   >
                     <img
-                      src={`/Category_Icons/${cat.icon}`} // Пътят до вашата папка в public
+                      src={`/Category_Icons/${cat.icon}`}
                       alt={cat.label}
                       className={`w-18 h-18 transition-all duration-500 ${
                         isActive ? "brightness-0 invert" : ""
                       }`}
-                      /* brightness-0 invert прави черна икона бяла, когато е активна */
                     />
                   </div>
                   <span
@@ -554,7 +546,7 @@ const Products = () => {
                       <ChevronLeft size={18} />
                     </button>
 
-                    {/* Номера на страници - добавяме flex-wrap за мобилни или overflow-x-auto */}
+                    {/* Номера на страници */}
                     <div className="flex items-center gap-1 sm:gap-2">
                       {getPaginationGroup(currentPage, totalPages).map(
                         (item, i) => (
