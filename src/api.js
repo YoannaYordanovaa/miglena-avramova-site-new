@@ -1,4 +1,4 @@
-const BASE_URL = "https://iglika.me";
+const BASE_URL = "https://miglenaavramova.com";
 
 export const fetchProducts = async (category) => {
   const endpoints = {
