@@ -120,7 +120,7 @@ const NewsBannerSlider = ({ news = [] }) => {
         </motion.div>
       </AnimatePresence>
 
-      <div className="absolute bottom-12 right-6 md:right-12 z-30 flex items-center gap-3">
+      <div className="absolute bottom-6 right-6 md:right-12 z-30 flex items-center gap-3">
         <button
           onClick={() => paginate(-1)}
           className="w-14 h-14 rounded-full border border-white/10 bg-white/5 backdrop-blur-md flex items-center justify-center text-white hover:bg-brand-primary hover:border-brand-primary transition-all duration-300 group"
@@ -141,7 +141,7 @@ const NewsBannerSlider = ({ news = [] }) => {
         </button>
       </div>
 
-      <div className="absolute bottom-12 left-6 md:left-12 z-30 flex items-center gap-3">
+      <div className="absolute bottom-2 md:bottom-6 left-6 md:left-12 z-30 flex items-center gap-3">
         {limitedNews.map((_, idx) => (
           <button
             key={idx}
