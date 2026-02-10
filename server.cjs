@@ -14,6 +14,8 @@ const sharp = require("sharp");
 const winston = require("winston");
 
 const app = express();
+app.use(express.json()); 
+app.use(express.urlencoded({ extended: true }));
 
 // --- 0. КОНФИГУРАЦИЯ НА ЛОГЕР (Winston) ---
 const logger = winston.createLogger({
@@ -52,6 +54,8 @@ const corsOptions = {
   credentials: true
 };
 app.use(cors(corsOptions));
+
+app.set('trust proxy', 1);
 
 // --- 2. ОГРАНИЧАВАНЕ НА ЗАЯВКИТЕ ---
 const generalLimiter = rateLimit({
