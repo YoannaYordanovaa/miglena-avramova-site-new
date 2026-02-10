@@ -141,6 +141,53 @@ const validateNews = (req, res, next) => {
   next();
 };
 
+// --- ЕНДПОИНТИ ЗА ПРОДУКТИ (Спрямо api.js) ---
+
+// Общ маршрут за всички продукти
+app.get("/getProducts", async (req, res) => {
+  try {
+    const [results] = await db.execute("SELECT * FROM products");
+    res.json(results);
+  } catch (err) {
+    logger.error(`Грешка при getProducts: ${err.message}`);
+    res.status(500).json({ error: "DB Error" });
+  }
+});
+
+// Специфични категории
+const categories = {
+  "/getDrinks": "Напитки",
+  "/getSupplements": "Добавки",
+  "/getFace": "Грижа за лицето",
+  "/getBody": "Грижа за тялото",
+  "/getPersonalhygiene": "Лична хигиена",
+  "/getWeightcontrol": "Контрол на теглото",
+  "/getPackages": "Пакети"
+};
+
+Object.entries(categories).forEach(([path, dbCategory]) => {
+  app.get(path, async (req, res) => {
+    try {
+      const [results] = await db.execute("SELECT * FROM products WHERE category = ?", [dbCategory]);
+      res.json(results);
+    } catch (err) {
+      logger.error(`Грешка при ${path}: ${err.message}`);
+      res.status(500).json({ error: "DB Error" });
+    }
+  });
+});
+
+// Детайли за поръчка (използва се в getOrderUrl в api.js)
+app.get("/getProductDetails/:id", async (req, res) => {
+  try {
+    const [rows] = await db.execute("SELECT * FROM products WHERE id = ?", [req.params.id]);
+    if (rows.length === 0) return res.status(404).json({ error: "Not found" });
+    res.json(rows[0]);
+  } catch (err) {
+    res.status(500).json({ error: "DB Error" });
+  }
+});
+
 // --- 8. ЕНДПОИНТИ ---
 
 app.post("/admin/login", loginLimiter, async (req, res) => {
