@@ -34,6 +34,10 @@ if (process.env.NODE_ENV !== "production") {
   );
 }
 
+app.get("/test", (req, res) => {
+  res.send("Server is alive!");
+});
+
 // --- 1. СИГУРНОСТ (HELMET & CORS) ---
 app.use(helmet({ crossOriginResourcePolicy: { policy: "cross-origin" } }));
 
@@ -55,7 +59,18 @@ const generalLimiter = rateLimit({
   max: 100,
   message: { message: "Твърде много заявки." },
 });
+
 app.use("/getNews", generalLimiter);
+
+app.get("/getNews", async (req, res) => {
+  try {
+    const [results] = await db.execute("SELECT * FROM news ORDER BY id DESC");
+    res.json(results);
+  } catch (err) {
+    console.error("!!! DATABASE ERROR:", err);
+    res.status(500).json({ error: "DB Error", details: err.message });
+  }
+});
 
 const loginLimiter = rateLimit({
   windowMs: 60 * 60 * 1000,
@@ -255,16 +270,6 @@ app.delete("/deleteNews/:id", verifyToken, async (req, res) => {
   } catch (err) {
     logger.error(`Грешка при триене: ${err.message}`);
     res.status(500).json({ success: false, error: err.message });
-  }
-});
-
-app.get("/getNews", async (req, res) => {
-  try {
-    const [results] = await db.execute("SELECT * FROM news ORDER BY id DESC");
-    res.json(results);
-  } catch (err) {
-    console.error("!!! DATABASE ERROR:", err);
-    res.status(500).json({ error: "DB Error", details: err.message });
   }
 });
 
