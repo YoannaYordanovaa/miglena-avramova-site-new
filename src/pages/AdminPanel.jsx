@@ -458,15 +458,6 @@ const AdminPanel = () => {
                   </label>
                 )}
               </div>
-              <input
-                required
-                placeholder="Заглавие на статията..."
-                value={formData.title}
-                onChange={(e) =>
-                  setFormData({ ...formData, title: e.target.value })
-                }
-                className="w-full px-8 py-5 rounded-2xl bg-white border-2 border-gray-50 focus:border-brand-primary outline-none font-display text-brand-dark"
-              />
               <div className="space-y-1">
                 <input
                   required
