@@ -3,7 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowLeft, Calendar, Share2, ArrowRight } from "lucide-react";
 
-const API_URL = "https://miglenaavramova.com/";
+const API_URL = "https://miglenaavramova.com";
 
 const NewsDetail = () => {
   const { id } = useParams();
