@@ -285,26 +285,12 @@ const AboutDetailed = () => {
                 <div className="h-px flex-grow bg-gradient-to-l from-transparent to-brand-primary" />
               </div>
 
-              <h2 className="font-display text-4xl md:text-5xl mb-10">
-                Вярвам, че всяка жена заслужава да се чувства финансово{" "}
+              <h2 className="font-display case leading-none text-4xl md:text-5xl mb-10">
+                Всяка жена заслужава {" "}
                 <span className="text-brand-primary italic font-light">
-                  независима
+                  финансова независимост
                 </span>{" "}
-                и изпълнена с
-                <span className="relative inline-block ml-3">
-                  енергия
-                  <svg
-                    className="absolute -bottom-2 left-0 w-full h-3 text-brand-primary/20"
-                    viewBox="0 0 100 10"
-                  >
-                    <path
-                      d="M0 5 Q 25 0, 50 5 T 100 5"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                    />
-                  </svg>
-                </span>
+                и увереност!
               </h2>
 
               <div className="max-w-2xl mx-auto space-y-10">

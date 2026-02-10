@@ -131,20 +131,24 @@ const Home = () => {
                 {/* HEADLINE */}
                 <h1 className="text-brand-dark font-display tracking-tighter mb-8 text-center lg:text-left ">
                   Върни си <br className="lg:hidden" />
-                  <span className="text-brand-primary italic font-light relative inline-block">
-                    енергията
-                    <svg
-                      className="absolute -bottom-2 left-0 w-full h-2 text-brand-primary/20"
-                      viewBox="0 0 300 12"
-                    >
-                      <path
-                        d="M1 10C50 3 150 3 299 10"
-                        stroke="currentColor"
-                        strokeWidth="6"
-                        fill="none"
-                      />
-                    </svg>
-                  </span>
+                    <span className="text-brand-primary italic font-light relative inline-block">
+                  енергията
+                  <motion.svg
+                    initial={{ pathLength: 0 }}
+                    whileInView={{ pathLength: 1 }}
+                    transition={{ delay: 1, duration: 1.2 }}
+                    className="absolute -bottom-1 md:-bottom-2 left-0 w-full h-2 md:h-3 text-brand-primary/30"
+                    viewBox="0 0 300 12"
+                  >
+                    <path
+                      d="M1 10C50 3 150 3 299 10"
+                      stroke="currentColor"
+                      strokeWidth="4"
+                      fill="none"
+                      strokeLinecap="round"
+                    />
+                  </motion.svg>
+                </span>
                   <br /> и баланса
                 </h1>
 
