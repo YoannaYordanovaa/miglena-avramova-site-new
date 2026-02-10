@@ -38,13 +38,16 @@ if (process.env.NODE_ENV !== "production") {
 app.use(helmet({ crossOriginResourcePolicy: { policy: "cross-origin" } }));
 
 const corsOptions = {
-  origin: ["http://localhost:5173", "https://miglenaavramova.com/"],
+  origin: [
+    "https://miglenaavramova.com", 
+    "https://www.miglenaavramova.com",
+    "http://localhost:5173" // остави го за локални тестове
+  ],
   methods: ["GET", "POST", "DELETE", "PUT"],
   allowedHeaders: ["Content-Type", "Authorization"],
+  credentials: true
 };
 app.use(cors(corsOptions));
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
 
 // --- 2. ОГРАНИЧАВАНЕ НА ЗАЯВКИТЕ ---
 const generalLimiter = rateLimit({
@@ -112,8 +115,14 @@ const db = mysql
 // --- 7. ВАЛИДАЦИЯ ---
 const validateNews = (req, res, next) => {
   const { title, text } = req.body;
-  if (!title || title.trim().length < 3)
-    return res.status(400).json({ message: "Заглавието е кратко." });
+  if (!title || title.trim().length < 3) {
+    return res.status(400).json({ message: "Заглавието е твърде кратко." });
+  }
+  if (title.length > 80) {
+    return res
+      .status(400)
+      .json({ message: "Заглавието не може да бъде над 80 символа." });
+  }
   next();
 };
 
@@ -171,6 +180,61 @@ app.post(
       res.json({ success: true, message: "Статията е запазена успешно!" });
     } catch (err) {
       logger.error(`Грешка при запис на новина: ${err.message}`);
+      res.status(500).json({ success: false, error: err.message });
+    }
+  },
+);
+
+// ОБНОВЯВАНЕ НА СТАТИЯ
+app.post(
+  "/updateNews/:id",
+  verifyToken,
+  upload.single("image"),
+  validateNews,
+  async (req, res) => {
+    try {
+      const { id } = req.params;
+      const { title, text, buttonText, buttonLink } = req.body;
+      let imagePath = null;
+
+      if (req.file) {
+        const fileName = `${Date.now()}-${Math.round(Math.random() * 1e9)}.webp`;
+        const dir = path.join(__dirname, "public", "uploads", "news");
+        if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
+
+        const fullPath = path.join(dir, fileName);
+
+        await sharp(req.file.buffer)
+          .resize(1200, null, { withoutEnlargement: true })
+          .webp({ quality: 80 })
+          .toFile(fullPath);
+
+        imagePath = `/uploads/news/${fileName}`;
+
+        const [rows] = await db.execute("SELECT image FROM news WHERE id = ?", [
+          id,
+        ]);
+        if (rows.length > 0 && rows[0].image) {
+          const oldFilePath = path.join(__dirname, "public", rows[0].image);
+          if (fs.existsSync(oldFilePath)) fs.unlinkSync(oldFilePath);
+        }
+      }
+
+      let sql, params;
+      if (imagePath) {
+        sql =
+          "UPDATE news SET title = ?, image = ?, text = ?, buttonText = ?, buttonLink = ? WHERE id = ?";
+        params = [title, imagePath, text, buttonText, buttonLink, id];
+      } else {
+        sql =
+          "UPDATE news SET title = ?, text = ?, buttonText = ?, buttonLink = ? WHERE id = ?";
+        params = [title, text, buttonText, buttonLink, id];
+      }
+
+      await db.execute(sql, params);
+      res.json({ success: true, message: "Статията е обновена успешно!" });
+    } catch (err) {
+      logger.error(`Грешка при обновяване на новина: ${err.message}`);
       res.status(500).json({ success: false, error: err.message });
     }
   },

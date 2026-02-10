@@ -84,7 +84,7 @@ const NewsBannerSlider = ({ news = [] }) => {
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.4, duration: 0.8 }}
-                  className="text-4xl md:text-7xl font-display text-white leading-[1.1] tracking-tighter mb-6 text-balance"
+                  className="text-4xl md:text-5xl font-display text-white leading-[1.1] tracking-tighter mb-6 text-balance"
                 >
                   {limitedNews[current]?.title}
                 </motion.h2>
