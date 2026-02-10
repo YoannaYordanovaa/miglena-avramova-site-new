@@ -243,7 +243,7 @@ const JoinTeam = () => {
 
           {/* БУТОНИ */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mt-12 md:mt-16">
-            <a href="#join-form" className="btn-primary">
+            <a href="https://thealoeveraco.shop/5R3LN273" className="btn-primary" target="_blank">
               <span>Собственик на Форевър бизнес</span>
               <ArrowRight
                 size={18}
@@ -251,7 +251,7 @@ const JoinTeam = () => {
                 className="group-hover:translate-x-2 transition-transform shrink-0"
               />
             </a>
-            <a href="#video" className="btn-outline ">
+            <a href="https://thealoeveraco.shop/5R3LN273" className="btn-outline " target="_blank">
               <span>Преференциален клиент</span>
               <ArrowRight
                 size={18}
