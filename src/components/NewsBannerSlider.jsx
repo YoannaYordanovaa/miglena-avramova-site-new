@@ -9,9 +9,10 @@ const NewsBannerSlider = ({ news = [] }) => {
   const [current, setCurrent] = useState(0);
   const [direction, setDirection] = useState(0);
 
-  // --- ОГРАНИЧЕНИЕ ДО 4 НОВИНИ ---
-  // Използваме useMemo, за да не режем масива при всяко пререндиране
-  const limitedNews = useMemo(() => news.slice(0, 4), [news]);
+  // ГАРАНТИРАМЕ, че news е масив преди да правим slice
+  const safeNews = Array.isArray(news) ? news : [];
+  
+  const limitedNews = useMemo(() => safeNews.slice(0, 4), [safeNews]);
 
   useEffect(() => {
     if (limitedNews.length <= 1) return;

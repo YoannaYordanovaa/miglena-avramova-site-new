@@ -96,7 +96,7 @@ const NewsDetail = () => {
         )}
 
         {/* СЪДЪРЖАНИЕ */}
-        <article className="bg-brand-light backdrop-blur-md rounded-[2.5rem] md:rounded-[2.5rem] p-8 md:p-20 shadow-sm border border-white/50 text-left relative">
+        <article className="bg-brand-cream backdrop-blur-md rounded-[2.5rem] md:rounded-[2.5rem] p-8 md:p-20 shadow-sm border border-white/50 text-left relative">
           <div
   className="article-content bg-brand-light!"
   dangerouslySetInnerHTML={{ __html: article.text }}

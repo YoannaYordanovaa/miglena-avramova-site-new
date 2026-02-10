@@ -6,223 +6,208 @@ const mysql = require("mysql2");
 const nodemailer = require("nodemailer");
 const multer = require("multer");
 const fs = require("fs");
+const jwt = require("jsonwebtoken");
+const bcrypt = require("bcryptjs");
+const helmet = require("helmet");
+const rateLimit = require("express-rate-limit");
+const sharp = require("sharp"); 
+const winston = require("winston"); 
 
 const app = express();
 
-// --- 1. MIDDLEWARE НАСТРОЙКИ ---
-app.use(cors()); 
+// --- 0. КОНФИГУРАЦИЯ НА ЛОГЕР (Winston) ---
+const logger = winston.createLogger({
+  level: "info",
+  format: winston.format.combine(
+    winston.format.timestamp(),
+    winston.format.json()
+  ),
+  transports: [
+    new winston.transports.File({ filename: "logs/error.log", level: "error" }), // Само грешки
+    new winston.transports.File({ filename: "logs/combined.log" }), // Всички събития
+  ],
+});
+
+if (process.env.NODE_ENV !== "production") {
+  logger.add(new winston.transports.Console({ format: winston.format.simple() }));
+}
+
+// --- 1. СИГУРНОСТ (HELMET & CORS) ---
+app.use(helmet({ crossOriginResourcePolicy: { policy: "cross-origin" } }));
+
+const corsOptions = {
+  origin: ["http://localhost:5173", "https://miglenaavramova.com/"],
+  methods: ["GET", "POST", "DELETE", "PUT"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+};
+app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Обслужване на статични файлове (снимки за новините)
-// Това позволява снимките да се достъпват на: miglenaavramova.com/uploads/news/име.jpg
-app.use("/uploads", express.static(path.join(__dirname, "public/uploads")));
+// --- 2. ОГРАНИЧАВАНЕ НА ЗАЯВКИТЕ ---
+const generalLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 100,
+  message: { message: "Твърде много заявки." },
+});
+app.use("/getNews", generalLimiter);
 
-// --- 2. КОНФИГУРАЦИЯ НА MULTER (ЗА КАЧВАНЕ НА СНИМКИ) ---
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    const dir = "public/uploads/news/";
-    // Автоматично създаване на папката, ако липсва
-    if (!fs.existsSync(dir)) {
-      fs.mkdirSync(dir, { recursive: true });
-    }
-    cb(null, dir);
-  },
-  filename: (req, file, cb) => {
-    // Генерираме уникално име: дата + случайни числа
-    const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
-    cb(null, uniqueSuffix + path.extname(file.originalname));
-  },
+const loginLimiter = rateLimit({
+  windowMs: 60 * 60 * 1000,
+  max: 5,
+  message: { message: "Опитайте отново след час." },
 });
 
-const upload = multer({ storage: storage });
+const contactLimiter = rateLimit({
+  windowMs: 60 * 60 * 1000,
+  max: 3,
+  message: { success: false, message: "Лимитът за съобщения е достигнат." },
+});
 
-// --- 3. БАЗА ДАННИ ---
-const db = mysql.createConnection({
+// --- 3. СТАТИЧНИ ФАЙЛОВЕ ---
+app.use("/uploads", express.static(path.join(__dirname, "public", "uploads")));
+
+// --- 4. MIDDLEWARE ЗА JWT ЗАЩИТА ---
+const verifyToken = (req, res, next) => {
+  const token = req.headers["authorization"]?.split(" ")[1];
+  if (!token) return res.status(403).json({ success: false, message: "Няма токен." });
+
+  jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
+    if (err) return res.status(401).json({ success: false, message: "Невалиден токен." });
+    req.userId = decoded.id;
+    next();
+  });
+};
+
+// --- 5. CONFIG НА MULTER (Memory Storage за Sharp) ---
+const storage = multer.memoryStorage(); // Снимката влиза първо в RAM
+const upload = multer({
+  storage: storage,
+  fileFilter: (req, file, cb) => {
+    const allowed = ["image/jpeg", "image/png", "image/webp"];
+    if (allowed.includes(file.mimetype)) cb(null, true);
+    else cb(new Error("Невалиден формат!"), false);
+  },
+  limits: { fileSize: 10 * 1024 * 1024 }, // Позволяваме до 10MB преди обработка
+});
+
+// --- 6. БАЗА ДАННИ ---
+const db = mysql.createPool({
   host: process.env.DB_HOST,
   user: process.env.DB_USER,
   password: process.env.DB_PASSWORD,
   database: process.env.DB_NAME,
-});
+  waitForConnections: true,
+  connectionLimit: 10,
+}).promise();
 
-db.connect((err) => {
-  if (err) {
-    console.error("Грешка при свързване с БД:", err.message);
-    return;
+// --- 7. ВАЛИДАЦИЯ ---
+const validateNews = (req, res, next) => {
+  const { title, text } = req.body;
+  if (!title || title.trim().length < 3) return res.status(400).json({ message: "Заглавието е кратко." });
+  next();
+};
+
+// --- 8. ЕНДПОИНТИ ---
+
+app.post("/admin/login", loginLimiter, async (req, res) => {
+  const { password } = req.body;
+  const isMatch = await bcrypt.compare(password, process.env.ADMIN_HASH);
+
+  if (isMatch) {
+    const token = jwt.sign({ id: "admin" }, process.env.JWT_SECRET, { expiresIn: "24h" });
+    return res.json({ success: true, token });
   }
-  console.log("Успешно свързване с MySQL базата данни");
+  res.status(401).json({ success: false, message: "Грешна парола!" });
 });
 
-// --- 4. API ЕНДПОИНТИ ЗА ПРОДУКТИ ---
-app.get("/getProducts", (req, res) => {
-  db.query("SELECT * FROM forever_table", (err, results) => {
-    if (err) return res.status(500).send(err);
-    res.json(results);
-  });
-});
 
-app.get("/getDrinks", (req, res) => {
-  db.query('SELECT * FROM forever_table WHERE category = "Напитки"', (err, results) => {
-    if (err) return res.status(500).send(err);
-    res.json(results);
-  });
-});
 
-app.get("/getSupplements", (req, res) => {
-  db.query('SELECT * FROM forever_table WHERE category = "Добавки"', (err, results) => {
-    if (err) return res.status(500).send(err);
-    res.json(results);
-  });
-});
+// ЗАПИС С ОПТИМИЗАЦИЯ (Sharp)
+app.post("/saveNews", verifyToken, upload.single("image"), validateNews, async (req, res) => {
+  try {
+    const { title, text, buttonText, buttonLink, date } = req.body;
+    let imagePath = null;
 
-app.get("/getFace", (req, res) => {
-  db.query('SELECT * FROM forever_table WHERE category = "Грижа за лицето"', (err, results) => {
-    if (err) return res.status(500).send(err);
-    res.json(results);
-  });
-});
+    if (req.file) {
+      const fileName = `${Date.now()}-${Math.round(Math.random() * 1e9)}.webp`;
+      const dir = path.join(__dirname, "public", "uploads", "news");
+      if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
 
-app.get("/getBody", (req, res) => {
-  db.query('SELECT * FROM forever_table WHERE category = "Грижа за тялото"', (err, results) => {
-    if (err) return res.status(500).send(err);
-    res.json(results);
-  });
-});
+      const fullPath = path.join(dir, fileName);
 
-app.get("/getPersonalhygiene", (req, res) => {
-  db.query('SELECT * FROM forever_table WHERE category = "Лична хигиена"', (err, results) => {
-    if (err) return res.status(500).send(err);
-    res.json(results);
-  });
-});
+      // Оптимизация на снимката
+      await sharp(req.file.buffer)
+        .resize(1200, null, { withoutEnlargement: true }) // Макс 1200px ширина
+        .webp({ quality: 80 }) // Компресия 80%
+        .toFile(fullPath);
 
-app.get("/getWeightcontrol", (req, res) => {
-  db.query('SELECT * FROM forever_table WHERE category = "Контрол на теглото"', (err, results) => {
-    if (err) return res.status(500).send(err);
-    res.json(results);
-  });
-});
-
-app.get("/getPackages", (req, res) => {
-  db.query('SELECT * FROM forever_table WHERE category = "Пакети"', (err, results) => {
-    if (err) return res.status(500).send(err);
-    res.json(results);
-  });
-});
-
-app.get("/getProductDetails/:productId", (req, res) => {
-  db.query("SELECT * FROM forever_table WHERE id = ?", [req.params.productId], (err, result) => {
-    if (err) return res.status(500).send(err);
-    res.json(result[0]);
-  });
-});
-
-// --- 5. API ЕНДПОИНТИ ЗА НОВИНИ (БЛОГ) ---
-
-// Вземане на новините
-app.get("/getNews", (req, res) => {
-  db.query("SELECT * FROM news ORDER BY id DESC", (err, results) => {
-    if (err) return res.status(500).json({ error: err.message });
-    res.json(results);
-  });
-});
-
-// Записване на нова новина от AdminPanel
-app.post("/saveNews", upload.single("image"), (req, res) => {
-  const { title, text, buttonText, buttonLink, date } = req.body;
-  // Пътят, който записваме в базата данни
-  const imagePath = req.file ? `/uploads/news/${req.file.filename}` : null;
-
-  const sql = "INSERT INTO news (title, image, text, buttonText, buttonLink, date) VALUES (?, ?, ?, ?, ?, ?)";
-  const values = [title, imagePath, text, buttonText, buttonLink, date];
-
-  db.query(sql, values, (err, result) => {
-    if (err) {
-      console.error("Грешка при запис в базата:", err);
-      return res.status(500).json({ success: false, error: "Грешка в базата данни" });
+      imagePath = `/uploads/news/${fileName}`;
     }
+
+    const sql = "INSERT INTO news (title, image, text, buttonText, buttonLink, date) VALUES (?, ?, ?, ?, ?, ?)";
+    await db.execute(sql, [title, imagePath, text, buttonText, buttonLink, date]);
     res.json({ success: true, message: "Статията е запазена успешно!" });
-  });
-});
-
-// Обновяване на съществуваща новина
-app.post("/updateNews/:id", upload.single("image"), (req, res) => {
-  const { id } = req.params;
-  const { title, text, buttonText, buttonLink, date } = req.body;
-  
-  // Проверяваме дали е качена нова снимка
-  const newImagePath = req.file ? `/uploads/news/${req.file.filename}` : null;
-
-  let sql;
-  let values;
-
-  if (newImagePath) {
-    // Ако има нова снимка, обновяваме и пътя към нея
-    sql = "UPDATE news SET title = ?, image = ?, text = ?, buttonText = ?, buttonLink = ?, date = ? WHERE id = ?";
-    values = [title, newImagePath, text, buttonText, buttonLink, date, id];
-  } else {
-    // Ако няма нова снимка, запазваме старата
-    sql = "UPDATE news SET title = ?, text = ?, buttonText = ?, buttonLink = ?, date = ? WHERE id = ?";
-    values = [title, text, buttonText, buttonLink, date, id];
+  } catch (err) {
+    logger.error(`Грешка при запис на новина: ${err.message}`);
+    res.status(500).json({ success: false, error: err.message });
   }
+});
 
-  db.query(sql, values, (err, result) => {
-    if (err) {
-      console.error("Грешка при обновяване в базата:", err);
-      return res.status(500).json({ success: false, error: "Грешка в базата данни" });
+app.delete("/deleteNews/:id", verifyToken, async (req, res) => {
+  try {
+    const id = req.params.id;
+    const [rows] = await db.execute("SELECT image FROM news WHERE id = ?", [id]);
+    if (rows.length > 0 && rows[0].image) {
+      const filePath = path.join(__dirname, "public", rows[0].image);
+      if (fs.existsSync(filePath)) fs.unlinkSync(filePath);
     }
-    res.json({ success: true, message: "Статията е обновена успешно!" });
-  });
-});
-
-// Изтриване на новина
-app.delete("/deleteNews/:id", (req, res) => {
-  db.query("DELETE FROM news WHERE id = ?", [req.params.id], (err, result) => {
-    if (err) return res.status(500).send(err);
+    await db.execute("DELETE FROM news WHERE id = ?", [id]);
     res.json({ success: true });
-  });
+  } catch (err) {
+    logger.error(`Грешка при триене: ${err.message}`);
+    res.status(500).json({ success: false, error: err.message });
+  }
 });
 
-// --- 6. ИЗПРАЩАНЕ НА ФОРМА (NODEMAILER) ---
-app.post("/submit-form", upload.none(), (req, res) => {
-  const { name, phone, message } = req.body;
-  const targetEmail = "miglena.avramova.as@gmail.com";
+app.get("/getNews", async (req, res) => {
+  try {
+    const [results] = await db.execute("SELECT * FROM news ORDER BY id DESC");
+    res.json(results);
+  } catch (err) {
+    console.error("!!! DATABASE ERROR:", err); // ТОВА ЩЕ ИЗПИШЕ ГРЕШКАТА В ТЕРМИНАЛА
+    res.status(500).json({ error: "DB Error", details: err.message });
+  }
+});
+
+app.post("/submit-form", contactLimiter, upload.none(), async (req, res) => {
+  const { name, phone, message, honeypot } = req.body;
+  if (honeypot) return res.status(200).json({ success: true });
 
   const transporter = nodemailer.createTransport({
     service: "Gmail",
-    auth: {
-      user: process.env.EMAIL_USER,
-      pass: process.env.EMAIL_PASSWORD,
-    },
+    auth: { user: process.env.EMAIL_USER, pass: process.env.EMAIL_PASSWORD },
   });
 
-  const mailOptions = {
-    from: process.env.EMAIL_USER,
-    to: targetEmail,
-    subject: `Ново съобщение от сайта от ${name}`,
-    html: `
-      <div style="font-family: sans-serif; border: 1px solid #ddd; padding: 20px; border-radius: 10px;">
-        <h2 style="color: #74ab1a;">Ново запитване: </h2>
-        <p><strong>Име:</strong> ${name}</p>
-        <p><strong>Телефон:</strong> ${phone}</p>
-        <p><strong>Съобщение:</strong></p>
-        <div style="background: #f4f4f4; padding: 10px; border-radius: 5px;">${message}</div>
-      </div>
-    `,
-  };
-
-  transporter.sendMail(mailOptions, (error, info) => {
-    if (error) {
-      console.error("Грешка при имейл:", error);
-      res.status(500).json({ success: false, message: "Грешка при изпращане." });
-    } else {
-      res.status(200).json({ success: true, message: "Изпратено успешно!" });
-    }
-  });
+  try {
+    await transporter.sendMail({
+      from: process.env.EMAIL_USER,
+      to: "miglena.avramova.as@gmail.com",
+      subject: `Ново запитване от ${name}`,
+      html: `<p><strong>Име:</strong> ${name}</p><p><strong>Тел:</strong> ${phone}</p><p><strong>Съобщение:</strong> ${message}</p>`,
+    });
+    res.status(200).json({ success: true });
+  } catch (error) {
+    logger.error(`Имейл грешка: ${error.message}`);
+    res.status(500).json({ success: false });
+  }
 });
 
-// --- 7. СТАРТИРАНЕ ---
-const PORT = 3010;
-app.listen(PORT, () => {
-  console.log(`Server started on port ${PORT}`);
+// Глобален Error Handler с логване (Winston)
+app.use((err, req, res, next) => {
+  logger.error(`${err.message} - ${req.originalUrl} - ${req.method} - ${req.ip}`);
+  res.status(500).json({ success: false, message: "Вътрешна грешка в сървъра." });
 });
+
+const PORT = process.env.PORT || 3010;
+app.listen(PORT, () => console.log(`✅ Професионално защитен сървър на порт ${PORT}`));

@@ -4,8 +4,8 @@ const BASE_URL = "https://iglika.me";
 // api.js
 export const fetchProducts = async (category) => {
   const endpoints = {
-    'drinks-and-supplements': '/getProducts', // Вземаме всичко и филтрираме по-долу
-    'cosmetics': '/getProducts',             // Вземаме всичко и филтрираме по-долу
+    'drinks-and-supplements': '/getProducts', 
+    'cosmetics': '/getProducts',             
     'drinks': '/getDrinks',
     'supplements': '/getSupplements',
     'face': '/getFace',
