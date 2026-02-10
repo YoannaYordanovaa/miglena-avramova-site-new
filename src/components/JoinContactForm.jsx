@@ -52,7 +52,7 @@ const ContactForm = () => {
     setStatus("sending");
 
     try {
-      const response = await fetch("https://miglenaavramova.com//submit-form", {
+      const response = await fetch("https://miglenaavramova.com/submit-form", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
