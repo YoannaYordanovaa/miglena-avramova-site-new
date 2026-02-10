@@ -410,7 +410,7 @@ const Products = () => {
           </p>
         </div>
 
-        <div id="products-grid" className="scroll-mt-32 px-6">
+        <div id="products-grid" className="scroll-mt-32">
           {loading ? (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
               {[...Array(8)].map((_, n) => (

@@ -31,7 +31,7 @@ const NewsBannerSlider = ({ news = [] }) => {
   if (!limitedNews || limitedNews.length === 0) return null;
 
   return (
-    <section className="relative h-[400px] md:h-[500px] w-full overflow-hidden bg-[#0a0a0a] max-w-[1924px] mx-auto mt-20 ">
+    <section className="relative h-[450px] md:h-[500px] w-full overflow-hidden bg-[#0a0a0a] max-w-[1924px] mx-auto mt-20 ">
       <AnimatePresence initial={false} custom={direction} mode="popLayout">
         <motion.div
           key={current}
