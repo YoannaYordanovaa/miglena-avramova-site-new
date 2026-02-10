@@ -25,7 +25,7 @@ import {
   Upload,
 } from "lucide-react";
 
-const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3010";
+const API_URL = import.meta.env.VITE_API_URL || "https://miglenaavramova.com/";
 
 // --- КОМПОНЕНТ ЗА ЛЕНТАТА С ИНСТРУМЕНТИ ---
 const MenuBar = ({ editor }) => {

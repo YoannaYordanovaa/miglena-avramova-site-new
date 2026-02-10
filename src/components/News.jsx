@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { ArrowRight, Calendar } from "lucide-react";
 import { Link } from "react-router-dom";
 
-const API_URL = "http://localhost:3010";
+const API_URL = "https://miglenaavramova.com/";
 
 const News = () => {
   const [news, setNews] = useState([]);

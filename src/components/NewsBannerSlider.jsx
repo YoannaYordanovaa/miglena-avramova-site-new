@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, ChevronLeft, ChevronRight, Calendar } from "lucide-react";
 import { Link } from "react-router-dom";
 
-const API_URL = "http://localhost:3010";
+const API_URL = "https://miglenaavramova.com/";
 
 const NewsBannerSlider = ({ news = [] }) => {
   const [current, setCurrent] = useState(0);

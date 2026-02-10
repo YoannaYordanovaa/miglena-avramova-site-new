@@ -13,7 +13,7 @@ import { useParams, useNavigate, Link } from "react-router-dom";
 import { fetchProducts, getOrderUrl } from "../api";
 import NewsBannerSlider from "../components/NewsBannerSlider";
 
-const API_URL = "http://localhost:3010";
+const API_URL = "https://miglenaavramova.com/";
 
 const Products = () => {
   const { category } = useParams();
