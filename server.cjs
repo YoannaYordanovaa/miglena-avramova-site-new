@@ -146,7 +146,7 @@ const validateNews = (req, res, next) => {
 // Общ маршрут за всички продукти
 app.get("/getProducts", async (req, res) => {
   try {
-    const [results] = await db.execute("SELECT * FROM products");
+    const [results] = await db.execute("SELECT * FROM forever_table");
     res.json(results);
   } catch (err) {
     logger.error(`Грешка при getProducts: ${err.message}`);
@@ -168,7 +168,7 @@ const categories = {
 Object.entries(categories).forEach(([path, dbCategory]) => {
   app.get(path, async (req, res) => {
     try {
-      const [results] = await db.execute("SELECT * FROM products WHERE category = ?", [dbCategory]);
+      const [results] = await db.execute("SELECT * FROM forever_table WHERE category = ?", [dbCategory]);
       res.json(results);
     } catch (err) {
       logger.error(`Грешка при ${path}: ${err.message}`);
@@ -180,7 +180,7 @@ Object.entries(categories).forEach(([path, dbCategory]) => {
 // Детайли за поръчка (използва се в getOrderUrl в api.js)
 app.get("/getProductDetails/:id", async (req, res) => {
   try {
-    const [rows] = await db.execute("SELECT * FROM products WHERE id = ?", [req.params.id]);
+    const [rows] = await db.execute("SELECT * FROM forever_table WHERE id = ?", [req.params.id]);
     if (rows.length === 0) return res.status(404).json({ error: "Not found" });
     res.json(rows[0]);
   } catch (err) {
