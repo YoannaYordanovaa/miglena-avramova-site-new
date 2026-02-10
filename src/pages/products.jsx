@@ -216,7 +216,7 @@ const Products = () => {
   return (
     <section className="min-h-screen ">
       <NewsBannerSlider news={news} />
-      <div className="stack-space pt-10 section-container">
+      <div className="pt-10 section-container">
         <div className=" text-left">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -267,7 +267,7 @@ const Products = () => {
           </motion.div>
         </div>
 
-        <div className=" flex flex-col items-start justify-center text-center">
+        <div className=" mt-10 flex flex-col items-start justify-center text-center">
           <button
             onClick={() =>
               window.open("https://thealoeveraco.shop/20rQ6mPC", "_blank")
@@ -281,7 +281,7 @@ const Products = () => {
           </button>
         </div>
 
-        <div id="categories" className="relative mb-10 ">
+        <div id="categories" className="relative my-10 ">
           <div className="flex overflow-x-auto gap-4 pt-4 pb-6 scroll-smooth custom-scrollbar px-2">
             {categoriesList.map((cat) => {
               const isActive = (category || "shop") === cat.id;
