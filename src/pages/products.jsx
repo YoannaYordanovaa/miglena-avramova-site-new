@@ -216,7 +216,7 @@ const Products = () => {
   return (
     <section className="min-h-screen ">
       <NewsBannerSlider news={news} />
-      <div className="stack-space pt-10">
+      <div className="stack-space pt-10 section-container">
         <div className=" text-left">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
