@@ -306,7 +306,7 @@ app.use((err, req, res, next) => {
     .json({ success: false, message: "Вътрешна грешка в сървъра." });
 });
 
-const PORT = process.env.PORT || 3010;
+const PORT = process.env.PORT || 3011;
 app.listen(PORT, () =>
   console.log(`✅ Професионално защитен сървър на порт ${PORT}`),
 );
