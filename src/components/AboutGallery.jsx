@@ -199,6 +199,7 @@ const InteractiveGallery = () => {
                 >
                   <ChevronLeft
                     size={window.innerWidth < 768 ? 40 : 64}
+                    aria-label="Предишна снимка"
                     strokeWidth={1}
                   />
                 </button>
@@ -209,12 +210,14 @@ const InteractiveGallery = () => {
                 >
                   <ChevronRight
                     size={window.innerWidth < 768 ? 40 : 64}
+                    aria-label="Следваща снимка"
                     strokeWidth={1}
                   />
                 </button>
 
                 <button
                   onClick={() => setSelectedImage(null)}
+                  aria-label="Затвори галерията"
                   className="absolute top-6 right-6 p-4 text-brand-dark hover:rotate-90 transition-transform duration-300 z-[100001]"
                 >
                   <X size={36} strokeWidth={1.5} />

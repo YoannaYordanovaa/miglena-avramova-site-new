@@ -195,6 +195,7 @@ const InteractiveGallery = () => {
                 {/* Навигация за Мобилни (Отдолу) и Десктоп (Отстрани) */}
                 <button
                   onClick={showPrev}
+                  aria-label="Предишна снимка"
                   className="absolute left-4 md:left-10 top-1/2 -translate-y-1/2 p-3 text-white md:text-brand-dark/40 hover:text-brand-dark hover:bg-brand-primary/10 rounded-full transition-all z-[100001]"
                 >
                   <ChevronLeft
@@ -209,12 +210,14 @@ const InteractiveGallery = () => {
                 >
                   <ChevronRight
                     size={window.innerWidth < 768 ? 40 : 64}
+                    aria-label="Следваща снимка"
                     strokeWidth={1}
                   />
                 </button>
 
                 <button
                   onClick={() => setSelectedImage(null)}
+                  aria-label="Затвори галерията"
                   className="absolute top-6 right-6 p-4 text-brand-dark hover:rotate-90 transition-transform duration-300 z-[100001]"
                 >
                   <X size={36} strokeWidth={1.5} />
