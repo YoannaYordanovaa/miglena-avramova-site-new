@@ -10,6 +10,11 @@ const MainLayout = ({ children }) => {
         {/* 1. ЕЛЕМЕНТИ */}
         <motion.img
           src="/Aloe_Vera_Plant.webp"
+          width="550" // Добави тези размери, за да спреш Layout Shift
+          height="550"
+          alt="Aloe_Vera_Plant"
+          fetchpriority="high" // КРИТИЧНО: Казва на браузъра да я зареди първа
+          loading="eager" // ЗАДЪЛЖИТЕЛНО за елементи в Hero секцията
           className="absolute -top-10 -right-20 w-[350px] md:w-[550px] h-auto object-contain opacity-20"
           animate={{
             rotate: [15, 22, 15],
@@ -25,6 +30,11 @@ const MainLayout = ({ children }) => {
 
         <motion.img
           src="/Aloe_Vera_Plant.webp"
+          width="550" // Добави тези размери, за да спреш Layout Shift
+          height="550"
+          alt="Aloe_Vera_Plant"
+          fetchpriority="high" // КРИТИЧНО: Казва на браузъра да я зареди първа
+          loading="eager" // ЗАДЪЛЖИТЕЛНО за елементи в Hero секцията
           className="absolute -bottom-20 -left-10 w-[300px] md:w-[500px] h-auto object-contain opacity-15"
           animate={{
             rotate: [-10, -18, -10],
