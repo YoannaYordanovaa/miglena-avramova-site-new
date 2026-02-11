@@ -17,7 +17,6 @@ const Miglena_Avramova_Photos = Array.from({ length: 17 }, (_, i) => {
     src: `/Miglena/${fileName}`,
     // Пътища към новите папки
     src400: `/Miglena/Miglena_400/${fileName}`,
-    src800: `/Miglena/Miglena_800/${fileName}`,
     title: `Миглена Аврамова - Семейство Момент ${i + 1}`,
   };
 });
@@ -144,7 +143,7 @@ const InteractiveGallery = () => {
                   // Резервен вариант
                   src={photo.src}
                   // Дефинираме srcset с твоите нови папки
-                  srcSet={`${photo.src400} 400w, ${photo.src800} 800w, ${photo.src} 1200w`}
+                  srcSet={`${photo.src400} 400w, ${photo.src} 800w`}
                   // Указваме размерите за браузъра
                   sizes="(max-width: 640px) 400px, (max-width: 1024px) 800px, 1200px"
                   alt={`Любим момент ${photo.id}`}

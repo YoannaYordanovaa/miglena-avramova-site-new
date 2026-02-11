@@ -9,7 +9,7 @@ import {
   ChevronRight,
 } from "lucide-react";
 
-const Miglena_Avramova_Photos = Array.from({ length: 17 }, (_, i) => {
+const Miglena_Avramova_Photos = Array.from({ length: 28 }, (_, i) => {
   const fileName = `Miglena_Avramova_${i + 1}.webp`;
   return {
     id: i + 1,
@@ -17,7 +17,6 @@ const Miglena_Avramova_Photos = Array.from({ length: 17 }, (_, i) => {
     src: `/Team/${fileName}`,
     // Пътища към новите папки
     src400: `/Team/Team_400/${fileName}`,
-    src800: `/Team/Team_800/${fileName}`,
     title: `Миглена Аврамова - Екип Момент ${i + 1}`,
   };
 });
@@ -144,9 +143,9 @@ const InteractiveGallery = () => {
                   // Резервен вариант
                   src={photo.src}
                   // Дефинираме srcset с твоите нови папки
-                  srcSet={`${photo.src400} 400w, ${photo.src800} 800w, ${photo.src} 1200w`}
+                  srcSet={`${photo.src400} 400w, ${photo.src} 800w`}
                   // Указваме размерите за браузъра
-                  sizes="(max-width: 640px) 400px, (max-width: 1024px) 800px, 1200px"
+                   sizes="(max-width: 640px) 400px, (max-width: 1024px) 800px, 1200px"
                   alt={`Любим момент ${photo.id}`}
                   loading="lazy"
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
