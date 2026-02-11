@@ -155,9 +155,18 @@ const JoinTeam = () => {
               <div className="relative w-full max-w-[280px] sm:max-w-[400px] lg:max-w-[600px]">
                 <div className="aspect-square rounded-full overflow-hidden border-4 md:border-8 border-white shadow-2xl bg-brand-light">
                   <img
+                    // Основен път към оригиналния файл
                     src="/Miglena/Miglena_Join.webp"
-                    alt="Миглена Аврамова"
+                    // Пътища към генерираните версии в подпапките
+                    srcSet="/Miglena/Miglena_400/Miglena_Join.webp 400w, 
+          /Miglena/Miglena_800/Miglena_Join.webp 800w, 
+          /Miglena/Miglena_Join.webp 1200w"
+                    // На телефон заема цялата ширина (100vw), на десктоп обикновено е част от колона (напр. 50vw)
+                    sizes="(max-width: 1024px) 100vw, 50vw"
+                    alt="Миглена Аврамова - Присъедини се към екипа"
                     className="w-full h-full object-cover"
+                    // Тъй като тази снимка обикновено е по-надолу в страницата, използваме lazy loading
+                    loading="lazy"
                   />
                 </div>
                 {/* Декоративен фон */}
@@ -243,7 +252,11 @@ const JoinTeam = () => {
 
           {/* БУТОНИ */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mt-12 md:mt-16">
-            <a href="https://thealoeveraco.shop/5R3LN273" className="btn-primary" target="_blank">
+            <a
+              href="https://thealoeveraco.shop/5R3LN273"
+              className="btn-primary"
+              target="_blank"
+            >
               <span>Собственик на Форевър бизнес</span>
               <ArrowRight
                 size={18}
@@ -251,7 +264,11 @@ const JoinTeam = () => {
                 className="group-hover:translate-x-2 transition-transform shrink-0"
               />
             </a>
-            <a href="https://thealoeveraco.shop/5R3LN273" className="btn-outline " target="_blank">
+            <a
+              href="https://thealoeveraco.shop/5R3LN273"
+              className="btn-outline "
+              target="_blank"
+            >
               <span>Преференциален клиент</span>
               <ArrowRight
                 size={18}

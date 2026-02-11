@@ -9,10 +9,18 @@ import {
   ChevronRight,
 } from "lucide-react";
 
-const Miglena_Avramova_Photos = Array.from({ length: 17 }, (_, i) => ({
-  id: i + 1,
-  src: `/Team/Miglena_Avramova_${i + 1}.webp`,
-}));
+const Miglena_Avramova_Photos = Array.from({ length: 17 }, (_, i) => {
+  const fileName = `Miglena_Avramova_${i + 1}.webp`;
+  return {
+    id: i + 1,
+    // Оригиналната голяма снимка
+    src: `/Team/${fileName}`,
+    // Пътища към новите папки
+    src400: `/Team/Team_400/${fileName}`,
+    src800: `/Team/Team_800/${fileName}`,
+    title: `Миглена Аврамова - Екип Момент ${i + 1}`,
+  };
+});
 
 const InteractiveGallery = () => {
   const [selectedImage, setSelectedImage] = useState(null);
@@ -92,15 +100,16 @@ const InteractiveGallery = () => {
             className="inline-block"
           >
             <h1 className="font-display font-medium text-brand-dark leading-none mb-4">
-              Запознай се <br />
+              Любими моменти <br />
               <span className="text-brand-primary font-light italic">
-                с екипа!
+                с любими хора...
               </span>
             </h1>
             <div className="flex items-center gap-4">
               <div className="w-12 h-[1px] bg-brand-primary" />
               <p className="font-sans text-gray-400 text-xs tracking-[0.2em]">
-                Общността, която вдъхновява промяна
+                Защото най-големият успех е свободата да бъдеш с тези, които
+                обичаш...
               </p>
             </div>
           </motion.div>
@@ -132,8 +141,13 @@ const InteractiveGallery = () => {
                 `}
               >
                 <img
+                  // Резервен вариант
                   src={photo.src}
-                  alt={photo.title}
+                  // Дефинираме srcset с твоите нови папки
+                  srcSet={`${photo.src400} 400w, ${photo.src800} 800w, ${photo.src} 1200w`}
+                  // Указваме размерите за браузъра
+                  sizes="(max-width: 640px) 400px, (max-width: 1024px) 800px, 1200px"
+                  alt={`Любим момент ${photo.id}`}
                   loading="lazy"
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
@@ -206,8 +220,10 @@ const InteractiveGallery = () => {
                   <X size={36} strokeWidth={1.5} />
                 </button>
 
+                {/* КОНТЕЙНЕР */}
                 <div className="relative flex flex-col items-center justify-center w-full h-full max-w-5xl pointer-events-none">
                   <AnimatePresence mode="wait">
+                    {" "}
                     <motion.div
                       key={selectedImage.id}
                       initial={{ opacity: 0, x: 10 }}
@@ -217,9 +233,12 @@ const InteractiveGallery = () => {
                       className="flex flex-col items-center justify-center pointer-events-auto"
                       onClick={(e) => e.stopPropagation()}
                     >
+                      {/* Вътре в Lightbox модала */}
                       <img
                         src={selectedImage.src}
-                        className="max-w-full max-h-[70vh] md:max-h-[80vh] object-contain rounded-2xl shadow-2xl border border-white/50"
+                        srcSet={`${selectedImage.src800} 800w, ${selectedImage.src} 1200w`}
+                        sizes="100vw"
+                        className="max-w-full max-h-[70vh] md:max-h-[80vh] object-contain rounded-2xl shadow-2xl"
                         alt="Selected"
                       />
                     </motion.div>

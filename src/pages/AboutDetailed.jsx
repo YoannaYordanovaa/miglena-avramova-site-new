@@ -49,9 +49,19 @@ const AboutDetailed = () => {
             className="relative w-full h-full lg:max-w-[1920px] mx-auto overflow-hidden"
           >
             <img
+              // Основен път (Desktop)
               src="/Miglena/Miglena_aboutDetailed2.jpg"
+              // Списък с адаптивни версии от вашите нови папки
+              srcSet="/Miglena/Miglena_400/Miglena_aboutDetailed2.jpg 400w, 
+          /Miglena/Miglena_800/Miglena_aboutDetailed2.jpg 800w, 
+          /Miglena/Miglena_aboutDetailed2.jpg 1200w"
+              // Указваме на браузъра колко място заема снимката
+              sizes="(max-width: 1024px) 100vw, 50vw"
               className="w-full h-full object-cover object-center"
-              alt="Миглена"
+              alt="Миглена Аврамова | Здраве, свобода и възможности за успех"
+              // Критични настройки за Hero секция
+              loading="eager"
+              fetchPriority="high"
             />
             <div className="absolute inset-0 bg-gradient-to-r from-transparent to-white/5 hidden lg:block" />
             <div className="absolute inset-0 bg-gradient-to-b from-transparent to-white/10 lg:hidden" />
@@ -286,7 +296,7 @@ const AboutDetailed = () => {
               </div>
 
               <h2 className="font-display case leading-none text-4xl md:text-5xl mb-10">
-                Всяка жена заслужава {" "}
+                Всяка жена заслужава{" "}
                 <span className="text-brand-primary italic font-light">
                   финансова независимост
                 </span>{" "}

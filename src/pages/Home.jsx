@@ -77,11 +77,15 @@ const Home = () => {
               <div className="absolute inset-0 lg:hidden z-10" />
 
               <img
-                src="/Miglena/Miglena_About.webp"
-                alt="Миглена Аврамова"
+                src="/Miglena/Miglena_About.webp" 
+                srcSet="/Miglena/Miglena_400/Miglena_About.webp 400w, 
+          /Miglena/Miglena_800/Miglena_About.webp 800w, 
+          /Miglena/Miglena_About.webp 1200w"
+                sizes="(max-width: 1024px) 100vw, 50vw" 
+                alt="Миглена Аврамова | Здраве, свобода и възможности за успех"
                 className="w-full h-full object-cover object-top lg:object-center"
-                loading="eager"
-                fetchPriority="high"
+                loading="eager" 
+                fetchPriority="high" 
               />
             </motion.div>
 
@@ -131,24 +135,24 @@ const Home = () => {
                 {/* HEADLINE */}
                 <h1 className="text-brand-dark font-display tracking-tighter mb-8 text-center lg:text-left ">
                   Върни си <br className="lg:hidden" />
-                    <span className="text-brand-primary italic font-light relative inline-block">
-                  енергията
-                  <motion.svg
-                    initial={{ pathLength: 0 }}
-                    whileInView={{ pathLength: 1 }}
-                    transition={{ delay: 1, duration: 1.2 }}
-                    className="absolute -bottom-1 md:-bottom-2 left-0 w-full h-2 md:h-3 text-brand-primary/30"
-                    viewBox="0 0 300 12"
-                  >
-                    <path
-                      d="M1 10C50 3 150 3 299 10"
-                      stroke="currentColor"
-                      strokeWidth="4"
-                      fill="none"
-                      strokeLinecap="round"
-                    />
-                  </motion.svg>
-                </span>
+                  <span className="text-brand-primary italic font-light relative inline-block">
+                    енергията
+                    <motion.svg
+                      initial={{ pathLength: 0 }}
+                      whileInView={{ pathLength: 1 }}
+                      transition={{ delay: 1, duration: 1.2 }}
+                      className="absolute -bottom-1 md:-bottom-2 left-0 w-full h-2 md:h-3 text-brand-primary/30"
+                      viewBox="0 0 300 12"
+                    >
+                      <path
+                        d="M1 10C50 3 150 3 299 10"
+                        stroke="currentColor"
+                        strokeWidth="4"
+                        fill="none"
+                        strokeLinecap="round"
+                      />
+                    </motion.svg>
+                  </span>
                   <br /> и баланса
                 </h1>
 

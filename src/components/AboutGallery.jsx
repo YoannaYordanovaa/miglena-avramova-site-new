@@ -9,10 +9,18 @@ import {
   ChevronRight,
 } from "lucide-react";
 
-const Miglena_Avramova_Photos = Array.from({ length: 17 }, (_, i) => ({
-  id: i + 1,
-  src: `/Miglena/miglena-avramova-${i + 1}.webp`,
-}));
+const Miglena_Avramova_Photos = Array.from({ length: 17 }, (_, i) => {
+  const fileName = `miglena-avramova-${i + 1}.webp`;
+  return {
+    id: i + 1,
+    // Оригиналната голяма снимка
+    src: `/Miglena/${fileName}`,
+    // Пътища към новите папки
+    src400: `/Miglena/Miglena_400/${fileName}`,
+    src800: `/Miglena/Miglena_800/${fileName}`,
+    title: `Миглена Аврамова - Семейство Момент ${i + 1}`,
+  };
+});
 
 const InteractiveGallery = () => {
   const [selectedImage, setSelectedImage] = useState(null);
@@ -133,8 +141,13 @@ const InteractiveGallery = () => {
                 `}
               >
                 <img
+                  // Резервен вариант
                   src={photo.src}
-                  alt={photo.title}
+                  // Дефинираме srcset с твоите нови папки
+                  srcSet={`${photo.src400} 400w, ${photo.src800} 800w, ${photo.src} 1200w`}
+                  // Указваме размерите за браузъра
+                  sizes="(max-width: 640px) 400px, (max-width: 1024px) 800px, 1200px"
+                  alt={`Любим момент ${photo.id}`}
                   loading="lazy"
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
@@ -220,9 +233,12 @@ const InteractiveGallery = () => {
                       className="flex flex-col items-center justify-center pointer-events-auto"
                       onClick={(e) => e.stopPropagation()}
                     >
+                      {/* Вътре в Lightbox модала */}
                       <img
                         src={selectedImage.src}
-                        className="max-w-full max-h-[70vh] md:max-h-[80vh] object-contain rounded-2xl shadow-2xl border border-white/50"
+                        srcSet={`${selectedImage.src800} 800w, ${selectedImage.src} 1200w`}
+                        sizes="100vw"
+                        className="max-w-full max-h-[70vh] md:max-h-[80vh] object-contain rounded-2xl shadow-2xl"
                         alt="Selected"
                       />
                     </motion.div>
