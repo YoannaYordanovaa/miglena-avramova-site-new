@@ -1,6 +1,9 @@
-import React, { useState, useRef, useEffect, Suspense, lazy } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import TeamGallery from "../components/TeamGallery";
+import VideoSection from "../components/VideoSection";
 import { Link } from "react-router-dom";
+import JoinContactForm from "../components/JoinContactForm";
 import {
   Users,
   TrendingUp,
@@ -22,10 +25,6 @@ import {
   Quote,
   Sprout,
 } from "lucide-react";
-
-const TeamGallery = lazy(() => import("../components/TeamGallery"));
-const VideoSection = lazy(() => import("../components/VideoSection"));
-const JoinContactForm = lazy(() => import("../components/JoinContactForm"));
 
 const JoinTeam = () => {
   const [status, setStatus] = useState("");
@@ -156,15 +155,18 @@ const JoinTeam = () => {
               <div className="relative w-full max-w-[280px] sm:max-w-[400px] lg:max-w-[600px]">
                 <div className="aspect-square rounded-full overflow-hidden border-4 md:border-8 border-white shadow-2xl bg-brand-light">
                   <img
+                    // Основен път към оригиналния файл
                     src="/Miglena/Miglena_Join.webp"
-                    width="600" // Добави физически размери
-                    height="600"
-                    srcSet="/Miglena/Miglena_400/Miglena_Join.webp 400w, /Miglena/Miglena_800/Miglena_Join.webp 800w"
+                    // Пътища към генерираните версии в подпапките
+                    srcSet="/Miglena/Miglena_400/Miglena_Join.webp 400w, 
+          /Miglena/Miglena_800/Miglena_Join.webp 800w, 
+          /Miglena/Miglena_Join.webp 1200w"
+                    // На телефон заема цялата ширина (100vw), на десктоп обикновено е част от колона (напр. 50vw)
                     sizes="(max-width: 1024px) 100vw, 50vw"
-                    alt="Миглена Аврамова"
+                    alt="Миглена Аврамова - Присъедини се към екипа"
                     className="w-full h-full object-cover"
-                    loading="eager" // Промени на eager
-                    fetchPriority="high" // Добави висок приоритет
+                    // Тъй като тази снимка обикновено е по-надолу в страницата, използваме lazy loading
+                    loading="lazy"
                   />
                 </div>
                 {/* Декоративен фон */}
@@ -176,9 +178,7 @@ const JoinTeam = () => {
       </section>
 
       {/* 3. Video & Experience Section */}
-      <Suspense fallback={<div className="h-40" />}>
-        <VideoSection />
-      </Suspense>
+      <VideoSection />
 
       {/* 2. Benefits Grid */}
       <section className="section-container ">
@@ -287,9 +287,7 @@ const JoinTeam = () => {
       </div>
 
       {/* 4. Team Gallery */}
-      <Suspense fallback={<div className="h-40" />}>
-        <TeamGallery />
-      </Suspense>
+      <TeamGallery />
 
       {/* 4. Форевър Ливинг - Разширена Секция */}
       <section
@@ -598,9 +596,7 @@ const JoinTeam = () => {
         </div>
       </section>
 
-      <Suspense fallback={<div className="h-40" />}>
-        <JoinContactForm />
-      </Suspense>
+      <JoinContactForm />
     </div>
   );
 };
