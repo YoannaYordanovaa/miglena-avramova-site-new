@@ -1,6 +1,5 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, Suspense, lazy } from "react";
 import { motion } from "framer-motion";
-import AboutGallery from "../components/AboutGallery";
 import {
   Mail,
   Phone,
@@ -13,6 +12,8 @@ import {
   Quote,
 } from "lucide-react";
 import { Link } from "react-router-dom";
+
+const AboutGallery = lazy(() => import("../components/AboutGallery"));
 
 const Home = () => {
   const containerRef = useRef(null);
@@ -61,6 +62,7 @@ const Home = () => {
               initial={{ scale: 1.05, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ duration: 1.2 }}
+              layout="position"
               className="relative w-full h-full overflow-hidden"
               style={{
                 WebkitMaskImage:
@@ -77,28 +79,26 @@ const Home = () => {
               <div className="absolute inset-0 lg:hidden z-10" />
 
               <img
-                src="/Miglena/Miglena_About.webp" 
+                src="/Miglena/Miglena_About.webp"
                 srcSet="/Miglena/Miglena_400/Miglena_About.webp 400w, 
           /Miglena/Miglena_800/Miglena_About.webp 800w, 
           /Miglena/Miglena_About.webp 1200w"
-                sizes="(max-width: 1024px) 100vw, 50vw" 
+                sizes="(max-width: 1024px) 100vw, 50vw"
                 alt="Миглена Аврамова | Здраве, свобода и възможности за успех"
                 className="w-full h-full object-cover object-top lg:object-center"
-                loading="eager" 
-                fetchPriority="high" 
+                loading="eager"
+                fetchPriority="high"
               />
             </motion.div>
 
             {/* FLOATING BADGE */}
             <motion.div
-              animate={{ y: [0, -10, 0] }}
+              animate={typeof window !== "undefined" && window.innerWidth > 1024 ? { y: [0, -10, 0] } : {}}
               transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+              layout="position"
               className="absolute z-20 
-             /* Позиция за мобилни */
              top-48 right-6 
-             /* Позиция за десктоп: връщаме ширина по съдържанието и фиксираме позицията */
              lg:top-auto lg:bottom-24 lg:left-[-32px] lg:right-auto lg:w-fit
-             
              backdrop-blur-md bg-white/90 border border-brand-primary/10
              px-4 py-3 rounded-2xl shadow-xl will-change-transform"
             >
@@ -117,6 +117,7 @@ const Home = () => {
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
+                layout="position"
                 transition={{ delay: 0.4, duration: 0.9 }}
                 className="bg-white lg:bg-transparent
                           sm:-mt-24 lg:mt-0
@@ -141,6 +142,7 @@ const Home = () => {
                       initial={{ pathLength: 0 }}
                       whileInView={{ pathLength: 1 }}
                       transition={{ delay: 1, duration: 1.2 }}
+                      layout="position"
                       className="absolute -bottom-1 md:-bottom-2 left-0 w-full h-2 md:h-3 text-brand-primary/30"
                       viewBox="0 0 300 12"
                     >
@@ -189,6 +191,7 @@ const Home = () => {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
+              layout="position"
               viewport={{ once: true }}
               className="inline-block"
             >
@@ -211,6 +214,7 @@ const Home = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ ...entryTransition, delay: 0.2 }}
             viewport={{ once: true }}
+            layout="position"
             className="space-y-10"
           >
             <p className="font-sans text-left text-gray-500 leading-relaxed font-light">
@@ -233,7 +237,15 @@ const Home = () => {
         </div>
       </section>
 
-      <AboutGallery />
+      <Suspense
+        fallback={
+          <div className="h-96 flex items-center justify-center">
+            Зареждане...
+          </div>
+        }
+      >
+        <AboutGallery />
+      </Suspense>
 
       {/* 4. TESTIMONIALS */}
       <section className="section-container bg-brand-light">
@@ -243,6 +255,7 @@ const Home = () => {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
+              layout="position"
               className="inline-block"
             >
               <h1 className="font-display font-medium text-brand-dark case leading-none mb-4">
@@ -274,6 +287,7 @@ const Home = () => {
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
                 whileHover={{ y: -5 }}
+                layout="position"
                 className="min-w-[85vw] md:min-w-0 snap-center p-8 rounded-[2.5rem] bg-[#fcfaf7]/50 backdrop-blur-sm border border-brand-light/50 flex flex-col justify-between shadow-sm hover:shadow-md transition-all group will-change-transform"
               >
                 <div className="space-y-6">
@@ -287,6 +301,9 @@ const Home = () => {
                     <img
                       src={item.image}
                       alt={item.name}
+                      width="56" // Добави това
+                      height="56" // Добави това
+                      loading="lazy" // Увери се, че е lazy
                       className="w-full h-full object-cover"
                     />
                   </div>
