@@ -229,7 +229,7 @@ const JoinTeam = () => {
                 <h3 className="font-display font-medium text-brand-dark text-2xl mb-3 text-center">
                   {b.title}
                 </h3>
-                <p className="font-sans leading-relaxed font-light opacity-90 text-gray-500 text-center">
+                <p className="font-sans leading-relaxed font-light text-sm md:text-base text-center">
                   {b.text}
                 </p>
               </motion.div>
@@ -257,7 +257,7 @@ const JoinTeam = () => {
               className="btn-primary"
               target="_blank"
             >
-              <span>Собственик на Форевър бизнес</span>
+              <span>Стани Собственик на Форевър бизнес</span>
               <ArrowRight
                 size={18}
                 strokeWidth={1.2}
@@ -269,7 +269,7 @@ const JoinTeam = () => {
               className="btn-outline "
               target="_blank"
             >
-              <span>Преференциален клиент</span>
+              <span>Стани Преференциален клиент</span>
               <ArrowRight
                 size={18}
                 strokeWidth={1.2}
