@@ -16,14 +16,14 @@ const Navbar = () => {
   const isHomePage = location.pathname === "/";
   const isTransparentHero = isHomePage && !scrolled;
 
-  const topLevelTextStyle = `font-sans text-[11px] uppercase tracking-widest font-regular transition-colors duration-300 ${
+  const topLevelTextStyle = `font-sans text-xs uppercase tracking-widest font-regular transition-colors duration-300 ${
     isTransparentHero
       ? "text-white"
       : "text-brand-dark hover:text-brand-primary"
   }`;
 
   const dropdownTextStyle =
-    "font-sans text-[11px] uppercase tracking-widest font-regular text-brand-dark";
+    "font-sans text-xs uppercase tracking-widest font-regular text-brand-dark";
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
@@ -285,14 +285,14 @@ const Navbar = () => {
                         <a
                           href={item.href}
                           onClick={(e) => handleScrollToSection(e, item.href)}
-                          className={`${dropdownTextStyle} text-[13px]`}
+                          className={`${dropdownTextStyle} text-sm`}
                         >
                           {item.title}
                         </a>
                       ) : (
                         <Link
                           to={item.href}
-                          className={`${dropdownTextStyle} text-[13px] ${
+                          className={`${dropdownTextStyle} text-sm ${
                             item.highlight ? "!text-brand-primary" : ""
                           }`}
                         >

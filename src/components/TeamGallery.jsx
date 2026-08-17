@@ -98,12 +98,12 @@ const InteractiveGallery = () => {
             viewport={{ once: true }}
             className="inline-block"
           >
-            <h1 className="font-display font-medium text-brand-dark leading-none mb-4">
+            <h2 className="font-display font-medium text-brand-dark leading-none mb-4">
               Запознай се<br />
               <span className="text-brand-primary font-light italic">
                 с екипа!
               </span>
-            </h1>
+            </h2>
             <div className="flex items-center gap-4">
               <div className="w-12 h-[1px] bg-brand-primary" />
               <p className="font-sans text-gray-400 text-xs tracking-[0.2em]">

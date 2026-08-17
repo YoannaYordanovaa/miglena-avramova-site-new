@@ -63,7 +63,7 @@ const TermsOfService = () => {
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="font-display text-5xl md:text-7xl text-brand-dark tracking-tighter"
+            className="font-display text-brand-dark tracking-tighter"
           >
             Общи <br />
             <span className="text-brand-primary italic font-light">

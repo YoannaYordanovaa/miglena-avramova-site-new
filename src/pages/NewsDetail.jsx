@@ -59,7 +59,7 @@ const NewsDetail = () => {
         {/* Бутон Назад */}
         <button
           onClick={() => navigate("/shop")}
-          className="group flex items-center gap-3 text-brand-primary transition-all mt-10 mb-8 md:mb-12 uppercase text-[12px]"
+          className="group flex items-center gap-3 text-brand-primary transition-all mt-10 mb-8 md:mb-12 uppercase text-xs"
         >
           <div className="w-10 h-10 flex items-center justify-center text-brand-primary transition-all">
             <ArrowLeft size={16} />
@@ -69,7 +69,7 @@ const NewsDetail = () => {
 
         {/* Хедър на статията */}
         <header className="space-y-6 mb-12 text-center">
-          <div className="flex justify-center items-center gap-4 text-brand-primary font-bold text-[10px] uppercase tracking-[0.3em]">
+          <div className="flex justify-center items-center gap-4 text-brand-primary font-bold text-[10px] md:text-xs uppercase tracking-[0.3em]">
             <span className="bg-brand-primary/10 px-4 py-2 rounded-full flex items-center gap-2">
               <Calendar size={12} /> {article.date}
             </span>
@@ -130,7 +130,7 @@ const NewsDetail = () => {
                 <span className="block text-xl font-display text-brand-dark leading-none">
                   Миглена Аврамова
                 </span>
-                <span className="block text-[10px] uppercase tracking-widest text-brand-primary mt-1">
+                <span className="block text-[10px] md:text-xs uppercase tracking-widest text-brand-primary mt-1">
                   Автор & Консултант
                 </span>
               </div>
@@ -152,7 +152,7 @@ const NewsDetail = () => {
               }}
               className={`
                 relative overflow-hidden flex items-center gap-2 px-8 py-4 rounded-full 
-                text-[10px] font-black uppercase tracking-[0.2em] transition-all duration-500
+                text-[10px] md:text-xs font-black uppercase tracking-[0.2em] transition-all duration-500
                 ${
                   copied
                     ? "bg-brand-primary text-white border-brand-primary shadow-lg"

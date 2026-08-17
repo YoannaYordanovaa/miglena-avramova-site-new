@@ -33,11 +33,11 @@ const News = () => {
           <span className="font-accent text-3xl text-brand-primary block">
             актуално
           </span>
-          <h1 className="font-display text-5xl md:text-7xl text-brand-dark tracking-tighter italic">
+          <h1 className="font-display text-brand-dark tracking-tighter italic">
             Новини &{" "}
             <span className="text-brand-primary not-italic">Събития</span>
           </h1>
-          <p className="font-sans text-gray-500 text-xl max-w-2xl font-light">
+          <p className="font-sans text-gray-500 text-lg md:text-xl max-w-2xl font-light">
             Бъдете в крак с последните новини от света на уелнеса и нашия екип.
           </p>
         </div>
@@ -65,7 +65,7 @@ const News = () => {
                     alt={item.title}
                   />
                   <div className="absolute top-6 left-6">
-                    <span className="bg-white/90 backdrop-blur-md px-4 py-2 rounded-full text-[10px] font-bold uppercase tracking-widest text-brand-dark shadow-sm">
+                    <span className="bg-white/90 backdrop-blur-md px-4 py-2 rounded-full text-[10px] md:text-xs font-bold uppercase tracking-widest text-brand-dark shadow-sm">
                       {item.date}
                     </span>
                   </div>
@@ -76,7 +76,7 @@ const News = () => {
                     {item.title}
                   </h2>
 
-                  <p className="font-sans text-gray-500 leading-relaxed mb-8 line-clamp-3 flex-grow font-light text-lg">
+                  <p className="font-sans text-gray-500 leading-relaxed mb-8 line-clamp-3 flex-grow font-light text-sm md:text-base">
                     {item.text?.replace(/<[^>]*>?/gm, "")}
                   </p>
 
@@ -84,7 +84,7 @@ const News = () => {
                     to={`/news/${item.id}`}
                     className="pt-6 border-t border-brand-light flex items-center justify-between group/link"
                   >
-                    <span className="text-[10px] uppercase tracking-widest text-gray-400 font-bold group-hover/link:text-brand-primary transition-colors">
+                    <span className="text-[10px] md:text-xs uppercase tracking-widest text-gray-400 font-bold group-hover/link:text-brand-primary transition-colors">
                       Прочети повече
                     </span>
                     <div className="w-10 h-10 rounded-full flex items-center justify-center text-brand-primary group-hover:bg-brand-primary group-hover:text-white transition-all duration-500">

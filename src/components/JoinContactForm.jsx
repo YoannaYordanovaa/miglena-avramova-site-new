@@ -83,12 +83,12 @@ const ContactForm = () => {
             viewport={{ once: true }}
             className="inline-block"
           >
-            <h1 className="font-display font-medium text-brand-dark case leading-none mb-4">
+            <h2 className="font-display font-medium text-brand-dark case leading-none mb-4">
               Свържи се <br />
               <span className="text-brand-primary font-light italic">
                 с мен!
               </span>
-            </h1>
+            </h2>
             <div className="flex items-center gap-4">
               <div className="w-12 h-[1px] bg-brand-primary" />
               <p className="font-sans text-gray-400 text-xs case tracking-[0.2em] font-regular">
@@ -103,12 +103,12 @@ const ContactForm = () => {
           <div className="lg:w-[40%] bg-brand-dark p-8 md:p-20 text-white relative text-left overflow-hidden">
             <div className="relative z-10 space-y-8 md:space-y-10">
               <div className="space-y-4">
-                <h2 className="font-display text-3xl md:text-5xl text-white font-medium tracking-tighter leading-tight">
+                <h3 className="font-display text-white font-medium tracking-tighter leading-tight">
                   Готов ли си за <br />
                   <span className="text-brand-primary italic font-light">
                     стъпка напред?
                   </span>
-                </h2>
+                </h3>
               </div>
               <p className="font-sans font-light text-white/60 leading-relaxed text-base md:text-lg">
                 Попълни формата и ще се свържа с теб за безплатна опознавателна
@@ -120,7 +120,7 @@ const ContactForm = () => {
                   <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl md:rounded-2xl bg-brand-light/10 flex items-center justify-center text-brand-primary">
                     <Mail size={18} />
                   </div>
-                  <span className="font-sans font-light break-all text-[14px] md:text-base">
+                  <span className="font-sans font-light break-all text-sm md:text-base">
                     miglena.avramova.as@gmail.com
                   </span>
                 </div>
@@ -128,7 +128,7 @@ const ContactForm = () => {
                   <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl md:rounded-2xl bg-brand-light/10 flex items-center justify-center text-brand-primary">
                     <MessageSquare size={18} />
                   </div>
-                  <span className="font-sans font-light text-[14px] break-all md:text-base">
+                  <span className="font-sans font-light text-sm break-all md:text-base">
                     Viber: +359 886 787 899
                   </span>
                 </div>
@@ -176,7 +176,7 @@ const ContactForm = () => {
                       <motion.p
                         initial={{ opacity: 0, y: -5 }}
                         animate={{ opacity: 1, y: 0 }}
-                        className="text-[10px] uppercase tracking-widest font-bold text-red-500 pl-2"
+                        className="text-[10px] md:text-xs uppercase tracking-widest font-bold text-red-500 pl-2"
                       >
                         {errors.name}
                       </motion.p>
@@ -203,7 +203,7 @@ const ContactForm = () => {
                       <motion.p
                         initial={{ opacity: 0, y: -5 }}
                         animate={{ opacity: 1, y: 0 }}
-                        className="text-[10px] uppercase tracking-widest font-bold text-red-500 pl-2"
+                        className="text-[10px] md:text-xs uppercase tracking-widest font-bold text-red-500 pl-2"
                       >
                         {errors.phone}
                       </motion.p>
@@ -236,12 +236,12 @@ const ContactForm = () => {
                   />
                   <label
                     htmlFor="privacy"
-                    className={`text-[11px] md:text-sm font-sans leading-tight cursor-pointer transition-colors ${privacyError ? "text-red-500" : "text-gray-400"}`}
+                    className={`text-xs md:text-sm font-sans leading-tight cursor-pointer transition-colors ${privacyError ? "text-red-500" : "text-gray-400"}`}
                   >
                     Съгласен съм с{" "}
                     <Link
                       to="/privacyPolicy"
-                      className={`text-[11px] md:text-sm font-sans leading-tight cursor-pointer transition-colors ${privacyError ? "text-red-500" : "text-brand-primary underline-offset-4"}`}
+                      className={`text-xs md:text-sm font-sans leading-tight cursor-pointer transition-colors ${privacyError ? "text-red-500" : "text-brand-primary underline-offset-4"}`}
                     >
                       Политиката за поверителност
                     </Link>

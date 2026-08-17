@@ -61,7 +61,7 @@ const Footer = () => {
                 className="h-12 md:h-16 w-auto object-contain transition-all duration-500 group-hover:scale-105"
               />
             </Link>
-            <p className="text-gray-500 font-sans text-sm leading-relaxed max-w-sm">
+            <p className="text-gray-500 font-sans text-sm md:text-base leading-relaxed max-w-sm">
               Вашият ментор по пътя към успеха. Изграждаме бъдещето на
               лидерството заедно.
             </p>
@@ -85,7 +85,7 @@ const Footer = () => {
 
           {/* Навигация */}
           <div className="flex flex-col items-center md:items-start text-center md:text-left">
-            <h4 className="font-sans text-[10px] font-bold uppercase tracking-[0.3em] text-brand-primary mb-6 md:mb-8">
+            <h4 className="font-sans text-[10px] md:text-xs font-bold uppercase tracking-[0.3em] text-brand-primary mb-6 md:mb-8">
               Навигация
             </h4>
             <ul className="grid grid-cols-2 md:grid-cols-1 gap-x-8 gap-y-4 w-full md:w-auto">
@@ -112,7 +112,7 @@ const Footer = () => {
 
           {/* Контакти */}
           <div className="flex flex-col items-center md:items-start text-center md:text-left">
-            <h4 className="font-sans text-[10px] font-bold uppercase tracking-[0.3em] text-brand-primary mb-6 md:mb-8">
+            <h4 className="font-sans text-[10px] md:text-xs font-bold uppercase tracking-[0.3em] text-brand-primary mb-6 md:mb-8">
               Контакти
             </h4>
             <div className="space-y-4 md:space-y-4 text-brand-dark/70">
@@ -128,7 +128,7 @@ const Footer = () => {
               >
                 +359 886 787 899
               </a>
-              <p className="font-sans text-[10px] opacity-50 uppercase tracking-[0.2em] font-bold text-gray-400">
+              <p className="font-sans text-[10px] md:text-xs opacity-50 uppercase tracking-[0.2em] font-bold text-gray-400">
                 BASED IN BULGARIA • OPERATES WORLDWIDE
               </p>
             </div>
@@ -137,10 +137,10 @@ const Footer = () => {
 
         {/* ДОЛЕН РАЗДЕЛИТЕЛ */}
         <div className="pt-8 border-t border-gray-200 flex flex-col md:flex-row justify-between items-center gap-6 text-center">
-          <p className="font-sans text-[10px] text-gray-400 uppercase tracking-[0.2em] order-2 md:order-1">
+          <p className="font-sans text-[10px] md:text-xs text-gray-400 uppercase tracking-[0.2em] order-2 md:order-1">
             © {currentYear} Miglena Avramova • Forever Business Owner
           </p>
-          <div className="flex gap-6 md:gap-8 font-sans text-[10px] text-gray-400 uppercase tracking-[0.1em] order-1 md:order-2">
+          <div className="flex gap-6 md:gap-8 font-sans text-[10px] md:text-xs text-gray-400 uppercase tracking-[0.1em] order-1 md:order-2">
             <Link
               smooth
               to="/privacyPolicy"

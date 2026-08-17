@@ -35,12 +35,12 @@ const VideoSection = () => {
             viewport={{ once: true }}
             className="inline-block"
           >
-            <h1 className="font-display font-medium text-brand-dark case leading-none mb-4">
+            <h2 className="font-display font-medium text-brand-dark case leading-none mb-4">
               Защо да се присъединиш <br />
               <span className="text-brand-primary font-light italic">
                 към моя екип?
               </span>
-            </h1>
+            </h2>
             <div className="flex items-center gap-4">
               <div className="w-12 h-[1px] bg-brand-primary" />
               <p className="font-sans text-gray-400 text-xs case tracking-[0.2em] font-regular">

@@ -224,7 +224,7 @@ const Products = () => {
             viewport={{ once: true }}
             className="inline-block"
           >
-            <nav className="flex items-center flex-wrap gap-2 text-[10px] uppercase tracking-[0.2em] text-gray-400 mb-6 font-medium">
+            <nav className="flex items-center flex-wrap gap-2 text-[10px] md:text-xs uppercase tracking-[0.2em] text-gray-400 mb-6 font-medium">
               <Link
                 to="/shop"
                 className="hover:text-brand-primary transition-colors"
@@ -260,7 +260,7 @@ const Products = () => {
             </h1>
             <div className="flex items-center gap-4">
               <div className="w-12 h-[1px] bg-brand-primary" />
-              <p className="font-sans text-gray-400 text-xs case tracking-[0.2em] font-regular">
+              <p className="font-sans text-gray-400 text-base case tracking-[0.2em] font-regular">
                 От растението, до продукта, до теб!
               </p>
             </div>
@@ -307,7 +307,7 @@ const Products = () => {
                     />
                   </div>
                   <span
-                    className={`font-sans text-[10px] uppercase tracking-[0.15em] transition-colors whitespace-nowrap ${isActive ? "text-brand-primary font-bold" : "text-gray-400 group-hover:text-brand-dark"}`}
+                    className={`font-sans text-[10px] md:text-xs uppercase tracking-[0.15em] transition-colors whitespace-nowrap ${isActive ? "text-brand-primary font-bold" : "text-gray-400 group-hover:text-brand-dark"}`}
                   >
                     {cat.label}
                   </span>
@@ -348,7 +348,7 @@ const Products = () => {
           <div className="relative min-w-[260px] z-40">
             <button
               onClick={() => setIsSortOpen(!isSortOpen)}
-              className={`w-full flex items-center justify-between pl-6 pr-6 py-4 rounded-full border shadow-sm transition-all duration-300 outline-none font-sans text-[11px] tracking-widest uppercase ${
+              className={`w-full flex items-center justify-between pl-6 pr-6 py-4 rounded-full border shadow-sm transition-all duration-300 outline-none font-sans text-xs tracking-widest uppercase ${
                 isSortOpen
                   ? "bg-white border-brand-primary/20 ring-2 ring-brand-primary/20 shadow-md text-brand-primary"
                   : "bg-gray-50 border-transparent text-brand-dark hover:bg-white hover:shadow-md"
@@ -385,7 +385,7 @@ const Products = () => {
                           setSortBy(option.value);
                           setIsSortOpen(false);
                         }}
-                        className={`w-full text-left px-5 py-3.5 rounded-2xl font-sans text-[10px] uppercase tracking-widest transition-all ${
+                        className={`w-full text-left px-5 py-3.5 rounded-2xl font-sans text-[10px] md:text-xs uppercase tracking-widest transition-all ${
                           sortBy === option.value
                             ? "bg-brand-primary text-white font-bold"
                             : "text-brand-dark hover:bg-brand-primary/10 hover:text-brand-primary"
@@ -402,7 +402,7 @@ const Products = () => {
         </div>
 
         <div className="mb-6 flex flex-col items-center justify-center text-center ">
-          <p className="font-sans text-[10px] uppercase tracking-[0.2em] text-gray-400 font-bold mx-auto">
+          <p className="font-sans text-[10px] md:text-xs uppercase tracking-[0.2em] text-gray-400 font-bold mx-auto">
             Резултати:{" "}
             <span className="text-brand-primary">
               {filteredAndSortedProducts.length}
@@ -444,7 +444,7 @@ const Products = () => {
                           alt={product.h1}
                           className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-700"
                         />
-                        <div className="absolute top-4 left-4 bg-brand-light/90 backdrop-blur-sm text-brand-dark text-[9px] font-bold px-3 py-1 rounded-full shadow-sm">
+                        <div className="absolute top-4 left-4 bg-brand-light/90 backdrop-blur-sm text-brand-dark text-[10px] md:text-xs font-bold px-3 py-1 rounded-full shadow-sm">
                           Код: {product.id}
                         </div>
                         <div className="absolute top-4 right-4 bg-brand-primary text-white w-16 h-16 rounded-full flex items-center justify-center font-black text-sm shadow-lg ">
@@ -455,12 +455,12 @@ const Products = () => {
                         <h3 className="font-sans font-bold text-brand-dark text-base mb-1 line-clamp-1">
                           {product.h1}
                         </h3>
-                        <p className="font-sans text-gray-400 text-[12px] line-clamp-2 leading-relaxed h-[34px]">
+                        <p className="font-sans text-gray-400 text-xs md:text-sm line-clamp-2 leading-relaxed h-[34px]">
                           {product.h2}
                         </p>
-                        <div className="mt-auto border-t border-gray-50 pt-4 flex flex-col gap-2">
+                        <div className="mt-auto border-t border-gray-50 pt-4 flex flex-col gap-3">
                           <div className="flex items-center gap-1">
-                            <span className="bg-brand-primary/10 text-brand-primary text-[12px] font-black px-2 py-0.5 rounded-md uppercase tracking-wider">
+                            <span className="bg-brand-primary/10 text-brand-primary text-xs font-black px-2 py-0.5 rounded-md uppercase tracking-wider">
                               Спестяваш: €
                               {(
                                 (parsePrice(product.price) -
@@ -471,28 +471,19 @@ const Products = () => {
                               ).toFixed(2)}
                             </span>
                           </div>
-                          <div className="text-gray-900 line-through font-sans text-[14px] opacity-60 whitespace-nowrap w-full">
-                            <span>
-                              €
-                              {(parsePrice(product.price) / euroRate).toFixed(
-                                2,
-                              )}
-                            </span>
-                            <span className="no-underline opacity-20 px-1.5">
-                              {" "}
-                              /{" "}
-                            </span>
-                            <span>
-                              {parsePrice(product.price).toFixed(2)} лв.
-                            </span>
-                          </div>
-                          <div className="flex justify-between items-end gap-2 mt-1">
-                            <div className="flex flex-col gap-0">
+                          <div className="flex justify-between items-end gap-2">
+                            <div className="flex flex-col">
+                              <span className="text-gray-400 line-through font-sans text-base">
+                                €
+                                {(
+                                  parsePrice(product.price) / euroRate
+                                ).toFixed(2)}
+                              </span>
                               <div className="flex items-baseline gap-1">
                                 <span className="text-xl font-black text-brand-dark uppercase">
                                   €
                                 </span>
-                                <span className="text-2xl font-sans font-black text-brand-dark tracking-tighter leading-none">
+                                <span className="text-xl font-sans font-black text-brand-dark tracking-tighter leading-none">
                                   {(
                                     parsePrice(
                                       getDiscountedPrice(product.price),
@@ -500,20 +491,12 @@ const Products = () => {
                                   ).toFixed(2)}
                                 </span>
                               </div>
-                              <div className="flex items-baseline gap-1 opacity-50">
-                                <span className="font-sans font-bold text-brand-dark">
-                                  {getDiscountedPrice(product.price)}
-                                </span>
-                                <span className="text-[10px] font-bold text-brand-dark uppercase">
-                                  лв
-                                </span>
-                              </div>
                             </div>
                             <button
                               onClick={() => handleOrder(product.id)}
                               className="bg-brand-primary text-white px-6 py-3 rounded-xl hover:bg-brand-dark transition-all flex items-center gap-2 group/btn shrink-0"
                             >
-                              <span className="text-[11px] font-bold uppercase tracking-wider">
+                              <span className="text-xs font-bold uppercase tracking-wider">
                                 Купи
                               </span>
                               <ExternalLink
@@ -560,7 +543,7 @@ const Products = () => {
                                   .scrollIntoView({ behavior: "smooth" });
                               }
                             }}
-                            className={`min-w-[40px] h-10 sm:min-w-[48px] sm:h-12 px-2 rounded-full font-bold text-[11px] sm:text-xs transition-all ${
+                            className={`min-w-[40px] h-10 sm:min-w-[48px] sm:h-12 px-2 rounded-full font-bold text-xs sm:text-sm transition-all ${
                               currentPage === item
                                 ? "bg-brand-primary text-white shadow-lg shadow-brand-primary/20 scale-105"
                                 : item === "..."
@@ -590,7 +573,7 @@ const Products = () => {
                   </div>
 
                   {/* Индикатор за мобилни: Страница X от Y */}
-                  <p className="sm:hidden font-sans text-[10px] uppercase tracking-widest text-gray-400 font-medium">
+                  <p className="sm:hidden font-sans text-[10px] md:text-xs uppercase tracking-widest text-gray-400 font-medium">
                     Страница{" "}
                     <span className="text-brand-primary">{currentPage}</span> от{" "}
                     {totalPages}

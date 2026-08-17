@@ -71,10 +71,10 @@ const NewsBannerSlider = ({ news = [] }) => {
                   transition={{ delay: 0.3 }}
                   className="flex items-center gap-4 mb-6"
                 >
-                  <span className="bg-brand-primary px-4 py-1.5 rounded-full text-[10px] text-white uppercase tracking-[0.2em] shadow-lg shadow-brand-primary/20">
+                  <span className="bg-brand-primary px-4 py-1.5 rounded-full text-[10px] md:text-xs text-white uppercase tracking-[0.2em] shadow-lg shadow-brand-primary/20">
                     Актуално
                   </span>
-                  <div className="flex items-center gap-2 text-white/60 text-[11px] uppercase tracking-widest font-medium">
+                  <div className="flex items-center gap-2 text-white/60 text-[10px] md:text-xs uppercase tracking-widest font-medium">
                     <Calendar size={14} className="text-brand-primary" />
                     {limitedNews[current]?.date}
                   </div>

@@ -376,7 +376,7 @@ const AdminPanel = () => {
                 Админ{" "}
                 <span className="text-brand-primary font-light">Вход</span>
               </h2>
-              <p className="text-[10px] uppercase tracking-widest text-gray-400 font-bold">
+              <p className="text-[10px] md:text-xs uppercase tracking-widest text-gray-400 font-bold">
                 Защитена зона
               </p>
             </div>
@@ -446,7 +446,7 @@ const AdminPanel = () => {
                       size={32}
                       className="text-brand-primary/20 mb-2"
                     />
-                    <span className="text-[10px] font-bold uppercase tracking-widest text-gray-400 text-center">
+                    <span className="text-[10px] md:text-xs font-bold uppercase tracking-widest text-gray-400 text-center">
                       Качи основна снимка
                     </span>
                     <input
@@ -470,7 +470,7 @@ const AdminPanel = () => {
                   className="w-full px-8 py-5 rounded-2xl bg-white border-2 border-gray-50 focus:border-brand-primary outline-none font-display text-brand-dark"
                 />
                 <p
-                  className={`text-[10px] text-right font-bold uppercase tracking-widest ${formData.title.length >= 80 ? "text-red-500" : "text-gray-400"}`}
+                  className={`text-[10px] md:text-xs text-right font-bold uppercase tracking-widest ${formData.title.length >= 80 ? "text-red-500" : "text-gray-400"}`}
                 >
                   {formData.title.length} / 80 символа
                 </p>
@@ -539,7 +539,7 @@ const AdminPanel = () => {
                     <p className="font-medium text-brand-dark truncate">
                       {n.title}
                     </p>
-                    <p className="text-[10px] text-gray-400 uppercase tracking-widest font-bold">
+                    <p className="text-[10px] md:text-xs text-gray-400 uppercase tracking-widest font-bold">
                       {n.date}
                     </p>
                   </div>

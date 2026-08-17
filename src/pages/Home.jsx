@@ -104,7 +104,7 @@ const Home = () => {
             >
               <div className="flex items-center gap-2 whitespace-nowrap">
                 <Sparkles size={16} className="text-brand-primary shrink-0" />
-                <span className="text-[10px] lg:text-[11px] uppercase tracking-widest text-brand-dark ">
+                <span className="text-[10px] md:text-xs uppercase tracking-widest text-brand-dark ">
                   10+ години опит
                 </span>
               </div>
@@ -127,7 +127,7 @@ const Home = () => {
                 {/* EYEBROW */}
                 <div className="flex items-center gap-3 mb-6 justify-center lg:justify-start">
                   <div className="h-px w-8 bg-brand-primary" />
-                  <p className="text-[10px] uppercase tracking-[0.3em] font-bold text-brand-primary">
+                  <p className="text-[10px] md:text-xs uppercase tracking-[0.3em] font-bold text-brand-primary">
                     Добре дошъл!
                   </p>
                 </div>
@@ -192,12 +192,12 @@ const Home = () => {
               viewport={{ once: true }}
               className="inline-block"
             >
-              <h1 className="font-display font-medium text-brand-dark case leading-none mb-4">
+              <h2 className="font-display font-medium text-brand-dark case leading-none mb-4">
                 Моята цел <br />
                 <span className="text-brand-primary font-light italic">
                   растеж и вдъхновение!
                 </span>
-              </h1>
+              </h2>
               <div className="flex items-center gap-4">
                 <div className="w-12 h-[1px] bg-brand-primary" />
                 <p className="font-sans text-gray-400 text-xs case tracking-[0.2em] font-regular">
@@ -213,7 +213,7 @@ const Home = () => {
             viewport={{ once: true }}
             className="space-y-10"
           >
-            <p className="font-sans text-left text-gray-500 leading-relaxed font-light">
+            <p className="font-sans text-base text-left text-gray-500 leading-relaxed font-light">
               Здравей, казвам се Миглена и съм тук, за да ти разкажа как всеки
               ден се срещам с хора, които търсят по-здравословен, смислен и
               свободен начин на живот. Хора, които искат да се измъкнат от
@@ -245,13 +245,13 @@ const Home = () => {
               viewport={{ once: true }}
               className="inline-block"
             >
-              <h1 className="font-display font-medium text-brand-dark case leading-none mb-4">
+              <h2 className="font-display font-medium text-brand-dark case leading-none mb-4">
                 Средата, която
                 <br />
                 <span className="text-brand-primary font-light italic">
                   те дърпа нагоре
                 </span>
-              </h1>
+              </h2>
               <div className="flex items-center gap-4">
                 <div className="w-12 h-[1px] bg-brand-primary" />
                 <p className="font-sans text-gray-400 text-xs case tracking-[0.2em] font-regular">
@@ -280,7 +280,7 @@ const Home = () => {
                   <div className="text-brand-primary/20 transition-transform group-hover:scale-110 duration-300">
                     <Quote size={40} fill="currentColor" />
                   </div>
-                  <p className="font-sans italic">"{item.text}"</p>
+                  <p className="font-sans text-sm/6 italic">"{item.text}"</p>
                 </div>
                 <div className="mt-8 flex items-center gap-4 border-t border-brand-light/30 pt-6">
                   <div className="w-14 h-14 rounded-full overflow-hidden border-2 border-brand-primary/20 shadow-inner">
@@ -326,13 +326,13 @@ const Home = () => {
               viewport={{ once: true }}
               className="inline-block"
             >
-              <h1 className="font-display font-medium text-brand-dark case leading-none mb-4">
+              <h2 className="font-display font-medium text-brand-dark case leading-none mb-4">
                 Свържи се
                 <br />
                 <span className="text-brand-primary font-light italic">
                   с мен!
                 </span>
-              </h1>
+              </h2>
               <div className="flex items-center gap-4">
                 <div className="w-12 h-[1px] bg-brand-primary" />
                 <p className="font-sans text-gray-400 text-xs case tracking-[0.2em] font-regular">
@@ -344,12 +344,12 @@ const Home = () => {
           <div className="grid lg:grid-cols-12 gap-6 md:gap-8 items-stretch">
             <div className="lg:col-span-5 bg-brand-dark rounded-[2.5rem] p-10 md:p-12 text-white flex flex-col justify-between overflow-hidden relative">
               <div className="relative z-10 space-y-6">
-                <h2 className="text-3xl md:text-5xl font-display text-white leading-tight">
+                <h3 className=" font-display text-white leading-tight">
                   Направи първата крачка <br />{" "}
                   <span className="text-brand-primary italic">
                     към промяната!
                   </span>
-                </h2>
+                </h3>
                 <p className="text-white/60 font-sans leading-relaxed">
                   Ако усещаш, че е време за промяна, свържи се с мен!
                 </p>
@@ -362,7 +362,7 @@ const Home = () => {
                   <div className="p-3 rounded-xl bg-brand-light/10 group-hover:bg-brand-primary transition-colors">
                     <Phone size={20} />
                   </div>
-                  <span className="font-sans font-light break-all text-[14px] md:text-base">
+                  <span className="font-sans font-light break-all text-sm md:text-base">
                     0886 787 899
                   </span>
                 </a>
@@ -373,7 +373,7 @@ const Home = () => {
                   <div className="p-3 rounded-xl bg-brand-light/10 group-hover:bg-brand-primary transition-colors">
                     <Mail size={20} />
                   </div>
-                  <span className="font-sans font-light break-all text-[14px] md:text-base">
+                  <span className="font-sans font-light break-all text-sm md:text-base">
                     miglena.avramova.as@gmail.com
                   </span>
                 </a>
@@ -409,7 +409,7 @@ const Home = () => {
                     <h4 className="font-display text-2xl text-brand-dark">
                       {social.name}
                     </h4>
-                    <p className="text-gray-400 text-sm mb-4">{social.desc}</p>
+                    <p className="text-gray-400 text-sm md:text-base mb-4">{social.desc}</p>
                     <ArrowRight
                       size={18}
                       strokeWidth={1.2}
@@ -432,7 +432,7 @@ const Home = () => {
                     <h4 className="font-display text-2xl text-brand-dark">
                       TikTok
                     </h4>
-                    <p className="text-gray-400 text-sm">
+                    <p className="text-gray-400 text-sm md:text-base">
                       Бързи съвети за уелнес
                     </p>
                   </div>

@@ -97,12 +97,12 @@ const JoinTeam = () => {
              px-4 py-3 rounded-2xl shadow-xl will-change-transform"
               >
                 <Sparkles size={16} className="text-brand-primary shrink-0" />
-                <span className="text-[10px] lg:text-[11px] uppercase tracking-widest text-brand-dark ">
+                <span className="text-[10px] md:text-xs uppercase tracking-widest text-brand-dark ">
                   Личен ментор
                 </span>
               </motion.div>
 
-              <h1 className="text-brand-dark tracking-tight font-display text-4xl sm:text-5xl md:text-7xl leading-[1.1]">
+              <h1 className="text-brand-dark tracking-tight font-display leading-[1.1]">
                 Твоят път към
                 <br />
                 <span className="text-brand-primary italic font-light relative inline-block">
@@ -190,12 +190,12 @@ const JoinTeam = () => {
               viewport={{ once: true }}
               className="inline-block"
             >
-              <h1 className="font-display font-medium text-brand-dark case leading-none mb-4">
+              <h2 className="font-display font-medium text-brand-dark case leading-none mb-4">
                 Защо да избереш <br />
                 <span className="text-brand-primary font-light italic">
                   моя екип?
                 </span>
-              </h1>
+              </h2>
               <div className="flex items-center gap-4">
                 <div className="w-12 h-[1px] bg-brand-primary" />
                 <p className="font-sans text-gray-400 text-xs case tracking-[0.2em] font-regular">
@@ -226,10 +226,10 @@ const JoinTeam = () => {
                 <div className="w-14 h-14 bg-brand-light rounded-2xl flex items-center justify-center mb-8 shadow-sm mx-auto shrink-0">
                   {b.icon}
                 </div>
-                <h3 className="font-display font-medium text-brand-dark text-2xl mb-3 text-center">
+                <h4 className="font-display font-medium text-brand-dark mb-3 text-center">
                   {b.title}
-                </h3>
-                <p className="font-sans leading-relaxed font-light text-sm md:text-base text-center">
+                </h4>
+                <p className="font-sans leading-relaxed font-light text-sm text-center">
                   {b.text}
                 </p>
               </motion.div>
@@ -303,12 +303,12 @@ const JoinTeam = () => {
               viewport={{ once: true }}
               className="inline-block"
             >
-              <h1 className="font-display font-medium text-brand-dark case leading-none mb-4">
+              <h2 className="font-display font-medium text-brand-dark case leading-none mb-4">
                 Кои са <br />
                 <span className="text-brand-primary font-light italic">
                   Форевър Ливинг?
                 </span>
-              </h1>
+              </h2>
               <div className="flex items-center gap-4">
                 <div className="w-12 h-[1px] bg-brand-primary" />
                 <p className="font-sans text-gray-400 text-xs case tracking-[0.2em] font-regular">
@@ -332,10 +332,10 @@ const JoinTeam = () => {
                       45+
                     </h4>
                     <div className="space-y-1">
-                      <p className="font-sans text-[12px] uppercase tracking-[0.2em] font-bold opacity-90">
+                      <p className="font-sans text-[10px] md:text-xs uppercase tracking-[0.2em] font-bold opacity-90">
                         Години Лидерство
                       </p>
-                      <p className="font-sans text-sm opacity-75 font-light leading-relaxed">
+                      <p className="font-sans text-sm md:text-base opacity-75 font-light leading-relaxed">
                         Стабилност от 1978 г. без промяна в мисията.
                       </p>
                     </div>
@@ -349,10 +349,10 @@ const JoinTeam = () => {
                       160+
                     </h4>
                     <div className="space-y-1">
-                      <p className="font-sans text-[12px] uppercase tracking-[0.2em] font-bold opacity-90">
+                      <p className="font-sans text-[10px] md:text-xs uppercase tracking-[0.2em] font-bold opacity-90">
                         Държави
                       </p>
-                      <p className="font-sans text-sm opacity-75 font-light leading-relaxed">
+                      <p className="font-sans text-sm md:text-base opacity-75 font-light leading-relaxed">
                         Глобално присъствие и логистична мрежа.
                       </p>
                     </div>
@@ -373,14 +373,14 @@ const JoinTeam = () => {
                         граници
                       </span>
                     </p>
-                    <p className="text-[10px] text-gray-400 mt-6 font-sans uppercase tracking-widest leading-relaxed">
+                    <p className="text-[10px] md:text-xs text-gray-400 mt-6 font-sans uppercase tracking-widest leading-relaxed">
                       Възможност за доходи <br /> от всяка точка на света.
                     </p>
                   </div>
 
                   <div className=" border border-brand-primary/10 rounded-[2.5rem] p-8 flex flex-col items-center justify-center text-center">
                     <TrendingUp className="text-brand-primary mb-2" size={20} />
-                    <p className="font-sans text-[10px] uppercase tracking-[0.2em] text-brand-dark font-bold leading-relaxed">
+                    <p className="font-sans text-[10px] md:text-xs uppercase tracking-[0.2em] text-brand-dark font-bold leading-relaxed">
                       Вертикално Интегрирани
                     </p>
                   </div>
@@ -390,15 +390,15 @@ const JoinTeam = () => {
               {/* Дясна страна: Подробна Информация */}
               <div className="lg:col-span-5 space-y-10 py-4">
                 <div className="space-y-6">
-                  <h2 className="font-display text-4xl md:text-5xl ">
+                  <h3 className="font-display ">
                     Стабилност, която <br />
                     <span className="text-brand-primary italic font-light font-display">
                       променя животи
                     </span>
-                  </h2>
+                  </h3>
                 </div>
 
-                <div className="space-y-8 font-sans text-gray-500 text-lg leading-relaxed font-light">
+                <div className="space-y-8 font-sans text-gray-500 text-base leading-relaxed font-light">
                   <p>
                     <a
                       href="https://foreverliving.com/bgr/bg-bg/about"
@@ -464,7 +464,7 @@ const JoinTeam = () => {
                         {item.title}
                       </h3>
                     </div>
-                    <p className="font-sans text-gray-500 leading-relaxed font-light text-[15px] md:text-base">
+                    <p className="font-sans text-gray-500 leading-relaxed font-light text-sm">
                       {item.desc}
                     </p>
 
@@ -546,7 +546,7 @@ const JoinTeam = () => {
           group p-8 md:p-10 rounded-[2.5rem] bg-[#fcfaf7]/80 backdrop-blur-md border border-white shadow-sm hover:shadow-xl hover:border-brand-primary/20 transition-all duration-500 flex flex-col h-full text-center
         "
                   >
-                    <span className="font-sans text-[10px] md:text-[11px] uppercase tracking-[0.3em] text-brand-primary font-bold mb-6 opacity-60">
+                    <span className="font-sans text-[10px] md:text-xs uppercase tracking-[0.3em] text-brand-primary font-bold mb-6 opacity-60">
                       {item.label}
                     </span>
 
@@ -561,7 +561,7 @@ const JoinTeam = () => {
                       {item.title}
                     </h3>
 
-                    <p className="font-sans leading-relaxed font-light text-sm md:text-base">
+                    <p className="font-sans leading-relaxed font-light text-sm ">
                       {item.text}
                     </p>
 

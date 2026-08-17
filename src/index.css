@@ -175,7 +175,7 @@
   }
 
   body {
-    @apply bg-brand-cream font-sans text-gray-600 text-base md:text-lg font-light antialiased overflow-x-hidden;
+    @apply bg-brand-cream font-sans text-gray-600 text-base font-light antialiased overflow-x-hidden;
     line-height: 1.6;
     margin: 0;
   }
@@ -190,12 +190,12 @@
 
   /* HERO ЗАГЛАВИЕ */
   h1 {
-    @apply text-[2.25rem] md:text-6xl lg:text-7xl font-medium;
+    @apply text-[2.25rem] md:text-5xl lg:text-6xl font-medium;
   }
 
   /* СЕКЦИОННИ ЗАГЛАВИЯ */
   h2 {
-    @apply text-[1.875rem] md:text-5xl lg:text-6xl font-medium tracking-tighter;
+    @apply text-[1.875rem] md:text-4xl lg:text-5xl font-medium ;
   }
 
   /* ПОДЗАГЛАВИЯ И КАРТИ */
@@ -243,8 +243,8 @@
   /* Основен Бутон */
   .btn-primary {
     @apply inline-flex items-center justify-center gap-3 bg-brand-primary text-white 
-    px-8 py-5 md:px-10 md:py-5 rounded-full w-full sm:w-auto
-    font-sans font-light uppercase tracking-[0.15em] text-[10px] md:text-[11px]
+    px-8 py-5 rounded-full w-full sm:w-auto
+    font-sans font-light uppercase tracking-[0.15em] text-[10px] md:text-xs
     transition-all duration-500 ease-out shadow-xl shadow-brand-primary/20 
     hover:bg-brand-dark hover:scale-102 hover:shadow-2xl 
     active:scale-95 cursor-pointer text-center border-none no-underline;
@@ -254,8 +254,8 @@
   .btn-outline {
     @apply inline-flex items-center justify-center bg-transparent gap-3 w-full sm:w-auto
     text-brand-dark border-2 border-brand-dark/10
-    px-8 py-5 md:px-10 md:py-5 rounded-full 
-    font-sans font-medium uppercase tracking-[0.15em] text-[10px] md:text-[11px]
+    px-8 py-5 rounded-full
+    font-sans font-medium uppercase tracking-[0.15em] text-[10px] md:text-xs
     transition-all duration-300 hover:bg-brand-light hover:border-brand-primary
     hover:text-brand-primary active:scale-95 cursor-pointer text-center no-underline;
   }

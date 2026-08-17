@@ -124,7 +124,7 @@ const AboutDetailed = () => {
                   className="group relative flex flex-col items-center gap-3 transition-all"
                   aria-label="Скрол надолу към трансформацията"
                 >
-                  <span className="text-[9px] uppercase tracking-[0.3em] text-brand-dark/40 font-bold group-hover:text-brand-primary transition-colors">
+                  <span className="text-[10px] md:text-xs uppercase tracking-[0.3em] text-brand-dark/40 font-bold group-hover:text-brand-primary transition-colors">
                     Виж повече
                   </span>
 
