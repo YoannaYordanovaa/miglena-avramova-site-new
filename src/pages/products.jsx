@@ -33,7 +33,7 @@ const Products = () => {
     body: "Грижа за тялото",
     hygiene: "Лична хигиена",
     "weight-loss": "Контрол на теглото",
-    packages: "Пакети",
+    packages: "Комбинирани пакети",
     cosmetics: "Козметика",
     "drinks-and-supplements": "Напитки и добавки",
     shop: "Всички продукти",

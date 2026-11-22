@@ -161,12 +161,12 @@ app.get("/getProducts", async (req, res) => {
 // Специфични категории
 const categories = {
   "/getDrinks": "Напитки",
-  "/getSupplements": "Добавки",
+  "/getSupplements": "Хранителни добавки",
   "/getFace": "Грижа за лицето",
   "/getBody": "Грижа за тялото",
   "/getPersonalhygiene": "Лична хигиена",
   "/getWeightcontrol": "Контрол на теглото",
-  "/getPackages": "Пакети"
+  "/getPackages": "Комбинирани пакети"
 };
 
 Object.entries(categories).forEach(([path, dbCategory]) => {

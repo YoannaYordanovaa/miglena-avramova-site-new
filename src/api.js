@@ -27,7 +27,7 @@ export const fetchProducts = async (category) => {
       );
     }
     if (category === "drinks-and-supplements") {
-      return data.filter((p) => ["Напитки", "Добавки"].includes(p.category));
+      return data.filter((p) => ["Напитки", "Хранителни добавки"].includes(p.category));
     }
 
     return data;
