@@ -69,7 +69,7 @@ const Navbar = () => {
           title: "Напитки и добавки",
           subSubmenu: [
             { title: "Напитки", href: "/shop/drinks" },
-            { title: "Добавки", href: "/shop/supplements" },
+            { title: "Хранителни добавки", href: "/shop/supplements" },
           ],
         },
         {
@@ -81,7 +81,7 @@ const Navbar = () => {
           ],
         },
         { title: "Контрол на теглото", href: "/shop/weight-loss" },
-        { title: "Пакети", href: "/shop/packages" },
+        { title: "Комбинирани пакети", href: "/shop/packages" },
       ],
     },
     { title: "Контакти", href: "#contact" },
