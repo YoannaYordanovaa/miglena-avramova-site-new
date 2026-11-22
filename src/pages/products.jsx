@@ -115,8 +115,6 @@ const Products = () => {
     return (original * 0.85).toFixed(2);
   };
 
-  const euroRate = 1.95583;
-
   useEffect(() => {
     const loadData = async () => {
       setLoading(true);
@@ -463,11 +461,8 @@ const Products = () => {
                             <span className="bg-brand-primary/10 text-brand-primary text-xs font-black px-2 py-0.5 rounded-md uppercase tracking-wider">
                               Спестяваш: €
                               {(
-                                (parsePrice(product.price) -
-                                  parsePrice(
-                                    getDiscountedPrice(product.price),
-                                  )) /
-                                euroRate
+                                parsePrice(product.price) -
+                                parsePrice(getDiscountedPrice(product.price))
                               ).toFixed(2)}
                             </span>
                           </div>
@@ -475,19 +470,15 @@ const Products = () => {
                             <div className="flex flex-col">
                               <span className="text-gray-400 line-through font-sans text-base">
                                 €
-                                {(
-                                  parsePrice(product.price) / euroRate
-                                ).toFixed(2)}
+                                {parsePrice(product.price).toFixed(2)}
                               </span>
                               <div className="flex items-baseline gap-1">
                                 <span className="text-xl font-black text-brand-dark uppercase">
                                   €
                                 </span>
                                 <span className="text-xl font-sans font-black text-brand-dark tracking-tighter leading-none">
-                                  {(
-                                    parsePrice(
-                                      getDiscountedPrice(product.price),
-                                    ) / euroRate
+                                  {parsePrice(
+                                    getDiscountedPrice(product.price),
                                   ).toFixed(2)}
                                 </span>
                               </div>
